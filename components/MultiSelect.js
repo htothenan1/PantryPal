@@ -101,13 +101,16 @@ const MultiSelectScreen = ({route}) => {
           };
         }
       });
-      const response = await fetch('http://localhost:3000/items', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://37bf-2600-4041-54c4-7200-2420-7c9f-7c08-ed78.ngrok-free.app/items',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({items: preparedItems}),
         },
-        body: JSON.stringify({items: preparedItems}),
-      });
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

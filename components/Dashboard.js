@@ -24,7 +24,8 @@ const Dashboard = () => {
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const apiUrl = 'http://localhost:3000';
+  const apiUrl =
+    'https://37bf-2600-4041-54c4-7200-2420-7c9f-7c08-ed78.ngrok-free.app';
 
   const deleteItem = async itemId => {
     try {
