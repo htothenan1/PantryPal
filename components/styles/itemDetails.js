@@ -5,22 +5,25 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  headerText: {
-    textAlign: 'center',
-    fontSize: 32,
-    marginVertical: 20,
-    paddingHorizontal: 10,
-    fontFamily: 'georgia',
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  expDateText: {
-    fontSize: 20,
-    fontFamily: 'georgia',
-    textAlign: 'center',
-    marginBottom: 20,
+  background: {
+    width: 120, // Adjust the width as needed
+    height: 120, // Adjust the height as needed
+    margin: 10,
+  },
+  headerText: {
+    flex: 1,
+    textAlign: 'left',
+    fontSize: 32,
+    marginVertical: 10,
+    fontFamily: 'Avenir-Book',
   },
   storageTipText: {
     fontSize: 20,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     paddingHorizontal: 30,
   },
 });

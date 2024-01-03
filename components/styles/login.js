@@ -15,8 +15,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontSize: 28,
-    fontFamily: 'georgia',
-    fontWeight: '500',
+    fontFamily: 'Avenir-Book',
     marginVertical: 10,
     textAlign: 'center',
   },
@@ -37,7 +36,7 @@ export default StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#ff9f67',
+    backgroundColor: '#343a40',
     width: '100%',
     paddingVertical: 15,
     marginVertical: 15,
@@ -52,21 +51,20 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontFamily: 'georgia',
-    fontWeight: '700',
+    fontFamily: 'Avenir-Book',
     fontSize: 16,
   },
   buttonOutlineText: {
-    fontFamily: 'georgia',
+    fontFamily: 'futura',
     color: '#0782F9',
     fontWeight: '700',
     fontSize: 16,
   },
   registerText: {
     fontSize: 16,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
   },
   registerHyperlink: {
-    color: 'green',
+    color: '#386641',
   },
 });

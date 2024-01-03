@@ -3,12 +3,13 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
+    paddingBottom: 100,
   },
   titleText: {
     fontSize: 24,
-    fontFamily: 'georgia',
-    fontWeight: 'bold',
+    fontFamily: 'Avenir-Book',
+    // fontWeight: 'bold',
     marginBottom: 10,
   },
   image: {
@@ -18,29 +19,28 @@ export default StyleSheet.create({
   },
   servingsText: {
     fontSize: 18,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     marginBottom: 10,
   },
   ingredientsTitleText: {
     fontSize: 20,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     marginBottom: 10,
     fontWeight: 'bold',
   },
   ingredientsText: {
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     fontSize: 16,
     marginBottom: 5,
   },
   instructionsTitleText: {
     fontSize: 20,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     marginBottom: 10,
     fontWeight: 'bold',
   },
   instructionsText: {
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     fontSize: 16,
-    marginBottom: 20,
   },
 });

@@ -7,6 +7,11 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  loadingContainer: {
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   rightSwipeContainer: {
     flexDirection: 'row',
     width: 150,
@@ -14,22 +19,28 @@ export default StyleSheet.create({
   },
   swipeButton: {
     width: 50,
-    backgroundColor: '#ff9f67',
+    backgroundColor: '#dee2e6',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  input: {
+    height: 50,
+    width: 100,
+    margin: 12,
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+  },
   itemsList: {
-    backgroundColor: 'white',
-    height: 250,
-    marginHorizontal: 34,
-    marginBottom: 100,
+    marginBottom: 80,
+    // marginHorizontal: 34,
   },
   item: {
     borderWidth: 0.2,
-    borderRadius: 5,
-    paddingHorizontal: 12,
+    // borderRadius: 5,
+    paddingHorizontal: 25,
     paddingVertical: 14,
-    backgroundColor: '#edede9',
+    backgroundColor: '#f8f9fa',
   },
   itemTextContainer: {
     flexDirection: 'row',
@@ -37,7 +48,7 @@ export default StyleSheet.create({
   },
   itemText: {
     fontSize: 20,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
   },
   fab: {
     position: 'absolute',
@@ -46,8 +57,24 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     right: 20,
-    bottom: 50,
-    backgroundColor: '#ff9f67',
+    bottom: 10,
+    backgroundColor: '#495057',
+    borderRadius: 28,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: {width: 0, height: 2},
+  },
+  leftFab: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 20,
+    bottom: 10,
+    backgroundColor: '#495057',
     borderRadius: 28,
     elevation: 8,
     shadowColor: '#000',
@@ -58,7 +85,7 @@ export default StyleSheet.create({
   fabText: {
     fontSize: 35,
     color: 'white',
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
   },
   bottomModal: {
     justifyContent: 'flex-end',
@@ -81,7 +108,7 @@ export default StyleSheet.create({
   modalText: {
     fontSize: 25,
     marginLeft: 5,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
   },
   image: {
     width,
@@ -92,14 +119,15 @@ export default StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontSize: 20,
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
     marginVertical: 20,
   },
   footerText: {
     textAlign: 'center',
-    fontFamily: 'georgia',
+    fontFamily: 'Avenir-Book',
     fontSize: 18,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     marginTop: 5,
   },
 });

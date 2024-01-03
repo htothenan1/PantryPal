@@ -4,13 +4,31 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  tabsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  tab: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  selectedTab: {
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+  },
+  tabText: {
+    fontSize: 13,
+  },
+  selectedTabText: {
+    color: 'white',
+  },
   item: {
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
   selectedItem: {
-    backgroundColor: '#ff9f67',
+    backgroundColor: '#5fa8d3',
     color: 'white',
   },
   selectedItemText: {
@@ -18,14 +36,15 @@ export default StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
+    fontFamily: 'Avenir-Book',
   },
   buttonContainer: {
-    margin: 20,
     padding: 10,
+    backgroundColor: 'white',
   },
   buttonText: {
     fontSize: 25,
-    color: '#ff9f67',
+    color: '#5fa8d3',
     textAlign: 'center',
   },
   subItemsContainer: {
@@ -38,7 +57,7 @@ export default StyleSheet.create({
     borderBottomColor: '#ddd',
   },
   selectedSubItem: {
-    backgroundColor: '#ffcc99',
+    backgroundColor: '#5fa8d3',
   },
   subItemText: {
     fontSize: 14,

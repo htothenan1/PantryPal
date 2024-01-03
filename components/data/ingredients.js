@@ -1,164 +1,520 @@
+import apples from '../../assets/apple.png';
+import apricots from '../../assets/apricots.png';
+import artichokes from '../../assets/artichoke.png';
+import arugula from '../../assets/arugula.png';
+import asparagus from '../../assets/asparagus2.png';
+import avocado from '../../assets/avocado.png';
+import babycarrot from '../../assets/babycarrot.png';
+import babyspinach from '../../assets/babyspinach.png';
+import bacon from '../../assets/bacon.png';
+import bagel from '../../assets/bagel.png';
+import bananas from '../../assets/bananas.png';
+import basil from '../../assets/basil.png';
+import beets from '../../assets/beets.png';
+import bellpepper from '../../assets/bellpepper.png';
+import blackberries from '../../assets/blackberries.png';
+import blueberries from '../../assets/blueberries.png';
+import bokchoy from '../../assets/bokchoy.png';
+import broccoli from '../../assets/broccoli.png';
+import bread from '../../assets/bread.png';
+import rabe from '../../assets/rabe.png';
+import broccolini from '../../assets/broccolini.png';
+import butter from '../../assets/butter.png';
+import cabbage from '../../assets/cabbage.png';
+import carrots from '../../assets/carrots.png';
+import cauliflower from '../../assets/cauliflower.png';
+import celery from '../../assets/celery.png';
+import chard from '../../assets/chard.png';
+import cheese from '../../assets/cheese.png';
+import cherries from '../../assets/cherries.png';
+import chicken from '../../assets/chicken.png';
+import chervil from '../../assets/chervil.png';
+import chives from '../../assets/chives.png';
+import cilantro from '../../assets/cilantro.png';
+import coconut from '../../assets/coconut.png';
+import collardgreens from '../../assets/collardgreens.png';
+import corn from '../../assets/corn.png';
+import cranberries from '../../assets/cranberries.png';
+import cucumbers from '../../assets/cucumbers.png';
+import currants from '../../assets/currants.png';
+import eggplant from '../../assets/eggplant.png';
+import eggs from '../../assets/eggs.png';
+import endive from '../../assets/endive.png';
+import figs from '../../assets/figs.png';
+import fish from '../../assets/fish.png';
+import garlic from '../../assets/garlic.png';
+import ginger from '../../assets/ginger.png';
+import gooseberries from '../../assets/gooseberries.png';
+import grapefruit from '../../assets/grapefruit.png';
+import grapes from '../../assets/grapes.png';
+import greenbeans from '../../assets/greenbeans.png';
+import groundbeef from '../../assets/groundbeef.png';
+import guava from '../../assets/guava.png';
+import huckleberries from '../../assets/huckleberries.png';
+import jicama from '../../assets/jicama.png';
+import juniperberries from '../../assets/juniperberries.png';
+import kale from '../../assets/kale.png';
+import kiwis from '../../assets/kiwis.png';
+import kumquats from '../../assets/kumquats.png';
+import lamb from '../../assets/lamb.png';
+import leeks from '../../assets/leeks.png';
+import lemons from '../../assets/lemons.png';
+import lettuce from '../../assets/lettuce.png';
+import limes from '../../assets/limes.png';
+import lobster from '../../assets/lobster.png';
+import lychees from '../../assets/lychees.png';
+import mangos from '../../assets/mangos.png';
+import milk from '../../assets/milk.png';
+import mushrooms from '../../assets/mushrooms.png';
+import nectarines from '../../assets/nectarines.png';
+import okra from '../../assets/okra.png';
+import olives from '../../assets/olives.png';
+import onions from '../../assets/onions.png';
+import oranges from '../../assets/oranges.png';
+import parsley from '../../assets/parsley.png';
+import parsnips from '../../assets/parsnips.png';
+import pasta from '../../assets/pasta.png';
+import papayas from '../../assets/papayas.png';
+import passionfruit from '../../assets/passionfruit.png';
+import peaches from '../../assets/peaches.png';
+import pears from '../../assets/pears.png';
+import peas from '../../assets/peas.png';
+import peppers from '../../assets/peppers.png';
+import persimmons from '../../assets/persimmons.png';
+import pineapples from '../../assets/pineapples.png';
+import plums from '../../assets/plums.png';
+import pomegranates from '../../assets/pomegranates.png';
+import pork from '../../assets/pork.png';
+import potatoes from '../../assets/potatoes.png';
+import prunes from '../../assets/prunes.png';
+import pumpkin from '../../assets/pumpkin.png';
+import quince from '../../assets/quince.png';
+import radishes from '../../assets/radishes.png';
+import raspberries from '../../assets/raspberries.png';
+import rhubarb from '../../assets/rhubarb.png';
+import rosemary from '../../assets/rosemary.png';
+import rutabagas from '../../assets/rutabagas.png';
+import saladgreens from '../../assets/saladgreens.png';
+import scallions from '../../assets/scallions.png';
+import shallots from '../../assets/shallots.png';
+import shrimp from '../../assets/shrimp.png';
+import spinach from '../../assets/spinach.png';
+import squash from '../../assets/squash.png';
+import strawberries from '../../assets/strawberries.png';
+import thyme from '../../assets/thyme.png';
+import tofu from '../../assets/tofu.png';
+import tomatoes from '../../assets/tomatoes.png';
+import turnips from '../../assets/turnips.png';
+import turkey from '../../assets/turkey.png';
+import watermelon from '../../assets/watermelon.png';
+import yams from '../../assets/yams.png';
+import yogurt from '../../assets/yogurt.png';
+import zucchini from '../../assets/zucchini.png';
+
 export const ingredients = [
   {
     item_id: '987d40b6-711e-4ef9-bc0c-7949eef3ef54',
     name: 'Apples',
+    img: apples,
     exp_int: 5,
+    category: 'fruits',
     storage_tip:
       'Keep in crisper drawer, away from other fruit. Cook shriveled apples into pies and applesauce. Use peels to make tea, or use in smoothies.',
-    subItems: [
-      {name: 'Gala Apples', item_id: '88473bd4-8925-4209-8c43-50e1d8fe90d6'},
-      {
-        name: 'Honeycrisp Apples',
-        item_id: '4b28fd4a-8e37-4209-946f-7eafba094fa3',
-      },
-      {
-        name: 'Granny Smith Apples',
-        item_id: 'a1ac2859-98dd-43c2-8b77-4e565200cc2f',
-      },
-      {name: 'Fuji Apples', item_id: '10478b49-7ab0-4b56-b987-e16fb7e211e2'},
-      {
-        name: 'Red Delicious Apples',
-        item_id: '269003ae-d585-4211-8367-2346b95607fa',
-      },
-      {
-        name: 'Pink Lady Apples',
-        item_id: 'a6edef58-1afb-42bb-8f31-49c5550a2bec',
-      },
-      {
-        name: 'McIntosh Apples',
-        item_id: '392950fe-b877-4d86-b186-a5423e69c497',
-      },
-      {name: 'Envy Apples', item_id: 'b5255517-ba78-4674-9740-900c5a53c760'},
-      {
-        name: 'Ambrosia Apples',
-        item_id: '4dd28d83-804a-42b3-a9b9-58acec29c31a',
-      },
-      {
-        name: 'Cosmic Crisp Apples',
-        item_id: '70b68674-6d8a-452f-bd51-2a2085136500',
-      },
+    techniques:
+      'bake, caramelize, deep-fry (e.g., as fritters), grill, poach, raw, sauté, stew',
+    compatibles: [
+      'Bacon',
+      'Beef',
+      'Blackberries',
+      'Brioche',
+      'Unsalted Butter',
+      'Cabbage',
+      'Celery',
+      'Gruyère',
+      'Cheddar',
+      'Cherries',
+      'Chicken',
+      'Chives',
+      'Cranberries',
+      'Dates',
+      'Eggplants',
+      'Friseé',
+      'Ginger',
+      'Lemons',
+      'Oranges',
+      'Parsley',
+      'Pears',
+      'Pineapples',
+      'Plums',
+      'Prunes',
+      'Pumpkin',
+      'Quinces',
+      'Rhubarb',
+      'Rosemary',
+      'Salad Greens',
+      'Sour Cream',
+      'Sweet Potatoes',
+      'Thyme',
+      'Yogurt',
     ],
+    // subItems: [
+    //   {name: 'Gala Apples', item_id: '88473bd4-8925-4209-8c43-50e1d8fe90d6'},
+    //   {
+    //     name: 'Honeycrisp Apples',
+    //     item_id: '4b28fd4a-8e37-4209-946f-7eafba094fa3',
+    //   },
+    //   {
+    //     name: 'Granny Smith Apples',
+    //     item_id: 'a1ac2859-98dd-43c2-8b77-4e565200cc2f',
+    //   },
+    //   {name: 'Fuji Apples', item_id: '10478b49-7ab0-4b56-b987-e16fb7e211e2'},
+    //   {
+    //     name: 'Red Delicious Apples',
+    //     item_id: '269003ae-d585-4211-8367-2346b95607fa',
+    //   },
+    //   {
+    //     name: 'Pink Lady Apples',
+    //     item_id: 'a6edef58-1afb-42bb-8f31-49c5550a2bec',
+    //   },
+    //   {
+    //     name: 'McIntosh Apples',
+    //     item_id: '392950fe-b877-4d86-b186-a5423e69c497',
+    //   },
+    //   {name: 'Envy Apples', item_id: 'b5255517-ba78-4674-9740-900c5a53c760'},
+    //   {
+    //     name: 'Ambrosia Apples',
+    //     item_id: '4dd28d83-804a-42b3-a9b9-58acec29c31a',
+    //   },
+    //   {
+    //     name: 'Cosmic Crisp Apples',
+    //     item_id: '70b68674-6d8a-452f-bd51-2a2085136500',
+    //   },
+    // ],
   },
   {
     item_id: 'd82edc7b-1e55-4830-b4f8-48dac5f4e3f1',
     name: 'Apricots',
     exp_int: 5,
+    img: apricots,
+    category: 'fruits',
     storage_tip:
       'Airtight container. Ripe apricots should yield slightly to gentle pressure and have a sweet aroma. Store apricots in a shallow container lined with a paper towel to absorb excess moisture.',
+    techniques: 'bake, grill, poach, raw, stew',
+    compatibles: [
+      'Apples',
+      'Bananas',
+      'Blackberries',
+      'Blueberries',
+      'Unsalted Butter',
+      'Ricotta',
+      'Brie',
+      'Cherries',
+      'Chicken',
+      'Cranberries',
+      'Garlic',
+      'Ginger',
+      'Lamb',
+      'Lemon',
+      'Nectarines',
+      'Onions',
+      'Yellow Onions',
+      'Orange',
+      'Peaches',
+      'Pineapples',
+      'Plums',
+      'Pork',
+      'Prunes',
+      'Raspberries',
+      'Rosemary',
+      'Salad Greens',
+      'Sour Cream',
+      'Strawberries',
+      'Yogurt',
+    ],
   },
   {
     item_id: '78181637-dca9-433d-b8bc-001a2caed64c',
     name: 'Artichokes',
+    img: artichokes,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
       'Keep in crisper drawer, plastic bag, and leave unwashed. Artichokes are best when consumed soon after purchase. To prevent artichokes from drying out, wrap them loosely in a damp paper towel or cloth and place them in a plastic bag.',
+    techniques:
+      'bake, boil, braise, broil, deep-fry, grill, raw, roast, sauté, steam, stew',
+    compatibles: [
+      'Arugula',
+      'Bacon',
+      'Basil',
+      'Beets',
+      'Bell Peppers',
+      'Butter',
+      'Carrots',
+      'Capers',
+      'Celery',
+      'Gruyère',
+      'Parmesan',
+      'Chervil',
+      'Chicken',
+      'Chives',
+      'Eggs',
+      'Garlic',
+      'Grapefruits',
+      'Sliced Ham',
+      'Leeks',
+      'Lemon',
+      'Lobster',
+      'Mushrooms',
+      'Onions',
+      'Sweet Onions',
+      'Yellow Onions',
+      'Oranges',
+      'Pancetta',
+      'Parsley',
+      'Potatoes',
+      'Radicchio',
+      'Rosemary',
+      'Salad Greens',
+      'Shallots',
+      'Shrimp',
+      'Spinach',
+      'Baby Spinach',
+      'Tuna',
+      'Yogurt',
+    ],
   },
   {
     item_id: 'aa0258b1-3d77-401a-98c3-84ed306fe617',
     name: 'Arugula',
+    img: arugula,
     exp_int: 4,
+    category: 'vegetables',
     storage_tip:
       'When you bring arugula home, remove any excess moisture by gently patting it dry with a clean paper towel. Place the arugula in a plastic bag or an airtight container lined with a paper towel. This will help absorb moisture and prevent the leaves from becoming soggy.',
+    techniques: 'braise, raw (salads), sauté, soups, wilt',
+    compatibles: [
+      'Basil',
+      'Bell Peppers',
+      'Feta',
+      'Mozzarella',
+      'Parmesan',
+      'Chicken',
+      'Cilantro',
+      'Corn',
+      'Cucumbers',
+      'Eggs',
+      'Endive',
+      'Salmon',
+      'Tuna',
+      'Garlic',
+      'Grapes',
+      'Lettuce',
+      'Mushrooms',
+      'Olives',
+      'Oranges',
+      'Pancetta',
+      'Parsley',
+      'Pasta',
+      'Pears',
+      'Potatoes',
+      'Radicchio',
+      'Radishes',
+      'Salad Greens',
+      'Shallots',
+      'Shrimp',
+      'Tomatoes',
+      'Tuna',
+      'Watercress',
+    ],
   },
   {
     item_id: 'b9530ad2-90dd-400b-ba46-a005951a0826',
     name: 'Asparagus',
+    img: asparagus,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
       'Before storing, trim about 1-2 inches from the bottom ends of the stalks. This can also help the asparagus absorb water and stay fresh. Place the trimmed asparagus upright in a container or glass with about an inch of water at the bottom.',
+    techniques:
+      'blanch, boil, deep-fry, grill, pan roast, simmer, steam, stir-fry',
+    compatibles: [
+      'Artichokes',
+      'Basil',
+      'Beets',
+      'Unsalted Butter',
+      'Capers',
+      'Carrots',
+      'Parmesan',
+      'Ricotta',
+      'Chives',
+      'Heavy Cream',
+      'Eggs',
+      'Garlic',
+      'Ginger',
+      'Ham',
+      'Leeks',
+      'Lemon',
+      'Lemon Thyme',
+      'Mushrooms',
+      'Onions',
+      'Spring Onions',
+      'Yellow Onions',
+      'Pancetta',
+      'Parsley',
+      'Pasta',
+      'Peas',
+      'Potatoes',
+      'Prosciutto',
+      'Salmon',
+      'Scallions',
+      'Shallots',
+      'Shrimp',
+      'Sour Cream',
+      'Spinach',
+      'Tomatoes',
+      'Turnips',
+      'Yogurt',
+    ],
   },
   {
     item_id: 'ab9288a3-dfed-45b5-ae06-614915238d4c',
     name: 'Avocados',
+    img: avocado,
     exp_int: 3,
+    category: 'vegetables',
     storage_tip:
       "Store on counter until ripe, then refrigerate. If you've cut an avocado and have leftover halves, keep the pit in the unused half and wrap it tightly in plastic wrap or place it in an airtight container. This helps minimize exposure to air and slows down browning.",
-    subItems: [
-      {name: 'Hass Avocados', item_id: '062f9228-105f-4362-a6ad-98926ff7780e'},
-      {name: 'Bacon Avocados', item_id: '02764e1b-d765-4134-8786-70209d9e0a80'},
-      {
-        name: 'Fuerte Avocados',
-        item_id: '2eba8308-986a-4db6-929c-3a812d181f45',
-      },
-      {name: 'Gwen Avocados', item_id: 'fbeb20f3-ed5b-4eae-8dce-b8aa1c9ac3e8'},
-      {
-        name: 'Lamb Hass Avocados',
-        item_id: 'd467d4d4-5d6f-4f5e-84c7-41d8c3c3a8ca',
-      },
-      {
-        name: 'Pinkerton Avocados',
-        item_id: 'bb70c758-e748-4edb-8633-0572f2e71a52',
-      },
-      {name: 'Reed Avocados', item_id: 'dc219d4c-9792-4905-9740-038e7ae7d96b'},
-      {
-        name: 'Zutano Avocados',
-        item_id: 'a4ab6657-48cf-4fbe-b8d0-546ac39adc83',
-      },
-      {
-        name: 'Carmen Avocados',
-        item_id: 'a658bd95-f937-4fc4-9fd2-f605ab281fa5',
-      },
-      {
-        name: 'Simmonds Avocados',
-        item_id: '0ae4872f-cad6-4a8f-a8f9-8b35ca1f03ef',
-      },
+    techniques: 'raw',
+    compatibles: [
+      'Arugula',
+      'Bacon',
+      'Basil',
+      'Bell Peppers',
+      'Unsalted Butter',
+      'Chervil',
+      'Chicken',
+      'Cilantro',
+      'Chives',
+      'Corn',
+      'Heavy Cream',
+      'Cucumbers',
+      'Endive',
+      'Garlic',
+      'Grapefruits',
+      'Lemon',
+      'Lime',
+      'Lobster',
+      'Mangoes',
+      'Onions',
+      'Red Onions',
+      'Spring Onions',
+      'White Onions',
+      'Oranges',
+      'Parsley',
+      'Radishes',
+      'Salad Greens',
+      'Scallions',
+      'Shrimp',
+      'Trout',
+      'Sour Cream',
+      'Spinach',
+      'Tomatoes',
+      'Yogurt',
     ],
+    // subItems: [
+    //   {name: 'Hass Avocados', item_id: '062f9228-105f-4362-a6ad-98926ff7780e'},
+    //   {name: 'Bacon Avocados', item_id: '02764e1b-d765-4134-8786-70209d9e0a80'},
+    //   {
+    //     name: 'Fuerte Avocados',
+    //     item_id: '2eba8308-986a-4db6-929c-3a812d181f45',
+    //   },
+    //   {name: 'Gwen Avocados', item_id: 'fbeb20f3-ed5b-4eae-8dce-b8aa1c9ac3e8'},
+    //   {
+    //     name: 'Lamb Hass Avocados',
+    //     item_id: 'd467d4d4-5d6f-4f5e-84c7-41d8c3c3a8ca',
+    //   },
+    //   {
+    //     name: 'Pinkerton Avocados',
+    //     item_id: 'bb70c758-e748-4edb-8633-0572f2e71a52',
+    //   },
+    //   {name: 'Reed Avocados', item_id: 'dc219d4c-9792-4905-9740-038e7ae7d96b'},
+    //   {
+    //     name: 'Zutano Avocados',
+    //     item_id: 'a4ab6657-48cf-4fbe-b8d0-546ac39adc83',
+    //   },
+    //   {
+    //     name: 'Carmen Avocados',
+    //     item_id: 'a658bd95-f937-4fc4-9fd2-f605ab281fa5',
+    //   },
+    //   {
+    //     name: 'Simmonds Avocados',
+    //     item_id: '0ae4872f-cad6-4a8f-a8f9-8b35ca1f03ef',
+    //   },
+    // ],
   },
   {
     item_id: 'f95b0eda-b2d0-4e66-bab9-5f98c6a8c834',
     name: 'Baby Carrots',
+    img: babycarrot,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Always store in the crisper drawer. Before storing, make sure the baby carrots are dry. Excess moisture can lead to mold growth. Try to use them within a week of purchase to enjoy their crisp texture and natural sweetness.',
   },
   {
     item_id: 'b37977b1-6559-4f91-af09-5e26bd60c508',
     name: 'Baby Spinach',
+    img: babyspinach,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Place a piece of paper towel inside the bag to absorb moisture. Try not to compress or pack the baby spinach too tightly when storing it.',
   },
   {
     item_id: '1e1a9a8f-1d53-4231-b13a-abcf62eaf0bc',
     name: 'Bacon',
+    img: bacon,
     exp_int: 3,
+    category: 'meats',
     storage_tip:
       "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
-    subItems: [
-      {
-        name: 'Classic Smoked Bacon',
-        item_id: 'ac49a54a-8103-4c16-b026-65899ccb6aee',
-      },
-      {
-        name: 'Maple Flavored Bacon',
-        item_id: 'fa8bdddc-d046-4fe9-8f67-5de87cb180e0',
-      },
-      {
-        name: 'Hickory Smoked Bacon',
-        item_id: '90ec2250-ef64-4406-a033-2e8aa30e9189',
-      },
-      {
-        name: 'Applewood Smoked Bacon',
-        item_id: 'f4958281-6edf-41e9-9f9d-93c234ac7464',
-      },
-      {name: 'Peppered Bacon', item_id: 'caf2a398-2b23-46e7-8d62-3f38a1dd598c'},
-      {
-        name: 'Thick Cut Bacon',
-        item_id: '5880f3a5-33c5-44f8-a0ad-630d71a1ab43',
-      },
-      {name: 'Turkey Bacon', item_id: '0afbfcfe-f2d9-4ce3-88c2-e199b01df6a9'},
-      {name: 'Canadian Bacon', item_id: 'b7929c33-3bc9-4f68-844b-f43ee9b855e5'},
-      {name: 'Pancetta', item_id: '0a97e373-2af5-4b20-8480-979cf4dad3bd'},
-      {
-        name: 'Vegetarian Baconx',
-        item_id: 'c2dd82de-4c36-4cd0-8b87-34fd55cf72aa',
-      },
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Classic Smoked Bacon',
+    //     item_id: 'ac49a54a-8103-4c16-b026-65899ccb6aee',
+    //   },
+    //   {
+    //     name: 'Maple Flavored Bacon',
+    //     item_id: 'fa8bdddc-d046-4fe9-8f67-5de87cb180e0',
+    //   },
+    //   {
+    //     name: 'Hickory Smoked Bacon',
+    //     item_id: '90ec2250-ef64-4406-a033-2e8aa30e9189',
+    //   },
+    //   {
+    //     name: 'Applewood Smoked Bacon',
+    //     item_id: 'f4958281-6edf-41e9-9f9d-93c234ac7464',
+    //   },
+    //   {name: 'Peppered Bacon', item_id: 'caf2a398-2b23-46e7-8d62-3f38a1dd598c'},
+    //   {
+    //     name: 'Thick Cut Bacon',
+    //     item_id: '5880f3a5-33c5-44f8-a0ad-630d71a1ab43',
+    //   },
+    //   {name: 'Turkey Bacon', item_id: '0afbfcfe-f2d9-4ce3-88c2-e199b01df6a9'},
+    //   {name: 'Canadian Bacon', item_id: 'b7929c33-3bc9-4f68-844b-f43ee9b855e5'},
+    //   {name: 'Pancetta', item_id: '0a97e373-2af5-4b20-8480-979cf4dad3bd'},
+    //   {
+    //     name: 'Vegetarian Baconx',
+    //     item_id: 'c2dd82de-4c36-4cd0-8b87-34fd55cf72aa',
+    //   },
+    // ],
   },
   {
     item_id: 'f889beec-f422-4f35-88b7-cb0a7598d589',
     name: 'Bagels',
+    img: bagel,
     exp_int: 5,
+    category: 'grains',
     storage_tip:
       'Freeze bagels, and defrost before eating.  If you prefer toasting your bagels, you can slice them before freezing. This makes it easier to take out individual slices for toasting without needing to thaw the entire bagel.',
     subItems: [
@@ -193,77 +549,93 @@ export const ingredients = [
   {
     item_id: '1987cb15-1560-48f5-9928-a4f975c8387c',
     name: 'Bananas',
+    img: bananas,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'If cut, sprinkle with lemon juice.  If your bananas are still in a bunch, consider separating them. This helps prevent them from ripening too quickly and becoming overripe.',
-    subItems: [
-      {
-        name: 'Cavendish Bananas',
-        item_id: '09d96c7a-9318-462c-999b-a2067aa29995',
-      },
-      {name: 'Red Bananas', item_id: 'f8c18fdc-3c4e-42f5-b510-b799a68bda30'},
-      {name: 'Plantains', item_id: '3d5a48b6-78d6-4bf4-97bc-70172f5a261f'},
-      {
-        name: 'Lady Finger Bananas',
-        item_id: 'def57d80-dcc8-44d7-82e8-03ef93f0157a',
-      },
-      {name: 'Other Bananas', item_id: 'c34d9729-b8f1-42fb-9591-e1af38c3ca12'},
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Cavendish Bananas',
+    //     item_id: '09d96c7a-9318-462c-999b-a2067aa29995',
+    //   },
+    //   {name: 'Red Bananas', item_id: 'f8c18fdc-3c4e-42f5-b510-b799a68bda30'},
+    //   {name: 'Plantains', item_id: '3d5a48b6-78d6-4bf4-97bc-70172f5a261f'},
+    //   {
+    //     name: 'Lady Finger Bananas',
+    //     item_id: 'def57d80-dcc8-44d7-82e8-03ef93f0157a',
+    //   },
+    //   {name: 'Other Bananas', item_id: 'c34d9729-b8f1-42fb-9591-e1af38c3ca12'},
+    // ],
   },
   {
     item_id: 'b1ecd3d3-4547-4901-a219-0aade8a968d7',
     name: 'Basil',
+    img: basil,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Before storing basil, trim the stems by about an inch and remove any leaves that will be submerged in water. Basil is best used fresh, as it can lose its vibrant color and flavor over time.',
-    subItems: [
-      {name: 'Sweet Basil', item_id: '38de44d4-9284-4a32-b49e-2984a81882b5'},
-      {name: 'Thai Basil', item_id: '185046f5-c90d-47c4-a90a-f3a86d3efae9'},
-      {name: 'Lemon Basil', item_id: '6a1bb52b-3bd2-4b21-899f-b0148deb4bcd'},
-      {name: 'Holy Basil', item_id: '7cbf69eb-ad7b-463f-ae0d-d069d6b3061d'},
-      {name: 'Purple Basil', item_id: '8a428b46-18b1-46c3-bad3-9f6c230f966c'},
-      {name: 'Other Basil', item_id: '10036f95-0a99-410f-be37-eafcb3898dd5'},
-    ],
+    // subItems: [
+    //   {name: 'Sweet Basil', item_id: '38de44d4-9284-4a32-b49e-2984a81882b5'},
+    //   {name: 'Thai Basil', item_id: '185046f5-c90d-47c4-a90a-f3a86d3efae9'},
+    //   {name: 'Lemon Basil', item_id: '6a1bb52b-3bd2-4b21-899f-b0148deb4bcd'},
+    //   {name: 'Holy Basil', item_id: '7cbf69eb-ad7b-463f-ae0d-d069d6b3061d'},
+    //   {name: 'Purple Basil', item_id: '8a428b46-18b1-46c3-bad3-9f6c230f966c'},
+    //   {name: 'Other Basil', item_id: '10036f95-0a99-410f-be37-eafcb3898dd5'},
+    // ],
   },
   {
     item_id: '53dc1abb-9323-4ca2-9ea7-c1ebfe03816a',
     name: 'Beets',
+    img: beets,
     exp_int: 21,
+    category: 'vegetables',
     storage_tip:
       'Before storing, trim the beet greens, leaving about an inch of stem attached to the beet. This prevents moisture from escaping and helps the beets stay fresh. Place them in a perforated plastic bag or an airtight container.',
   },
   {
     item_id: '00479eae-d636-4cbe-bbcf-198ecb800f6c',
     name: 'Bell Peppers',
+    img: bellpepper,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Always keep the seeds and stems attached. Make sure the bell peppers are dry before storing them. Excess moisture can lead to mold growth. If they are damp, you can pat them dry with a paper towel.',
   },
   {
     item_id: 'dd274862-4854-444e-b518-1c179a169054',
     name: 'Blackberries',
+    img: blackberries,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'Always seperate the soggy or spoiled berries from the good ones. Blackberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
   },
   {
     item_id: 'f25398b7-f354-4b92-bf61-0a26e30c93eb',
     name: 'Blueberries',
+    img: blueberries,
     exp_int: 5,
+    category: 'fruits',
     storage_tip:
       'Always seperate the soggy or spoiled berries from the good ones. Blackberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
   },
   {
     item_id: '309513fd-397c-427a-9e90-ae0b7cc2c96b',
     name: 'Bok Choy',
+    img: bokchoy,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       "It's important to keep bok choy dry before storing it to prevent rot. Wash it only when you're ready to use it. Place bok choy in a produce bag or a loose plastic bag. Do not seal the bag entirely; allow some air circulation.",
   },
   {
     item_id: '22ea545b-3049-4148-9416-529dfeaa4b77',
     name: 'Bread',
+    img: bread,
     exp_int: 5,
+    category: 'grains',
     storage_tip:
       'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
     subItems: [
@@ -292,21 +664,27 @@ export const ingredients = [
   {
     item_id: '6b5b4719-0167-4b8f-a9f6-9317433c8cc7',
     name: 'Broccoli',
+    img: broccoli,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Make sure the broccoli is dry before storing it. Excess moisture can lead to mold growth. If the broccoli is damp, you can pat it dry with a paper towel before refrigerating.',
   },
   {
     item_id: '21d4b9a0-88e2-4b20-84c7-38a4e24d7367',
     name: 'Broccoli Rabe',
+    img: rabe,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Keep broccoli rabe refrigerated in a plastic bag to maintain freshness.',
   },
   {
     item_id: 'e1c21b4d-743b-4850-8c1a-20dd89018b84',
     name: 'Broccolini',
+    img: broccolini,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Store broccolini in the refrigerator in a plastic bag to keep it fresh.',
   },
@@ -314,13 +692,16 @@ export const ingredients = [
     item_id: 'b3dc2001-39f2-4f40-bd3f-f75af6b8b263',
     name: 'Brussels Sprouts',
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       "Don't wash until ready to consume.  Before storing, remove any outer leaves that are damaged or discolored. This helps prevent the spread of moisture and potential spoilage.",
   },
   {
     item_id: '3f875f35-0bd6-428f-995c-e4bd33b5d235',
     name: 'Butter',
+    img: butter,
     exp_int: 14,
+    category: 'dairy',
     storage_tip:
       'Keep a reserve batch in the freezer. Can be kept at room temp if being used soon. Otherwise, store in cooler parts of fridge. If you prefer to store butter outside of its original packaging, use an airtight container or a butter keeper.',
     subItems: [
@@ -344,49 +725,61 @@ export const ingredients = [
   {
     item_id: 'd0e4fb6c-f3c6-458e-814e-5d6ab747c158',
     name: 'Cabbage',
+    img: cabbage,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Keep in crisper drawer, plastic bag, and leave unwashed. Before storing, remove any damaged or wilted outer leaves. This can help prevent moisture buildup and mold growth.',
   },
-  {
-    item_id: '45e66f8a-3fdd-4b09-bbd9-f877d41a0e82',
-    name: 'Capers',
-    exp_int: 365,
-    storage_tip:
-      'Store capers in a cool, dry place, tightly sealed to maintain freshness.',
-  },
+  // {
+  //   item_id: '45e66f8a-3fdd-4b09-bbd9-f877d41a0e82',
+  //   name: 'Capers',
+  //   exp_int: 365,
+  //   storage_tip:
+  //     'Store capers in a cool, dry place, tightly sealed to maintain freshness.',
+  // },
   {
     item_id: '32e4c8b1-0f7a-4571-ac02-25c864ff3058',
     name: 'Carrots',
+    img: carrots,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Carrots can wilt if they lose too much moisture. To prevent this, wrap them in a damp paper towel before placing them in a plastic bag or an airtight container.',
   },
   {
     item_id: '934bc9fd-bbdc-482c-b60b-25f3879fb40a',
     name: 'Cauliflower',
+    img: cauliflower,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'To prevent excess moisture, wrap the cauliflower head in a paper towel before placing it in a plastic bag or an airtight container. This helps absorb any moisture that might cause mold.',
   },
   {
     item_id: '7f445794-e2ee-47ac-a2e6-ef112dbb1993',
     name: 'Celery',
+    img: celery,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
-      ' Celery loves moisture, so wrap the celery stalks in a damp paper towel or cloth before placing them in a plastic bag. This helps maintain the humidity and prevents the celery from drying out. Before storing, trim the bottom ends of the celery stalks.',
+      'Celery loves moisture, so wrap the celery stalks in a damp paper towel or cloth before placing them in a plastic bag. This helps maintain the humidity and prevents the celery from drying out. Before storing, trim the bottom ends of the celery stalks.',
   },
   {
     item_id: 'e0c238a7-5dab-4c34-bc09-07ff4abf1ecf',
     name: 'Chard',
+    img: chard,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store chard in a plastic bag in the refrigerator. Use within a week for best freshness.',
   },
   {
     item_id: '58e37dc3-f21b-4316-8aa7-c812f3a9b7cb',
     name: 'Cheese',
+    img: cheese,
     exp_int: 7,
+    category: 'dairy',
     storage_tip:
       'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
     subItems: [
@@ -411,7 +804,9 @@ export const ingredients = [
   {
     item_id: '2f7a58a7-fd20-499e-97b5-03bbb8115d0c',
     name: 'Cherries',
+    img: cherries,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'Cherries are sensitive to heat, so store them in the refrigerator as soon as possible. Place them in the crisper drawer, where the temperature is slightly cooler and more humid. Avoid washing cherries before storing them.',
     subItems: [
@@ -435,14 +830,18 @@ export const ingredients = [
   {
     item_id: 'b55654d9-8e75-4dcb-9d8d-83232c2ed5ac',
     name: 'Chervil',
+    img: chervil,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Store fresh chervil in the refrigerator. Place it in a plastic bag to maintain freshness.',
   },
   {
     item_id: '35a5b943-efe8-431b-9b33-a8bbe328a496',
     name: 'Chicken',
+    img: chicken,
     exp_int: 2,
+    category: 'meats',
     storage_tip:
       "For optimal quality, use chicken within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
     subItems: [
@@ -469,137 +868,163 @@ export const ingredients = [
   {
     item_id: 'e4c8c039-434c-4371-bf7c-1fe9372ec1d1',
     name: 'Chives',
+    img: chives,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       "Place the chives in a produce bag or a plastic bag with a piece of paper towel to absorb any excess moisture. Wait to wash chives until you're ready to use them. Keeping them dry prior to storage prevents premature rotting.",
   },
   {
     item_id: 'q48fq738-3ecd-4q3d-af42-274c83qdec50',
     name: 'Cilantro',
+    img: cilantro,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Dampen a paper towel (not soaking wet) and wrap it around the base of the cilantro stems. Othewise, you can treat cilantro the same way you would flowers, always keeping the roots submerged in water.',
   },
   {
     item_id: '448ff738-3ecd-433d-af42-274c838dec50',
     name: 'Coconuts',
+    img: coconut,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: 'd972cb7a-6f92-4f29-b3a9-47a3c11efb49',
     name: 'Collard Greens',
+    img: collardgreens,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store fresh collard greens in a plastic bag in the refrigerator. They can also be blanched and frozen for longer storage.',
   },
   {
     item_id: 'de53d478-bba0-4e75-bfdb-ac5dd39cbbf7',
     name: 'Corn',
+    img: corn,
     exp_int: 4,
+    category: 'vegetables',
     storage_tip:
       'If still on the cob, keep seperate from other ears in fridge. Corn is best kept cold to maintain its sweetness and texture. Store corn in the refrigerator as soon as possible after purchasing.',
   },
-  {
-    item_id: 'bc2c3b09-1a44-40a5-977a-51f49d00dad1',
-    name: 'Cottage Cheese',
-    exp_int: 7,
-    storage_tip:
-      'Keep it in the coldest part of your refrigerator, such as the back of the bottom shelf. Always tightly seal the container after each use to prevent air exposure.',
-  },
+  // {
+  //   item_id: 'bc2c3b09-1a44-40a5-977a-51f49d00dad1',
+  //   name: 'Cottage Cheese',
+  //   exp_int: 7,
+  //   storage_tip:
+  //     'Keep it in the coldest part of your refrigerator, such as the back of the bottom shelf. Always tightly seal the container after each use to prevent air exposure.',
+  // },
   {
     item_id: 'd55e2e92-84d3-4d5c-8292-53a8e4260036',
     name: 'Cranberries',
+    img: cranberries,
     exp_int: 10,
+    category: 'fruits',
     storage_tip:
       'Always seperate the soggy or spoiled berries from the good ones. Cranberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
   },
   {
     item_id: 'ec340fb1-17d3-4aac-be90-6ca80ebc7695',
     name: 'Cucumbers',
+    img: cucumbers,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Moisture can cause cucumbers to rot faster. Make sure the cucumbers are dry before storing them in the refrigerator. You can gently pat them dry with a paper towel if needed.',
   },
   {
     item_id: 'ec34gfb1-17d3-4gac-bg90-6cag0ebc7695',
     name: 'Currants',
+    img: currants,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
-  {
-    item_id: 'ec3bgfg1-1bd3-4gbc-bgb0-6cagbebc7695',
-    name: 'Dates',
-    exp_int: 7,
-    storage_tip: 'TBD',
-  },
-  {
-    item_id: '39880269-54e9-4249-8a37-9ff1647e06c6',
-    name: 'Deli Meats',
-    exp_int: 4,
-    storage_tip:
-      "Airtight, original container, on the lowest shelf in the fridge. Deli meats are perishable and should be refrigerated as soon as possible after purchase. The 'two-hour' rule applies here - don't leave deli meats at room temperature for more than two hours.",
-    subItems: [
-      {name: 'Sliced Ham', item_id: '17f4e131-3f4a-4ef2-9a2b-12d0f4b8a5d1'},
-      {name: 'Sliced Turkey', item_id: '5d0d47d3-19f1-4ddc-8b28-98de22b67c82'},
-      {
-        name: 'Sliced Roast Beef',
-        item_id: '32beebca-c810-4d22-b3ac-d5f37a8580f7',
-      },
-      {name: 'Sliced Salami', item_id: '43f8645b-285a-4a47-ba08-3be5b088a8e0'},
-      {name: 'Pastrami', item_id: '5bb0e6c9-3d42-43c3-899a-9c9039b9ecad'},
-      {name: 'Sliced Bologna', item_id: '7f3e0e99-1a57-458a-8c1f-1c9d21f924eb'},
-      {name: 'Corned Beef', item_id: '8d2370c5-321a-485d-9f9b-12ab849c7049'},
-      {name: 'Prosciutto', item_id: '9c63c75b-9d3a-42e7-b5a2-52f5b5a4f50c'},
-      {name: 'Pepperoni', item_id: '10e84e91-9f71-4a41-87f9-567d69733c4e'},
-      {name: 'Other', item_id: '11f94554-857b-4f4f-9ed7-23ed7c2b2fd4'},
-    ],
-  },
+  // {
+  //   item_id: 'ec3bgfg1-1bd3-4gbc-bgb0-6cagbebc7695',
+  //   name: 'Dates',
+  //   exp_int: 7,
+  //   storage_tip: 'TBD',
+  // },
+  // {
+  //   item_id: '39880269-54e9-4249-8a37-9ff1647e06c6',
+  //   name: 'Deli Meats',
+  //   exp_int: 4,
+  //   storage_tip:
+  //     "Airtight, original container, on the lowest shelf in the fridge. Deli meats are perishable and should be refrigerated as soon as possible after purchase. The 'two-hour' rule applies here - don't leave deli meats at room temperature for more than two hours.",
+  //   subItems: [
+  //     {name: 'Sliced Ham', item_id: '17f4e131-3f4a-4ef2-9a2b-12d0f4b8a5d1'},
+  //     {name: 'Sliced Turkey', item_id: '5d0d47d3-19f1-4ddc-8b28-98de22b67c82'},
+  //     {
+  //       name: 'Sliced Roast Beef',
+  //       item_id: '32beebca-c810-4d22-b3ac-d5f37a8580f7',
+  //     },
+  //     {name: 'Sliced Salami', item_id: '43f8645b-285a-4a47-ba08-3be5b088a8e0'},
+  //     {name: 'Pastrami', item_id: '5bb0e6c9-3d42-43c3-899a-9c9039b9ecad'},
+  //     {name: 'Sliced Bologna', item_id: '7f3e0e99-1a57-458a-8c1f-1c9d21f924eb'},
+  //     {name: 'Corned Beef', item_id: '8d2370c5-321a-485d-9f9b-12ab849c7049'},
+  //     {name: 'Prosciutto', item_id: '9c63c75b-9d3a-42e7-b5a2-52f5b5a4f50c'},
+  //     {name: 'Pepperoni', item_id: '10e84e91-9f71-4a41-87f9-567d69733c4e'},
+  //     {name: 'Other', item_id: '11f94554-857b-4f4f-9ed7-23ed7c2b2fd4'},
+  //   ],
+  // },
   {
     item_id: 'd7168e58-fbd4-4834-95ce-cfacdbe58da8',
     name: 'Eggplants',
+    img: eggplant,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Eggplants are sensitive to heat and should be refrigerated as soon as possible after purchase. Place them in the vegetable crisper drawer of your refrigerator. Moisture can cause eggplants to spoil quickly. Make sure the skin is dry before storing them.',
   },
   {
     item_id: '0a5a3156-5110-434d-b133-ab62776c797f',
     name: 'Eggs',
+    img: eggs,
     exp_int: 14,
+    category: 'dairy',
     storage_tip:
       "Store eggs in the refrigerator as soon as you bring them home. Fill a bowl with water and gently place an egg in it. Fresh eggs sink and lie flat at the bottom. If an egg stands upright or floats, it's less fresh and should be used soon.",
   },
   {
     item_id: 'a73e599a-8ee4-4189-9a61-67c31cf50362',
     name: 'Endive',
+    img: endive,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Keep endive in the refrigerator crisper drawer in a plastic bag. Store it away from fruits like apples and bananas, as they can cause it to turn brown.',
   },
-  {
-    item_id: 'f8a8e1e6-90b3-4da4-85a6-2e3a0b81f297',
-    name: 'Escarole',
-    exp_int: 5,
-    storage_tip:
-      'Keep escarole in the refrigerator crisper drawer in a plastic bag. Store it away from fruits like apples and bananas to prevent browning.',
-  },
-  {
-    item_id: '7e8ec2f7-745c-4e76-8c1f-eda76a5c74d8',
-    name: 'Fiddlehead Ferns',
-    exp_int: 3,
-    storage_tip:
-      'Store fiddlehead ferns in the refrigerator. Place them in a plastic bag or airtight container with a damp paper towel to keep them fresh.',
-  },
+  // {
+  //   item_id: 'f8a8e1e6-90b3-4da4-85a6-2e3a0b81f297',
+  //   name: 'Escarole',
+  //   exp_int: 5,
+  //   storage_tip:
+  //     'Keep escarole in the refrigerator crisper drawer in a plastic bag. Store it away from fruits like apples and bananas to prevent browning.',
+  // },
+  // {
+  //   item_id: '7e8ec2f7-745c-4e76-8c1f-eda76a5c74d8',
+  //   name: 'Fiddlehead Ferns',
+  //   exp_int: 3,
+  //   storage_tip:
+  //     'Store fiddlehead ferns in the refrigerator. Place them in a plastic bag or airtight container with a damp paper towel to keep them fresh.',
+  // },
   {
     item_id: '0a5aw15w-5w10-4w4d-bw33-ab6w776c797f',
     name: 'Figs',
+    img: figs,
     exp_int: 14,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: 'e2c6a1d4-dfae-4f8d-a80a-9e136e3b4eb3',
     name: 'Fish',
+    img: fish,
     exp_int: 2,
+    category: 'seafoods',
     storage_tip: 'Keep fish refrigerated and use within the recommended time.',
     subItems: [
       {name: 'Salmon', item_id: '9832c35e-3de2-45dd-931b-4a13b289a6ea'},
@@ -616,216 +1041,256 @@ export const ingredients = [
       {name: 'Other Fish', item_id: 'c47b1563-e4f0-4ff6-9f33-48163f03a6c9'},
     ],
   },
-  {
-    item_id: 'a21ff86b-8569-4e96-986d-078a44e354b8',
-    name: 'Friseé',
-    exp_int: 2,
-    storage_tip:
-      'Keep frisée in the refrigerator. Store it in a plastic bag or airtight container with a damp paper towel to maintain freshness.',
-  },
+  // {
+  //   item_id: 'a21ff86b-8569-4e96-986d-078a44e354b8',
+  //   name: 'Friseé',
+  //   exp_int: 2,
+  //   storage_tip:
+  //     'Keep frisée in the refrigerator. Store it in a plastic bag or airtight container with a damp paper towel to maintain freshness.',
+  // },
   {
     item_id: 'cba633d0-fc26-438c-9ab4-8d2ab73adcaa',
     name: 'Garlic',
+    img: garlic,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Keep garlic in a cool, dry, and well-ventilated area. Avoid storing it in areas with high humidity, as moisture can cause mold growth. Place garlic bulbs in a mesh bag or a basket to allow air circulation. ',
   },
   {
     item_id: '63151b0d-943f-43bb-bca2-d2b1af222867',
     name: 'Ginger',
+    img: ginger,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       "Moisture can cause ginger to mold or become mushy. Store ginger in a dry condition and avoid washing it until you're ready to use it. For longer storage, keep unpeeled ginger in the refrigerator.",
   },
   {
     item_id: '6315nb0n-94nf-43nb-bcn2-d2b1an222n6n',
     name: 'Gooseberries',
+    img: gooseberries,
     exp_int: 14,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: '35baa83d-7aa8-4371-bcde-c08ce2c908e0',
     name: 'Grapefruit',
+    img: grapefruit,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       "Grapefruits are sensitive to ethylene gas, which is emitted by some fruits like apples and bananas. To prevent moisture loss and maintain the grapefruit's freshness, you can place it in a perforated plastic bag before refrigerating.",
-    subItems: [
-      {
-        name: 'Ruby Red Grapefruit',
-        item_id: '00d94b92-3fc9-4cf1-b768-89d79d6a2d45',
-      },
-      {
-        name: 'White Grapefruit',
-        item_id: '0e52b7e3-e1e3-4b66-bc9e-54eeefc06c5b',
-      },
-      {
-        name: 'Pink Grapefruit',
-        item_id: '21f1db23-4d2e-4a08-946f-c90d6b8f0042',
-      },
-      {
-        name: 'Oro Blanco Grapefruit',
-        item_id: '398fda58-9be2-4ce9-88dd-873eb0c8c8f1',
-      },
-      {
-        name: 'Star Ruby Grapefruit',
-        item_id: '4ea6f16d-b11b-42a5-9f3b-cf22f6fc1177',
-      },
-      {
-        name: 'Other Grapefruit',
-        item_id: 'f4b6eeec-6e17-49b2-8109-8f3bfca3e7fc',
-      },
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Ruby Red Grapefruit',
+    //     item_id: '00d94b92-3fc9-4cf1-b768-89d79d6a2d45',
+    //   },
+    //   {
+    //     name: 'White Grapefruit',
+    //     item_id: '0e52b7e3-e1e3-4b66-bc9e-54eeefc06c5b',
+    //   },
+    //   {
+    //     name: 'Pink Grapefruit',
+    //     item_id: '21f1db23-4d2e-4a08-946f-c90d6b8f0042',
+    //   },
+    //   {
+    //     name: 'Oro Blanco Grapefruit',
+    //     item_id: '398fda58-9be2-4ce9-88dd-873eb0c8c8f1',
+    //   },
+    //   {
+    //     name: 'Star Ruby Grapefruit',
+    //     item_id: '4ea6f16d-b11b-42a5-9f3b-cf22f6fc1177',
+    //   },
+    //   {
+    //     name: 'Other Grapefruit',
+    //     item_id: 'f4b6eeec-6e17-49b2-8109-8f3bfca3e7fc',
+    //   },
+    // ],
   },
   {
     item_id: '136a5934-9c30-45d2-80d0-db5b0d500e91',
     name: 'Grapes',
+    img: grapes,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'Grapes are highly perishable and should be refrigerated as soon as possible after purchase. Place them in the vegetable crisper drawer of your refrigerator.',
-    subItems: [
-      {
-        name: 'Red Seedless Grapes',
-        item_id: '7ed33f63-99e0-4cc5-850f-3e2b8bcf35a7',
-      },
-      {
-        name: 'Green Seedless Grapes',
-        item_id: 'f483a288-0d48-4a32-a43a-7a6c731f1311',
-      },
-      {
-        name: 'Black Seedless Grapes',
-        item_id: '4b9ea32d-0d62-4ed6-9a61-2703a6075b89',
-      },
-      {name: 'Concord Grapes', item_id: '0f2ee96e-6ad1-4321-8ed9-45c2021f7cf5'},
-      {name: 'Other', item_id: '7b97885d-e187-41b3-80ea-75e6de9e68f5'},
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Red Seedless Grapes',
+    //     item_id: '7ed33f63-99e0-4cc5-850f-3e2b8bcf35a7',
+    //   },
+    //   {
+    //     name: 'Green Seedless Grapes',
+    //     item_id: 'f483a288-0d48-4a32-a43a-7a6c731f1311',
+    //   },
+    //   {
+    //     name: 'Black Seedless Grapes',
+    //     item_id: '4b9ea32d-0d62-4ed6-9a61-2703a6075b89',
+    //   },
+    //   {name: 'Concord Grapes', item_id: '0f2ee96e-6ad1-4321-8ed9-45c2021f7cf5'},
+    //   {name: 'Other', item_id: '7b97885d-e187-41b3-80ea-75e6de9e68f5'},
+    // ],
   },
   {
     item_id: '4b8b0c53-0f7b-43f7-98a8-8e20d63d35f6',
     name: 'Green Beans',
+    img: greenbeans,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Moisture can cause green beans to become mushy and spoil quickly. Make sure the green beans are dry before storing them in the refrigerator. You can gently pat them dry with a paper towel if needed.',
   },
   {
     item_id: '42f20ec2-7c9a-4ea8-b784-cbb3745f8b82',
     name: 'Ground Beef',
+    img: groundbeef,
     exp_int: 2,
+    category: 'meats',
     storage_tip:
       "Ground beef is perishable and should be refrigerated as soon as possible after purchase. For optimal quality, use ground beef within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
   },
   {
     item_id: '42q20eq2-7q9q-4eq8-b7q4-cbb3q45fqb82',
     name: 'Guava',
+    img: guava,
     exp_int: 2,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
-  {
-    item_id: '966f1b91-19da-4835-b0e9-656c22da6e8f',
-    name: 'Heavy Cream',
-    exp_int: 7,
-    storage_tip:
-      'The temperature near the refrigerator door fluctuates more than deeper inside the fridge. Store heavy cream on a shelf rather than the door to maintain a consistent cool temperature. Always store heavy cream in the refrigerator.',
-  },
+  // {
+  //   item_id: '966f1b91-19da-4835-b0e9-656c22da6e8f',
+  //   name: 'Heavy Cream',
+  //   exp_int: 7,
+  //   storage_tip:
+  //     'The temperature near the refrigerator door fluctuates more than deeper inside the fridge. Store heavy cream on a shelf rather than the door to maintain a consistent cool temperature. Always store heavy cream in the refrigerator.',
+  // },
   {
     item_id: '966c1bc1-1cda-48c5-b0c9-656c2cda6c8f',
     name: 'Huckleberries',
+    img: huckleberries,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: 'd17c5e3e-2449-4ef0-9159-d5729d5d4eb9',
     name: 'Jicama',
+    img: jicama,
     exp_int: 15,
+    category: 'vegetables',
     storage_tip:
       'Store jicama in a cool, dry place. It can be kept at room temperature or in the refrigerator, but it should be used within a few weeks to maintain freshness.',
   },
   {
     item_id: 'h6hh1bc1-1tda-48t5-btc9-656ctcda6t8f',
     name: 'Juniper Berries',
+    img: juniperberries,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: '46608605-5bcb-407b-9b87-9eeeb6e37077',
     name: 'Kale',
+    img: kale,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
   },
-  {
-    item_id: 'c2b3e729-0bb6-4f8f-9f9d-366c1176c0b7',
-    name: 'Kohlrabi',
-    exp_int: 14,
-    storage_tip:
-      'Kohlrabi can be stored in the refrigerator. Remove the leaves and store the bulbs in a plastic bag to retain freshness.',
-  },
+  // {
+  //   item_id: 'c2b3e729-0bb6-4f8f-9f9d-366c1176c0b7',
+  //   name: 'Kohlrabi',
+  //   exp_int: 14,
+  //   storage_tip:
+  //     'Kohlrabi can be stored in the refrigerator. Remove the leaves and store the bulbs in a plastic bag to retain freshness.',
+  // },
   {
     item_id: '26172199-6704-47be-a1dc-795e07ffee6f',
     name: 'Kiwis',
+    img: kiwis,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'To store kiwis, keep them in the fridge when ripe to maintain freshness. Store unripe ones at room temperature until ready. Keep separate from ethylene-producing fruits like apples to prevent overripening.',
   },
   {
     item_id: '2617i19i-67i4-47ie-a1ic-79ie07ffie6i',
     name: 'Kumquats',
+    img: kumquats,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'To store kiwis, keep them in the fridge when ripe to maintain freshness. Store unripe ones at room temperature until ready. Keep separate from ethylene-producing fruits like apples to prevent overripening.',
   },
   {
     item_id: 'fbdabec0-1782-41ff-9935-1408725b9d5f',
     name: 'Lamb',
+    img: lamb,
     exp_int: 2,
+    category: 'meats',
     storage_tip:
       'Store fresh lamb in the refrigerator, wrapped in its original packaging, and use within a few days. For long-term storage, freeze lamb in vacuum-sealed or air-tight freezer bags, labeled with the date and cut type.',
   },
   {
     item_id: '19cafbd9-29f2-4148-be5e-2ffb753b9d05',
     name: 'Leeks',
+    img: leeks,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       "Store unwashed leeks in the refrigerator's crisper drawer, wrapped loosely in a plastic bag to allow for air circulation. Before use, trim off any wilted parts and thoroughly wash to remove dirt trapped between layers.",
   },
-  {
-    item_id: '994e711f-cf82-4964-a412-2eda44da17cb',
-    name: 'Leftovers',
-    exp_int: 2,
-    storage_tip:
-      'Allow leftovers to cool down before storing them. Divide large portions into smaller containers to help them cool faster. Food should be cooled to room temperature within 2 hours of cooking.',
-  },
-  {
-    item_id: '9db60d56-5f53-4ed1-9f2d-1736423ee63f',
-    name: 'Lemongrass',
-    exp_int: 14,
-    storage_tip:
-      'Store lemongrass in the refrigerator. You can also freeze lemongrass for longer storage.',
-  },
+  // {
+  //   item_id: '994e711f-cf82-4964-a412-2eda44da17cb',
+  //   name: 'Leftovers',
+  //   exp_int: 2,
+  //   storage_tip:
+  //     'Allow leftovers to cool down before storing them. Divide large portions into smaller containers to help them cool faster. Food should be cooled to room temperature within 2 hours of cooking.',
+  // },
+  // {
+  //   item_id: '9db60d56-5f53-4ed1-9f2d-1736423ee63f',
+  //   name: 'Lemongrass',
+  //   exp_int: 14,
+  //   storage_tip:
+  //     'Store lemongrass in the refrigerator. You can also freeze lemongrass for longer storage.',
+  // },
   {
     item_id: 'af4cb2f5-5a82-4489-a430-64a38fdfb980',
     name: 'Lemons',
+    img: lemons,
     exp_int: 10,
+    category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place lemons in a perforated plastic bag or an airtight container in the refrigerator.',
   },
   {
     item_id: 'd36f4b78-a397-4793-861a-35fea4ff817b',
     name: 'Lettuce',
+    img: lettuce,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Moisture can cause lettuce to become wilted and slimy. Make sure the lettuce leaves are dry before storing them. You can gently pat them dry with a paper towel if needed.',
   },
   {
     item_id: 'b5d36d74-20ed-4c6b-9022-51eb4c6fb9ed',
     name: 'Limes',
+    img: limes,
     exp_int: 10,
+    category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place limes in a perforated plastic bag or an airtight container in the refrigerator.',
   },
   {
     item_id: '35f1afaa-a9f2-4136-a7a0-10b60ec444a7',
     name: 'Lobster',
+    img: lobster,
     exp_int: 2,
+    category: 'seafoods',
     storage_tip:
       "Live lobsters should be cooked the day they're purchased and stored in a breathable container, like a cardboard box, in the refrigerator until preparation. Cooked lobster should be refrigerated in airtight containers and consumed within 2 days.",
     subItems: [
@@ -840,27 +1305,33 @@ export const ingredients = [
   {
     item_id: '35fkafka-ahf2-41h6-a7h0-10b6hec444a7',
     name: 'Lychees',
+    img: lychees,
     exp_int: 2,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: 'b2203df3-b71f-4721-a081-635c1a9900f4',
     name: 'Mangos',
+    img: mangos,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'If your mangoes are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
   },
-  {
-    item_id: '6e657a29-8688-45f7-a967-ede84b5515b5',
-    name: 'Melons',
-    exp_int: 7,
-    storage_tip:
-      'Store whole melons at room temperature until ripe, then transfer to the refrigerator to prolong freshness. Once cut, store melon pieces in an airtight container in the refrigerator and consume within 3-4 days.',
-  },
+  // {
+  //   item_id: '6e657a29-8688-45f7-a967-ede84b5515b5',
+  //   name: 'Melons',
+  //   exp_int: 7,
+  //   storage_tip:
+  //     'Store whole melons at room temperature until ripe, then transfer to the refrigerator to prolong freshness. Once cut, store melon pieces in an airtight container in the refrigerator and consume within 3-4 days.',
+  // },
   {
     item_id: 'aa2e841a-2e45-4379-b100-3dc63e52993d',
     name: 'Milk',
+    img: milk,
     exp_int: 5,
+    category: 'dairy',
     storage_tip:
       'As soon as you bring milk home from the store, place it in the refrigerator. Store milk in its original container to maintain its freshness. The packaging is designed to protect milk from light and air exposure.',
     subItems: [
@@ -883,7 +1354,9 @@ export const ingredients = [
   {
     item_id: 'fab2cb03-a5dd-4ece-b114-b48794e1f37d',
     name: 'Mushrooms',
+    img: mushrooms,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
       "Keep them in the original packaging or transfer them to a breathable container, like a paper bag. Avoid washing mushrooms until you're ready to use them.",
     subItems: [
@@ -936,28 +1409,36 @@ export const ingredients = [
   {
     item_id: '78f2a31b-22b1-447b-9d60-9e4560312140',
     name: 'Nectarines',
+    img: nectarines,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'If your nectarines are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
   },
   {
     item_id: '52a17d1f-e9e3-44a8-b953-58a52cc1b87e',
     name: 'Okra',
+    img: okra,
     exp_int: 5,
+    category: 'vegetables',
     storage_tip:
       'Store okra in a paper bag in the refrigerator. Use it within a few days for best freshness.',
   },
   {
     item_id: '2d28f214-50de-4b09-9c1b-43163c7dca7d',
     name: 'Olives',
+    img: olives,
     exp_int: 30,
+    category: 'vegetables',
     storage_tip:
       'Keep olives in their original brine or store them in an airtight container in the refrigerator.',
   },
   {
     item_id: '2cc700bd-452c-470f-b81d-c83cc0491588',
     name: 'Onions',
+    img: onions,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Keep onions away from potatoes, as they release moisture and gases that can cause onions to spoil more quickly. Avoid storing onions in plastic bags.',
     subItems: [
@@ -980,59 +1461,71 @@ export const ingredients = [
   {
     item_id: 'efb63f52-4ff6-4e77-9cf7-fa0619bcd4c2',
     name: 'Oranges',
+    img: oranges,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place oranges in a perforated plastic bag or an airtight container in the refrigerator.',
-    subItems: [
-      {name: 'Navel Oranges', item_id: 'e4a9dc47-74e0-4967-baad-43d68390ea8c'},
-      {
-        name: 'Valencia Oranges',
-        item_id: '33d0bc59-0b2d-4e0f-a47f-154b245a6513',
-      },
-      {
-        name: 'Cara Cara Oranges',
-        item_id: '3b5b7b71-28a4-4ca7-bc9a-ee9e0807e96c',
-      },
-      {name: 'Blood Oranges', item_id: 'd2499d9b-bf38-4327-9ed4-49f08ef58c63'},
-      {
-        name: 'Mandarin Oranges',
-        item_id: 'f1999b51-6f41-4a61-9e2a-8e6f9683a2d8',
-      },
-      {name: 'Other Oranges', item_id: '34fda5bf-5f5a-42f5-bff2-4bea5d5cb18d'},
-    ],
+    // subItems: [
+    //   {name: 'Navel Oranges', item_id: 'e4a9dc47-74e0-4967-baad-43d68390ea8c'},
+    //   {
+    //     name: 'Valencia Oranges',
+    //     item_id: '33d0bc59-0b2d-4e0f-a47f-154b245a6513',
+    //   },
+    //   {
+    //     name: 'Cara Cara Oranges',
+    //     item_id: '3b5b7b71-28a4-4ca7-bc9a-ee9e0807e96c',
+    //   },
+    //   {name: 'Blood Oranges', item_id: 'd2499d9b-bf38-4327-9ed4-49f08ef58c63'},
+    //   {
+    //     name: 'Mandarin Oranges',
+    //     item_id: 'f1999b51-6f41-4a61-9e2a-8e6f9683a2d8',
+    //   },
+    //   {name: 'Other Oranges', item_id: '34fda5bf-5f5a-42f5-bff2-4bea5d5cb18d'},
+    // ],
   },
   {
     item_id: 'bf8db6de-004d-4e88-9622-206ce1f06d25',
     name: 'Parsley',
+    img: parsley,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store fresh parsley stems in a glass of water, covered loosely with a plastic bag, in the refrigerator. Change the water every few days and trim stems as needed to keep the parsley fresh.',
   },
   {
     item_id: '30ce3e22-38f9-4d62-9e6a-15ec0c30b47b',
     name: 'Parsnips',
+    img: parsnips,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Store parsnips in the refrigerator crisper drawer. They can last up to a month when properly stored.',
   },
   {
     item_id: 'd753f2cd-4c59-4065-9f97-32b5b10138d4',
     name: 'Papayas',
+    img: papayas,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'Store unripe papayas at room temperature until their skin yields to gentle pressure. Once ripe, transfer papayas to the refrigerator and consume within one week, or store cut papaya in an airtight container in the refrigerator for up to two days.',
   },
   {
     item_id: 'da53facd-4ca9-40a5-9a97-32a5b1a138da',
     name: 'Passion Fruit',
+    img: passionfruit,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       'Store unripe papayas at room temperature until their skin yields to gentle pressure. Once ripe, transfer papayas to the refrigerator and consume within one week, or store cut papaya in an airtight container in the refrigerator for up to two days.',
   },
   {
     item_id: 'b1250db6-bn11-4216-b4sc-2881aa2d8cf2',
     name: 'Pasta',
-    exp_int: 0,
+    img: pasta,
+    exp_int: 10,
+    category: 'grains',
     storage_tip: 'Store in a cool, dry place. Keep away from moisture.',
     subItems: [
       {name: 'Spaghetti', item_id: '92c4495f-4a07-4371-8c0d-049f78d7341c'},
@@ -1053,350 +1546,417 @@ export const ingredients = [
   {
     item_id: 'f9920a7f-a282-40c4-9230-627ffc24dd2a',
     name: 'Peaches',
+    img: peaches,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'If your peaches are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
-    subItems: [
-      {
-        name: 'Freestone Peaches',
-        item_id: 'e319f8d0-905c-41c3-916c-0975dfb33ea1',
-      },
-      {
-        name: 'Clingstone Peaches',
-        item_id: 'b0f5f4e6-c7c9-4da2-9d67-7fddc8e4c1bb',
-      },
-      {name: 'White Peaches', item_id: 'ed64e0ec-2552-41a2-bda5-e9ac5fbd856d'},
-      {name: 'Yellow Peaches', item_id: 'c23a76ac-d99f-4d0e-8375-19c49d0f7e4e'},
-      {
-        name: 'Donut (Saturn) Peaches',
-        item_id: 'ee54150e-b175-4345-bbaa-ee5f1e4a9e1b',
-      },
-      {name: 'Other Peaches', item_id: '00fc475c-78ec-4b29-b71c-af036f0cbf4a'},
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Freestone Peaches',
+    //     item_id: 'e319f8d0-905c-41c3-916c-0975dfb33ea1',
+    //   },
+    //   {
+    //     name: 'Clingstone Peaches',
+    //     item_id: 'b0f5f4e6-c7c9-4da2-9d67-7fddc8e4c1bb',
+    //   },
+    //   {name: 'White Peaches', item_id: 'ed64e0ec-2552-41a2-bda5-e9ac5fbd856d'},
+    //   {name: 'Yellow Peaches', item_id: 'c23a76ac-d99f-4d0e-8375-19c49d0f7e4e'},
+    //   {
+    //     name: 'Donut (Saturn) Peaches',
+    //     item_id: 'ee54150e-b175-4345-bbaa-ee5f1e4a9e1b',
+    //   },
+    //   {name: 'Other Peaches', item_id: '00fc475c-78ec-4b29-b71c-af036f0cbf4a'},
+    // ],
   },
   {
     item_id: 'c679cbf8-bbe6-4995-868b-d6be98e19efb',
     name: 'Pears',
+    img: pears,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       "Pears are often picked when slightly underripe. Place them at room temperature to ripen. Check their firmness near the stem daily. Once they yield slightly to gentle pressure, they're ripe and ready to eat.",
-    subItems: [
-      {name: 'Bartlett Pears', item_id: 'e5d64210-3a60-4b8e-953c-c8a79ad9e5d9'},
-      {name: 'Anjou Pears', item_id: '8a40f96f-3d5d-45e0-9c16-f5f8340ad86a'},
-      {name: 'Bosc Pears', item_id: '792a7cc5-4b2a-47c5-9a46-6e81c672ac1e'},
-      {name: 'Other Pears', item_id: 'ec9de7c9-42d2-47d3-8c4f-e9a27e3485ef'},
-    ],
+    // subItems: [
+    //   {name: 'Bartlett Pears', item_id: 'e5d64210-3a60-4b8e-953c-c8a79ad9e5d9'},
+    //   {name: 'Anjou Pears', item_id: '8a40f96f-3d5d-45e0-9c16-f5f8340ad86a'},
+    //   {name: 'Bosc Pears', item_id: '792a7cc5-4b2a-47c5-9a46-6e81c672ac1e'},
+    //   {name: 'Other Pears', item_id: 'ec9de7c9-42d2-47d3-8c4f-e9a27e3485ef'},
+    // ],
   },
   {
     item_id: 'f0fa22c3-17d1-446f-8036-ef13f3ece9bb',
     name: 'Peas',
+    img: peas,
     exp_int: 4,
+    category: 'vegetables',
     storage_tip:
       "Store fresh peas in their pods in a breathable bag in the refrigerator's crisper drawer. Once shelled, keep the peas in an airtight container in the refrigerator and consume within 3-5 days.",
-    subItems: [
-      {name: 'Green Peas', item_id: '634b201e-8551-4cb5-a3a4-15a9fcb88a2f'},
-      {name: 'Snow Peas', item_id: 'c4155e08-3703-4d3e-86b7-4c63f40a63c2'},
-      {name: 'Snap Peas', item_id: 'e66a7b87-3e73-4e18-9d07-1f85488df872'},
-      {name: 'Split Peas', item_id: '7c86c7d8-456c-4052-88d0-9f88c1a4f8b9'},
-      {
-        name: 'Black-Eyed Peas',
-        item_id: '4188ce4d-6a36-40d9-bf0a-774f3e97434c',
-      },
-    ],
+    // subItems: [
+    //   {name: 'Green Peas', item_id: '634b201e-8551-4cb5-a3a4-15a9fcb88a2f'},
+    //   {name: 'Snow Peas', item_id: 'c4155e08-3703-4d3e-86b7-4c63f40a63c2'},
+    //   {name: 'Snap Peas', item_id: 'e66a7b87-3e73-4e18-9d07-1f85488df872'},
+    //   {name: 'Split Peas', item_id: '7c86c7d8-456c-4052-88d0-9f88c1a4f8b9'},
+    //   {
+    //     name: 'Black-Eyed Peas',
+    //     item_id: '4188ce4d-6a36-40d9-bf0a-774f3e97434c',
+    //   },
+    // ],
   },
   {
     item_id: 'b1bba6c2-4e4a-4faa-bd38-1ae2c899aa9e',
     name: 'Peppers',
+    img: peppers,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Keep peppers in the refrigerator. Store them in a plastic bag to retain freshness.',
-    subItems: [
-      {name: 'Piquillo', item_id: '634b201e-8551-4cb5-a3a4-15a9fcb88a2f'},
-      {name: 'Jalapeno', item_id: '664b261e-8651-46b5-a364-1569fc688a2f'},
-      {name: 'Pasilla', item_id: 'c4155e08-3703-4d3e-86b7-4c63f40a63c2'},
-      {name: 'Black', item_id: 'e66a7b87-3e73-4e18-9d07-1f85488df872'},
-      {name: 'Szechuan', item_id: '7c86c7d8-456c-4052-88d0-9f88c1a4f8b9'},
-      {name: 'White', item_id: '4188ce4d-6a36-40d9-bf0a-774f3e97434c'},
-    ],
+    // subItems: [
+    //   {name: 'Piquillo', item_id: '634b201e-8551-4cb5-a3a4-15a9fcb88a2f'},
+    //   {name: 'Jalapeno', item_id: '664b261e-8651-46b5-a364-1569fc688a2f'},
+    //   {name: 'Pasilla', item_id: 'c4155e08-3703-4d3e-86b7-4c63f40a63c2'},
+    //   {name: 'Black', item_id: 'e66a7b87-3e73-4e18-9d07-1f85488df872'},
+    //   {name: 'Szechuan', item_id: '7c86c7d8-456c-4052-88d0-9f88c1a4f8b9'},
+    //   {name: 'White', item_id: '4188ce4d-6a36-40d9-bf0a-774f3e97434c'},
+    // ],
   },
   {
     item_id: 't0fat2ct-17t1-44tf-80t6-eft3f3tce9tb',
     name: 'Persimmons',
+    img: persimmons,
     exp_int: 4,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: '9f193f22-3034-409f-b339-7dcebba14659',
     name: 'Pineapples',
+    img: pineapples,
     exp_int: 10,
+    category: 'fruits',
     storage_tip:
       'Store whole pineapples at room temperature until ripe, then transfer to the refrigerator to prolong freshness. Once cut, store pineapple pieces in an airtight container in the refrigerator and consume within 2-3 days.',
   },
-  {
-    item_id: 'rf1r3f2r-30r4-40rf-b3r9-7dcrbbar465r',
-    name: 'Plantains',
-    exp_int: 10,
-    storage_tip: 'TBD',
-  },
+  // {
+  //   item_id: 'rf1r3f2r-30r4-40rf-b3r9-7dcrbbar465r',
+  //   name: 'Plantains',
+  //   exp_int: 10,
+  //   storage_tip: 'TBD',
+  // },
   {
     item_id: '55473136-a70c-4d7e-8b27-d76c72cd3f5b',
     name: 'Plums',
+    img: plums,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'If your plums are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days. Plums can bruise easily, so handle them gently to avoid damaging the skin.',
   },
   {
     item_id: '0cc6wbw1-c2wb-4a51-952c-e5a3e1056d4d',
     name: 'Pomegranates',
+    img: pomegranates,
     exp_int: 2,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: '0cc63b41-c2ab-4a61-962c-efa3e10e6d4d',
     name: 'Pork',
+    img: pork,
     exp_int: 2,
+    category: 'meats',
     storage_tip:
       'Store fresh pork cuts in the coldest part of the refrigerator, wrapped in their original packaging, and use within 3-5 days. For longer storage, freeze pork in airtight containers or vacuum-sealed bags, and thaw in the refrigerator before cooking.',
+    subItems: [
+      {
+        name: 'Bacon',
+        item_id: '6c4b6b42-774c7-44a3-b4e3-a47b24bb4d1e',
+      },
+      {name: 'Pork Ribs', item_id: 'cb1ccbca-62cb-4ac0-89c7-276a5dc0dcee'},
+      {
+        name: 'Ham',
+        item_id: 'eba3b3a3-cd3d-4e31-9133-e393bf3c0065',
+      },
+
+      {name: 'Other Pork', item_id: 'addd7800-0d7b-4bd1-a3de-67abdb5c5d77'},
+    ],
   },
   {
     item_id: 'b1250db6-bb11-4316-b4ac-2881332d8cf2',
     name: 'Potatoes',
+    img: potatoes,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Avoid storing potatoes near onions, as onions release gases that can cause potatoes to spoil more quickly.',
-    subItems: [
-      {
-        name: 'Russet Potatoes',
-        item_id: '6c1b6b62-77c7-4aa3-b9e4-ae7b24bbbd1e',
-      },
-      {name: 'Red Potatoes', item_id: '8b15cb0a-620b-4a70-89f7-276a5db0dcee'},
-      {
-        name: 'Yukon Gold Potatoes',
-        item_id: 'ebabbead-cdbd-4eb1-913d-e993bfcc0065',
-      },
-      {
-        name: 'Fingerling Potatoes',
-        item_id: '819abb87-1727-4c90-99e2-2ef696f9de1a',
-      },
-      {name: 'Sweet Potatoes', item_id: '51b9a2e2-d53e-4ee4-85fc-c71ea98b5c27'},
-      {
-        name: 'Purple Potatoes',
-        item_id: 'e384c68a-92ef-43c9-927b-29356419baf4',
-      },
-      {name: 'Baby Potatoes', item_id: 'c1308a17-739b-4e8b-8923-8f014a11aaf9'},
-      {name: 'White Potatoes', item_id: '7e44d34b-4e85-4cbb-8c53-3042f6763133'},
-      {
-        name: 'Yellow Potatoes',
-        item_id: 'b5e95310-536f-4ac3-a35e-9d992739c9e1',
-      },
-      {
-        name: 'Adirondack Blue Potatoes',
-        item_id: '6a202db3-4eb3-4293-bf64-67e2b5f8b7a2',
-      },
-      {name: 'Other Potatoes', item_id: 'a66f7800-087b-4b21-a33e-67ab3b5c5577'},
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Russet Potatoes',
+    //     item_id: '6c1b6b62-77c7-4aa3-b9e4-ae7b24bbbd1e',
+    //   },
+    //   {name: 'Red Potatoes', item_id: '8b15cb0a-620b-4a70-89f7-276a5db0dcee'},
+    //   {
+    //     name: 'Yukon Gold Potatoes',
+    //     item_id: 'ebabbead-cdbd-4eb1-913d-e993bfcc0065',
+    //   },
+    //   {
+    //     name: 'Fingerling Potatoes',
+    //     item_id: '819abb87-1727-4c90-99e2-2ef696f9de1a',
+    //   },
+    //   {name: 'Sweet Potatoes', item_id: '51b9a2e2-d53e-4ee4-85fc-c71ea98b5c27'},
+    //   {
+    //     name: 'Purple Potatoes',
+    //     item_id: 'e384c68a-92ef-43c9-927b-29356419baf4',
+    //   },
+    //   {name: 'Baby Potatoes', item_id: 'c1308a17-739b-4e8b-8923-8f014a11aaf9'},
+    //   {name: 'White Potatoes', item_id: '7e44d34b-4e85-4cbb-8c53-3042f6763133'},
+    //   {
+    //     name: 'Yellow Potatoes',
+    //     item_id: 'b5e95310-536f-4ac3-a35e-9d992739c9e1',
+    //   },
+    //   {
+    //     name: 'Adirondack Blue Potatoes',
+    //     item_id: '6a202db3-4eb3-4293-bf64-67e2b5f8b7a2',
+    //   },
+    //   {name: 'Other Potatoes', item_id: 'a66f7800-087b-4b21-a33e-67ab3b5c5577'},
+    // ],
   },
   {
     item_id: 'a1r057ra-4r7r-452a-a227-622517s6ces7',
     name: 'Prunes',
+    img: prunes,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
   {
     item_id: '9c1e94ef-871b-48d7-9299-4f98cc7e1f68',
     name: 'Pumpkin',
+    img: pumpkin,
     exp_int: 21,
+    category: 'vegetables',
     storage_tip:
       'Store pumpkins in a cool, dry place. Avoid direct sunlight to extend their shelf life.',
   },
   {
     item_id: 'axr05xra-4x7r-4x2a-a2x7-622x17s6xes7',
     name: 'Quinces',
+    img: quince,
     exp_int: 7,
+    category: 'fruits',
     storage_tip: 'TBD',
   },
-  {
-    item_id: 'cd9e81f5-ef42-49f5-96d2-2db76abf973b',
-    name: 'Radicchio',
-    exp_int: 5,
-    storage_tip:
-      'Store radicchio in a plastic bag in the refrigerator. Keep it dry to prevent wilting.',
-  },
+  // {
+  //   item_id: 'cd9e81f5-ef42-49f5-96d2-2db76abf973b',
+  //   name: 'Radicchio',
+  //   exp_int: 5,
+  //   storage_tip:
+  //     'Store radicchio in a plastic bag in the refrigerator. Keep it dry to prevent wilting.',
+  // },
   {
     item_id: 'a1d057ea-4879-45ba-a2b7-62451766ce27',
     name: 'Radishes',
+    img: radishes,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'If your radishes come with their leafy greens attached, remove the greens before storing. The greens can draw moisture and nutrients from the radishes, causing them to wilt and become soft.',
   },
   {
     item_id: 'b3ea65c66-af72-43da-b62b-6f0e8f3f19cee5b25d9',
     name: 'Raspberries',
+    img: raspberries,
     exp_int: 4,
+    category: 'fruits',
     storage_tip:
       'Remove soggy or spoiled berries before storing. Transfer raspberries to a shallow container or a paper towel-lined plate. This helps prevent crushing and allows for proper air circulation.',
   },
   {
     item_id: '4e3b996d-c12a-4c35-aeb2-ef13ab11e0eb',
     name: 'Rhubarb',
+    img: rhubarb,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Keep rhubarb stalks in the refrigerator. Trim the ends and wrap them in a damp paper towel before storing in a plastic bag.',
   },
   {
     item_id: '47d4d689-e8b2-415e-ad35-e7030e228a19',
     name: 'Rosemary',
+    img: rosemary,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store fresh rosemary sprigs in a damp paper towel, rolled up inside a plastic bag, in the refrigerator. For longer storage, freeze rosemary sprigs in airtight containers or bags, using them directly from the freezer as needed.',
   },
   {
     item_id: '1dbb72bb-6d44-4bc9-a6bf-43f347ab1c9d',
     name: 'Rutabagas',
+    img: rutabagas,
     exp_int: 14,
+    category: 'vegetables',
     storage_tip:
       'Store rutabagas in a cool, dark, and dry place. They can be kept in the refrigerator, but they are best stored in a root cellar or a cool pantry.',
   },
   {
     item_id: '156fa978-72fe-4be3-86d2-a6bb6b466ade',
     name: 'Salad Greens',
+    img: saladgreens,
     exp_int: 4,
+    category: 'vegetables',
     storage_tip:
       'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
   },
-  {
-    item_id: 'd5411ca1-77f5-4542-b8e8-9593e8577d8c',
-    name: 'Salmon',
-    exp_int: 2,
-    storage_tip:
-      'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
-    subItems: [
-      {
-        name: 'Atlantic Salmon',
-        item_id: 'aebe051b-506b-4d65-ba98-6fc2f06d3f6b',
-      },
-      {name: 'Sockeye Salmon', item_id: '995f6eb5-7bf7-47a5-a04a-59476daa6676'},
-      {name: 'Coho Salmon', item_id: '343a5ad1-7a88-4a25-b75d-04a2d142c8aa'},
-      {name: 'Chinook Salmon', item_id: 'b8622db6-f0cb-45a2-b76f-5f6f647d4721'},
-      {name: 'Pink Salmon', item_id: '2f91b98d-2263-4651-9883-4f975a72ed1f'},
-      {name: 'Other Salmon', item_id: 'e23f90c0-06a4-4a12-9f51-6efabfd4f2f9'},
-    ],
-  },
-  {
-    item_id: 'cf358b02-c378-4161-8092-7d571c7cfe15',
-    name: 'Sausage',
-    exp_int: 2,
-    storage_tip:
-      "For optimal quality, use sausage within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
-    subItems: [
-      {
-        name: 'Italian Sausage',
-        item_id: 'c6a0a6f1-2b7e-4d90-8e4a-2d7f55f8326e',
-      },
-      {name: 'Bratwurst', item_id: '54414f0e-0df2-4599-b6e7-9f98da6a597d'},
-      {name: 'Chorizo', item_id: '0e08f14a-f0ec-4c1d-8be7-c60b0fcfeea1'},
-      {name: 'Kielbasa', item_id: 'd1d1b634-0d9d-4a18-8f46-c7d06b0e3fe6'},
-      {name: 'Andouille', item_id: '3a0139c2-8484-4a66-bf1b-2f3f6e7673b5'},
-      {name: 'Polish Sausage', item_id: 'b754205f-905b-4b4e-9469-217743ab4983'},
-      {name: 'Linguica', item_id: 'b490d16f-8622-4970-9cbb-35a3b37eb507'},
-      {
-        name: 'Hot Italian Sausage',
-        item_id: 'c77e65af-7e88-468a-a2b2-6b03da09760d',
-      },
-      {
-        name: 'Sweet Italian Sausage',
-        item_id: '8e0b19d1-6ca3-4f46-a906-fae85b27aabb',
-      },
-      {name: 'Other', item_id: '8c2dfaa0-5912-4c91-93d4-23a7797795de'},
-    ],
-  },
+  // {
+  //   item_id: 'd5411ca1-77f5-4542-b8e8-9593e8577d8c',
+  //   name: 'Salmon',
+  //   exp_int: 2,
+  //   storage_tip:
+  //     'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
+  //   // subItems: [
+  //   //   {
+  //   //     name: 'Atlantic Salmon',
+  //   //     item_id: 'aebe051b-506b-4d65-ba98-6fc2f06d3f6b',
+  //   //   },
+  //   //   {name: 'Sockeye Salmon', item_id: '995f6eb5-7bf7-47a5-a04a-59476daa6676'},
+  //   //   {name: 'Coho Salmon', item_id: '343a5ad1-7a88-4a25-b75d-04a2d142c8aa'},
+  //   //   {name: 'Chinook Salmon', item_id: 'b8622db6-f0cb-45a2-b76f-5f6f647d4721'},
+  //   //   {name: 'Pink Salmon', item_id: '2f91b98d-2263-4651-9883-4f975a72ed1f'},
+  //   //   {name: 'Other Salmon', item_id: 'e23f90c0-06a4-4a12-9f51-6efabfd4f2f9'},
+  //   // ],
+  // },
+  // {
+  //   item_id: 'cf358b02-c378-4161-8092-7d571c7cfe15',
+  //   name: 'Sausage',
+  //   exp_int: 2,
+  //   storage_tip:
+  //     "For optimal quality, use sausage within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
+  //   subItems: [
+  //     {
+  //       name: 'Italian Sausage',
+  //       item_id: 'c6a0a6f1-2b7e-4d90-8e4a-2d7f55f8326e',
+  //     },
+  //     {name: 'Bratwurst', item_id: '54414f0e-0df2-4599-b6e7-9f98da6a597d'},
+  //     {name: 'Chorizo', item_id: '0e08f14a-f0ec-4c1d-8be7-c60b0fcfeea1'},
+  //     {name: 'Kielbasa', item_id: 'd1d1b634-0d9d-4a18-8f46-c7d06b0e3fe6'},
+  //     {name: 'Andouille', item_id: '3a0139c2-8484-4a66-bf1b-2f3f6e7673b5'},
+  //     {name: 'Polish Sausage', item_id: 'b754205f-905b-4b4e-9469-217743ab4983'},
+  //     {name: 'Linguica', item_id: 'b490d16f-8622-4970-9cbb-35a3b37eb507'},
+  //     {
+  //       name: 'Hot Italian Sausage',
+  //       item_id: 'c77e65af-7e88-468a-a2b2-6b03da09760d',
+  //     },
+  //     {
+  //       name: 'Sweet Italian Sausage',
+  //       item_id: '8e0b19d1-6ca3-4f46-a906-fae85b27aabb',
+  //     },
+  //     {name: 'Other', item_id: '8c2dfaa0-5912-4c91-93d4-23a7797795de'},
+  //   ],
+  // },
   {
     item_id: '1ba05953-7981-4321-899b-6dacf5c1a47e',
     name: 'Scallions',
+    img: scallions,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Place scallions in a glass or jar with enough water to cover the roots. Cover the top loosely with a plastic bag or plastic wrap to create a mini greenhouse effect. Change the water every few days.',
   },
   {
     item_id: 'b9eb7bce-f0b9-42a1-9186-9a5d1310c23d',
     name: 'Shallots',
+    img: shallots,
     exp_int: 30,
+    category: 'vegetables',
     storage_tip:
       'Store shallots in a cool, dry, and well-ventilated place. They can be kept in a pantry or cupboard, away from direct sunlight.',
   },
   {
     item_id: 'd85cd186-56da-4445-aef5-4883146489f3',
     name: 'Shrimp',
+    img: shrimp,
     exp_int: 2,
+    category: 'seafoods',
     storage_tip:
       "Fresh raw shrimp should be used within 1-2 days of purchase. If you won't be using them within that time, consider freezing them to extend their shelf life.",
-    subItems: [
-      {
-        name: 'Whiteleg Shrimp',
-        item_id: 'aa39848f-0629-49ce-9d51-3c39f96d7ed3',
-      },
-      {
-        name: 'Black Tiger Shrimp',
-        item_id: '0ecf8199-849a-4a07-8a13-5bf5d20e095f',
-      },
-      {
-        name: 'Gulf Pink Shrimp',
-        item_id: 'b3922c76-06de-4bda-b788-22b1e6649c28',
-      },
-      {
-        name: 'Northern Pink Shrimp',
-        item_id: '1750e609-2346-4c4a-8d8a-61b15e90c117',
-      },
-      {name: 'Rock Shrimp', item_id: 'b6cb4ad3-64b8-4a3b-a84f-8131c102c8e5'},
-      {name: 'Other Shrimp', item_id: 'f2f94d3d-1d05-4a5f-9680-76ab312a58bf'},
-    ],
+    // subItems: [
+    //   {
+    //     name: 'Whiteleg Shrimp',
+    //     item_id: 'aa39848f-0629-49ce-9d51-3c39f96d7ed3',
+    //   },
+    //   {
+    //     name: 'Black Tiger Shrimp',
+    //     item_id: '0ecf8199-849a-4a07-8a13-5bf5d20e095f',
+    //   },
+    //   {
+    //     name: 'Gulf Pink Shrimp',
+    //     item_id: 'b3922c76-06de-4bda-b788-22b1e6649c28',
+    //   },
+    //   {
+    //     name: 'Northern Pink Shrimp',
+    //     item_id: '1750e609-2346-4c4a-8d8a-61b15e90c117',
+    //   },
+    //   {name: 'Rock Shrimp', item_id: 'b6cb4ad3-64b8-4a3b-a84f-8131c102c8e5'},
+    //   {name: 'Other Shrimp', item_id: 'f2f94d3d-1d05-4a5f-9680-76ab312a58bf'},
+    // ],
   },
-  {
-    item_id: 'fe622de9-f533-4a26-854a-3d0f9dd68494',
-    name: 'Sour Cream',
-    exp_int: 7,
-    storage_tip:
-      'After purchasing sour cream, refrigerate it promptly. Keep it in the coldest part of your refrigerator, which is typically the back of the main compartment.',
-  },
+  // {
+  //   item_id: 'fe622de9-f533-4a26-854a-3d0f9dd68494',
+  //   name: 'Sour Cream',
+  //   exp_int: 7,
+  //   storage_tip:
+  //     'After purchasing sour cream, refrigerate it promptly. Keep it in the coldest part of your refrigerator, which is typically the back of the main compartment.',
+  // },
   {
     item_id: 'a3f7d226-2d12-4fc9-8aa5-f82e6159cfda',
     name: 'Spinach',
+    img: spinach,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store spinach in the refrigerator in a plastic bag to keep it fresh. Avoid washing before storage to prevent wilting.',
   },
-  {
-    item_id: '11a2e1d9-883b-4bf7-9e2a-69f90c7d88a8',
-    name: 'Sprouts',
-    exp_int: 3,
-    storage_tip:
-      'Keep sprouts in the refrigerator. Rinse and drain them regularly to maintain freshness.',
-  },
-  {
-    item_id: '22c552e8-5c79-4b08-927d-7c27d4fedf15',
-    name: 'Strawberries',
-    exp_int: 4,
-    storage_tip:
-      'Store strawberries unwashed and remove any damaged or moldy ones.  Strawberries are delicate fruits that can bruise easily. Handle them gently when washing, moving, or storing to prevent damage.',
-  },
+  // {
+  //   item_id: '11a2e1d9-883b-4bf7-9e2a-69f90c7d88a8',
+  //   name: 'Sprouts',
+  //   exp_int: 3,
+  //   storage_tip:
+  //     'Keep sprouts in the refrigerator. Rinse and drain them regularly to maintain freshness.',
+  // },
   {
     item_id: '82cf2f6a-152f-4e44-98a0-c5f8f56f23a3',
     name: 'Squash',
+    img: squash,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store squash in a cool, dry place away from direct sunlight. Some varieties may require refrigeration.',
   },
   {
+    item_id: '22c552e8-5c79-4b08-927d-7c27d4fedf15',
+    name: 'Strawberries',
+    img: strawberries,
+    exp_int: 4,
+    category: 'fruits',
+    storage_tip:
+      'Store strawberries unwashed and remove any damaged or moldy ones.  Strawberries are delicate fruits that can bruise easily. Handle them gently when washing, moving, or storing to prevent damage.',
+  },
+  {
     item_id: 'de48f5a3-c7cf-4ab4-8947-b8c0eade8b30',
     name: 'Thyme',
+    img: thyme,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Store fresh thyme wrapped in a slightly damp paper towel, inside a plastic bag, in the refrigerator. For longer storage, freeze thyme sprigs in airtight containers or bags.',
   },
   {
     item_id: '8429ffc7-1139-4b7c-8812-ed36faad61e5',
     name: 'Tofu',
+    img: tofu,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       "After opened, keep submerged in water in an airtight container. Change water daily.  If you have extra tofu that you won't use within a week, you can freeze it. Simply drain, cut into cubes, and freeze in airtight container.",
     subItems: [
@@ -1414,7 +1974,9 @@ export const ingredients = [
   {
     item_id: '10043109-0a9b-415e-a8e4-e53571267f30',
     name: 'Tomatoes',
+    img: tomatoes,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'If your tomatoes are not fully ripe, you can leave them at room temperature to ripen. Once they are ripe, you can transfer them to the refrigerator to slow down further ripening.',
     subItems: [
@@ -1449,25 +2011,27 @@ export const ingredients = [
       {name: 'Other Tomatoes', item_id: '0ec35b77-9ad3-4e1d-b6eb-5a3afda9fb85'},
     ],
   },
-  {
-    item_id: '08c2e2e8-4577-4d1c-adb8-f1b51fc839d2',
-    name: 'Tuna',
-    exp_int: 2,
-    storage_tip:
-      'Refrigerate fresh tuna steaks or fillets in their original packaging on a plate in the coldest part of the fridge, and consume within 1-2 days. For longer storage, freeze tuna in airtight containers or vacuum-sealed bags.',
-    subItems: [
-      {name: 'Albacore Tuna', item_id: 'a139f3ef-af99-437a-a35c-f51dcd31ef5b'},
-      {name: 'Yellowfin Tuna', item_id: '6e0801f6-d3e0-4e58-b129-1d935fcdc354'},
-      {name: 'Skipjack Tuna', item_id: '271f798e-18c2-47f0-894a-13aa4ca14512'},
-      {name: 'Bigeye Tuna', item_id: 'c9eaf3c1-d9e1-4a7a-82f7-25f2f6b15ec1'},
-      {name: 'Bluefinv', item_id: '9cefa94b-99d3-4efc-bb69-5e19345d4d4f'},
-      {name: 'Other Tuna', item_id: '8a9d7f9d-26a7-4ddc-8b7e-2ff31207a974'},
-    ],
-  },
+  // {
+  //   item_id: '08c2e2e8-4577-4d1c-adb8-f1b51fc839d2',
+  //   name: 'Tuna',
+  //   exp_int: 2,
+  //   storage_tip:
+  //     'Refrigerate fresh tuna steaks or fillets in their original packaging on a plate in the coldest part of the fridge, and consume within 1-2 days. For longer storage, freeze tuna in airtight containers or vacuum-sealed bags.',
+  //   subItems: [
+  //     {name: 'Albacore Tuna', item_id: 'a139f3ef-af99-437a-a35c-f51dcd31ef5b'},
+  //     {name: 'Yellowfin Tuna', item_id: '6e0801f6-d3e0-4e58-b129-1d935fcdc354'},
+  //     {name: 'Skipjack Tuna', item_id: '271f798e-18c2-47f0-894a-13aa4ca14512'},
+  //     {name: 'Bigeye Tuna', item_id: 'c9eaf3c1-d9e1-4a7a-82f7-25f2f6b15ec1'},
+  //     {name: 'Bluefin', item_id: '9cefa94b-99d3-4efc-bb69-5e19345d4d4f'},
+  //     {name: 'Other Tuna', item_id: '8a9d7f9d-26a7-4ddc-8b7e-2ff31207a974'},
+  //   ],
+  // },
   {
     item_id: '14f4f51a-c31a-4074-921a-2954f01b0a72',
     name: 'Turkey',
+    img: turkey,
     exp_int: 2,
+    category: 'meats',
     storage_tip:
       "Airtight container, inside fridge. Cooked turkey should be consumed within 3-4 days of cooking. If you won't use it within that time, consider freezing it.",
     subItems: [
@@ -1495,49 +2059,59 @@ export const ingredients = [
   {
     item_id: 'fe4b7456-5fa8-4f00-9748-53ed0282fddb',
     name: 'Turnips',
+    img: turnips,
     exp_int: 21,
+    category: 'vegetables',
     storage_tip:
       'Store turnip roots and greens separately. The greens release moisture and can cause the roots to become wilted. Wrap the greens in a damp paper towel and store them in a separate bag or container.',
   },
-  {
-    item_id: 'a4e11f48-5a83-45e4-89df-7e3f6f18ad98',
-    name: 'Water Chestnuts',
-    exp_int: 7,
-    storage_tip:
-      'Store unpeeled water chestnuts in a cool, dry place. Once peeled, store them in the refrigerator in water.',
-  },
-  {
-    item_id: '64eb6ef1-67a1-461a-ba27-86d54a3b380c',
-    name: 'Watercress',
-    exp_int: 5,
-    storage_tip:
-      'Store watercress in a plastic bag in the refrigerator. Use it within a few days for the best quality.',
-  },
+  // {
+  //   item_id: 'a4e11f48-5a83-45e4-89df-7e3f6f18ad98',
+  //   name: 'Water Chestnuts',
+  //   exp_int: 7,
+  //   storage_tip:
+  //     'Store unpeeled water chestnuts in a cool, dry place. Once peeled, store them in the refrigerator in water.',
+  // },
+  // {
+  //   item_id: '64eb6ef1-67a1-461a-ba27-86d54a3b380c',
+  //   name: 'Watercress',
+  //   exp_int: 5,
+  //   storage_tip:
+  //     'Store watercress in a plastic bag in the refrigerator. Use it within a few days for the best quality.',
+  // },
   {
     item_id: '57e1d639-4d28-4d5b-a607-dc4e685434ac',
     name: 'Watermelon',
+    img: watermelon,
     exp_int: 7,
+    category: 'fruits',
     storage_tip:
       "Once you've cut into the watermelon, store the cut pieces in the refrigerator. Use an airtight container or cover them with plastic wrap to prevent them from drying out and absorbing odors.",
   },
   {
     item_id: 'fb80f8db-5f71-4d71-b366-4b8888934a9b',
     name: 'Yams',
+    img: yams,
     exp_int: 10,
+    category: 'vegetables',
     storage_tip:
       'Store yams in a cool, dark place, preferably in a pantry or cellar, away from direct sunlight.',
   },
   {
     item_id: '247eee49-c866-4d17-ae98-63cb420cefed',
     name: 'Yogurt',
+    img: yogurt,
     exp_int: 10,
+    category: 'dairy',
     storage_tip:
       "Store towards back of fridge. Ensure the container's lid is tightly sealed after each use. This helps prevent moisture and contaminants from entering the yogurt container.",
   },
   {
     item_id: '28a6f075-2afb-484a-8611-bcf6dbc8af84',
     name: 'Zucchini',
+    img: zucchini,
     exp_int: 7,
+    category: 'vegetables',
     storage_tip:
       'Moisture can cause zucchini to mold and spoil. Make sure the zucchini are dry before storing them in the refrigerator. You can pat them dry with a paper towel if needed.',
   },

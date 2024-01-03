@@ -1,14 +1,23 @@
 import React, {useRef, useState} from 'react';
-import {FlatList, Text, View, TouchableOpacity, Image} from 'react-native';
+import {
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+  TextInput,
+} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-// import {auth} from '../firebase';
-// import {signOut} from 'firebase/auth';
+import {auth} from '../firebase';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
+import {Button} from 'react-native';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -23,15 +32,24 @@ const Dashboard = () => {
   const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isRecipesLoading, setIsRecipesLoading] = useState(false);
+  const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemExpInt, setNewItemExpInt] = useState(1);
+
+  const userEmail = auth.currentUser?.email;
 
   const apiUrl =
-    'https://37bf-2600-4041-54c4-7200-2420-7c9f-7c08-ed78.ngrok-free.app';
+    'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app';
 
-  const deleteItem = async itemId => {
+  const deleteItem = async (itemId, method) => {
     try {
-      const response = await fetch(`${apiUrl}/items/${itemId}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `${apiUrl}/items/${itemId}?method=${method}`,
+        {
+          method: 'DELETE',
+        },
+      );
 
       if (!response.ok) {
         const errorBody = await response.text();
@@ -50,7 +68,16 @@ const Dashboard = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch(`${apiUrl}/items/`);
+      if (!userEmail) {
+        console.error('User email is not available');
+        return;
+      }
+
+      const response = await fetch(`${apiUrl}/items?email=${userEmail}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       const sortedItems = data.sort((a, b) => {
@@ -62,9 +89,58 @@ const Dashboard = () => {
       setItems(sortedItems);
       await fetchRecipes(sortedItems);
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching items:', error.message);
     }
   };
+
+  async function addCustomItem(itemName) {
+    const newItem = {
+      name: itemName,
+      exp_int: 6, // This is a fixed expiration interval, adjust as needed
+      storage_tip: 'Not available for custom items',
+      user: userEmail, // userEmail needs to be a string
+    };
+    console.log('newItem', newItem);
+    console.log('userEmail', userEmail);
+
+    // The rest of the function is the same as addItems
+    try {
+      const response = await fetch(
+        'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app/items',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            items: [newItem], // Wrapping newItem in an array to match the expected format
+            userEmail: userEmail, // userEmail is added here to match your server-side expectations
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(
+          `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
+        );
+      }
+
+      const savedItems = await response.json();
+
+      // Update the items state with the new item from the server response
+      setItems(currentItems => [...currentItems, ...savedItems]); // Using spread to combine arrays
+
+      // Navigate back to Dashboard or update the UI as needed
+      setAddItemModalVisible(false);
+      setNewItemName('');
+    } catch (error) {
+      console.error(
+        'Error adding custom item:',
+        error instanceof Error ? error.message : String(error),
+      );
+    }
+  }
 
   const updateExpDate = async (item, newDate) => {
     const formattedDate = newDate.toISOString().split('T')[0];
@@ -100,21 +176,22 @@ const Dashboard = () => {
   };
 
   const handleUndo = data => {
-    deleteItem(data._id);
+    console.log(data);
+    deleteItem(data._id, 'undo');
     const swipeable = swipeableRefs.get(data._id);
     if (swipeable) {
       swipeable.close();
     }
   };
   const handleWaste = data => {
-    deleteItem(data._id);
+    deleteItem(data._id, 'waste');
     const swipeable = swipeableRefs.get(data._id);
     if (swipeable) {
       swipeable.close();
     }
   };
   const handleConsume = data => {
-    deleteItem(data._id);
+    deleteItem(data._id, 'consume');
     const swipeable = swipeableRefs.get(data._id);
     if (swipeable) {
       swipeable.close();
@@ -127,17 +204,17 @@ const Dashboard = () => {
         <TouchableOpacity
           onPress={() => handleUndo(item)}
           style={styles.swipeButton}>
-          <AntDesignIcon name="delete" size={20} color="white" />
+          <AntDesignIcon name="delete" size={20} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleWaste(item)}
           style={styles.swipeButton}>
-          <AntDesignIcon name="frowno" size={25} color="red" />
+          <AntDesignIcon name="dislike2" size={25} color="red" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleConsume(item)}
           style={styles.swipeButton}>
-          <AntDesignIcon name="smileo" size={25} color="green" />
+          <AntDesignIcon name="like2" size={25} color="green" />
         </TouchableOpacity>
       </View>
     );
@@ -151,7 +228,7 @@ const Dashboard = () => {
           setOpen(true);
         }}
         style={styles.swipeButton}>
-        <AntDesignIcon name="calendar" size={25} color="white" />
+        <AntDesignIcon name="calendar" size={25} color="black" />
       </TouchableOpacity>
     );
   };
@@ -208,7 +285,6 @@ const Dashboard = () => {
 
   const navToMultiSelect = () => {
     navigation.navigate('MultiSelect', {items: items});
-    toggleModal();
   };
 
   const onViewRef = useRef(({changed}) => {
@@ -232,22 +308,26 @@ const Dashboard = () => {
   // };
 
   const fetchRecipes = async items => {
+    setIsRecipesLoading(true); // Start loading
+
     if (items && items.length > 0) {
       const queryString = items.map(item => item.name).join(',+');
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&number=3`,
+          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&number=10`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const resItems = await response.json();
         setFetchedRecipes(resItems);
+        setIsRecipesLoading(false); // End loading
       } catch (error) {
         console.error('Error fetching recipes:', error.message);
       }
     } else {
       console.log('recipes error');
+      setIsRecipesLoading(false); // End loading
     }
   };
 
@@ -282,26 +362,37 @@ const Dashboard = () => {
     );
   };
 
+  const recipeContainerHeight = 250; // Adjust this value as needed
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>Your Featured Recipes</Text>
 
-      {fetchedRecipes && fetchedRecipes.length > 0 && (
-        <FlatList
-          data={fetchedRecipes}
-          renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          ref={ref => {
-            flatListRef.current = ref;
-          }}
-          style={styles.carousel}
-          viewabilityConfig={viewConfigRef}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      )}
+      <View style={{height: recipeContainerHeight}}>
+        {isRecipesLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        ) : (
+          fetchedRecipes &&
+          fetchedRecipes.length > 0 && (
+            <FlatList
+              data={fetchedRecipes}
+              renderItem={renderItems}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled
+              ref={ref => {
+                flatListRef.current = ref;
+              }}
+              style={styles.carousel}
+              viewabilityConfig={viewConfigRef}
+              onViewableItemsChanged={onViewRef.current}
+            />
+          )
+        )}
+      </View>
 
       <DatePicker
         mode="date"
@@ -333,9 +424,42 @@ const Dashboard = () => {
       />
 
       <View>
-        <TouchableOpacity style={styles.fab} onPress={toggleModal}>
-          <Text style={styles.fabText}>+</Text>
+        <TouchableOpacity
+          style={styles.leftFab}
+          onPress={() => setAddItemModalVisible(true)}>
+          <AntDesignIcon name="edit" size={20} color="white" />
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
+          <AntDesignIcon name="menuunfold" size={20} color="white" />
+        </TouchableOpacity>
+
+        <Modal
+          isVisible={isAddItemModalVisible}
+          onBackdropPress={() => setAddItemModalVisible(false)}>
+          <View style={styles.modalContent}>
+            <TextInput
+              style={styles.input}
+              placeholder="Item Name"
+              value={newItemName}
+              onChangeText={setNewItemName}
+            />
+            {/* <Picker
+              selectedValue={newItemExpInt}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) =>
+                setNewItemExpInt(itemValue)
+              }>
+              {[...Array(21).keys()].map(n => (
+                <Picker.Item key={n + 1} label={`${n + 1}`} value={n + 1} />
+              ))}
+            </Picker> */}
+            <Button
+              title="Add Item"
+              onPress={() => addCustomItem(newItemName)}
+            />
+          </View>
+        </Modal>
 
         <Modal
           onBackdropPress={toggleModal}
@@ -346,15 +470,20 @@ const Dashboard = () => {
               style={styles.bottomModalRows}
               onPress={navToMultiSelect}>
               <AntDesignIcon name="menuunfold" size={20} color="black" />
-              <Text style={styles.modalText}>Choose from List</Text>
+              <Text style={styles.modalText}>Choose from list</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomModalRows}>
-              <AntDesignIcon name="profile" size={20} color="black" />
-              <Text style={styles.modalText}>Pic of Receipt</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setModalVisible(false); // Close the current modal
+                setTimeout(() => setAddItemModalVisible(true), 300); // Then open the new modal
+              }}
+              style={styles.bottomModalRows}>
+              <AntDesignIcon name="edit" size={20} color="black" />
+              <Text style={styles.modalText}>Add your own</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.bottomModalRows}>
               <AntDesignIcon name="camerao" size={20} color="black" />
-              <Text style={styles.modalText}>Pic of Groceries</Text>
+              <Text style={styles.modalText}>Pic of receipt</Text>
             </TouchableOpacity>
           </View>
         </Modal>

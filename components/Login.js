@@ -10,7 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/core';
 import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../firebase';
-import smileLogo from '../assets/smile_logo.png';
+import chefsHat from '../assets/chefs_hat.png';
 import styles from './styles/login';
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
-        navigation.replace('Dashboard');
+        navigation.replace('My Tabs');
       }
     });
 
@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
-        <Image source={smileLogo} style={styles.smileLogo} />
+        <Image source={chefsHat} style={styles.smileLogo} />
         <Text style={styles.titleText}>Welcome Back!</Text>
         <TextInput
           placeholder="Email Address"

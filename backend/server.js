@@ -4,7 +4,9 @@ const app = express();
 const cors = require('cors');
 const connectDB = require('./db');
 const Item = require('./models/item');
+const User = require('./models/user');
 
+app.use('/public', express.static('../assets'));
 app.use(cors());
 app.use(express.json());
 
@@ -15,10 +17,41 @@ connectDB();
 // Get all items
 app.get('/items', async (req, res) => {
   try {
-    const items = await Item.find();
+    const userEmail = req.query.email; // Get the user email from the query parameter
+    if (!userEmail) {
+      return res.status(400).send('Email parameter is required');
+    }
+
+    // Assuming that your Item schema has a reference to the User model
+    // and that the User model has an 'email' field
+    // const user = await User.findOne({email: userEmail});
+    // if (!user) {
+    //   return res.status(404).send('User not found');
+    // }
+
+    const items = await Item.find({user: userEmail});
     res.json(items);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
+  }
+});
+
+// Fetch user data by email
+app.get('/users/data', async (req, res) => {
+  try {
+    const userEmail = req.query.email;
+    if (!userEmail) {
+      return res.status(400).send('Email query parameter is required');
+    }
+
+    const user = await User.findOne({email: userEmail});
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 
@@ -41,10 +74,25 @@ app.get('/items/:id', async (req, res) => {
   }
 });
 
+// create a new user
+app.post('/users', async (req, res) => {
+  try {
+    const {email, firstName} = req.body; // Destructure firstName from the request body
+    const newUser = new User({
+      email: email,
+      firstName: firstName, // Save firstName in the new user document
+    });
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 //create multiple items
 app.post('/items', async (req, res) => {
   try {
-    const itemsData = req.body.items;
+    const {items: itemsData, userEmail} = req.body; // Destructure the userEmail from the body
 
     const savedItems = [];
     for (const itemData of itemsData) {
@@ -55,9 +103,16 @@ app.post('/items', async (req, res) => {
         name: itemData.name,
         storage_tip: itemData.storage_tip,
         exp_date: expDate,
+        user: itemData.user,
       });
       const savedItem = await newItem.save();
       savedItems.push(savedItem);
+    }
+
+    const user = await User.findOne({email: userEmail});
+    if (user) {
+      user.itemsCreated += itemsData.length;
+      await user.save();
     }
 
     res.json(savedItems);
@@ -99,16 +154,30 @@ app.delete('/items/deleteAll', async (req, res) => {
 
 // Delete one item by id
 app.delete('/items/:id', async (req, res) => {
-  console.log(`Delete request for itemId: ${req.params.id}`);
   try {
+    const deletionMethod = req.query.method; // Expecting 'undo', 'consume', or 'waste'
     const deletedItem = await Item.findByIdAndDelete(req.params.id);
     if (!deletedItem) {
       res.status(404).send('Item not found');
     } else {
+      // Increment the user's deletion counters
+      const user = await User.findOne({email: deletedItem.user});
+      if (user) {
+        user.itemsDeleted.total += 1;
+        if (deletionMethod === 'undo') {
+          user.itemsDeleted.byUndo += 1;
+        }
+        if (deletionMethod === 'consume') {
+          user.itemsDeleted.byConsume += 1;
+        }
+        if (deletionMethod === 'waste') {
+          user.itemsDeleted.byWaste += 1;
+        }
+        await user.save();
+      }
       res.status(204).send();
     }
   } catch (error) {
-    console.error('Server error:', error);
     res.status(400).send('Bad request: ' + error.message);
   }
 });

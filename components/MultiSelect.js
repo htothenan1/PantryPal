@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, Text, FlatList, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
+import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
 
@@ -8,6 +9,9 @@ const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState(ingredients);
   const [selectedItems, setSelectedItems] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState('fruits');
+
+  const userEmail = auth.currentUser?.email;
 
   const navigation = useNavigation();
 
@@ -75,9 +79,13 @@ const MultiSelectScreen = ({route}) => {
       return true;
     });
 
-    setItems(filteredItems);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // Filter the items based on the currentCategory
+    const filteredItemsByCategory = filteredItems.filter(
+      ingredient => ingredient.category === currentCategory,
+    );
+
+    setItems(filteredItemsByCategory);
+  }, [route, currentCategory]); // Add currentCategory as a dependency
 
   async function addItems(itemsArray) {
     try {
@@ -92,23 +100,28 @@ const MultiSelectScreen = ({route}) => {
             name: `${item.name}`,
             exp_int: parentItem.exp_int,
             storage_tip: parentItem.storage_tip,
+            user: userEmail,
           };
         } else {
           return {
             name: item.name,
             exp_int: item.exp_int,
             storage_tip: item.storage_tip,
+            user: userEmail,
           };
         }
       });
       const response = await fetch(
-        'https://37bf-2600-4041-54c4-7200-2420-7c9f-7c08-ed78.ngrok-free.app/items',
+        'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app/items',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({items: preparedItems}),
+          body: JSON.stringify({
+            items: preparedItems,
+            userEmail: userEmail, // Add this line
+          }),
         },
       );
       if (!response.ok) {
@@ -176,8 +189,27 @@ const MultiSelectScreen = ({route}) => {
     );
   };
 
+  const renderTab = category => {
+    const isSelected = category === currentCategory;
+    return (
+      <TouchableOpacity
+        key={category}
+        style={[styles.tab, isSelected && styles.selectedTab]}
+        onPress={() => setCurrentCategory(category)}>
+        <Text style={[styles.tabText, isSelected && styles.selectedTabText]}>
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
+      <View style={styles.tabsContainer}>
+        {['fruits', 'vegetables', 'meats', 'dairy', 'grains', 'seafoods'].map(
+          renderTab,
+        )}
+      </View>
       <FlatList
         data={items}
         renderItem={renderItem}
