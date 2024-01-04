@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {auth} from '../firebase';
-import {onAuthStateChanged, signOut} from 'firebase/auth';
+import {signOut} from 'firebase/auth';
 import styles from './styles/account';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -9,11 +9,14 @@ import {useFocusEffect} from '@react-navigation/native';
 const Account = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [wastedItems, setWastedItems] = useState([]);
+  const [consumedItems, setConsumedItems] = useState([]);
+
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
   const apiUrl =
-    'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app';
+    'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app';
 
   useFocusEffect(
     React.useCallback(() => {
@@ -30,6 +33,9 @@ const Account = () => {
             }
             const data = await response.json();
             setUserData(data);
+
+            // Fetch items data after user data is fetched and set
+            await fetchItemsData(userEmail);
           } catch (error) {
             console.error('Error fetching user data:', error.message);
           } finally {
@@ -37,39 +43,50 @@ const Account = () => {
           }
         };
 
-        // Call the function
+        const fetchItemsData = async userEmail => {
+          // console.log(userEmail);
+          try {
+            const response = await fetch(
+              `${apiUrl}/items/useremail/${userEmail}`,
+            );
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            setWastedItems(data.wastedItems);
+            setConsumedItems(data.consumedItems);
+          } catch (error) {
+            console.error('Error fetching items data:', error.message);
+          }
+        };
+
+        // Call the function inside useEffect or useFocusEffect
         fetchUserData();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
 
-  //   useFocusEffect(
-  //     React.useCallback(() => {
-  //     if (userEmail) {
-  //       // Define the function inside the effect
-  //       const fetchUserData = async () => {
-  //         try {
-  //           setLoading(true);
-  //           const response = await fetch(
-  //             `${apiUrl}/users/data?email=${encodeURIComponent(userEmail)}`,
-  //           );
-  //           if (!response.ok) {
-  //             throw new Error(`HTTP error! Status: ${response.status}`);
-  //           }
-  //           const data = await response.json();
-  //           setUserData(data);
-  //         } catch (error) {
-  //           console.error('Error fetching user data:', error.message);
-  //         } finally {
-  //           setLoading(false);
-  //         }
-  //       };
-
-  //       // Call the function
-  //       fetchUserData();
+  // const fetchItemsData = async () => {
+  //   try {
+  //     const response = await fetch(`${apiUrl}/items/user/${userData._id}`);
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
   //     }
-  //   }, [userEmail]);
+  //     const data = await response.json();
+  //     setWastedItems(data.wastedItems);
+  //     setConsumedItems(data.consumedItems);
+  //   } catch (error) {
+  //     console.error('Error fetching items data:', error.message);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (userData) {
+  //     fetchItemsData();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [userData]);
 
   const handleLogout = () => {
     signOut(auth)
@@ -87,22 +104,35 @@ const Account = () => {
       ) : (
         <>
           {/* <Text style={styles.titleText}>{userEmail.toUpperCase()}</Text> */}
-          <Text style={styles.titleText}>Hi {userData?.firstName}!</Text>
+          <Text style={styles.titleText}>
+            {userData?.firstName}'s Kitchen Stats
+          </Text>
           <Text style={styles.info}>
             Total items logged: {userData?.itemsCreated}
           </Text>
           {/* <Text style={styles.info}>
-            Items Deleted: {userData?.itemsDeleted.total}
-          </Text> */}
-          {/* <Text style={styles.info}>
-            Deleted by Undo: {userData?.itemsDeleted.byUndo}
-          </Text> */}
-          <Text style={styles.info}>
             Items consumed with waste: {userData?.itemsDeleted.byWaste}
           </Text>
           <Text style={styles.info}>
             Items consumed without waste: {userData?.itemsDeleted.byConsume}
-          </Text>
+          </Text> */}
+          <View style={styles.itemsList}>
+            <Text style={styles.sectionHeader}>Top 5 Consumed Items</Text>
+            {consumedItems.slice(0, 5).map(item => (
+              <Text key={item._id} style={styles.item}>
+                {item.name}: {item.frequency}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.itemsList}>
+            <Text style={styles.sectionHeader}>Top 5 Wasted Items</Text>
+            {wastedItems.slice(0, 5).map(item => (
+              <Text key={item._id} style={styles.item}>
+                {item.name}: {item.frequency}
+              </Text>
+            ))}
+          </View>
+
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={handleLogout}>

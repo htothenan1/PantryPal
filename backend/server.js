@@ -5,6 +5,8 @@ const cors = require('cors');
 const connectDB = require('./db');
 const Item = require('./models/item');
 const User = require('./models/user');
+const WastedItem = require('./models/wasteItem');
+const ConsumedItem = require('./models/consumedItem');
 
 app.use('/public', express.static('../assets'));
 app.use(cors());
@@ -52,6 +54,30 @@ app.get('/users/data', async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+// Get wasted and consumed items for a user, sorted by frequency and name
+app.get('/items/useremail/:userEmail', async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const user = await User.findOne({email: userEmail});
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const wastedItems = await WastedItem.find({user: userEmail}).sort({
+      frequency: -1,
+      name: 1,
+    });
+    const consumedItems = await ConsumedItem.find({user: userEmail}).sort({
+      frequency: -1,
+      name: 1,
+    });
+
+    res.json({wastedItems, consumedItems});
+  } catch (error) {
+    res.status(500).send('Server error: ' + error.message);
   }
 });
 
@@ -156,27 +182,51 @@ app.delete('/items/deleteAll', async (req, res) => {
 app.delete('/items/:id', async (req, res) => {
   try {
     const deletionMethod = req.query.method; // Expecting 'undo', 'consume', or 'waste'
-    const deletedItem = await Item.findByIdAndDelete(req.params.id);
+    const deletedItem = await Item.findById(req.params.id);
     if (!deletedItem) {
-      res.status(404).send('Item not found');
-    } else {
-      // Increment the user's deletion counters
-      const user = await User.findOne({email: deletedItem.user});
-      if (user) {
-        user.itemsDeleted.total += 1;
-        if (deletionMethod === 'undo') {
-          user.itemsDeleted.byUndo += 1;
-        }
-        if (deletionMethod === 'consume') {
-          user.itemsDeleted.byConsume += 1;
-        }
-        if (deletionMethod === 'waste') {
-          user.itemsDeleted.byWaste += 1;
-        }
-        await user.save();
-      }
-      res.status(204).send();
+      return res.status(404).send('Item not found');
     }
+
+    // Handling for consume and waste methods
+    if (deletionMethod === 'consume' || deletionMethod === 'waste') {
+      const ItemModel =
+        deletionMethod === 'consume' ? ConsumedItem : WastedItem;
+      const existingItem = await ItemModel.findOne({
+        name: deletedItem.name,
+        user: deletedItem.user,
+      });
+
+      if (existingItem) {
+        existingItem.frequency = (existingItem.frequency || 0) + 1;
+        await existingItem.save();
+      } else {
+        await ItemModel.create({
+          name: deletedItem.name,
+          user: deletedItem.user,
+          frequency: 1,
+        });
+      }
+    }
+
+    // Now delete the item
+    await Item.findByIdAndDelete(req.params.id);
+
+    // Increment the user's deletion counters
+    const user = await User.findOne({email: deletedItem.user});
+    if (user) {
+      user.itemsDeleted.total += 1;
+      if (deletionMethod === 'undo') {
+        user.itemsDeleted.byUndo += 1;
+      }
+      if (deletionMethod === 'consume') {
+        user.itemsDeleted.byConsume += 1;
+      }
+      if (deletionMethod === 'waste') {
+        user.itemsDeleted.byWaste += 1;
+      }
+      await user.save();
+    }
+    res.status(204).send();
   } catch (error) {
     res.status(400).send('Bad request: ' + error.message);
   }

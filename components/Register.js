@@ -22,7 +22,7 @@ const Register = () => {
   const navigation = useNavigation();
 
   const apiUrl =
-    'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app';
+    'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app';
 
   const handleNavtoLogin = () => {
     navigation.navigate('Login');

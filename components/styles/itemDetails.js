@@ -26,4 +26,21 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     paddingHorizontal: 30,
   },
+  compatibleHeader: {
+    fontWeight: 'bold',
+    fontFamily: 'Avenir-Book',
+    paddingHorizontal: 30,
+    fontSize: 20,
+    marginTop: 20,
+  },
+  compatibleItem: {
+    paddingHorizontal: 30,
+    fontFamily: 'Avenir-Book',
+    fontSize: 14,
+    marginVertical: 5,
+  },
+  noCompatibleItem: {
+    fontSize: 14,
+    color: 'grey',
+  },
 });

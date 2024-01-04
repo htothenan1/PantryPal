@@ -47,7 +47,7 @@ function DashStackScreen() {
 }
 
 const accountIcon = () => {
-  return <AntDesignIcon name="user" size={20} color="black" />;
+  return <AntDesignIcon name="barschart" size={20} color="black" />;
 };
 const dashIcon = () => {
   return <AntDesignIcon name="home" size={20} color="black" />;
@@ -66,10 +66,10 @@ function MyTabsScreen() {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="Statistics"
         options={{
           headerShown: true,
-          tabBarLabel: 'Account',
+          tabBarLabel: 'Statistics',
           tabBarIcon: () => accountIcon(),
         }}
         component={Account}

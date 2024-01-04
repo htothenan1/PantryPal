@@ -112,7 +112,7 @@ const MultiSelectScreen = ({route}) => {
         }
       });
       const response = await fetch(
-        'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app/items',
+        'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app/items',
         {
           method: 'POST',
           headers: {

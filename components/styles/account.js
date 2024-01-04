@@ -33,4 +33,21 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     // Add other styles as needed
   },
+  sectionHeader: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    marginVertical: 20,
+  },
+  itemsList: {
+    marginTop: 10,
+  },
+  item: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
+    marginVertical: 4,
+    paddingHorizontal: 10,
+  },
 });

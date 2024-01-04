@@ -33,11 +33,9 @@ export default StyleSheet.create({
   },
   itemsList: {
     marginBottom: 80,
-    // marginHorizontal: 34,
   },
   item: {
     borderWidth: 0.2,
-    // borderRadius: 5,
     paddingHorizontal: 25,
     paddingVertical: 14,
     backgroundColor: '#f8f9fa',

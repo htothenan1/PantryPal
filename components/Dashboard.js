@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   TextInput,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+// import {Picker} from '@react-native-picker/picker';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -40,7 +40,7 @@ const Dashboard = () => {
   const userEmail = auth.currentUser?.email;
 
   const apiUrl =
-    'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app';
+    'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app';
 
   const deleteItem = async (itemId, method) => {
     try {
@@ -106,7 +106,7 @@ const Dashboard = () => {
     // The rest of the function is the same as addItems
     try {
       const response = await fetch(
-        'https://f41e-2600-4041-54c4-7200-2cf9-b5db-d2b0-abf7.ngrok-free.app/items',
+        'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app/items',
         {
           method: 'POST',
           headers: {
@@ -234,7 +234,10 @@ const Dashboard = () => {
   };
 
   const navToItemDetails = itemObject => {
-    navigation.navigate('ItemDetails', {item: itemObject});
+    navigation.navigate('ItemDetails', {
+      item: itemObject,
+      userItems: items, // Pass the user's items
+    });
   };
 
   useFocusEffect(
