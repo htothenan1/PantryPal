@@ -21,7 +21,6 @@ const Account = () => {
   useFocusEffect(
     React.useCallback(() => {
       if (userEmail) {
-        // Define the function inside the effect
         const fetchUserData = async () => {
           try {
             setLoading(true);
@@ -34,7 +33,6 @@ const Account = () => {
             const data = await response.json();
             setUserData(data);
 
-            // Fetch items data after user data is fetched and set
             await fetchItemsData(userEmail);
           } catch (error) {
             console.error('Error fetching user data:', error.message);
@@ -44,7 +42,6 @@ const Account = () => {
         };
 
         const fetchItemsData = async userEmail => {
-          // console.log(userEmail);
           try {
             const response = await fetch(
               `${apiUrl}/items/useremail/${userEmail}`,
@@ -67,27 +64,6 @@ const Account = () => {
     }, []),
   );
 
-  // const fetchItemsData = async () => {
-  //   try {
-  //     const response = await fetch(`${apiUrl}/items/user/${userData._id}`);
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  //     const data = await response.json();
-  //     setWastedItems(data.wastedItems);
-  //     setConsumedItems(data.consumedItems);
-  //   } catch (error) {
-  //     console.error('Error fetching items data:', error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (userData) {
-  //     fetchItemsData();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [userData]);
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -103,19 +79,12 @@ const Account = () => {
         <ActivityIndicator size="large" />
       ) : (
         <>
-          {/* <Text style={styles.titleText}>{userEmail.toUpperCase()}</Text> */}
           <Text style={styles.titleText}>
             {userData?.firstName}'s Kitchen Stats
           </Text>
           <Text style={styles.info}>
             Total items logged: {userData?.itemsCreated}
           </Text>
-          {/* <Text style={styles.info}>
-            Items consumed with waste: {userData?.itemsDeleted.byWaste}
-          </Text>
-          <Text style={styles.info}>
-            Items consumed without waste: {userData?.itemsDeleted.byConsume}
-          </Text> */}
           <View style={styles.itemsList}>
             <Text style={styles.sectionHeader}>Top 5 Consumed Items</Text>
             {consumedItems.slice(0, 5).map(item => (

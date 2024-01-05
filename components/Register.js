@@ -8,10 +8,9 @@ import {
   View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-import {doc, setDoc} from 'firebase/firestore';
 import chefsHat from '../assets/chefs_hat.png';
 import styles from './styles/register';
-import {auth, db} from '../firebase';
+import {auth} from '../firebase';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 const Register = () => {
@@ -28,22 +27,11 @@ const Register = () => {
     navigation.navigate('Login');
   };
 
-  const createUserDb = async (userId, userEmail) => {
-    const docRef = doc(db, 'users', userId);
-    await setDoc(docRef, {
-      id: userId,
-      email: userEmail,
-      firstName: name,
-    });
-    console.log('DB successfully created');
-  };
-
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCreds => {
         const userEmail = userCreds.user.email;
         console.log('Registered successfully with:', userEmail);
-        // Now create a user instance in your MongoDB
         return fetch(`${apiUrl}/users`, {
           method: 'POST',
           headers: {
@@ -55,7 +43,6 @@ const Register = () => {
       .then(response => response.json())
       .then(userData => {
         console.log('MongoDB User created:', userData);
-        // Here you can navigate the user to another screen or perform other actions
       })
       .catch(error => console.log(error));
   };

@@ -3,7 +3,7 @@ import {View, Text, Image} from 'react-native';
 import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
 
-const findIngredientImage = itemName => {
+const findIngredient = itemName => {
   let ingredient = ingredients.find(ing => ing.name === itemName);
 
   if (!ingredient) {
@@ -18,22 +18,21 @@ const findIngredientImage = itemName => {
     }
   }
 
-  return ingredient ? ingredient.img : null;
+  return ingredient;
 };
 
 const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
   const userItems = route.params?.userItems || [];
 
-  const itemImage = item ? findIngredientImage(item.name) : null;
+  const ingredient = item ? findIngredient(item.name) : null;
+  const itemImage = ingredient ? ingredient.img : null;
 
   const findCompatibleUserItems = () => {
     const ingredient = ingredients.find(ing => ing.name === item?.name);
 
-    // Get the list of compatibles from the ingredients object
     const compatibles = ingredient?.compatibles || [];
 
-    // Filter out compatibles that exist in the user's item list
     return compatibles.filter(compatibleItemName =>
       userItems.some(userItem => userItem.name === compatibleItemName),
     );
@@ -47,7 +46,16 @@ const ItemDetails = ({route}) => {
         <Image source={itemImage} style={styles.background} />
         <Text style={styles.headerText}>{item?.name}</Text>
       </View>
+      <Text style={styles.compatibleHeader}>Storage Tips:</Text>
+
       <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
+
+      {ingredient?.techniques && (
+        <View>
+          <Text style={styles.techniquesHeader}>Cooking Techniques:</Text>
+          <Text style={styles.techniquesText}>{ingredient.techniques}</Text>
+        </View>
+      )}
 
       {compatibleUserItems && (
         <View>

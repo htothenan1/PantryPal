@@ -7,8 +7,8 @@ import {
   Image,
   ActivityIndicator,
   TextInput,
+  Button,
 } from 'react-native';
-// import {Picker} from '@react-native-picker/picker';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -17,7 +17,6 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
-import {Button} from 'react-native';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -35,7 +34,6 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [newItemExpInt, setNewItemExpInt] = useState(1);
 
   const userEmail = auth.currentUser?.email;
 
@@ -66,6 +64,10 @@ const Dashboard = () => {
     }
   };
 
+  const handleRefreshRecipes = () => {
+    fetchRecipes(items);
+  };
+
   const fetchItems = async () => {
     try {
       if (!userEmail) {
@@ -87,7 +89,6 @@ const Dashboard = () => {
       });
 
       setItems(sortedItems);
-      await fetchRecipes(sortedItems);
     } catch (error) {
       console.error('Error fetching items:', error.message);
     }
@@ -96,14 +97,13 @@ const Dashboard = () => {
   async function addCustomItem(itemName) {
     const newItem = {
       name: itemName,
-      exp_int: 6, // This is a fixed expiration interval, adjust as needed
+      exp_int: 6,
       storage_tip: 'Not available for custom items',
-      user: userEmail, // userEmail needs to be a string
+      user: userEmail,
     };
     console.log('newItem', newItem);
     console.log('userEmail', userEmail);
 
-    // The rest of the function is the same as addItems
     try {
       const response = await fetch(
         'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app/items',
@@ -113,8 +113,8 @@ const Dashboard = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            items: [newItem], // Wrapping newItem in an array to match the expected format
-            userEmail: userEmail, // userEmail is added here to match your server-side expectations
+            items: [newItem],
+            userEmail: userEmail,
           }),
         },
       );
@@ -128,17 +128,12 @@ const Dashboard = () => {
 
       const savedItems = await response.json();
 
-      // Update the items state with the new item from the server response
-      setItems(currentItems => [...currentItems, ...savedItems]); // Using spread to combine arrays
+      setItems(currentItems => [...currentItems, ...savedItems]);
 
-      // Navigate back to Dashboard or update the UI as needed
       setAddItemModalVisible(false);
       setNewItemName('');
     } catch (error) {
-      console.error(
-        'Error adding custom item:',
-        error instanceof Error ? error.message : String(error),
-      );
+      console.log(error);
     }
   }
 
@@ -236,7 +231,7 @@ const Dashboard = () => {
   const navToItemDetails = itemObject => {
     navigation.navigate('ItemDetails', {
       item: itemObject,
-      userItems: items, // Pass the user's items
+      userItems: items,
     });
   };
 
@@ -246,6 +241,7 @@ const Dashboard = () => {
 
       const fetchData = async () => {
         await fetchItems();
+        await fetchRecipes();
       };
 
       if (isActive) fetchData().catch(console.error);
@@ -300,37 +296,27 @@ const Dashboard = () => {
     setModalVisible(!isModalVisible);
   };
 
-  // const handleLogout = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //       navigation.replace('Login');
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   const fetchRecipes = async items => {
-    setIsRecipesLoading(true); // Start loading
+    setIsRecipesLoading(true);
 
     if (items && items.length > 0) {
       const queryString = items.map(item => item.name).join(',+');
+      const randomInt = Math.floor(Math.random() * 10) + 1;
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&number=10`,
+          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&offset=${randomInt}&number=25`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const resItems = await response.json();
         setFetchedRecipes(resItems);
-        setIsRecipesLoading(false); // End loading
+        setIsRecipesLoading(false);
       } catch (error) {
         console.error('Error fetching recipes:', error.message);
       }
     } else {
-      console.log('recipes error');
-      setIsRecipesLoading(false); // End loading
+      setIsRecipesLoading(false);
     }
   };
 
@@ -365,13 +351,24 @@ const Dashboard = () => {
     );
   };
 
-  const recipeContainerHeight = 250; // Adjust this value as needed
-
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Your Featured Recipes</Text>
-
-      <View style={{height: recipeContainerHeight}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={styles.titleText}>Your Featured Recipes</Text>
+        <TouchableOpacity
+          style={{
+            marginLeft: 10,
+          }}
+          onPress={handleRefreshRecipes}>
+          <AntDesignIcon name="reload1" size={20} color="black" />
+        </TouchableOpacity>
+      </View>
+      <View style={{height: 250}}>
         {isRecipesLoading ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="#0000ff" />

@@ -24,14 +24,14 @@ const MultiSelectScreen = ({route}) => {
     );
 
     if (parentItem) {
-      newSelectedItems = newSelectedItems.filter(i => i !== parentItem); // Unselect parent
+      newSelectedItems = newSelectedItems.filter(i => i !== parentItem);
       if (!newSelectedItems.includes(item)) {
         newSelectedItems.push(item);
         if (!newExpandedItems.includes(parentItem)) {
           newExpandedItems.push(parentItem);
         }
       } else {
-        newSelectedItems = newSelectedItems.filter(i => i !== item); // Unselect sub-item
+        newSelectedItems = newSelectedItems.filter(i => i !== item);
       }
     } else {
       const anySubItemSelected = item.subItems?.some(subItem =>
@@ -79,13 +79,12 @@ const MultiSelectScreen = ({route}) => {
       return true;
     });
 
-    // Filter the items based on the currentCategory
     const filteredItemsByCategory = filteredItems.filter(
       ingredient => ingredient.category === currentCategory,
     );
 
     setItems(filteredItemsByCategory);
-  }, [route, currentCategory]); // Add currentCategory as a dependency
+  }, [route, currentCategory]);
 
   async function addItems(itemsArray) {
     try {
@@ -120,7 +119,7 @@ const MultiSelectScreen = ({route}) => {
           },
           body: JSON.stringify({
             items: preparedItems,
-            userEmail: userEmail, // Add this line
+            userEmail: userEmail,
           }),
         },
       );

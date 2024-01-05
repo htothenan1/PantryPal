@@ -24,13 +24,6 @@ app.get('/items', async (req, res) => {
       return res.status(400).send('Email parameter is required');
     }
 
-    // Assuming that your Item schema has a reference to the User model
-    // and that the User model has an 'email' field
-    // const user = await User.findOne({email: userEmail});
-    // if (!user) {
-    //   return res.status(404).send('User not found');
-    // }
-
     const items = await Item.find({user: userEmail});
     res.json(items);
   } catch (error) {
@@ -57,7 +50,7 @@ app.get('/users/data', async (req, res) => {
   }
 });
 
-// Get wasted and consumed items for a user, sorted by frequency and name
+// Get wasted and consumed items for a user
 app.get('/items/useremail/:userEmail', async (req, res) => {
   try {
     const userEmail = req.params.userEmail;
