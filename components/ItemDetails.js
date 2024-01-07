@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
 
@@ -41,7 +41,7 @@ const ItemDetails = ({route}) => {
   const compatibleUserItems = findCompatibleUserItems();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image source={itemImage} style={styles.background} />
         <Text style={styles.headerText}>{item?.name}</Text>
@@ -67,13 +67,11 @@ const ItemDetails = ({route}) => {
               </Text>
             ))
           ) : (
-            <Text style={styles.noCompatibleItem}>
-              No compatible items found.
-            </Text>
+            <Text style={styles.noCompatibleItem}>None found</Text>
           )}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

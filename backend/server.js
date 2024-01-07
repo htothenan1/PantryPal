@@ -7,6 +7,12 @@ const Item = require('./models/item');
 const User = require('./models/user');
 const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+  apiKey: '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',
+  // dangerouslyAllowBrowser: true,
+});
 
 app.use('/public', express.static('../assets'));
 app.use(cors());
@@ -90,6 +96,28 @@ app.get('/items/:id', async (req, res) => {
       return res.status(400).send('Invalid ID format');
     }
     res.status(500).send(error);
+  }
+});
+
+app.post('/generateStorageTip', async (req, res) => {
+  const {item} = req.body; // The item for which you want storage tips
+
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'user',
+          content: `Best storage tips for ${item}, limit response to 1 sentence. Make sure you are interpreting the item as a common grocery item, if possible.`,
+        },
+      ],
+      model: 'gpt-3.5-turbo',
+    });
+
+    const tip = completion.choices[0].message.content;
+    res.json({storageTip: tip});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error generating storage tip');
   }
 });
 

@@ -96,12 +96,14 @@ export default StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: 22,
+    marginHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopRightRadius: 17,
-    borderTopLeftRadius: 17,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 12,
+  },
+  modalHeader: {
+    marginVertical: 10,
+    fontFamily: 'Avenir-Book',
   },
   modalText: {
     fontSize: 25,
@@ -127,5 +129,17 @@ export default StyleSheet.create({
     fontSize: 18,
     // fontWeight: 'bold',
     marginTop: 5,
+  },
+  suggestionItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  suggestionsList: {
+    maxHeight: 200, // Adjust height as needed
+    backgroundColor: 'white',
+    borderColor: 'lightgrey',
+    borderWidth: 1,
+    width: '100%',
   },
 });

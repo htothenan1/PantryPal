@@ -15,6 +15,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
+import {ingredients} from './data/ingredients';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
 
@@ -34,6 +35,7 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   const userEmail = auth.currentUser?.email;
 
@@ -63,6 +65,41 @@ const Dashboard = () => {
       console.error('Error deleting item:', error.message);
     }
   };
+
+  // Function to update suggestions based on the user's input
+  const updateSuggestions = input => {
+    if (input.length > 0) {
+      const filteredSuggestions = ingredients
+        .filter(ingredient =>
+          ingredient.name.toLowerCase().startsWith(input.toLowerCase()),
+        )
+        .map(ingredient => ingredient.name);
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  // Handle input change
+  const handleInputChange = input => {
+    setNewItemName(input);
+    updateSuggestions(input);
+  };
+
+  // Handle selecting a suggestion
+  const handleSelectSuggestion = suggestion => {
+    setNewItemName(suggestion);
+    setSuggestions([]);
+  };
+
+  // Render each suggestion
+  const renderSuggestionItem = ({item}) => (
+    <TouchableOpacity
+      onPress={() => handleSelectSuggestion(item)}
+      style={styles.suggestionItem}>
+      <Text>{item}</Text>
+    </TouchableOpacity>
+  );
 
   const handleRefreshRecipes = () => {
     fetchRecipes(items);
@@ -95,18 +132,53 @@ const Dashboard = () => {
   };
 
   async function addCustomItem(itemName) {
-    const newItem = {
-      name: itemName,
-      exp_int: 6,
-      storage_tip: 'Not available for custom items',
-      user: userEmail,
-    };
-    console.log('newItem', newItem);
-    console.log('userEmail', userEmail);
-
     try {
+      // First, attempt to find the item in the existing ingredients array.
+      const existingIngredient = ingredients.find(
+        ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
+      );
+
+      let storageTip = 'Not available'; // Default message
+      let expInt = 6; // Default expiration interval
+
+      // If the item exists, use the storage tip from the ingredients array.
+      if (existingIngredient) {
+        storageTip = existingIngredient.storage_tip;
+        expInt = existingIngredient.exp_int;
+      } else {
+        // If the item does not exist, call the server to generate a storage tip.
+        const tipResponse = await fetch(
+          `${apiUrl}/generateStorageTip`, // Replace with your server's URL.
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({item: itemName}),
+          },
+        );
+
+        if (!tipResponse.ok) {
+          // If the server response is not OK, log the error and proceed with the default storage tip.
+          console.error(`HTTP error! Status: ${tipResponse.status}`);
+        } else {
+          // If the server response is OK, use the storage tip from the server.
+          const tipData = await tipResponse.json();
+          storageTip = tipData.storageTip;
+        }
+      }
+
+      // Create the new item object with the obtained storage tip.
+      const newItem = {
+        name: itemName,
+        exp_int: expInt, // Assuming a default expiration interval.
+        storage_tip: storageTip,
+        user: userEmail,
+      };
+
+      // Post the new item to your items endpoint.
       const response = await fetch(
-        'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app/items',
+        `${apiUrl}/items`, // Replace with your server's URL.
         {
           method: 'POST',
           headers: {
@@ -120,20 +192,23 @@ const Dashboard = () => {
       );
 
       if (!response.ok) {
+        // If the server response is not OK, throw an error.
         const errorBody = await response.text();
         throw new Error(
           `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
         );
       }
 
+      // If the server response is OK, update the state with the new list of items.
       const savedItems = await response.json();
-
       setItems(currentItems => [...currentItems, ...savedItems]);
 
+      // Close the modal and reset the state for the new item name.
       setAddItemModalVisible(false);
       setNewItemName('');
     } catch (error) {
-      console.log(error);
+      // If there is an exception during the process, log the error.
+      console.error('Error adding custom item:', error);
     }
   }
 
@@ -292,9 +367,9 @@ const Dashboard = () => {
     }
   });
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  // const toggleModal = () => {
+  //   setModalVisible(!isModalVisible);
+  // };
 
   const fetchRecipes = async items => {
     setIsRecipesLoading(true);
@@ -359,7 +434,7 @@ const Dashboard = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text style={styles.titleText}>Your Featured Recipes</Text>
+        <Text style={styles.titleText}>Your Recipes</Text>
         <TouchableOpacity
           style={{
             marginLeft: 10,
@@ -438,30 +513,29 @@ const Dashboard = () => {
           isVisible={isAddItemModalVisible}
           onBackdropPress={() => setAddItemModalVisible(false)}>
           <View style={styles.modalContent}>
+            <Text style={styles.modalHeader}>Add Custom Item</Text>
             <TextInput
               style={styles.input}
               placeholder="Item Name"
               value={newItemName}
               onChangeText={setNewItemName}
             />
-            {/* <Picker
-              selectedValue={newItemExpInt}
-              style={styles.picker}
-              onValueChange={(itemValue, itemIndex) =>
-                setNewItemExpInt(itemValue)
-              }>
-              {[...Array(21).keys()].map(n => (
-                <Picker.Item key={n + 1} label={`${n + 1}`} value={n + 1} />
-              ))}
-            </Picker> */}
+            {suggestions.length > 0 && (
+              <FlatList
+                data={suggestions}
+                renderItem={renderSuggestionItem}
+                keyExtractor={item => item}
+                style={styles.suggestionsList}
+              />
+            )}
             <Button
-              title="Add Item"
+              title="Confirm"
               onPress={() => addCustomItem(newItemName)}
             />
           </View>
         </Modal>
 
-        <Modal
+        {/* <Modal
           onBackdropPress={toggleModal}
           isVisible={isModalVisible}
           style={styles.bottomModal}>
@@ -486,7 +560,7 @@ const Dashboard = () => {
               <Text style={styles.modalText}>Pic of receipt</Text>
             </TouchableOpacity>
           </View>
-        </Modal>
+        </Modal> */}
       </View>
     </View>
   );

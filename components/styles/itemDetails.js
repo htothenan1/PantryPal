@@ -42,6 +42,7 @@ export default StyleSheet.create({
   noCompatibleItem: {
     fontSize: 14,
     color: 'grey',
+    paddingHorizontal: 30,
   },
   techniquesHeader: {
     fontWeight: 'bold',
