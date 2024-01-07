@@ -107,7 +107,7 @@ app.post('/generateStorageTip', async (req, res) => {
       messages: [
         {
           role: 'user',
-          content: `Best storage tips for ${item}, limit response to 1 sentence. Make sure you are interpreting the item as a common grocery item, if possible.`,
+          content: `Best storage tips for ${item}, limit response to two sentence. Make sure you are interpreting the item as a common grocery item, if possible.`,
         },
       ],
       model: 'gpt-3.5-turbo',

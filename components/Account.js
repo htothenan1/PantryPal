@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
 import styles from './styles/account';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 
@@ -57,7 +58,6 @@ const Account = () => {
           }
         };
 
-        // Call the function inside useEffect or useFocusEffect
         fetchUserData();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,22 +82,51 @@ const Account = () => {
           <Text style={styles.titleText}>
             {userData?.firstName}'s Kitchen Stats
           </Text>
-          <Text style={styles.info}>
+          <Text style={styles.item}>
             Total items logged: {userData?.itemsCreated}
           </Text>
           <View style={styles.itemsList}>
-            <Text style={styles.sectionHeader}>Top 5 Consumed Items</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'left',
+                alignItems: 'center',
+              }}>
+              <Text style={styles.sectionHeader}>Top 5 Consumed Items</Text>
+              <AntDesignIcon
+                style={{marginLeft: 10}}
+                name="like2"
+                size={20}
+                color="green"
+              />
+            </View>
+
             {consumedItems.slice(0, 5).map(item => (
               <Text key={item._id} style={styles.item}>
-                {item.name}: {item.frequency}
+                {item.name} ({item.frequency})
               </Text>
             ))}
           </View>
           <View style={styles.itemsList}>
-            <Text style={styles.sectionHeader}>Top 5 Wasted Items</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'left',
+                alignItems: 'center',
+              }}>
+              <Text style={styles.sectionHeader}>Top 5 Wasted Items</Text>
+
+              <AntDesignIcon
+                style={{marginLeft: 10}}
+                name="dislike2"
+                size={20}
+                color="red"
+              />
+            </View>
+
             {wastedItems.slice(0, 5).map(item => (
               <Text key={item._id} style={styles.item}>
-                {item.name}: {item.frequency}
+                {item.name} ({item.frequency})
               </Text>
             ))}
           </View>

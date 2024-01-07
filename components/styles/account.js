@@ -4,9 +4,10 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    paddingHorizontal: 50,
   },
   titleText: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
@@ -19,22 +20,20 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10,
-    paddingHorizontal: 10, // Add padding to give some space around the text
-    paddingVertical: 5, // Add vertical padding for height
+    padding: 5,
   },
   buttonContainer: {
-    alignSelf: 'center', // This centers the button in its container horizontally
+    alignSelf: 'center',
   },
   info: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 16,
     fontFamily: 'Avenir-Book',
     marginVertical: 4,
-    paddingHorizontal: 10,
-    // Add other styles as needed
+    // paddingHorizontal: 10,
   },
   sectionHeader: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
@@ -44,10 +43,10 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   item: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 16,
     fontFamily: 'Avenir-Book',
     marginVertical: 4,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
   },
 });

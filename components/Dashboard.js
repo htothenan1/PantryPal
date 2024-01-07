@@ -22,7 +22,6 @@ import DatePicker from 'react-native-date-picker';
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
 const Dashboard = () => {
-  const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -35,7 +34,6 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
 
   const userEmail = auth.currentUser?.email;
 
@@ -65,41 +63,6 @@ const Dashboard = () => {
       console.error('Error deleting item:', error.message);
     }
   };
-
-  // Function to update suggestions based on the user's input
-  const updateSuggestions = input => {
-    if (input.length > 0) {
-      const filteredSuggestions = ingredients
-        .filter(ingredient =>
-          ingredient.name.toLowerCase().startsWith(input.toLowerCase()),
-        )
-        .map(ingredient => ingredient.name);
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSuggestions([]);
-    }
-  };
-
-  // Handle input change
-  const handleInputChange = input => {
-    setNewItemName(input);
-    updateSuggestions(input);
-  };
-
-  // Handle selecting a suggestion
-  const handleSelectSuggestion = suggestion => {
-    setNewItemName(suggestion);
-    setSuggestions([]);
-  };
-
-  // Render each suggestion
-  const renderSuggestionItem = ({item}) => (
-    <TouchableOpacity
-      onPress={() => handleSelectSuggestion(item)}
-      style={styles.suggestionItem}>
-      <Text>{item}</Text>
-    </TouchableOpacity>
-  );
 
   const handleRefreshRecipes = () => {
     fetchRecipes(items);
@@ -133,81 +96,64 @@ const Dashboard = () => {
 
   async function addCustomItem(itemName) {
     try {
-      // First, attempt to find the item in the existing ingredients array.
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
       );
 
-      let storageTip = 'Not available'; // Default message
-      let expInt = 6; // Default expiration interval
+      let storageTip = 'Not available';
+      let expInt = 6;
 
-      // If the item exists, use the storage tip from the ingredients array.
       if (existingIngredient) {
         storageTip = existingIngredient.storage_tip;
         expInt = existingIngredient.exp_int;
       } else {
-        // If the item does not exist, call the server to generate a storage tip.
-        const tipResponse = await fetch(
-          `${apiUrl}/generateStorageTip`, // Replace with your server's URL.
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({item: itemName}),
+        const tipResponse = await fetch(`${apiUrl}/generateStorageTip`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        );
+          body: JSON.stringify({item: itemName}),
+        });
 
         if (!tipResponse.ok) {
-          // If the server response is not OK, log the error and proceed with the default storage tip.
           console.error(`HTTP error! Status: ${tipResponse.status}`);
         } else {
-          // If the server response is OK, use the storage tip from the server.
           const tipData = await tipResponse.json();
           storageTip = tipData.storageTip;
         }
       }
 
-      // Create the new item object with the obtained storage tip.
       const newItem = {
         name: itemName,
-        exp_int: expInt, // Assuming a default expiration interval.
+        exp_int: expInt,
         storage_tip: storageTip,
         user: userEmail,
       };
 
-      // Post the new item to your items endpoint.
-      const response = await fetch(
-        `${apiUrl}/items`, // Replace with your server's URL.
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            items: [newItem],
-            userEmail: userEmail,
-          }),
+      const response = await fetch(`${apiUrl}/items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify({
+          items: [newItem],
+          userEmail: userEmail,
+        }),
+      });
 
       if (!response.ok) {
-        // If the server response is not OK, throw an error.
         const errorBody = await response.text();
         throw new Error(
           `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
         );
       }
 
-      // If the server response is OK, update the state with the new list of items.
       const savedItems = await response.json();
       setItems(currentItems => [...currentItems, ...savedItems]);
 
-      // Close the modal and reset the state for the new item name.
       setAddItemModalVisible(false);
       setNewItemName('');
     } catch (error) {
-      // If there is an exception during the process, log the error.
       console.error('Error adding custom item:', error);
     }
   }
@@ -316,7 +262,6 @@ const Dashboard = () => {
 
       const fetchData = async () => {
         await fetchItems();
-        await fetchRecipes();
       };
 
       if (isActive) fetchData().catch(console.error);
@@ -366,10 +311,6 @@ const Dashboard = () => {
       setCurrentIndex(changed[0].index);
     }
   });
-
-  // const toggleModal = () => {
-  //   setModalVisible(!isModalVisible);
-  // };
 
   const fetchRecipes = async items => {
     setIsRecipesLoading(true);
@@ -520,47 +461,12 @@ const Dashboard = () => {
               value={newItemName}
               onChangeText={setNewItemName}
             />
-            {suggestions.length > 0 && (
-              <FlatList
-                data={suggestions}
-                renderItem={renderSuggestionItem}
-                keyExtractor={item => item}
-                style={styles.suggestionsList}
-              />
-            )}
             <Button
               title="Confirm"
               onPress={() => addCustomItem(newItemName)}
             />
           </View>
         </Modal>
-
-        {/* <Modal
-          onBackdropPress={toggleModal}
-          isVisible={isModalVisible}
-          style={styles.bottomModal}>
-          <View style={styles.modalContent}>
-            <TouchableOpacity
-              style={styles.bottomModalRows}
-              onPress={navToMultiSelect}>
-              <AntDesignIcon name="menuunfold" size={20} color="black" />
-              <Text style={styles.modalText}>Choose from list</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setModalVisible(false); // Close the current modal
-                setTimeout(() => setAddItemModalVisible(true), 300); // Then open the new modal
-              }}
-              style={styles.bottomModalRows}>
-              <AntDesignIcon name="edit" size={20} color="black" />
-              <Text style={styles.modalText}>Add your own</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.bottomModalRows}>
-              <AntDesignIcon name="camerao" size={20} color="black" />
-              <Text style={styles.modalText}>Pic of receipt</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal> */}
       </View>
     </View>
   );
