@@ -1,7 +1,8 @@
 import OpenAI from 'openai';
+import {OPEN_AI_API} from '@env';
 
 const openai = new OpenAI({
-  apiKey: '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',
+  apiKey: OPEN_AI_API,
   dangerouslyAllowBrowser: true,
 });
 

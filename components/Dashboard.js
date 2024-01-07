@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   Text,
@@ -12,6 +12,7 @@ import {
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
+import {API_URL} from '@env';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
@@ -37,13 +38,10 @@ const Dashboard = () => {
 
   const userEmail = auth.currentUser?.email;
 
-  const apiUrl =
-    'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app';
-
   const deleteItem = async (itemId, method) => {
     try {
       const response = await fetch(
-        `${apiUrl}/items/${itemId}?method=${method}`,
+        `${API_URL}/items/${itemId}?method=${method}`,
         {
           method: 'DELETE',
         },
@@ -75,7 +73,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await fetch(`${apiUrl}/items?email=${userEmail}`);
+      const response = await fetch(`${API_URL}/items?email=${userEmail}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -107,7 +105,7 @@ const Dashboard = () => {
         storageTip = existingIngredient.storage_tip;
         expInt = existingIngredient.exp_int;
       } else {
-        const tipResponse = await fetch(`${apiUrl}/generateStorageTip`, {
+        const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -130,7 +128,7 @@ const Dashboard = () => {
         user: userEmail,
       };
 
-      const response = await fetch(`${apiUrl}/items`, {
+      const response = await fetch(`${API_URL}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +160,7 @@ const Dashboard = () => {
     const formattedDate = newDate.toISOString().split('T')[0];
 
     try {
-      const url = `${apiUrl}/items/${item._id}`;
+      const url = `${API_URL}/items/${item._id}`;
 
       const response = await fetch(url, {
         method: 'PUT',
@@ -255,6 +253,11 @@ const Dashboard = () => {
       userItems: items,
     });
   };
+
+  useEffect(() => {
+    handleRefreshRecipes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
