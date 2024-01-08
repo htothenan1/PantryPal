@@ -1,9 +1,56 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+const {width} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  loadingContainer: {
+    height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    marginVertical: 20,
+  },
+  footerText: {
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+    fontSize: 18,
+    // fontWeight: 'bold',
+    marginTop: 5,
+  },
+  image: {
+    width,
+    height: 200,
+    resizeMode: 'contain',
+    borderRadius: 10,
+  },
+  fetchRecipesContainer: {
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9fa', // example background color
+    borderRadius: 10,
+    marginTop: 20,
+    marginBottom: 100,
+    // margin: 20,
+  },
+  fetchRecipesText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+  fetchRecipesSubText: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
   },
   header: {
     flexDirection: 'row',

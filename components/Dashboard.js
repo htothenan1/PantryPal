@@ -32,7 +32,7 @@ const Dashboard = () => {
   const [fetchedRecipes, setFetchedRecipes] = useState(null);
   const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [setCurrentIndex] = useState(0);
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
@@ -69,8 +69,8 @@ const Dashboard = () => {
 
   const confirmDeleteAll = () => {
     Alert.alert(
-      'Confirm Deletion',
-      'Are you sure you want to delete all items?',
+      'Delete All Items',
+      'Are you sure you want to delete all items? This will not count against your statistics.',
       [
         {
           text: 'Cancel',
@@ -93,7 +93,6 @@ const Dashboard = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      console.log('Items deleted successfully');
       fetchItems();
     } catch (error) {
       console.error('Error deleting items:', error.message);
@@ -224,7 +223,6 @@ const Dashboard = () => {
   };
 
   const handleUndo = data => {
-    console.log(data);
     deleteItem(data._id, 'undo');
     const swipeable = swipeableRefs.get(data._id);
     if (swipeable) {
@@ -448,7 +446,6 @@ const Dashboard = () => {
               ref={ref => {
                 flatListRef.current = ref;
               }}
-              style={styles.carousel}
               viewabilityConfig={viewConfigRef}
               onViewableItemsChanged={onViewRef.current}
             />
