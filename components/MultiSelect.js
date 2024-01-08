@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
+import {API_URL} from '@env';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState(ingredients);
@@ -110,19 +111,16 @@ const MultiSelectScreen = ({route}) => {
           };
         }
       });
-      const response = await fetch(
-        'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app/items',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            items: preparedItems,
-            userEmail: userEmail,
-          }),
+      const response = await fetch(`${API_URL}/items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify({
+          items: preparedItems,
+          userEmail: userEmail,
+        }),
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -142,7 +140,7 @@ const MultiSelectScreen = ({route}) => {
 
     const renderSubItem = (subItem, parentItemId) => (
       <TouchableOpacity
-        key={`${parentItemId}-${subItem.item_id}`} // Unique key for each sub-item
+        key={`${parentItemId}-${subItem.item_id}`}
         style={[
           styles.subItem,
           selectedItems.includes(subItem) && styles.selectedSubItem,

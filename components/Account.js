@@ -6,6 +6,7 @@ import styles from './styles/account';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
+import {API_URL} from '@env';
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
@@ -16,9 +17,6 @@ const Account = () => {
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
-  const apiUrl =
-    'https://e5e0-2600-4041-54c4-7200-f4e2-fd46-3c43-5b25.ngrok-free.app';
-
   useFocusEffect(
     React.useCallback(() => {
       if (userEmail) {
@@ -26,7 +24,7 @@ const Account = () => {
           try {
             setLoading(true);
             const response = await fetch(
-              `${apiUrl}/users/data?email=${encodeURIComponent(userEmail)}`,
+              `${API_URL}/users/data?email=${encodeURIComponent(userEmail)}`,
             );
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,7 +43,7 @@ const Account = () => {
         const fetchItemsData = async userEmail => {
           try {
             const response = await fetch(
-              `${apiUrl}/items/useremail/${userEmail}`,
+              `${API_URL}/items/useremail/${userEmail}`,
             );
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
