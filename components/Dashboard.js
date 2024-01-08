@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TextInput,
   Button,
+  Alert,
 } from 'react-native';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -64,6 +65,39 @@ const Dashboard = () => {
 
   const handleRefreshRecipes = () => {
     fetchRecipes(items);
+  };
+
+  const confirmDeleteAll = () => {
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete all items?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Deletion cancelled'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => deleteAllItems()},
+      ],
+      {cancelable: false},
+    );
+  };
+
+  const deleteAllItems = async () => {
+    try {
+      const response = await fetch(`${API_URL}/items/deleteAll`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      console.log('Items deleted successfully');
+      fetchItems();
+    } catch (error) {
+      console.error('Error deleting items:', error.message);
+    }
   };
 
   const fetchItems = async () => {
@@ -254,11 +288,6 @@ const Dashboard = () => {
     });
   };
 
-  useEffect(() => {
-    handleRefreshRecipes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
@@ -388,6 +417,20 @@ const Dashboard = () => {
         </TouchableOpacity>
       </View>
       <View style={{height: 250}}>
+        {!fetchedRecipes && !isRecipesLoading && (
+          <View style={styles.fetchRecipesContainer}>
+            <TouchableOpacity onPress={handleRefreshRecipes}>
+              <AntDesignIcon name="reload1" size={30} color="black" />
+            </TouchableOpacity>
+            <Text style={styles.fetchRecipesText}>
+              Get Recipes Based On Your Items!
+            </Text>
+            <Text style={styles.fetchRecipesSubText}>
+              Tap the refresh icon to start!
+            </Text>
+          </View>
+        )}
+
         {isRecipesLoading ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="#0000ff" />
@@ -432,7 +475,21 @@ const Dashboard = () => {
         }}
       />
 
-      <Text style={styles.titleText}>Your Items ({items.length})</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={styles.titleText}>Your Items ({items.length})</Text>
+        <TouchableOpacity
+          style={{
+            marginLeft: 10,
+          }}
+          onPress={confirmDeleteAll}>
+          <AntDesignIcon name="delete" size={20} color="black" />
+        </TouchableOpacity>
+      </View>
 
       <FlatList
         windowSize={10}

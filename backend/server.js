@@ -254,39 +254,6 @@ app.delete('/items/:id', async (req, res) => {
   }
 });
 
-// const confirmDeleteAll = () => {
-//   Alert.alert(
-//     'Confirm Deletion',
-//     'Are you sure you want to delete all items?',
-//     [
-//       {
-//         text: 'Cancel',
-//         onPress: () => console.log('Deletion cancelled'),
-//         style: 'cancel',
-//       },
-//       {text: 'OK', onPress: () => deleteAllItems()},
-//     ],
-//     {cancelable: false},
-//   );
-// };
-
-// const deleteAllItems = async () => {
-//   try {
-//     const response = await fetch('http://localhost:3000/items/deleteAll', {
-//       method: 'DELETE',
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     console.log('Items deleted successfully');
-//     fetchItems();
-//   } catch (error) {
-//     console.error('Error deleting items:', error.message);
-//   }
-// };
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

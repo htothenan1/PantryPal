@@ -142,4 +142,23 @@ export default StyleSheet.create({
     borderWidth: 1,
     width: '100%',
   },
+  fetchRecipesContainer: {
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9fa', // example background color
+    borderRadius: 10,
+    // marginHorizontal: 20,
+    // margin: 20,
+  },
+  fetchRecipesText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+  fetchRecipesSubText: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
+  },
 });
