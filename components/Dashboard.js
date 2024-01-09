@@ -32,7 +32,7 @@ const Dashboard = () => {
   const [fetchedRecipes, setFetchedRecipes] = useState(null);
   const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
-  const [setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
