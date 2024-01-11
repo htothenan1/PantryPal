@@ -80,6 +80,24 @@ export default StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: {width: 0, height: 2},
   },
+  centerFab: {
+    position: 'absolute',
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: '50%', // Position the left edge of the element at the center of the screen
+    marginLeft: -28, // Then, shift it back by half its width
+    bottom: 10,
+    backgroundColor: '#495057',
+    borderRadius: 28,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: {width: 0, height: 2},
+  },
+
   fabText: {
     fontSize: 35,
     color: 'white',

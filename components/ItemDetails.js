@@ -9,7 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-
+import groceryPic from '../assets/grocery.png';
 import styles from './styles/itemDetails';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {ingredients} from './data/ingredients';
@@ -48,7 +48,7 @@ const ItemDetails = ({route}) => {
   const userItems = route.params?.userItems || [];
 
   const ingredient = item ? findIngredient(item.name) : null;
-  const itemImage = ingredient ? ingredient.img : null;
+  const itemImage = ingredient ? ingredient.img : groceryPic;
 
   const findCompatibleUserItems = () => {
     const compatibleIngredients = ingredients.find(

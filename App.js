@@ -12,6 +12,7 @@ import MultiSelectScreen from './components/MultiSelect';
 import ItemDetails from './components/ItemDetails';
 import RecipeDetails from './components/RecipeDetails';
 import Account from './components/Account';
+import CameraPage from './components/CameraPage';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
@@ -41,6 +42,11 @@ function DashStackScreen() {
         options={{headerShown: true, headerTitle: 'Recipe Details'}}
         name="RecipeDetails"
         component={RecipeDetails}
+      />
+      <DashStack.Screen
+        options={{headerShown: true, headerTitle: 'Camera Page'}}
+        name="CameraPage"
+        component={CameraPage}
       />
     </DashStack.Navigator>
   );

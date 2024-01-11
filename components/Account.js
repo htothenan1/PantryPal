@@ -24,7 +24,7 @@ const Account = () => {
           try {
             setLoading(true);
             const response = await fetch(
-              `${API_URL}/users/data?email=${encodeURIComponent(userEmail)}`,
+              `${API_URL}/users/data?email=${userEmail}`,
             );
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
@@ -40,17 +40,17 @@ const Account = () => {
           }
         };
 
-        const fetchItemsData = async userEmail => {
+        const fetchItemsData = async emailString => {
           try {
             const response = await fetch(
-              `${API_URL}/items/useremail/${userEmail}`,
+              `${API_URL}/items/useremail/${emailString}`,
             );
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const data = await response.json();
-            setWastedItems(data.wastedItems);
-            setConsumedItems(data.consumedItems);
+            const res = await response.json();
+            setWastedItems(res.wastedItems);
+            setConsumedItems(res.consumedItems);
           } catch (error) {
             console.error('Error fetching items data:', error.message);
           }
@@ -84,15 +84,10 @@ const Account = () => {
             Total items logged: {userData?.itemsCreated}
           </Text>
           <View style={styles.itemsList}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'left',
-                alignItems: 'center',
-              }}>
-              <Text style={styles.sectionHeader}>Top 5 Consumed Items</Text>
+            <View style={styles.headerContainer}>
+              <Text style={styles.headerText}>Top 5 Consumed Items</Text>
               <AntDesignIcon
-                style={{marginLeft: 10}}
+                style={styles.headerIcon}
                 name="like2"
                 size={20}
                 color="green"
@@ -106,16 +101,11 @@ const Account = () => {
             ))}
           </View>
           <View style={styles.itemsList}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'left',
-                alignItems: 'center',
-              }}>
-              <Text style={styles.sectionHeader}>Top 5 Wasted Items</Text>
+            <View style={styles.headerContainer}>
+              <Text style={styles.headerText}>Top 5 Wasted Items</Text>
 
               <AntDesignIcon
-                style={{marginLeft: 10}}
+                style={styles.headerIcon}
                 name="dislike2"
                 size={20}
                 color="red"

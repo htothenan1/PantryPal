@@ -124,8 +124,11 @@ export const ingredients = [
       'bake, caramelize, deep-fry (e.g., as fritters), grill, poach, raw, sauté, stew',
     compatibles: [
       'Bacon',
+      'Bananas',
       'Beef',
+      'Beets',
       'Blackberries',
+      'Blueberries',
       'Brioche',
       'Unsalted Butter',
       'Cabbage',
@@ -652,6 +655,7 @@ export const ingredients = [
     techniques: 'bake, broil, caramelize, deep-fry, grill, poach, raw, sauté',
     compatibles: [
       'Almonds',
+      'Apples',
       'Apricots',
       'Blackberries',
       'Blueberries',

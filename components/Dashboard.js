@@ -7,12 +7,15 @@ import {
   Image,
   ActivityIndicator,
   TextInput,
+  Linking,
   Button,
   Alert,
 } from 'react-native';
+import {Camera, useCameraDevices} from 'react-native-vision-camera';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
+import {launchCamera} from 'react-native-image-picker';
 import {API_URL} from '@env';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
@@ -24,7 +27,6 @@ import DatePicker from 'react-native-date-picker';
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
 const Dashboard = () => {
-  const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -36,6 +38,14 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
+  const [showCamera, setShowCamera] = useState(false);
+  const [imageSource, setImageSource] = useState('');
+  const [response, setResponse] = React.useState(null);
+
+  const navigation = useNavigation();
+  const camera = useRef(null);
+  const devices = useCameraDevices();
+  const device = devices.back;
 
   const userEmail = auth.currentUser?.email;
 
@@ -286,6 +296,10 @@ const Dashboard = () => {
     });
   };
 
+  const navToCamera = () => {
+    navigation.navigate('CameraPage');
+  };
+
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
@@ -302,6 +316,24 @@ const Dashboard = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
+
+  useEffect(() => {
+    async function getPermission() {
+      const permission = await Camera.requestCameraPermission();
+      console.log(`Camera permission status: ${permission}`);
+      if (permission === 'denied') await Linking.openSettings();
+    }
+    getPermission();
+  }, []);
+
+  // const capturePhoto = async () => {
+  //   if (camera.current !== null) {
+  //     const photo = await camera.current.takePhoto({});
+  //     setImageSource(photo.path);
+  //     setShowCamera(false);
+  //     console.log(photo.path);
+  //   }
+  // };
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -501,6 +533,12 @@ const Dashboard = () => {
           style={styles.leftFab}
           onPress={() => setAddItemModalVisible(true)}>
           <AntDesignIcon name="edit" size={20} color="white" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.centerFab}
+          onPress={() => navToCamera()}>
+          <AntDesignIcon name="camerao" size={20} color="white" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>

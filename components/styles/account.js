@@ -13,6 +13,14 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'left',
+    alignItems: 'center',
+  },
+  headerIcon: {
+    marginLeft: 10,
+  },
   logout: {
     textAlign: 'center',
     fontSize: 20,
@@ -32,7 +40,7 @@ export default StyleSheet.create({
     marginVertical: 4,
     // paddingHorizontal: 10,
   },
-  sectionHeader: {
+  headerText: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: 'Avenir-Book',

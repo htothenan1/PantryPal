@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-
+const multer = require('multer');
+const fs = require('fs');
 const cors = require('cors');
 const connectDB = require('./db');
 const Item = require('./models/item');
@@ -15,11 +16,54 @@ const openai = new OpenAI({
   // dangerouslyAllowBrowser: true,
 });
 
+const upload = multer({dest: 'uploads/'}); // This will save uploaded files in an 'uploads' folder
+
 app.use('/public', express.static('../assets'));
 app.use(cors());
 app.use(express.json());
 
 connectDB();
+
+function convertToBase64(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`data:image/jpeg;base64,${data}`);
+      }
+    });
+  });
+}
+
+async function veggiesTest(base64Image) {
+  try {
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4-vision-preview',
+      messages: [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: "Analyze the attached image and identify any grocery items visible. Return the results as a simple JSON array of the item names, with each item being in its proper plural form. The format should be: ['Item1', 'Item2', 'Item3', ...]. Do not include any labels or keys, just the list of item names in an array. If an item is not clearly identifiable, please omit it.",
+            },
+            {
+              type: 'image_url',
+              image_url: base64Image,
+            },
+          ],
+        },
+      ],
+      max_tokens: 2000,
+    });
+
+    return response.choices[0];
+  } catch (error) {
+    console.error(error);
+    // Handle the error appropriately
+  }
+}
 
 //ROUTES
 
@@ -99,6 +143,34 @@ app.get('/items/:id', async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+app.post('/analyzeImage', upload.single('image'), async (req, res) => {
+  try {
+    const imgFile = req.file.path;
+    const base64Image = await convertToBase64(imgFile);
+    const response = await veggiesTest(base64Image);
+
+    // Parse and return the array of item names
+    const itemsArray = JSON.parse(response.message.content);
+    res.json(itemsArray);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error processing image');
+  }
+});
+
+// async function saveItemsToDatabase(itemsData) {
+//   // Implement the logic to save the items to the database
+//   // This will depend on your database setup and schema
+//   // Example:
+//   const savedItems = [];
+//   for (const itemData of itemsData) {
+//     const newItem = new Item(itemData);
+//     const savedItem = await newItem.save();
+//     savedItems.push(savedItem);
+//   }
+//   return savedItems;
+// }
 
 app.post('/generateStorageTip', async (req, res) => {
   const {item} = req.body; // The item for which you want storage tips
