@@ -13,10 +13,14 @@ const OpenAI = require('openai');
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API,
-  // dangerouslyAllowBrowser: true,
 });
 
-const upload = multer({dest: 'uploads/'}); // This will save uploaded files in an 'uploads' folder
+const imagePrompt =
+  "Analyze the attached image and identify any grocery items visible. Return the results as a simple JSON array of the item names, with each item being in its proper plural form. The format should be: ['Item1', 'Item2', 'Item3', ...]. Do not include any labels or keys, just the list of item names in an array. If an item is not clearly identifiable, please omit it.";
+
+const tipPrompt = '';
+
+const upload = multer({dest: 'uploads/'});
 
 app.use('/public', express.static('../assets'));
 app.use(cors());
@@ -46,7 +50,7 @@ async function veggiesTest(base64Image) {
           content: [
             {
               type: 'text',
-              text: "Analyze the attached image and identify any grocery items visible. Return the results as a simple JSON array of the item names, with each item being in its proper plural form. The format should be: ['Item1', 'Item2', 'Item3', ...]. Do not include any labels or keys, just the list of item names in an array. If an item is not clearly identifiable, please omit it.",
+              text: imagePrompt,
             },
             {
               type: 'image_url',
@@ -61,7 +65,6 @@ async function veggiesTest(base64Image) {
     return response.choices[0];
   } catch (error) {
     console.error(error);
-    // Handle the error appropriately
   }
 }
 
@@ -144,13 +147,13 @@ app.get('/items/:id', async (req, res) => {
   }
 });
 
+// Analyze image with OpenAI and return list of grocery items
 app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   try {
     const imgFile = req.file.path;
     const base64Image = await convertToBase64(imgFile);
     const response = await veggiesTest(base64Image);
 
-    // Parse and return the array of item names
     const itemsArray = JSON.parse(response.message.content);
     res.json(itemsArray);
   } catch (error) {
@@ -159,21 +162,9 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   }
 });
 
-// async function saveItemsToDatabase(itemsData) {
-//   // Implement the logic to save the items to the database
-//   // This will depend on your database setup and schema
-//   // Example:
-//   const savedItems = [];
-//   for (const itemData of itemsData) {
-//     const newItem = new Item(itemData);
-//     const savedItem = await newItem.save();
-//     savedItems.push(savedItem);
-//   }
-//   return savedItems;
-// }
-
+// Return OpenAI storage tips
 app.post('/generateStorageTip', async (req, res) => {
-  const {item} = req.body; // The item for which you want storage tips
+  const {item} = req.body;
 
   try {
     const completion = await openai.chat.completions.create({
@@ -197,10 +188,10 @@ app.post('/generateStorageTip', async (req, res) => {
 // create a new user
 app.post('/users', async (req, res) => {
   try {
-    const {email, firstName} = req.body; // Destructure firstName from the request body
+    const {email, firstName} = req.body;
     const newUser = new User({
       email: email,
-      firstName: firstName, // Save firstName in the new user document
+      firstName: firstName,
     });
     await newUser.save();
     res.status(201).json(newUser);
@@ -209,10 +200,10 @@ app.post('/users', async (req, res) => {
   }
 });
 
-//create multiple items
+//Create multiple items
 app.post('/items', async (req, res) => {
   try {
-    const {items: itemsData, userEmail} = req.body; // Destructure the userEmail from the body
+    const {items: itemsData, userEmail} = req.body;
 
     const savedItems = [];
     for (const itemData of itemsData) {
@@ -241,7 +232,7 @@ app.post('/items', async (req, res) => {
   }
 });
 
-// Update an item
+//Update an item's expiration date
 app.put('/items/:id', async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(
@@ -281,7 +272,6 @@ app.delete('/items/:id', async (req, res) => {
       return res.status(404).send('Item not found');
     }
 
-    // Handling for consume and waste methods
     if (deletionMethod === 'consume' || deletionMethod === 'waste') {
       const ItemModel =
         deletionMethod === 'consume' ? ConsumedItem : WastedItem;

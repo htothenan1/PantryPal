@@ -11,12 +11,11 @@ import {
   Button,
   Alert,
 } from 'react-native';
-import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import {Camera} from 'react-native-vision-camera';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-import {launchCamera} from 'react-native-image-picker';
-import {API_URL} from '@env';
+import {API_URL, SPOON_KEY} from '@env';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
@@ -38,14 +37,8 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [showCamera, setShowCamera] = useState(false);
-  const [imageSource, setImageSource] = useState('');
-  const [response, setResponse] = React.useState(null);
 
   const navigation = useNavigation();
-  const camera = useRef(null);
-  const devices = useCameraDevices();
-  const device = devices.back;
 
   const userEmail = auth.currentUser?.email;
 
@@ -220,7 +213,7 @@ const Dashboard = () => {
         );
       }
 
-      const data = await response.json();
+      await response.json();
       fetchItems();
       setSelectedDate(new Date());
       const swipeable = swipeableRefs.get(item._id);
@@ -308,7 +301,9 @@ const Dashboard = () => {
         await fetchItems();
       };
 
-      if (isActive) fetchData().catch(console.error);
+      if (isActive) {
+        fetchData().catch(console.error);
+      }
 
       return () => {
         isActive = false;
@@ -321,19 +316,12 @@ const Dashboard = () => {
     async function getPermission() {
       const permission = await Camera.requestCameraPermission();
       console.log(`Camera permission status: ${permission}`);
-      if (permission === 'denied') await Linking.openSettings();
+      if (permission === 'denied') {
+        await Linking.openSettings();
+      }
     }
     getPermission();
   }, []);
-
-  // const capturePhoto = async () => {
-  //   if (camera.current !== null) {
-  //     const photo = await camera.current.takePhoto({});
-  //     setImageSource(photo.path);
-  //     setShowCamera(false);
-  //     console.log(photo.path);
-  //   }
-  // };
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -374,15 +362,15 @@ const Dashboard = () => {
     }
   });
 
-  const fetchRecipes = async items => {
+  const fetchRecipes = async currentItems => {
     setIsRecipesLoading(true);
 
-    if (items && items.length > 0) {
-      const queryString = items.map(item => item.name).join(',+');
+    if (currentItems && currentItems.length > 0) {
+      const queryString = currentItems.map(item => item.name).join(',+');
       const randomInt = Math.floor(Math.random() * 10) + 1;
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&offset=${randomInt}&number=25`,
+          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&offset=${randomInt}&number=25`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -401,7 +389,7 @@ const Dashboard = () => {
   const handleSelectRecipe = async data => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/${data}/information?apiKey=757d368ebb304fb3bf99a64e38c11942&includeNutrition=false`,
+        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
       );
 
       if (!response.ok) {
@@ -431,22 +419,15 @@ const Dashboard = () => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Recipes</Text>
         <TouchableOpacity
-          style={{
-            marginLeft: 10,
-          }}
+          style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
           <AntDesignIcon name="reload1" size={20} color="black" />
         </TouchableOpacity>
       </View>
-      <View style={{height: 250}}>
+      <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
           <View style={styles.fetchRecipesContainer}>
             <TouchableOpacity onPress={handleRefreshRecipes}>
@@ -504,18 +485,9 @@ const Dashboard = () => {
         }}
       />
 
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text style={styles.titleText}>Your Items ({items.length})</Text>
-        <TouchableOpacity
-          style={{
-            marginLeft: 10,
-          }}
-          onPress={confirmDeleteAll}>
+      <View style={styles.headerText}>
+        <Text style={styles.titleText}>Your Items</Text>
+        <TouchableOpacity style={styles.headerIcon} onPress={confirmDeleteAll}>
           <AntDesignIcon name="delete" size={20} color="black" />
         </TouchableOpacity>
       </View>

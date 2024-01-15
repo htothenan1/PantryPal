@@ -33,13 +33,6 @@ export default StyleSheet.create({
   buttonContainer: {
     alignSelf: 'center',
   },
-  info: {
-    textAlign: 'left',
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
-    marginVertical: 4,
-    // paddingHorizontal: 10,
-  },
   headerText: {
     textAlign: 'left',
     fontSize: 20,
@@ -55,6 +48,5 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Avenir-Book',
     marginVertical: 4,
-    // paddingHorizontal: 10,
   },
 });

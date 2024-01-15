@@ -175,22 +175,6 @@ const CameraPage = () => {
             />
           ) : null}
 
-          {/* <View style={styles.backButton}> */}
-          {/* <TouchableOpacity
-              style={{
-                backgroundColor: 'rgba(0,0,0,0.2)',
-                padding: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#fff',
-                width: 100,
-              }}
-              onPress={() => setShowCamera(true)}>
-              <Text style={{color: 'white', fontWeight: '500'}}>Back</Text>
-            </TouchableOpacity> */}
-          {/* </View> */}
           <View style={styles.buttonContainer}>
             <View style={styles.buttons}>
               <TouchableOpacity

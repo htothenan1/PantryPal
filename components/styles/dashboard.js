@@ -12,6 +12,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerIcon: {
+    marginLeft: 10,
+  },
+  recipesContainer: {
+    height: 250,
+  },
   rightSwipeContainer: {
     flexDirection: 'row',
     width: 150,

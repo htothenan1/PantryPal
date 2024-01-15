@@ -23,7 +23,6 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
     fontSize: 18,
-    // fontWeight: 'bold',
     marginTop: 5,
   },
   image: {
@@ -36,11 +35,10 @@ export default StyleSheet.create({
     height: 250,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9fa', // example background color
+    backgroundColor: '#f8f9fa',
     borderRadius: 10,
     marginTop: 20,
     marginBottom: 100,
-    // margin: 20,
   },
   fetchRecipesText: {
     fontFamily: 'Avenir-Book',
@@ -57,8 +55,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   background: {
-    width: 120, // Adjust the width as needed
-    height: 120, // Adjust the height as needed
+    width: 120,
+    height: 120,
     margin: 10,
   },
   headerText: {
@@ -103,6 +101,6 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 20,
     marginVertical: 5,
-    color: 'black', // You can choose a different color if needed
+    color: 'black',
   },
 });

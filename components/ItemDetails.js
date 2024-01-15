@@ -12,8 +12,8 @@ import {useNavigation} from '@react-navigation/core';
 import groceryPic from '../assets/grocery.png';
 import styles from './styles/itemDetails';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {SPOON_KEY} from '@env';
 import {ingredients} from './data/ingredients';
-import {Swipeable} from 'react-native-gesture-handler';
 
 const findIngredient = itemName => {
   let ingredient = ingredients.find(ing => ing.name === itemName);
@@ -40,13 +40,11 @@ const ItemDetails = ({route}) => {
 
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [fetchedRecipes, setFetchedRecipes] = useState(null);
-  // const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const item = route.params?.item || null;
   const userItems = route.params?.userItems || [];
-
   const ingredient = item ? findIngredient(item.name) : null;
   const itemImage = ingredient ? ingredient.img : groceryPic;
 
@@ -79,7 +77,7 @@ const ItemDetails = ({route}) => {
   const handleSelectRecipe = async data => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/${data}/information?apiKey=757d368ebb304fb3bf99a64e38c11942&includeNutrition=false`,
+        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
       );
 
       if (!response.ok) {
@@ -111,7 +109,7 @@ const ItemDetails = ({route}) => {
       const randomInt = Math.floor(Math.random() * 10) + 1;
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=757d368ebb304fb3bf99a64e38c11942&ingredients=${queryString}&offset=${randomInt}&number=20`,
+          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&offset=${randomInt}&number=20`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -160,21 +158,6 @@ const ItemDetails = ({route}) => {
           )}
         </View>
       )}
-      {/* <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text style={styles.titleText}>Your Recipes</Text>
-        <TouchableOpacity
-          style={{
-            marginLeft: 10,
-          }}
-          onPress={handleRefreshRecipes}>
-          <AntDesignIcon name="reload1" size={20} color="black" />
-        </TouchableOpacity>
-      </View> */}
 
       <View style={{height: 250}}>
         {!fetchedRecipes && !isRecipesLoading && (
