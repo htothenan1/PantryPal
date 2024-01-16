@@ -1,12 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Image, StyleSheet, Text, View, ActivityIndicator} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-
 import {API_URL} from '@env';
-// import {launchCamera} from 'react-native-image-picker';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {auth} from '../firebase';
+import styles from './styles/cameraPage';
 
 import {ingredients} from './data/ingredients';
 
@@ -14,12 +19,10 @@ const CameraPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState('');
+
   const camera = useRef(null);
-
   const device = useCameraDevice('back');
-
   const userEmail = auth.currentUser?.email;
-
   const navigation = useNavigation();
 
   const capturePhoto = async () => {
@@ -85,22 +88,22 @@ const CameraPage = () => {
         );
       }
 
-      const savedItems = await response.json();
+      await response.json();
     } catch (error) {
       console.error('Error adding custom item:', error);
     }
   }
 
   const confirmPhoto = imageFilePath => {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
 
     const data = new FormData();
     data.append('image', {
       uri: imageFilePath,
-      type: 'image/jpeg', // Dynamically set this based on actual image format
+      type: 'image/jpeg',
       name: 'photo.jpg',
     });
-    data.append('userEmail', userEmail); // Append userEmail to the FormData
+    data.append('userEmail', userEmail);
 
     console.log('this the data', data);
 
@@ -143,7 +146,9 @@ const CameraPage = () => {
     }
   }, [device]);
 
-  if (device == null) return <Text>No Camera for YOU</Text>;
+  if (device == null) {
+    return <Text>No Camera for YOU</Text>;
+  }
 
   return (
     <View style={styles.container}>
@@ -178,38 +183,18 @@ const CameraPage = () => {
           <View style={styles.buttonContainer}>
             <View style={styles.buttons}>
               <TouchableOpacity
-                style={{
-                  backgroundColor: '#fff',
-                  padding: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 10,
-                  borderWidth: 2,
-                  borderColor: '#77c3ec',
-                }}
+                style={styles.retakeButton}
                 onPress={() => setShowCamera(true)}>
-                <Text style={{color: '#77c3ec', fontWeight: '500'}}>
-                  Retake
-                </Text>
+                <Text style={styles.retakeText}>Retake</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{
-                  backgroundColor: isLoading ? '#ccc' : '#77c3ec',
-                  padding: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 10,
-                  borderWidth: 2,
-                  borderColor: 'white',
-                }}
+                style={styles.usePhotoButton}
                 onPress={() => confirmPhoto(imageSource)}
                 disabled={isLoading}>
                 {isLoading ? (
                   <ActivityIndicator size="small" color="#fff" />
                 ) : (
-                  <Text style={{color: 'white', fontWeight: '500'}}>
-                    Use Photo
-                  </Text>
+                  <Text style={styles.usePhotoText}>Use Photo</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -219,54 +204,5 @@ const CameraPage = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: 'gray',
-  },
-  backButton: {
-    backgroundColor: 'rgba(0,0,0,0.0)',
-    position: 'absolute',
-    justifyContent: 'center',
-    width: '100%',
-    top: 0,
-    padding: 20,
-  },
-  buttonContainer: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    bottom: 0,
-    padding: 20,
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  camButton: {
-    height: 80,
-    width: 80,
-    borderRadius: 40,
-    //ADD backgroundColor COLOR GREY
-    backgroundColor: '#1b4965',
-
-    alignSelf: 'center',
-    borderWidth: 4,
-    borderColor: 'white',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    aspectRatio: 9 / 16,
-  },
-});
 
 export default CameraPage;
