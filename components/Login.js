@@ -49,12 +49,15 @@ const Login = () => {
         <Text style={styles.titleText}>Welcome Back!</Text>
         <TextInput
           placeholder="Email Address"
+          placeholderTextColor={'black'}
           value={email}
           onChangeText={text => setEmail(text)}
           style={styles.input}
+          secureTextEntry={false}
         />
         <TextInput
           placeholder="Password"
+          placeholderTextColor={'black'}
           value={password}
           onChangeText={text => setPassword(text)}
           style={styles.input}

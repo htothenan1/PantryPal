@@ -486,7 +486,7 @@ const Dashboard = () => {
       />
 
       <View style={styles.headerText}>
-        <Text style={styles.titleText}>Your Items</Text>
+        <Text style={styles.titleText}>Your Items ({items.length})</Text>
         <TouchableOpacity style={styles.headerIcon} onPress={confirmDeleteAll}>
           <AntDesignIcon name="delete" size={20} color="black" />
         </TouchableOpacity>

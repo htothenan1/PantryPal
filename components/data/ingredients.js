@@ -867,7 +867,7 @@ export const ingredients = [
     exp_int: 7,
     category: 'vegetables',
     storage_tip:
-      'Always keep the seeds and stems attached. Make sure the bell peppers are dry before storing them. Excess moisture can lead to mold growth. If they are damp, you can pat them dry with a paper towel.',
+      'Always keep the seeds and stems attached. Make sure the bell peppers are dry before storing them.',
     techniques:
       'bake, broil, grill, roast, sauté, steam, stew, stir-fry, stuff',
     compatibles: [
