@@ -159,7 +159,7 @@ const ItemDetails = ({route}) => {
         </View>
       )}
 
-      <View style={{height: 250}}>
+      <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
           <View style={styles.fetchRecipesContainer}>
             <TouchableOpacity onPress={handleRefreshRecipes}>
@@ -185,7 +185,7 @@ const ItemDetails = ({route}) => {
             <FlatList
               data={fetchedRecipes}
               renderItem={renderItems}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={index => index.toString()}
               horizontal
               showsHorizontalScrollIndicator={false}
               pagingEnabled

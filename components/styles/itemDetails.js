@@ -89,6 +89,9 @@ export default StyleSheet.create({
     color: 'grey',
     paddingHorizontal: 30,
   },
+  recipesContainer: {
+    height: 250,
+  },
   techniquesHeader: {
     fontWeight: 'bold',
     fontFamily: 'Avenir-Book',
