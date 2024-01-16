@@ -185,14 +185,13 @@ const ItemDetails = ({route}) => {
             <FlatList
               data={fetchedRecipes}
               renderItem={renderItems}
-              keyExtractor={index => index.toString()}
+              keyExtractor={(item, index) => index.toString()}
               horizontal
               showsHorizontalScrollIndicator={false}
               pagingEnabled
               ref={ref => {
                 flatListRef.current = ref;
               }}
-              style={styles.carousel}
               viewabilityConfig={viewConfigRef}
               onViewableItemsChanged={onViewRef.current}
             />
