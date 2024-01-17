@@ -15,7 +15,7 @@ import {Camera} from 'react-native-vision-camera';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-import {API_URL, SPOON_KEY} from '@env';
+import {SPOON_KEY} from '@env';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
@@ -24,6 +24,8 @@ import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
+const API_URL =
+  'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
 const Dashboard = () => {
   const [items, setItems] = useState([]);
@@ -45,7 +47,7 @@ const Dashboard = () => {
   const deleteItem = async (itemId, method) => {
     try {
       const response = await fetch(
-        `${API_URL}/items/${itemId}?method=${method}`,
+        `https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app/items/${itemId}?method=${method}`,
         {
           method: 'DELETE',
         },
@@ -274,6 +276,7 @@ const Dashboard = () => {
       <TouchableOpacity
         onPress={() => {
           setCurrentItem(item);
+          setSelectedDate(new Date(item.exp_date));
           setOpen(true);
         }}
         style={styles.swipeButton}>
