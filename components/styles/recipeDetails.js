@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingBottom: 100,
+    // marginBottom: 100,
   },
   titleText: {
     fontSize: 24,

@@ -12,7 +12,7 @@ import chefsHat from '../assets/chefs_hat.png';
 import styles from './styles/register';
 import {auth} from '../firebase';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {API_URL} from '@env';
+// import {API_URL} from '@env';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -20,6 +20,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
+  const API_URL =
+    'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
   const handleNavtoLogin = () => {
     navigation.navigate('Login');

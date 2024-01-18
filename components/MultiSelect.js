@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
-import {API_URL} from '@env';
+// import {API_URL} from '@env';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState(ingredients);
@@ -15,6 +15,8 @@ const MultiSelectScreen = ({route}) => {
   const userEmail = auth.currentUser?.email;
 
   const navigation = useNavigation();
+  const API_URL =
+    'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
   const toggleSelection = item => {
     let newSelectedItems = [...selectedItems];

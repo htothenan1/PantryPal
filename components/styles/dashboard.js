@@ -18,7 +18,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   headerIcon: {
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
   recipesContainer: {
     height: 250,

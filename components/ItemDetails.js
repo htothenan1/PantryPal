@@ -128,7 +128,9 @@ const ItemDetails = ({route}) => {
   const compatibleUserItems = findCompatibleUserItems();
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{paddingBottom: 50}}>
       <View style={styles.header}>
         <Image source={itemImage} style={styles.background} />
         <Text style={styles.headerText}>{item?.name}</Text>

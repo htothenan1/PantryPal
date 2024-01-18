@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-import {API_URL} from '@env';
+// import {API_URL} from '@env';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {auth} from '../firebase';
 import styles from './styles/cameraPage';
@@ -25,6 +25,9 @@ const CameraPage = () => {
   const device = useCameraDevice('back');
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
+
+  const API_URL =
+    'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
   const capturePhoto = async () => {
     if (camera.current !== null) {

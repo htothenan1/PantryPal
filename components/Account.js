@@ -1,12 +1,18 @@
 import React, {useState} from 'react';
-import {View, Text, ActivityIndicator, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
 import styles from './styles/account';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-import {API_URL} from '@env';
+// import {API_URL} from '@env';
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
@@ -16,6 +22,9 @@ const Account = () => {
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
+
+  const API_URL =
+    'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
   useFocusEffect(
     React.useCallback(() => {
@@ -72,7 +81,9 @@ const Account = () => {
       });
   };
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{paddingBottom: 50}}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -126,7 +137,7 @@ const Account = () => {
           </TouchableOpacity>
         </>
       )}
-    </View>
+    </ScrollView>
   );
 };
 

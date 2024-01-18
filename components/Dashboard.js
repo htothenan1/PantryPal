@@ -39,10 +39,15 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
+  const [isRecipesVisible, setIsRecipesVisible] = useState(true); // By default, the section is visible
 
   const navigation = useNavigation();
 
   const userEmail = auth.currentUser?.email;
+
+  const toggleRecipesVisibility = () => {
+    setIsRecipesVisible(!isRecipesVisible);
+  };
 
   const deleteItem = async (itemId, method) => {
     try {
@@ -423,51 +428,67 @@ const Dashboard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerText}>
+        <TouchableOpacity
+          style={styles.headerIcon}
+          onPress={toggleRecipesVisibility}>
+          <AntDesignIcon
+            name={isRecipesVisible ? 'up' : 'down'}
+            size={20}
+            color="black"
+          />
+        </TouchableOpacity>
         <Text style={styles.titleText}>Your Recipes</Text>
         <TouchableOpacity
           style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
-          <AntDesignIcon name="reload1" size={20} color="black" />
+          <AntDesignIcon
+            name={isRecipesVisible ? 'reload1' : null}
+            size={20}
+            color="black"
+          />
         </TouchableOpacity>
       </View>
-      <View style={styles.recipesContainer}>
-        {!fetchedRecipes && !isRecipesLoading && (
-          <View style={styles.fetchRecipesContainer}>
-            <TouchableOpacity onPress={handleRefreshRecipes}>
-              <AntDesignIcon name="reload1" size={30} color="black" />
-            </TouchableOpacity>
-            <Text style={styles.fetchRecipesText}>
-              Get Recipes Based On Your Items!
-            </Text>
-            <Text style={styles.fetchRecipesSubText}>
-              Tap the refresh icon to start!
-            </Text>
-          </View>
-        )}
 
-        {isRecipesLoading ? (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
-        ) : (
-          fetchedRecipes &&
-          fetchedRecipes.length > 0 && (
-            <FlatList
-              data={fetchedRecipes}
-              renderItem={renderItems}
-              keyExtractor={(item, index) => index.toString()}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              pagingEnabled
-              ref={ref => {
-                flatListRef.current = ref;
-              }}
-              viewabilityConfig={viewConfigRef}
-              onViewableItemsChanged={onViewRef.current}
-            />
-          )
-        )}
-      </View>
+      {isRecipesVisible && (
+        <View style={styles.recipesContainer}>
+          {!fetchedRecipes && !isRecipesLoading && (
+            <View style={styles.fetchRecipesContainer}>
+              <TouchableOpacity onPress={handleRefreshRecipes}>
+                <AntDesignIcon name="reload1" size={30} color="black" />
+              </TouchableOpacity>
+              <Text style={styles.fetchRecipesText}>
+                Get Recipes Based On Your Items!
+              </Text>
+              <Text style={styles.fetchRecipesSubText}>
+                Tap the refresh icon to start!
+              </Text>
+            </View>
+          )}
+
+          {isRecipesLoading ? (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+          ) : (
+            fetchedRecipes &&
+            fetchedRecipes.length > 0 && (
+              <FlatList
+                data={fetchedRecipes}
+                renderItem={renderItems}
+                keyExtractor={(item, index) => index.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                ref={ref => {
+                  flatListRef.current = ref;
+                }}
+                viewabilityConfig={viewConfigRef}
+                onViewableItemsChanged={onViewRef.current}
+              />
+            )
+          )}
+        </View>
+      )}
 
       <DatePicker
         mode="date"
