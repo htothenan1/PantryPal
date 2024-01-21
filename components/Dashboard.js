@@ -40,10 +40,21 @@ const Dashboard = () => {
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [isRecipesVisible, setIsRecipesVisible] = useState(true); // By default, the section is visible
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const navigation = useNavigation();
 
   const userEmail = auth.currentUser?.email;
+
+  const handleLongPress = itemId => {
+    setSelectedItems(prevSelectedItems => {
+      if (prevSelectedItems.includes(itemId)) {
+        return prevSelectedItems.filter(id => id !== itemId);
+      } else {
+        return [...prevSelectedItems, itemId];
+      }
+    });
+  };
 
   const toggleRecipesVisibility = () => {
     setIsRecipesVisible(!isRecipesVisible);
@@ -74,7 +85,11 @@ const Dashboard = () => {
   };
 
   const handleRefreshRecipes = () => {
-    fetchRecipes(items);
+    const itemsToUse =
+      selectedItems.length > 0
+        ? items.filter(item => selectedItems.includes(item._id))
+        : items.slice(0, 10);
+    fetchRecipes(itemsToUse);
   };
 
   const confirmDeleteAll = () => {
@@ -339,6 +354,8 @@ const Dashboard = () => {
   };
 
   const renderItem = ({item}) => {
+    const isSelected = selectedItems.includes(item._id);
+
     return (
       <Swipeable
         ref={ref => {
@@ -348,7 +365,8 @@ const Dashboard = () => {
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
           onPress={() => navToItemDetails(item)}
-          style={styles.item}>
+          onLongPress={() => handleLongPress(item._id)}
+          style={[styles.item, isSelected && styles.selectedItemStyle]}>
           <View style={styles.itemTextContainer}>
             <Text style={styles.itemText}>{item.name}</Text>
             <Text style={styles.itemText}>

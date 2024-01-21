@@ -14,17 +14,23 @@ import RecipeDetails from './components/RecipeDetails';
 import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Image} from 'react-native';
+import logo from './assets/chefs_hat.png';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const DashStack = createNativeStackNavigator();
 
+function LogoTitle() {
+  return <Image style={{width: 50, height: 50}} source={logo} />;
+}
+
 function DashStackScreen() {
   return (
     <DashStack.Navigator>
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Dashboard'}}
+        options={{headerTitle: props => <LogoTitle {...props} />}}
         name="Dashboard"
         component={Dashboard}
       />

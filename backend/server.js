@@ -153,7 +153,7 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
     const imgFile = req.file.path;
     const base64Image = await convertToBase64(imgFile);
     const response = await veggiesTest(base64Image);
-
+    console.log(response);
     const itemsArray = JSON.parse(response.message.content);
     res.json(itemsArray);
   } catch (error) {

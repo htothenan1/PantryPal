@@ -17,6 +17,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  selectedItemStyle: {
+    backgroundColor: '#e0e0e0', // or any other color to indicate selection
+  },
   headerIcon: {
     marginHorizontal: 10,
   },
