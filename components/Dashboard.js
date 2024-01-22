@@ -39,11 +39,11 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [isRecipesVisible, setIsRecipesVisible] = useState(true); // By default, the section is visible
+  const [isRecipesVisible, setIsRecipesVisible] = useState(true);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isItemsLoading, setIsItemsLoading] = useState(false);
 
   const navigation = useNavigation();
-
   const userEmail = auth.currentUser?.email;
 
   const handleLongPress = itemId => {
@@ -63,7 +63,7 @@ const Dashboard = () => {
   const deleteItem = async (itemId, method) => {
     try {
       const response = await fetch(
-        `https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app/items/${itemId}?method=${method}`,
+        `${API_URL}/items/${itemId}?method=${method}`,
         {
           method: 'DELETE',
         },
@@ -125,6 +125,8 @@ const Dashboard = () => {
   };
 
   const fetchItems = async () => {
+    setIsItemsLoading(true);
+
     try {
       if (!userEmail) {
         console.error('User email is not available');
@@ -145,8 +147,10 @@ const Dashboard = () => {
       });
 
       setItems(sortedItems);
+      setIsItemsLoading(false);
     } catch (error) {
       console.error('Error fetching items:', error.message);
+      setIsItemsLoading(false);
     }
   };
 
@@ -206,7 +210,6 @@ const Dashboard = () => {
 
       const savedItems = await response.json();
       setItems(currentItems => [...currentItems, ...savedItems]);
-
       setAddItemModalVisible(false);
       setNewItemName('');
     } catch (error) {
@@ -538,13 +541,19 @@ const Dashboard = () => {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        windowSize={10}
-        style={styles.itemsList}
-        data={items}
-        keyExtractor={item => item._id}
-        renderItem={renderItem}
-      />
+      {isItemsLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        <FlatList
+          windowSize={10}
+          style={styles.itemsList}
+          data={items}
+          keyExtractor={item => item._id}
+          renderItem={renderItem}
+        />
+      )}
 
       <View>
         <TouchableOpacity

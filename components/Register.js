@@ -12,7 +12,6 @@ import chefsHat from '../assets/chefs_hat.png';
 import styles from './styles/register';
 import {auth} from '../firebase';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
-// import {API_URL} from '@env';
 
 const Register = () => {
   const [name, setName] = useState('');
