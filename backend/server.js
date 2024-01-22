@@ -16,9 +16,7 @@ const openai = new OpenAI({
 });
 
 const imagePrompt =
-  "Analyze the attached image and identify any grocery items visible. Return the results as a simple JSON array of the item names, with each item being in its proper plural form. The format should be: ['Item1', 'Item2', 'Item3', ...]. Do not include any labels or keys, just the list of item names in an array. If an item is not clearly identifiable, please omit it.";
-
-const tipPrompt = '';
+  'Please analyze the attached image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the image is not clearly identifiable or distinguishable, please omit it from the list. For example, if the image clearly shows apples, bananas, and a loaf of bread, the result should be formatted as ["Apples", "Bananas", "Bread"].';
 
 const upload = multer({dest: 'uploads/'});
 

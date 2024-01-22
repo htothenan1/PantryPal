@@ -368,8 +368,12 @@ const Dashboard = () => {
           onLongPress={() => handleLongPress(item._id)}
           style={[styles.item, isSelected && styles.selectedItemStyle]}>
           <View style={styles.itemTextContainer}>
-            <Text style={styles.itemText}>{item.name}</Text>
-            <Text style={styles.itemText}>
+            <Text
+              style={[styles.itemText, isSelected && styles.selectedItemText]}>
+              {item.name}
+            </Text>
+            <Text
+              style={[styles.itemText, isSelected && styles.selectedItemText]}>
               {calculateDaysUntilExpiration(item.exp_date)}d
             </Text>
           </View>
@@ -478,7 +482,7 @@ const Dashboard = () => {
                 Get Recipes Based On Your Items!
               </Text>
               <Text style={styles.fetchRecipesSubText}>
-                Tap the refresh icon to start!
+                Hold down on any item to select it!
               </Text>
             </View>
           )}

@@ -161,7 +161,7 @@ const ItemDetails = ({route}) => {
         </View>
       )}
 
-      <View style={styles.recipesContainer}>
+      {/* <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
           <View style={styles.fetchRecipesContainer}>
             <TouchableOpacity onPress={handleRefreshRecipes}>
@@ -199,7 +199,7 @@ const ItemDetails = ({route}) => {
             />
           )
         )}
-      </View>
+      </View> */}
     </ScrollView>
   );
 };

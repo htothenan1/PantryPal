@@ -151,7 +151,7 @@ const CameraPage = () => {
   }, [device]);
 
   if (device == null) {
-    return <Text>No Camera for YOU</Text>;
+    return <Text>Camera Not Available</Text>;
   }
 
   return (

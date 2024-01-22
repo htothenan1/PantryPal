@@ -18,7 +18,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   selectedItemStyle: {
-    backgroundColor: '#e0e0e0', // or any other color to indicate selection
+    backgroundColor: '#495057',
+  },
+  selectedItemText: {
+    color: 'white',
   },
   headerIcon: {
     marginHorizontal: 10,
