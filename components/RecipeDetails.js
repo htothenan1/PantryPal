@@ -46,6 +46,7 @@ const RecipeDetails = ({route}) => {
         },
         body: JSON.stringify({
           recipeId: recipe.id,
+          recipeName: recipe.title,
           user: userEmail,
         }),
       });

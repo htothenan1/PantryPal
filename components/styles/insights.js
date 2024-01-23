@@ -4,11 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  headerText: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 50,
   },
   titleText: {
     textAlign: 'left',
@@ -17,27 +13,26 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
   },
-  itemsList: {
-    marginBottom: 80,
-  },
   item: {
-    borderWidth: 0.2,
-    paddingHorizontal: 25,
-    paddingVertical: 14,
-    backgroundColor: '#f8f9fa',
-  },
-  itemTextContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  itemText: {
-    fontSize: 20,
+    textAlign: 'left',
+    fontSize: 16,
     fontFamily: 'Avenir-Book',
+    marginVertical: 4,
+  },
+  itemsList: {
+    marginTop: 10,
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'left',
     alignItems: 'center',
+  },
+  headerText: {
+    textAlign: 'left',
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    marginVertical: 20,
   },
   headerIcon: {
     marginLeft: 10,
@@ -51,7 +46,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     borderWidth: 1,
     borderRadius: 5,
-    marginVertical: 10,
+    marginTop: 10,
     padding: 5,
   },
 });

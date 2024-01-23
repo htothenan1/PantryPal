@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import MultiSelectScreen from './components/MultiSelect';
 import ItemDetails from './components/ItemDetails';
 import RecipeDetails from './components/RecipeDetails';
+import Insights from './components/Insights';
 import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -36,6 +37,10 @@ function CameraTitle() {
 
 function MultiSelectTitle() {
   return <AntDesignIcon name="menuunfold" size={40} color="black" />;
+}
+
+function AccountTitle() {
+  return <AntDesignIcon name="user" size={40} color="black" />;
 }
 
 function DashStackScreen() {
@@ -75,12 +80,31 @@ function DashStackScreen() {
     </DashStack.Navigator>
   );
 }
+function AccountStackScreen() {
+  return (
+    <DashStack.Navigator>
+      <DashStack.Screen
+        options={{headerTitle: props => <AccountTitle {...props} />}}
+        name="MyAccount"
+        component={Account}
+      />
+      <DashStack.Screen
+        options={{headerShown: true, headerTitle: 'Recipe Details'}}
+        name="RecipeDetails"
+        component={RecipeDetails}
+      />
+    </DashStack.Navigator>
+  );
+}
 
-const accountIcon = () => {
+const insightsIcon = () => {
   return <AntDesignIcon name="barschart" size={20} color="black" />;
 };
 const dashIcon = () => {
   return <AntDesignIcon name="home" size={20} color="black" />;
+};
+const accountIcon = () => {
+  return <AntDesignIcon name="user" size={20} color="black" />;
 };
 
 function MyTabsScreen() {
@@ -96,14 +120,24 @@ function MyTabsScreen() {
         }}
       />
       <Tab.Screen
-        name="Statistics"
+        name="Insights"
         options={{
           headerShown: true,
           headerTitle: props => <InsightsTitle {...props} />,
-          tabBarLabel: 'Statistics',
+          tabBarLabel: 'Insights',
+          tabBarIcon: () => insightsIcon(),
+        }}
+        component={Insights}
+      />
+      <Tab.Screen
+        name="Account"
+        options={{
+          headerShown: false,
+          headerTitle: props => <AccountTitle {...props} />,
+          tabBarLabel: 'Account',
           tabBarIcon: () => accountIcon(),
         }}
-        component={Account}
+        component={AccountStackScreen}
       />
     </Tab.Navigator>
   );

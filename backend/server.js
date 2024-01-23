@@ -161,17 +161,29 @@ app.get('/favorites/isFavorited', async (req, res) => {
   }
 });
 
+// Endpoint to get all favorited recipes for a specific user
+app.get('/favorites/user/:userEmail', async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const favoritedRecipes = await FavoritedRecipe.find({user: userEmail});
+
+    res.status(200).json(favoritedRecipes);
+  } catch (error) {
+    res.status(500).send('Server error: ' + error.message);
+  }
+});
+
 // Endpoint to toggle a recipe's favorite status
 app.post('/favorites/toggle', async (req, res) => {
   try {
-    const {recipeId, user} = req.body;
+    const {recipeId, recipeName, user} = req.body;
 
     const existingFavorite = await FavoritedRecipe.findOne({recipeId, user});
     if (existingFavorite) {
       await FavoritedRecipe.deleteOne({_id: existingFavorite._id});
       res.status(200).json({message: 'Recipe removed from favorites'});
     } else {
-      const newFavorite = new FavoritedRecipe({recipeId, user});
+      const newFavorite = new FavoritedRecipe({recipeId, recipeName, user});
       await newFavorite.save();
       res.status(201).json({message: 'Recipe added to favorites'});
     }

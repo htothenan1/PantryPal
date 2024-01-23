@@ -1,24 +1,21 @@
 import React, {useState} from 'react';
 import {
-  View,
   Text,
   ActivityIndicator,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 import {auth} from '../firebase';
+import {SPOON_KEY} from '@env';
 import {signOut} from 'firebase/auth';
 import styles from './styles/account';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-// import {API_URL} from '@env';
+import {View} from 'react-native';
 
 const Account = () => {
-  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [wastedItems, setWastedItems] = useState([]);
-  const [consumedItems, setConsumedItems] = useState([]);
+  const [favoritedRecipes, setFavoritedRecipes] = useState([]);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -26,47 +23,61 @@ const Account = () => {
   const API_URL =
     'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
+  const fetchFavoritedRecipes = async () => {
+    if (!userEmail) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/favorites/user/${userEmail}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setFavoritedRecipes(data);
+    } catch (error) {
+      console.error('Error fetching favorited recipes:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSelectRecipe = async data => {
+    try {
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const recipe = await response.json();
+      navigation.navigate('RecipeDetails', {recipe});
+    } catch (error) {
+      console.error('Error fetching recipe information:', error.message);
+    }
+  };
+
+  const renderRecipeItem = ({item}) => {
+    return (
+      //   <TouchableOpacity onPress={() => handleSelectRecipe(item.recipeId)}>
+      //     <Text style={styles.recipeItem}>{item.recipeName}</Text>
+      //   </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => handleSelectRecipe(item.recipeId)}
+        style={styles.item}>
+        <View style={styles.itemTextContainer}>
+          <Text style={styles.itemText}>{item.recipeName}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   useFocusEffect(
     React.useCallback(() => {
-      if (userEmail) {
-        const fetchUserData = async () => {
-          try {
-            setLoading(true);
-            const response = await fetch(
-              `${API_URL}/users/data?email=${userEmail}`,
-            );
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            setUserData(data);
-
-            await fetchItemsData(userEmail);
-          } catch (error) {
-            console.error('Error fetching user data:', error.message);
-          } finally {
-            setLoading(false);
-          }
-        };
-
-        const fetchItemsData = async emailString => {
-          try {
-            const response = await fetch(
-              `${API_URL}/items/useremail/${emailString}`,
-            );
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const res = await response.json();
-            setWastedItems(res.wastedItems);
-            setConsumedItems(res.consumedItems);
-          } catch (error) {
-            console.error('Error fetching items data:', error.message);
-          }
-        };
-
-        fetchUserData();
-      }
+      fetchFavoritedRecipes();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
@@ -81,55 +92,24 @@ const Account = () => {
       });
   };
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={{paddingBottom: 50}}>
+    <View style={styles.container} contentContainerStyle={{paddingBottom: 50}}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
         <>
-          <Text style={styles.titleText}>
-            {userData?.firstName}'s Kitchen Stats
-          </Text>
-          <Text style={styles.item}>
-            Total items logged: {userData?.itemsCreated}
-          </Text>
-          <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Consumed Items</Text>
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name="like2"
-                size={20}
-                color="green"
-              />
-            </View>
-
-            {consumedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
-          </View>
-          <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Wasted Items</Text>
-
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name="dislike2"
-                size={20}
-                color="red"
-              />
-            </View>
-
-            {wastedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
+          <View style={styles.headerText}>
+            <Text style={styles.titleText}>
+              Your Favs ({favoritedRecipes.length})
+            </Text>
           </View>
 
+          <FlatList
+            windowSize={10}
+            style={styles.itemsList}
+            data={favoritedRecipes}
+            // keyExtractor={item => item.id.toString()}
+            renderItem={renderRecipeItem}
+          />
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={handleLogout}>
@@ -137,7 +117,7 @@ const Account = () => {
           </TouchableOpacity>
         </>
       )}
-    </ScrollView>
+    </View>
   );
 };
 
