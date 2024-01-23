@@ -7,8 +7,13 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  loadingContainer: {
+  recipesLoadingContainer: {
     height: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  itemsLoadingContainer: {
+    height: 500,
     justifyContent: 'center',
     alignItems: 'center',
   },

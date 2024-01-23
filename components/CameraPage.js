@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 // import {API_URL} from '@env';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
@@ -20,6 +21,7 @@ const CameraPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState('');
+  const [mode, setMode] = useState('groceries');
 
   const camera = useRef(null);
   const device = useCameraDevice('back');
@@ -35,7 +37,12 @@ const CameraPage = () => {
       setImageSource(photo.path);
       setShowCamera(false);
       console.log(photo.path);
+      console.log(mode);
     }
+  };
+
+  const toggleMode = () => {
+    setMode(mode === 'groceries' ? 'receipt' : 'groceries');
   };
 
   async function addCustomItem(itemName) {
@@ -98,7 +105,7 @@ const CameraPage = () => {
     }
   }
 
-  const confirmPhoto = imageFilePath => {
+  const confirmPhoto = (imageFilePath, currentMode) => {
     setIsLoading(true);
 
     const data = new FormData();
@@ -108,6 +115,7 @@ const CameraPage = () => {
       name: 'photo.jpg',
     });
     data.append('userEmail', userEmail);
+    data.append('mode', currentMode);
 
     console.log('this the data', data);
 
@@ -167,10 +175,26 @@ const CameraPage = () => {
           />
 
           <View style={styles.buttonContainer}>
+            <View style={additionalStyles.modeToggleContainer}>
+              <TouchableOpacity
+                onPress={toggleMode}
+                style={additionalStyles.modeToggleButton}>
+                <Text style={additionalStyles.modeToggleButtonText}>
+                  {mode === 'groceries'
+                    ? 'Switch to Receipt Mode'
+                    : 'Switch to Groceries Mode'}
+                </Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
               style={styles.camButton}
-              onPress={() => capturePhoto()}
-            />
+              onPress={() => capturePhoto()}>
+              <AntDesignIcon
+                name={mode === 'groceries' ? 'shoppingcart' : 'filetext1'}
+                size={40}
+                color="white"
+              />
+            </TouchableOpacity>
           </View>
         </>
       ) : (
@@ -193,7 +217,7 @@ const CameraPage = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.usePhotoButton}
-                onPress={() => confirmPhoto(imageSource)}
+                onPress={() => confirmPhoto(imageSource, mode)}
                 disabled={isLoading}>
                 {isLoading ? (
                   <ActivityIndicator size="small" color="#fff" />
@@ -208,5 +232,29 @@ const CameraPage = () => {
     </View>
   );
 };
+
+const additionalStyles = StyleSheet.create({
+  modeToggleContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeToggleButton: {
+    backgroundColor: '#007bff', // A pleasant blue color
+    padding: 10,
+    borderRadius: 5,
+    elevation: 2, // For Android shadow
+    shadowColor: '#000', // For iOS shadow
+    shadowOffset: {width: 0, height: 1}, // For iOS shadow
+    shadowOpacity: 0.2, // For iOS shadow
+    shadowRadius: 1.41, // For iOS shadow
+  },
+  modeToggleButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
 
 export default CameraPage;

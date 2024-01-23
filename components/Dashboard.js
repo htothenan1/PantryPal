@@ -42,6 +42,10 @@ const Dashboard = () => {
   const [isRecipesVisible, setIsRecipesVisible] = useState(true);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
+  const [customSelectedDate, setCustomSelectedDate] = useState(
+    new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
+  );
+  const [customOpen, setCustomOpen] = useState(false);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -161,7 +165,7 @@ const Dashboard = () => {
       );
 
       let storageTip = 'Not available';
-      let expInt = 6;
+      let expInt = calculateDaysUntilExpiration(customSelectedDate);
 
       if (existingIngredient) {
         storageTip = existingIngredient.storage_tip;
@@ -212,6 +216,7 @@ const Dashboard = () => {
       setItems(currentItems => [...currentItems, ...savedItems]);
       setAddItemModalVisible(false);
       setNewItemName('');
+      setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
     } catch (error) {
       console.error('Error adding custom item:', error);
     }
@@ -491,7 +496,7 @@ const Dashboard = () => {
           )}
 
           {isRecipesLoading ? (
-            <View style={styles.loadingContainer}>
+            <View style={styles.recipesLoadingContainer}>
               <ActivityIndicator size="large" color="#0000ff" />
             </View>
           ) : (
@@ -534,6 +539,22 @@ const Dashboard = () => {
         }}
       />
 
+      <DatePicker
+        mode="date"
+        modal
+        open={customOpen}
+        date={customSelectedDate}
+        minimumDate={new Date()}
+        maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
+        onConfirm={date => {
+          setCustomOpen(false);
+          setCustomSelectedDate(date);
+        }}
+        onCancel={() => {
+          setCustomOpen(false);
+        }}
+      />
+
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Items ({items.length})</Text>
         <TouchableOpacity style={styles.headerIcon} onPress={confirmDeleteAll}>
@@ -542,7 +563,7 @@ const Dashboard = () => {
       </View>
 
       {isItemsLoading ? (
-        <View style={styles.loadingContainer}>
+        <View style={styles.itemsLoadingContainer}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       ) : (
@@ -582,6 +603,12 @@ const Dashboard = () => {
               placeholder="Item Name"
               value={newItemName}
               onChangeText={setNewItemName}
+            />
+            <Button
+              title={`Use In The Next: ${calculateDaysUntilExpiration(
+                customSelectedDate,
+              )} days`}
+              onPress={() => setCustomOpen(true)}
             />
             <Button
               title="Confirm"

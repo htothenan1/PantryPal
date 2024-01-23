@@ -18,6 +18,9 @@ const openai = new OpenAI({
 const imagePrompt =
   'Please analyze the attached image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the image is not clearly identifiable or distinguishable, please omit it from the list. For example, if the image clearly shows apples, bananas, and a loaf of bread, the result should be formatted as ["Apples", "Bananas", "Bread"].';
 
+const receiptPrompt =
+  'Please analyze the receipt in the image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Don not include any labels or keys in the array. If an item in the receipt is not a common grocery item that can be consumed, please omit it from the list. For example, if the receipt lists apples, bananas, and laundry detergent, the result should be formatted as ["Apples", "Bananas"].';
+
 const upload = multer({dest: 'uploads/'});
 
 app.use('/public', express.static('../assets'));
@@ -38,7 +41,7 @@ function convertToBase64(filePath) {
   });
 }
 
-async function veggiesTest(base64Image) {
+async function veggiesTest(base64Image, mode) {
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4-vision-preview',
@@ -48,7 +51,7 @@ async function veggiesTest(base64Image) {
           content: [
             {
               type: 'text',
-              text: imagePrompt,
+              text: `${mode === 'groceries' ? imagePrompt : receiptPrompt}`,
             },
             {
               type: 'image_url',
@@ -150,7 +153,8 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   try {
     const imgFile = req.file.path;
     const base64Image = await convertToBase64(imgFile);
-    const response = await veggiesTest(base64Image);
+    const mode = req.body.mode;
+    const response = await veggiesTest(base64Image, mode);
     console.log(response);
     const itemsArray = JSON.parse(response.message.content);
     res.json(itemsArray);
