@@ -9,6 +9,8 @@ const Item = require('./models/item');
 const User = require('./models/user');
 const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
+const FavoritedRecipe = require('./models/favoritedRecipe');
+
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
@@ -145,6 +147,36 @@ app.get('/items/:id', async (req, res) => {
       return res.status(400).send('Invalid ID format');
     }
     res.status(500).send(error);
+  }
+});
+
+// Endpoint to check if a recipe is favorited by a user
+app.get('/favorites/isFavorited', async (req, res) => {
+  try {
+    const {recipeId, user} = req.query;
+    const favoritedRecipe = await FavoritedRecipe.findOne({recipeId, user});
+    res.status(200).json({isFavorited: !!favoritedRecipe});
+  } catch (error) {
+    res.status(500).send('Server error: ' + error.message);
+  }
+});
+
+// Endpoint to toggle a recipe's favorite status
+app.post('/favorites/toggle', async (req, res) => {
+  try {
+    const {recipeId, user} = req.body;
+
+    const existingFavorite = await FavoritedRecipe.findOne({recipeId, user});
+    if (existingFavorite) {
+      await FavoritedRecipe.deleteOne({_id: existingFavorite._id});
+      res.status(200).json({message: 'Recipe removed from favorites'});
+    } else {
+      const newFavorite = new FavoritedRecipe({recipeId, user});
+      await newFavorite.save();
+      res.status(201).json({message: 'Recipe added to favorites'});
+    }
+  } catch (error) {
+    res.status(400).send(error.message);
   }
 });
 

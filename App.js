@@ -23,7 +23,19 @@ const Tab = createBottomTabNavigator();
 const DashStack = createNativeStackNavigator();
 
 function LogoTitle() {
-  return <Image style={{width: 50, height: 50}} source={logo} />;
+  return <AntDesignIcon name="home" size={40} color="black" />;
+}
+
+function InsightsTitle() {
+  return <AntDesignIcon name="barschart" size={40} color="black" />;
+}
+
+function CameraTitle() {
+  return <AntDesignIcon name="camerao" size={40} color="black" />;
+}
+
+function MultiSelectTitle() {
+  return <AntDesignIcon name="menuunfold" size={40} color="black" />;
 }
 
 function DashStackScreen() {
@@ -35,7 +47,10 @@ function DashStackScreen() {
         component={Dashboard}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'MultiSelect'}}
+        options={{
+          headerShown: true,
+          headerTitle: props => <MultiSelectTitle {...props} />,
+        }}
         name="MultiSelect"
         component={MultiSelectScreen}
       />
@@ -50,7 +65,10 @@ function DashStackScreen() {
         component={RecipeDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Camera Page'}}
+        options={{
+          headerShown: true,
+          headerTitle: props => <CameraTitle {...props} />,
+        }}
         name="CameraPage"
         component={CameraPage}
       />
@@ -81,6 +99,7 @@ function MyTabsScreen() {
         name="Statistics"
         options={{
           headerShown: true,
+          headerTitle: props => <InsightsTitle {...props} />,
           tabBarLabel: 'Statistics',
           tabBarIcon: () => accountIcon(),
         }}

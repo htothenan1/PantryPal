@@ -17,6 +17,17 @@ export default StyleSheet.create({
     width: '100%',
     marginBottom: 10,
   },
+  favoriteButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginVertical: 10,
+  },
+  favoriteText: {
+    marginLeft: 5,
+    fontSize: 18,
+    fontFamily: 'Avenir-Book',
+  },
   servingsText: {
     fontSize: 18,
     fontFamily: 'Avenir-Book',
@@ -30,7 +41,7 @@ export default StyleSheet.create({
   },
   ingredientsText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 5,
   },
   instructionsTitleText: {
@@ -41,6 +52,6 @@ export default StyleSheet.create({
   },
   instructionsText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 16,
+    fontSize: 18,
   },
 });

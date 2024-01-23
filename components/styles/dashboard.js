@@ -140,10 +140,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,
+    padding: 20,
   },
   modalHeader: {
     marginVertical: 10,
     fontFamily: 'Avenir-Book',
+    fontSize: 20,
   },
   modalText: {
     fontSize: 25,

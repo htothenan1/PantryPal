@@ -597,10 +597,12 @@ const Dashboard = () => {
           isVisible={isAddItemModalVisible}
           onBackdropPress={() => setAddItemModalVisible(false)}>
           <View style={styles.modalContent}>
+            <AntDesignIcon name="edit" size={30} color="black" />
             <Text style={styles.modalHeader}>Add Custom Item</Text>
             <TextInput
               style={styles.input}
               placeholder="Item Name"
+              placeholderTextColor={'black'}
               value={newItemName}
               onChangeText={setNewItemName}
             />
