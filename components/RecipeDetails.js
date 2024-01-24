@@ -19,6 +19,11 @@ const RecipeDetails = ({route}) => {
   }, []);
 
   const highlightMatchingWords = (text, keywords) => {
+    if (!keywords) {
+      // If keywords are not provided, return the original text
+      return text;
+    }
+
     const regex = new RegExp(`(${keywords.join('|')})`, 'gi');
     return text.split(regex).map((part, index) => {
       if (keywords.includes(part.toLowerCase())) {
@@ -110,7 +115,9 @@ const RecipeDetails = ({route}) => {
         <Text key={index} style={styles.ingredientsText}>
           {highlightMatchingWords(
             ingredient.original,
-            selectedIngredients.map(i => i.toLowerCase()),
+            selectedIngredients
+              ? selectedIngredients.map(i => i.toLowerCase())
+              : [],
           )}
         </Text>
       ))}
@@ -123,7 +130,9 @@ const RecipeDetails = ({route}) => {
               {index + 1}.{' '}
               {highlightMatchingWords(
                 step.step,
-                selectedIngredients.map(i => i.toLowerCase()),
+                selectedIngredients
+                  ? selectedIngredients.map(i => i.toLowerCase())
+                  : [],
               )}
             </Text>
           ))}
