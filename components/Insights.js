@@ -80,7 +80,6 @@ const Insights = () => {
     },
   };
 
-  // Assuming consumedItems and wastedItems are sorted by frequency
   const consumedLabels = consumedItems.slice(0, 5).map(item => item.name);
   const consumedData = consumedItems.slice(0, 5).map(item => item.frequency);
 
@@ -117,14 +116,16 @@ const Insights = () => {
                 datasets: [{data: consumedData}],
               }}
               width={Dimensions.get('window').width - 30} // from react-native
-              height={250}
+              height={330}
               yAxisLabel=""
               chartConfig={chartConfig}
               verticalLabelRotation={30}
+              fromZero={true}
+              withInnerLines={false}
             />
           </View>
 
-          <View style={{alignItems: 'center', marginVertical: 30}}>
+          <View style={{alignItems: 'center', marginTop: 20}}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Wasted Items</Text>
 
@@ -141,10 +142,12 @@ const Insights = () => {
                 datasets: [{data: wastedData}],
               }}
               width={Dimensions.get('window').width - 30} // from react-native
-              height={250}
+              height={330}
               yAxisLabel=""
               chartConfig={chartConfig}
               verticalLabelRotation={30}
+              fromZero={true}
+              withInnerLines={false}
             />
           </View>
 
