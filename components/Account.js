@@ -99,7 +99,7 @@ const Account = () => {
         <>
           <View style={styles.headerText}>
             <Text style={styles.titleText}>
-              Your Favs ({favoritedRecipes.length})
+              Favorite Recipes ({favoritedRecipes.length})
             </Text>
           </View>
 
