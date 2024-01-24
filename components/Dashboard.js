@@ -50,12 +50,12 @@ const Dashboard = () => {
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
-  const handleLongPress = itemId => {
+  const handleLongPress = itemName => {
     setSelectedItems(prevSelectedItems => {
-      if (prevSelectedItems.includes(itemId)) {
-        return prevSelectedItems.filter(id => id !== itemId);
+      if (prevSelectedItems.includes(itemName)) {
+        return prevSelectedItems.filter(name => name !== itemName);
       } else {
-        return [...prevSelectedItems, itemId];
+        return [...prevSelectedItems, itemName];
       }
     });
   };
@@ -91,8 +91,9 @@ const Dashboard = () => {
   const handleRefreshRecipes = () => {
     const itemsToUse =
       selectedItems.length > 0
-        ? items.filter(item => selectedItems.includes(item._id))
+        ? items.filter(item => selectedItems.includes(item.name))
         : items.slice(0, 10);
+
     fetchRecipes(itemsToUse);
   };
 
@@ -362,18 +363,16 @@ const Dashboard = () => {
   };
 
   const renderItem = ({item}) => {
-    const isSelected = selectedItems.includes(item._id);
+    const isSelected = selectedItems.includes(item.name);
 
     return (
       <Swipeable
-        ref={ref => {
-          swipeableRefs.set(item._id, ref);
-        }}
+        ref={ref => swipeableRefs.set(item._id, ref)}
         renderRightActions={() => renderRightActions(item)}
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
           onPress={() => navToItemDetails(item)}
-          onLongPress={() => handleLongPress(item._id)}
+          onLongPress={() => handleLongPress(item.name)}
           style={[styles.item, isSelected && styles.selectedItemStyle]}>
           <View style={styles.itemTextContainer}>
             <Text
@@ -435,7 +434,10 @@ const Dashboard = () => {
       }
 
       const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {recipe});
+      navigation.navigate('RecipeDetails', {
+        recipe,
+        selectedIngredients: selectedItems,
+      });
     } catch (error) {
       console.error('Error fetching recipe information:', error.message);
     }

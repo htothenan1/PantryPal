@@ -94,12 +94,6 @@ const Insights = () => {
         <ActivityIndicator size="large" />
       ) : (
         <>
-          {/* <Text style={styles.titleText}>
-            {userData?.firstName}'s Kitchen Insights
-          </Text> */}
-          {/* <Text style={styles.item}>
-            Total items logged: {userData?.itemsCreated}
-          </Text> */}
           <View style={{alignItems: 'center', marginTop: 20}}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Consumed Items</Text>
@@ -116,7 +110,7 @@ const Insights = () => {
                 datasets: [{data: consumedData}],
               }}
               width={Dimensions.get('window').width - 30} // from react-native
-              height={330}
+              height={300}
               yAxisLabel=""
               chartConfig={chartConfig}
               verticalLabelRotation={30}
@@ -142,7 +136,7 @@ const Insights = () => {
                 datasets: [{data: wastedData}],
               }}
               width={Dimensions.get('window').width - 30} // from react-native
-              height={330}
+              height={300}
               yAxisLabel=""
               chartConfig={chartConfig}
               verticalLabelRotation={30}
@@ -150,42 +144,6 @@ const Insights = () => {
               withInnerLines={false}
             />
           </View>
-
-          {/* <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Consumed Items</Text>
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name="like2"
-                size={20}
-                color="green"
-              />
-            </View>
-
-            {consumedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
-          </View>
-          <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Wasted Items</Text>
-
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name="dislike2"
-                size={20}
-                color="red"
-              />
-            </View>
-
-            {wastedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
-          </View> */}
         </>
       )}
     </ScrollView>

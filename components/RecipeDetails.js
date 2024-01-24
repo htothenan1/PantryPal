@@ -8,7 +8,7 @@ const API_URL =
   'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
 
 const RecipeDetails = ({route}) => {
-  const {recipe} = route.params;
+  const {recipe, selectedIngredients} = route.params; // Get selectedIngredients from params
   const [isFavorited, setIsFavorited] = useState(false);
 
   const userEmail = auth.currentUser?.email;
@@ -17,6 +17,21 @@ const RecipeDetails = ({route}) => {
     checkIfFavorited();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const highlightMatchingWords = (text, keywords) => {
+    const regex = new RegExp(`(${keywords.join('|')})`, 'gi');
+    return text.split(regex).map((part, index) => {
+      if (keywords.includes(part.toLowerCase())) {
+        return (
+          <Text key={index} style={{color: 'red'}}>
+            {part}
+          </Text>
+        );
+      } else {
+        return part;
+      }
+    });
+  };
 
   const checkIfFavorited = async () => {
     try {
@@ -93,7 +108,10 @@ const RecipeDetails = ({route}) => {
       <Text style={styles.ingredientsTitleText}>Ingredients:</Text>
       {recipe.extendedIngredients.map((ingredient, index) => (
         <Text key={index} style={styles.ingredientsText}>
-          {ingredient.original}
+          {highlightMatchingWords(
+            ingredient.original,
+            selectedIngredients.map(i => i.toLowerCase()),
+          )}
         </Text>
       ))}
 
@@ -102,7 +120,11 @@ const RecipeDetails = ({route}) => {
           <Text style={styles.instructionsTitleText}>Instructions:</Text>
           {recipe.analyzedInstructions[0].steps.map((step, index) => (
             <Text key={index} style={styles.instructionsText}>
-              {index + 1}. {step.step}
+              {index + 1}.{' '}
+              {highlightMatchingWords(
+                step.step,
+                selectedIngredients.map(i => i.toLowerCase()),
+              )}
             </Text>
           ))}
         </>
