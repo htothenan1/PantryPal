@@ -118,6 +118,7 @@ export const ingredients = [
     img: apples,
     exp_int: 5,
     category: 'fruits',
+    goodSourceOf: 'vitamin C, potassium, fiber',
     storage_tip:
       'Keep in crisper drawer, away from other fruit. Cook shriveled apples into pies and applesauce. Use peels to make tea, or use in smoothies.',
     techniques:
@@ -200,6 +201,7 @@ export const ingredients = [
     exp_int: 5,
     img: apricots,
     category: 'fruits',
+    goodSourceOf: 'vitamins A and C, potassium, fiber',
     storage_tip:
       'Airtight container. Ripe apricots should yield slightly to gentle pressure and have a sweet aroma. Store apricots in a shallow container lined with a paper towel to absorb excess moisture.',
     techniques: 'bake, grill, poach, raw, stew',
@@ -242,6 +244,7 @@ export const ingredients = [
     img: artichokes,
     exp_int: 10,
     category: 'vegetables',
+    goodSourceOf: 'fiber, folate, vitamin K',
     storage_tip:
       'Keep in crisper drawer, plastic bag, and leave unwashed. Artichokes are best when consumed soon after purchase. To prevent artichokes from drying out, wrap them loosely in a damp paper towel or cloth and place them in a plastic bag.',
     techniques:
@@ -293,6 +296,7 @@ export const ingredients = [
     img: arugula,
     exp_int: 4,
     category: 'vegetables',
+    goodSourceOf: 'calcium, potassium, folate, vitamins C, K, and A',
     storage_tip:
       'When you bring arugula home, remove any excess moisture by gently patting it dry with a clean paper towel. Place the arugula in a plastic bag or an airtight container lined with a paper towel. This will help absorb moisture and prevent the leaves from becoming soggy.',
     techniques: 'braise, raw (salads), sauté, soups, wilt',
@@ -337,6 +341,7 @@ export const ingredients = [
     img: asparagus,
     exp_int: 10,
     category: 'vegetables',
+    goodSourceOf: 'vitamin K, folate, thiamine, riboflavin',
     storage_tip:
       'Before storing, trim about 1-2 inches from the bottom ends of the stalks. This can also help the asparagus absorb water and stay fresh. Place the trimmed asparagus upright in a container or glass with about an inch of water at the bottom.',
     techniques:
@@ -386,6 +391,7 @@ export const ingredients = [
     img: avocado,
     exp_int: 3,
     category: 'vegetables',
+    goodSourceOf: 'magnesium, potassium, vitamins C, E, and K',
     storage_tip:
       "Store on counter until ripe, then refrigerate. If you've cut an avocado and have leftover halves, keep the pit in the unused half and wrap it tightly in plastic wrap or place it in an airtight container. This helps minimize exposure to air and slows down browning.",
     techniques: 'raw',
@@ -463,6 +469,7 @@ export const ingredients = [
     img: babycarrot,
     exp_int: 14,
     category: 'vegetables',
+    goodSourceOf: 'vitamins A and K, potassium',
     storage_tip:
       'Always store in the crisper drawer. Before storing, make sure the baby carrots are dry. Excess moisture can lead to mold growth. Try to use them within a week of purchase to enjoy their crisp texture and natural sweetness.',
     techniques:
@@ -524,6 +531,7 @@ export const ingredients = [
     img: babyspinach,
     exp_int: 5,
     category: 'vegetables',
+    goodSourceOf: 'vitamin K and C, potassium',
     storage_tip:
       'Place a piece of paper towel inside the bag to absorb moisture. Try not to compress or pack the baby spinach too tightly when storing it.',
   },
@@ -533,6 +541,7 @@ export const ingredients = [
     img: bacon,
     exp_int: 3,
     category: 'meats',
+    goodSourceOf: 'protein, b vitamins',
     storage_tip:
       "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
     // subItems: [
@@ -600,6 +609,7 @@ export const ingredients = [
     img: bagel,
     exp_int: 5,
     category: 'grains',
+    goodSourceOf: 'refined carbs (depending on brand)',
     storage_tip:
       'Freeze bagels, and defrost before eating.  If you prefer toasting your bagels, you can slice them before freezing. This makes it easier to take out individual slices for toasting without needing to thaw the entire bagel.',
     // subItems: [
@@ -637,6 +647,7 @@ export const ingredients = [
     img: bananas,
     exp_int: 4,
     category: 'fruits',
+    goodSourceOf: 'potassium, vitamin C, folate',
     storage_tip:
       'If cut, sprinkle with lemon juice.  If your bananas are still in a bunch, consider separating them. This helps prevent them from ripening too quickly and becoming overripe.',
     // subItems: [
@@ -5597,7 +5608,7 @@ export const ingredients = [
     item_id: '0cc6wbw1-c2wb-4a51-952c-e5a3e1056d4d',
     name: 'Pomegranates',
     img: pomegranates,
-    exp_int: 2,
+    exp_int: 4,
     category: 'fruits',
     storage_tip: 'TBD',
     techniques: 'raw, ice/sorbet',
