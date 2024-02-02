@@ -4,8 +4,7 @@ import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import styles from './styles/recipeDetails';
 
-const API_URL =
-  'https://616d-2600-4041-54c4-7200-b8e2-be63-2ed3-884b.ngrok-free.app';
+const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const RecipeDetails = ({route}) => {
   const {recipe, selectedIngredients} = route.params; // Get selectedIngredients from params
