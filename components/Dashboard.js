@@ -584,11 +584,11 @@ const Dashboard = () => {
           <AntDesignIcon name="edit" size={20} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.centerFab}
           onPress={() => navToCamera()}>
           <AntDesignIcon name="camerao" size={20} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
           <AntDesignIcon name="menuunfold" size={20} color="white" />
