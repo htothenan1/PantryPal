@@ -156,7 +156,7 @@ export default StyleSheet.create({
   image: {
     width,
     height: 200,
-    resizeMode: 'center',
+    resizeMode: 'cover',
   },
   titleText: {
     textAlign: 'center',
