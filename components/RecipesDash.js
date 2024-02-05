@@ -20,7 +20,7 @@ import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
-import styles from './styles/dashboard';
+import styles from './styles/recipesDash';
 import DatePicker from 'react-native-date-picker';
 import firstStep from '../assets/first_step.png';
 import foodRespect from '../assets/food_respect.png';
@@ -28,24 +28,6 @@ import savingMoney from '../assets/saving_money.png';
 import kitchenPrep from '../assets/kitchen_prep.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
-const carouselObjects = [
-  {
-    image: firstStep,
-    title: 'The First Step',
-  },
-  {
-    image: foodRespect,
-    title: 'Respecting The Food You Purchase',
-  },
-  {
-    image: savingMoney,
-    title: 'The Best Way to Save Money',
-  },
-  {
-    image: kitchenPrep,
-    title: 'The Many Perks of a Tidy Kitchen',
-  },
-];
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const Dashboard = () => {
@@ -53,7 +35,7 @@ const Dashboard = () => {
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [fetchedRecipes, setFetchedRecipes] = useState(carouselObjects);
+  const [fetchedRecipes, setFetchedRecipes] = useState(null);
   const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,6 +52,25 @@ const Dashboard = () => {
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
+
+  const carouselObjects = [
+    {
+      image: firstStep,
+      title: 'The First Step',
+    },
+    {
+      image: foodRespect,
+      title: 'Respecting The Food You Purchase',
+    },
+    {
+      image: savingMoney,
+      title: 'The Best Way to Save Money',
+    },
+    {
+      image: kitchenPrep,
+      title: 'The Many Perks of a Tidy Kitchen',
+    },
+  ];
 
   const handleLongPress = itemName => {
     setSelectedItems(prevSelectedItems => {
@@ -392,7 +393,7 @@ const Dashboard = () => {
         renderRightActions={() => renderRightActions(item)}
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
-          onPress={() => navToItemDetails(item)}
+          onPress={() => handleLongPress(item.name)}
           // onLongPress={() => handleLongPress(item.name)}
           style={[styles.item, isSelected && styles.selectedItemStyle]}>
           <View style={styles.itemTextContainer}>
@@ -470,9 +471,9 @@ const Dashboard = () => {
 
     return (
       <TouchableOpacity
-        // onPress={() => handleSelectRecipe(item.id)}
+        onPress={() => handleSelectRecipe(item.id)}
         activeOpacity={1}>
-        <Image source={item.image} style={styles.image} />
+        <Image source={{uri: item.image}} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>
     );
@@ -481,8 +482,7 @@ const Dashboard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerText}>
-        <Text style={styles.titleText}>Dashboard</Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.headerIcon}
           onPress={toggleRecipesVisibility}>
           <AntDesignIcon
@@ -490,8 +490,9 @@ const Dashboard = () => {
             size={20}
             color="black"
           />
-        </TouchableOpacity>
-        {/* <TouchableOpacity
+        </TouchableOpacity> */}
+        <Text style={styles.titleText}>Recipes</Text>
+        <TouchableOpacity
           style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
           <AntDesignIcon
@@ -499,7 +500,7 @@ const Dashboard = () => {
             size={20}
             color="black"
           />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
 
       {isRecipesVisible && (
@@ -513,7 +514,7 @@ const Dashboard = () => {
                 Get Recipes Based On Your Items!
               </Text>
               <Text style={styles.fetchRecipesSubText}>
-                Hold down on any item to select it!
+                Tap multiple Items to get started!
               </Text>
             </View>
           )}
@@ -526,7 +527,7 @@ const Dashboard = () => {
             fetchedRecipes &&
             fetchedRecipes.length > 0 && (
               <FlatList
-                data={carouselObjects}
+                data={fetchedRecipes}
                 renderItem={renderItems}
                 keyExtractor={(item, index) => index.toString()}
                 horizontal
@@ -600,11 +601,11 @@ const Dashboard = () => {
       )}
 
       <View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.leftFab}
           onPress={() => setAddItemModalVisible(true)}>
           <AntDesignIcon name="edit" size={20} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* <TouchableOpacity
           style={styles.centerFab}
@@ -612,11 +613,11 @@ const Dashboard = () => {
           <AntDesignIcon name="camerao" size={20} color="white" />
         </TouchableOpacity> */}
 
-        <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
+        {/* <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
           <AntDesignIcon name="menuunfold" size={20} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <Modal
+        {/* <Modal
           isVisible={isAddItemModalVisible}
           onBackdropPress={() => setAddItemModalVisible(false)}>
           <View style={styles.modalContent}>
@@ -640,7 +641,7 @@ const Dashboard = () => {
               onPress={() => addCustomItem(newItemName)}
             />
           </View>
-        </Modal>
+        </Modal> */}
       </View>
     </View>
   );

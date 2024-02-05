@@ -55,7 +55,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   itemsList: {
-    marginBottom: 80,
+    // marginBottom: 80,
   },
   item: {
     borderWidth: 0.2,
@@ -156,7 +156,7 @@ export default StyleSheet.create({
   image: {
     width,
     height: 200,
-    resizeMode: 'center',
+    resizeMode: 'contain',
   },
   titleText: {
     textAlign: 'center',
@@ -190,8 +190,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f8f9fa', // example background color
     borderRadius: 10,
-    // marginHorizontal: 20,
-    // margin: 20,
   },
   fetchRecipesText: {
     fontFamily: 'Avenir-Book',
