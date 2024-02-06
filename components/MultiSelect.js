@@ -1,16 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Text, FlatList, Pressable} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
-// import {API_URL} from '@env';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState(ingredients);
   const [selectedItems, setSelectedItems] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
   const [currentCategory, setCurrentCategory] = useState('fruits');
+  const [isLoading, setIsLoading] = useState(false);
 
   const userEmail = auth.currentUser?.email;
 
@@ -89,6 +96,7 @@ const MultiSelectScreen = ({route}) => {
   }, [route, currentCategory]);
 
   async function addItems(itemsArray) {
+    setIsLoading(true); // Start loading
     try {
       const preparedItems = itemsArray.map(item => {
         const parentItem = ingredients.find(ingredient =>
@@ -132,6 +140,8 @@ const MultiSelectScreen = ({route}) => {
       return data;
     } catch (error) {
       console.error('Error adding items:', error.message);
+    } finally {
+      setIsLoading(false); // End loading
     }
   }
 
@@ -215,15 +225,19 @@ const MultiSelectScreen = ({route}) => {
         extraData={selectedItems}
       />
       <View style={styles.buttonContainer}>
-        <Pressable
-          disabled={selectedItems.length === 0}
-          onPress={() => addItems(selectedItems)}
-          style={styles.button}>
-          <Text
-            style={
-              styles.buttonText
-            }>{`Add Items (${selectedItems.length})`}</Text>
-        </Pressable>
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <Pressable
+            disabled={selectedItems.length === 0}
+            onPress={() => addItems(selectedItems)}
+            style={styles.button}>
+            <Text
+              style={
+                styles.buttonText
+              }>{`Add Items (${selectedItems.length})`}</Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );

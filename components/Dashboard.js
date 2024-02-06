@@ -24,7 +24,7 @@ import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
 import firstStep from '../assets/first_step.png';
 import foodRespect from '../assets/food_respect.png';
-import savingMoney from '../assets/saving_money.png';
+// import savingMoney from '../assets/saving_money.png';
 import kitchenPrep from '../assets/kitchen_prep.png';
 import homeCooking from '../assets/home_cooking.png';
 
@@ -72,6 +72,7 @@ const Dashboard = () => {
     new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
   );
   const [customOpen, setCustomOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -238,6 +239,72 @@ const Dashboard = () => {
       console.error('Error adding custom item:', error);
     }
   }
+  async function addCustomItem(itemName) {
+    setIsLoading(true); // Start loading
+    try {
+      const existingIngredient = ingredients.find(
+        ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
+      );
+
+      let storageTip = 'Not available';
+      let expInt = calculateDaysUntilExpiration(customSelectedDate);
+
+      if (existingIngredient) {
+        storageTip = existingIngredient.storage_tip;
+        expInt = existingIngredient.exp_int;
+      } else {
+        const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({item: itemName}),
+        });
+
+        if (!tipResponse.ok) {
+          console.error(`HTTP error! Status: ${tipResponse.status}`);
+        } else {
+          const tipData = await tipResponse.json();
+          storageTip = tipData.storageTip;
+        }
+      }
+
+      const newItem = {
+        name: itemName,
+        exp_int: expInt,
+        storage_tip: storageTip,
+        user: userEmail,
+      };
+
+      const response = await fetch(`${API_URL}/items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: [newItem],
+          userEmail: userEmail,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(
+          `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
+        );
+      }
+
+      const savedItems = await response.json();
+      setItems(currentItems => [...currentItems, ...savedItems]);
+      setAddItemModalVisible(false);
+      setNewItemName('');
+      setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
+    } catch (error) {
+      console.error('Error adding custom item:', error);
+    } finally {
+      setIsLoading(false); // End loading
+    }
+  }
 
   const updateExpDate = async (item, newDate) => {
     const formattedDate = newDate.toISOString().split('T')[0];
@@ -370,7 +437,7 @@ const Dashboard = () => {
   useEffect(() => {
     async function getPermission() {
       const permission = await Camera.requestCameraPermission();
-      console.log(`Camera permission status: ${permission}`);
+      // console.log(`Camera permission status: ${permission}`);
       if (permission === 'denied') {
         await Linking.openSettings();
       }
@@ -601,10 +668,16 @@ const Dashboard = () => {
               )} days`}
               onPress={() => setCustomOpen(true)}
             />
-            <Button
-              title="Confirm"
-              onPress={() => addCustomItem(newItemName)}
-            />
+            {isLoading ? (
+              <View style={styles.confirmButtonContainer}>
+                <ActivityIndicator size="small" color="#0000ff" />
+              </View>
+            ) : (
+              <Button
+                title="Confirm"
+                onPress={() => addCustomItem(newItemName)}
+              />
+            )}
           </View>
         </Modal>
       </View>
