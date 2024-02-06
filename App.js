@@ -2,8 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import {onAuthStateChanged} from 'firebase/auth';
-// import {auth} from './firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -15,9 +13,10 @@ import Insights from './components/Insights';
 import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import RecipesDash from './components/RecipesDash';
+import ArticleDetails from './components/ArticleDetails';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Image} from 'react-native';
-import logo from './assets/chefs_hat.png';
+// import {Image} from 'react-native';
+// import logo from './assets/chefs_hat.png';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,6 +78,11 @@ function DashStackScreen() {
         options={{headerShown: true, headerTitle: 'Recipe Details'}}
         name="RecipeDetails"
         component={RecipeDetails}
+      />
+      <DashStack.Screen
+        options={{headerShown: true, headerTitle: 'Article Details'}}
+        name="ArticleDetails"
+        component={ArticleDetails}
       />
       <DashStack.Screen
         options={{

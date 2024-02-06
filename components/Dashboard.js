@@ -26,6 +26,7 @@ import firstStep from '../assets/first_step.png';
 import foodRespect from '../assets/food_respect.png';
 import savingMoney from '../assets/saving_money.png';
 import kitchenPrep from '../assets/kitchen_prep.png';
+import homeCooking from '../assets/home_cooking.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const carouselObjects = [
@@ -34,13 +35,17 @@ const carouselObjects = [
     title: 'The First Step',
   },
   {
+    image: homeCooking,
+    title: "Mastering the 5 S's of Cooking",
+  },
+  {
     image: foodRespect,
     title: 'Respecting The Food You Purchase',
   },
-  {
-    image: savingMoney,
-    title: 'The Best Way to Save Money',
-  },
+  // {
+  //   image: savingMoney,
+  //   title: 'The Best Way to Save Money',
+  // },
   {
     image: kitchenPrep,
     title: 'The Many Perks of a Tidy Kitchen',
@@ -70,16 +75,6 @@ const Dashboard = () => {
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
-
-  const handleLongPress = itemName => {
-    setSelectedItems(prevSelectedItems => {
-      if (prevSelectedItems.includes(itemName)) {
-        return prevSelectedItems.filter(name => name !== itemName);
-      } else {
-        return [...prevSelectedItems, itemName];
-      }
-    });
-  };
 
   const toggleRecipesVisibility = () => {
     setIsRecipesVisible(!isRecipesVisible);
@@ -342,6 +337,13 @@ const Dashboard = () => {
     });
   };
 
+  const navToArticleDetails = articleObject => {
+    navigation.navigate('ArticleDetails', {
+      article: articleObject,
+    });
+    // console.log(articleObject);
+  };
+
   const navToCamera = () => {
     navigation.navigate('CameraPage');
   };
@@ -384,8 +386,6 @@ const Dashboard = () => {
   };
 
   const renderItem = ({item}) => {
-    const isSelected = selectedItems.includes(item.name);
-
     return (
       <Swipeable
         ref={ref => swipeableRefs.set(item._id, ref)}
@@ -393,15 +393,10 @@ const Dashboard = () => {
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
           onPress={() => navToItemDetails(item)}
-          // onLongPress={() => handleLongPress(item.name)}
-          style={[styles.item, isSelected && styles.selectedItemStyle]}>
+          style={styles.item}>
           <View style={styles.itemTextContainer}>
-            <Text
-              style={[styles.itemText, isSelected && styles.selectedItemText]}>
-              {item.name}
-            </Text>
-            <Text
-              style={[styles.itemText, isSelected && styles.selectedItemText]}>
+            <Text style={styles.itemText}>{item.name}</Text>
+            <Text style={styles.itemText}>
               {calculateDaysUntilExpiration(item.exp_date)}d
             </Text>
           </View>
@@ -444,33 +439,13 @@ const Dashboard = () => {
     }
   };
 
-  const handleSelectRecipe = async data => {
-    try {
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {
-        recipe,
-        selectedIngredients: selectedItems,
-      });
-    } catch (error) {
-      console.error('Error fetching recipe information:', error.message);
-    }
-  };
-
   const renderItems = ({item}) => {
     const title =
       item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
 
     return (
       <TouchableOpacity
-        // onPress={() => handleSelectRecipe(item.id)}
+        onPress={() => navToArticleDetails(item)}
         activeOpacity={1}>
         <Image source={item.image} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
@@ -491,15 +466,6 @@ const Dashboard = () => {
             color="black"
           />
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.headerIcon}
-          onPress={handleRefreshRecipes}>
-          <AntDesignIcon
-            name={isRecipesVisible ? 'reload1' : null}
-            size={20}
-            color="black"
-          />
-        </TouchableOpacity> */}
       </View>
 
       {isRecipesVisible && (
