@@ -4,13 +4,17 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    // marginBottom: 100,
+  },
+  contentContainer: {
+    paddingBottom: 50,
   },
   titleText: {
     fontSize: 24,
     fontFamily: 'Avenir-Book',
-    // fontWeight: 'bold',
     marginBottom: 10,
+  },
+  redText: {
+    color: 'red',
   },
   image: {
     height: 200,

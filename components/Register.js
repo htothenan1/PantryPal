@@ -17,7 +17,6 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const navigation = useNavigation();
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 

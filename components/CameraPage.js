@@ -10,11 +10,9 @@ import {
 } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
-// import {API_URL} from '@env';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {auth} from '../firebase';
 import styles from './styles/cameraPage';
-
 import {ingredients} from './data/ingredients';
 
 const CameraPage = () => {
@@ -174,11 +172,11 @@ const CameraPage = () => {
           />
 
           <View style={styles.buttonContainer}>
-            <View style={additionalStyles.modeToggleContainer}>
+            <View style={styles.modeToggleContainer}>
               <TouchableOpacity
                 onPress={toggleMode}
-                style={additionalStyles.modeToggleButton}>
-                <Text style={additionalStyles.modeToggleButtonText}>
+                style={styles.modeToggleButton}>
+                <Text style={styles.modeToggleButtonText}>
                   {mode === 'groceries'
                     ? 'Switch to Receipt Mode'
                     : 'Switch to Groceries Mode'}
@@ -231,29 +229,5 @@ const CameraPage = () => {
     </View>
   );
 };
-
-const additionalStyles = StyleSheet.create({
-  modeToggleContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modeToggleButton: {
-    backgroundColor: '#007bff', // A pleasant blue color
-    padding: 10,
-    borderRadius: 5,
-    elevation: 2, // For Android shadow
-    shadowColor: '#000', // For iOS shadow
-    shadowOffset: {width: 0, height: 1}, // For iOS shadow
-    shadowOpacity: 0.2, // For iOS shadow
-    shadowRadius: 1.41, // For iOS shadow
-  },
-  modeToggleButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default CameraPage;

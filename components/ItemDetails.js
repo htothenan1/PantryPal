@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 import groceryPic from '../assets/grocery.png';
 import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
@@ -46,7 +45,7 @@ const ItemDetails = ({route}) => {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{paddingBottom: 50}}>
+      contentContainerStyle={styles.contentContainer}>
       <View style={styles.header}>
         <Image source={itemImage} style={styles.background} />
         <Text style={styles.headerText}>{item?.name}</Text>
@@ -61,7 +60,7 @@ const ItemDetails = ({route}) => {
         </View>
       )}
 
-      {compatibleUserItems.length > 0 && ( // Only render if there are compatible items
+      {compatibleUserItems.length > 0 && (
         <View>
           <Text style={styles.compatibleHeader}>Your Compatibles:</Text>
           {compatibleUserItems.map((compatibleItem, index) => (

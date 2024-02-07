@@ -43,28 +43,16 @@ export default StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  buttonOutline: {
-    backgroundColor: 'white',
-    marginTop: 5,
-    borderColor: '#0782F9',
-    borderWidth: 2,
-  },
   buttonText: {
     color: 'white',
     fontFamily: 'Avenir-Book',
     fontSize: 16,
   },
-  buttonOutlineText: {
-    fontFamily: 'futura',
-    color: '#0782F9',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-  registerText: {
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
-  },
-  registerHyperlink: {
-    color: '#386641',
-  },
+  // registerText: {
+  //   fontSize: 16,
+  //   fontFamily: 'Avenir-Book',
+  // },
+  // registerHyperlink: {
+  //   color: '#386641',
+  // },
 });

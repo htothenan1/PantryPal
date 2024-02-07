@@ -76,7 +76,7 @@ async function veggiesTest(base64Image, mode) {
 // Get all items
 app.get('/items', async (req, res) => {
   try {
-    const userEmail = req.query.email; // Get the user email from the query parameter
+    const userEmail = req.query.email;
     if (!userEmail) {
       return res.status(400).send('Email parameter is required');
     }

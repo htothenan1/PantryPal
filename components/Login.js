@@ -29,9 +29,9 @@ const Login = () => {
     return unsubscribe;
   }, [navigation]);
 
-  const handleNavtoRegister = () => {
-    navigation.navigate('Register');
-  };
+  // const handleNavtoRegister = () => {
+  //   navigation.navigate('Register');
+  // };
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)

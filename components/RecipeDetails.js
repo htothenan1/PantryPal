@@ -19,7 +19,6 @@ const RecipeDetails = ({route}) => {
 
   const highlightMatchingWords = (text, keywords) => {
     if (!keywords) {
-      // If keywords are not provided, return the original text
       return text;
     }
 
@@ -27,7 +26,7 @@ const RecipeDetails = ({route}) => {
     return text.split(regex).map((part, index) => {
       if (keywords.includes(part.toLowerCase())) {
         return (
-          <Text key={index} style={{color: 'red'}}>
+          <Text key={index} style={styles.redText}>
             {part}
           </Text>
         );
@@ -51,10 +50,6 @@ const RecipeDetails = ({route}) => {
       console.error('Error checking favorite status:', error.message);
     }
   };
-
-  // const toggleFavorite = () => {
-  //   setIsFavorited(!isFavorited);
-  // };
 
   const toggleFavoriteRecipe = async () => {
     try {
@@ -92,7 +87,7 @@ const RecipeDetails = ({route}) => {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{paddingBottom: 50}}>
+      contentContainerStyle={styles.contentContainer}>
       <Text style={styles.titleText}>{recipe.title}</Text>
       <Image source={{uri: recipe.image}} style={styles.image} />
       <TouchableOpacity

@@ -1,54 +1,12 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const {width} = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  loadingContainer: {
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  titleText: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-    marginVertical: 20,
-  },
-  footerText: {
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-    marginTop: 5,
-  },
-  image: {
-    width,
-    height: 200,
-    resizeMode: 'contain',
-    borderRadius: 10,
-  },
-  fetchRecipesContainer: {
-    height: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f8f9fa',
-    borderRadius: 10,
-    marginTop: 20,
-    marginBottom: 100,
-  },
-  fetchRecipesText: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  fetchRecipesSubText: {
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
+  contentContainer: {
+    paddingBottom: 50,
   },
   header: {
     flexDirection: 'row',
@@ -83,14 +41,6 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 20,
     marginVertical: 5,
-  },
-  noCompatibleItem: {
-    fontSize: 14,
-    color: 'grey',
-    paddingHorizontal: 30,
-  },
-  recipesContainer: {
-    height: 250,
   },
   techniquesHeader: {
     fontWeight: 'bold',

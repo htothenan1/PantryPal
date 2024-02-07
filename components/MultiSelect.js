@@ -20,7 +20,6 @@ const MultiSelectScreen = ({route}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const userEmail = auth.currentUser?.email;
-
   const navigation = useNavigation();
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
@@ -96,7 +95,7 @@ const MultiSelectScreen = ({route}) => {
   }, [route, currentCategory]);
 
   async function addItems(itemsArray) {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     try {
       const preparedItems = itemsArray.map(item => {
         const parentItem = ingredients.find(ingredient =>
@@ -141,7 +140,7 @@ const MultiSelectScreen = ({route}) => {
     } catch (error) {
       console.error('Error adding items:', error.message);
     } finally {
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     }
   }
 

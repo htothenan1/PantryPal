@@ -5,21 +5,12 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  titleText: {
-    textAlign: 'left',
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-    marginVertical: 20,
+  contentContainer: {
+    paddingBottom: 50,
   },
-  item: {
-    textAlign: 'left',
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
-    marginVertical: 4,
-  },
-  itemsList: {
-    marginTop: 10,
+  chartContainer: {
+    alignItems: 'center',
+    marginTop: 20,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -35,17 +26,5 @@ export default StyleSheet.create({
   },
   headerIcon: {
     marginLeft: 10,
-  },
-  buttonContainer: {
-    alignSelf: 'center',
-  },
-  logout: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 10,
-    padding: 5,
   },
 });

@@ -61,9 +61,6 @@ const Account = () => {
 
   const renderRecipeItem = ({item}) => {
     return (
-      //   <TouchableOpacity onPress={() => handleSelectRecipe(item.recipeId)}>
-      //     <Text style={styles.recipeItem}>{item.recipeName}</Text>
-      //   </TouchableOpacity>
       <TouchableOpacity
         onPress={() => handleSelectRecipe(item.recipeId)}
         style={styles.item}>
@@ -91,7 +88,9 @@ const Account = () => {
       });
   };
   return (
-    <View style={styles.container} contentContainerStyle={{paddingBottom: 50}}>
+    <View
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -106,7 +105,6 @@ const Account = () => {
             windowSize={10}
             style={styles.itemsList}
             data={favoritedRecipes}
-            // keyExtractor={item => item.id.toString()}
             renderItem={renderRecipeItem}
           />
           <TouchableOpacity

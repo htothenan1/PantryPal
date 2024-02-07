@@ -15,7 +15,6 @@ import {Camera} from 'react-native-vision-camera';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-import {SPOON_KEY} from '@env';
 import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
@@ -58,27 +57,24 @@ const Dashboard = () => {
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [fetchedRecipes, setFetchedRecipes] = useState(carouselObjects);
   const swipeableRefs = useRef(new Map()).current;
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [isRecipesVisible, setIsRecipesVisible] = useState(true);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [isDashVisible, setIsDashVisible] = useState(true);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
+  const [customOpen, setCustomOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [customSelectedDate, setCustomSelectedDate] = useState(
     new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
   );
-  const [customOpen, setCustomOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
-  const toggleRecipesVisibility = () => {
-    setIsRecipesVisible(!isRecipesVisible);
+  const toggleDashVisibility = () => {
+    setIsDashVisible(!isDashVisible);
   };
 
   const deleteItem = async (itemId, method) => {
@@ -103,15 +99,6 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Error deleting item:', error.message);
     }
-  };
-
-  const handleRefreshRecipes = () => {
-    const itemsToUse =
-      selectedItems.length > 0
-        ? items.filter(item => selectedItems.includes(item.name))
-        : items.slice(0, 10);
-
-    fetchRecipes(itemsToUse);
   };
 
   const confirmDeleteAll = () => {
@@ -240,7 +227,7 @@ const Dashboard = () => {
     }
   }
   async function addCustomItem(itemName) {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     try {
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
@@ -302,7 +289,7 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Error adding custom item:', error);
     } finally {
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     }
   }
 
@@ -408,12 +395,11 @@ const Dashboard = () => {
     navigation.navigate('ArticleDetails', {
       article: articleObject,
     });
-    // console.log(articleObject);
   };
 
-  const navToCamera = () => {
-    navigation.navigate('CameraPage');
-  };
+  // const navToCamera = () => {
+  //   navigation.navigate('CameraPage');
+  // };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -437,7 +423,6 @@ const Dashboard = () => {
   useEffect(() => {
     async function getPermission() {
       const permission = await Camera.requestCameraPermission();
-      // console.log(`Camera permission status: ${permission}`);
       if (permission === 'denied') {
         await Linking.openSettings();
       }
@@ -482,30 +467,6 @@ const Dashboard = () => {
     }
   });
 
-  const fetchRecipes = async currentItems => {
-    setIsRecipesLoading(true);
-
-    if (currentItems && currentItems.length > 0) {
-      const queryString = currentItems.map(item => item.name).join(',+');
-      const randomInt = Math.floor(Math.random() * 10) + 1;
-      try {
-        const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&offset=${randomInt}&number=25`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const resItems = await response.json();
-        setFetchedRecipes(resItems);
-        setIsRecipesLoading(false);
-      } catch (error) {
-        console.error('Error fetching recipes:', error.message);
-      }
-    } else {
-      setIsRecipesLoading(false);
-    }
-  };
-
   const renderItems = ({item}) => {
     const title =
       item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
@@ -526,53 +487,30 @@ const Dashboard = () => {
         <Text style={styles.titleText}>Dashboard</Text>
         <TouchableOpacity
           style={styles.headerIcon}
-          onPress={toggleRecipesVisibility}>
+          onPress={toggleDashVisibility}>
           <AntDesignIcon
-            name={isRecipesVisible ? 'up' : 'down'}
+            name={isDashVisible ? 'up' : 'down'}
             size={20}
             color="black"
           />
         </TouchableOpacity>
       </View>
 
-      {isRecipesVisible && (
-        <View style={styles.recipesContainer}>
-          {!fetchedRecipes && !isRecipesLoading && (
-            <View style={styles.fetchRecipesContainer}>
-              <TouchableOpacity onPress={handleRefreshRecipes}>
-                <AntDesignIcon name="reload1" size={30} color="black" />
-              </TouchableOpacity>
-              <Text style={styles.fetchRecipesText}>
-                Get Recipes Based On Your Items!
-              </Text>
-              <Text style={styles.fetchRecipesSubText}>
-                Hold down on any item to select it!
-              </Text>
-            </View>
-          )}
-
-          {isRecipesLoading ? (
-            <View style={styles.recipesLoadingContainer}>
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-          ) : (
-            fetchedRecipes &&
-            fetchedRecipes.length > 0 && (
-              <FlatList
-                data={carouselObjects}
-                renderItem={renderItems}
-                keyExtractor={(item, index) => index.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={true}
-                pagingEnabled
-                ref={ref => {
-                  flatListRef.current = ref;
-                }}
-                viewabilityConfig={viewConfigRef}
-                onViewableItemsChanged={onViewRef.current}
-              />
-            )
-          )}
+      {isDashVisible && (
+        <View style={styles.dashContainer}>
+          <FlatList
+            data={carouselObjects}
+            renderItem={renderItems}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={true}
+            pagingEnabled
+            ref={ref => {
+              flatListRef.current = ref;
+            }}
+            viewabilityConfig={viewConfigRef}
+            onViewableItemsChanged={onViewRef.current}
+          />
         </View>
       )}
 

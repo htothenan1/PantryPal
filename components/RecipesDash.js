@@ -23,7 +23,6 @@ const Dashboard = () => {
   const flatListRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
-  const [isRecipesVisible, setIsRecipesVisible] = useState(true);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
 
@@ -197,59 +196,50 @@ const Dashboard = () => {
         <TouchableOpacity
           style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
-          <AntDesignIcon
-            name={isRecipesVisible ? 'reload1' : null}
-            size={20}
-            color="black"
-          />
+          <AntDesignIcon name="reload1" size={20} color="black" />
         </TouchableOpacity>
       </View>
+      <View style={styles.recipesContainer}>
+        {!fetchedRecipes && !isRecipesLoading && (
+          <View style={styles.fetchRecipesContainer}>
+            <TouchableOpacity onPress={handleRefreshRecipes}>
+              <AntDesignIcon name="reload1" size={30} color="black" />
+            </TouchableOpacity>
+            <Text style={styles.fetchRecipesText}>
+              Get Recipes Based On Your Items!
+            </Text>
+            <Text style={styles.fetchRecipesSubText}>
+              Tap one or more items to get started!
+            </Text>
+          </View>
+        )}
 
-      {isRecipesVisible && (
-        <View style={styles.recipesContainer}>
-          {!fetchedRecipes && !isRecipesLoading && (
-            <View style={styles.fetchRecipesContainer}>
-              <TouchableOpacity onPress={handleRefreshRecipes}>
-                <AntDesignIcon name="reload1" size={30} color="black" />
-              </TouchableOpacity>
-              <Text style={styles.fetchRecipesText}>
-                Get Recipes Based On Your Items!
-              </Text>
-              <Text style={styles.fetchRecipesSubText}>
-                Tap one or more items to get started!
-              </Text>
-            </View>
-          )}
-
-          {isRecipesLoading ? (
-            <View style={styles.recipesLoadingContainer}>
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-          ) : (
-            fetchedRecipes &&
-            fetchedRecipes.length > 0 && (
-              <FlatList
-                data={fetchedRecipes}
-                renderItem={renderItems}
-                keyExtractor={(item, index) => index.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={true}
-                pagingEnabled
-                ref={ref => {
-                  flatListRef.current = ref;
-                }}
-                viewabilityConfig={viewConfigRef}
-                onViewableItemsChanged={onViewRef.current}
-              />
-            )
-          )}
-        </View>
-      )}
-
+        {isRecipesLoading ? (
+          <View style={styles.recipesLoadingContainer}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        ) : (
+          fetchedRecipes &&
+          fetchedRecipes.length > 0 && (
+            <FlatList
+              data={fetchedRecipes}
+              renderItem={renderItems}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={true}
+              pagingEnabled
+              ref={ref => {
+                flatListRef.current = ref;
+              }}
+              viewabilityConfig={viewConfigRef}
+              onViewableItemsChanged={onViewRef.current}
+            />
+          )
+        )}
+      </View>
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Groceries ({items.length})</Text>
       </View>
-
       {isItemsLoading ? (
         <View style={styles.itemsLoadingContainer}>
           <ActivityIndicator size="large" color="#0000ff" />
@@ -257,7 +247,6 @@ const Dashboard = () => {
       ) : (
         <FlatList
           windowSize={10}
-          style={styles.itemsList}
           data={items}
           keyExtractor={item => item._id}
           renderItem={renderItem}

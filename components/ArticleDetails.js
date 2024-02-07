@@ -10,7 +10,7 @@ const ArticleDetails = ({route}) => {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{paddingBottom: 50}}>
+      contentContainerStyle={styles.contentContainer}>
       <Image source={article.image} style={styles.image} />
       <Text style={styles.titleText}>{article.title}</Text>
       {matchingArticle && (

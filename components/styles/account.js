@@ -5,6 +5,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  contentContainer: {
+    paddingBottom: 50,
+  },
   headerText: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -33,14 +36,6 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'left',
-    alignItems: 'center',
-  },
-  headerIcon: {
-    marginLeft: 10,
   },
   buttonContainer: {
     alignSelf: 'center',

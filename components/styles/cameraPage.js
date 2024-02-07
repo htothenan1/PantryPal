@@ -6,17 +6,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button: {
-    backgroundColor: 'gray',
-  },
-  backButton: {
-    backgroundColor: 'rgba(0,0,0,0.0)',
-    position: 'absolute',
-    justifyContent: 'center',
-    width: '100%',
-    top: 0,
-    padding: 20,
-  },
   buttonContainer: {
     backgroundColor: 'rgba(0,0,0,0.2)',
     position: 'absolute',
@@ -72,5 +61,22 @@ export default StyleSheet.create({
   usePhotoText: {
     color: 'white',
     fontWeight: 500,
+  },
+  modeToggleContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeToggleButton: {
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 5,
+    elevation: 2,
+  },
+  modeToggleButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

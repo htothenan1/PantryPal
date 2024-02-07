@@ -13,13 +13,11 @@ import {useFocusEffect} from '@react-navigation/native';
 import {BarChart} from 'react-native-chart-kit';
 
 const Insights = () => {
-  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [wastedItems, setWastedItems] = useState([]);
   const [consumedItems, setConsumedItems] = useState([]);
 
   const userEmail = auth.currentUser?.email;
-
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
   useFocusEffect(
@@ -28,15 +26,6 @@ const Insights = () => {
         const fetchUserData = async () => {
           try {
             setLoading(true);
-            const response = await fetch(
-              `${API_URL}/users/data?email=${userEmail}`,
-            );
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            setUserData(data);
-
             await fetchItemsData(userEmail);
           } catch (error) {
             console.error('Error fetching user data:', error.message);
@@ -81,19 +70,18 @@ const Insights = () => {
 
   const consumedLabels = consumedItems.slice(0, 5).map(item => item.name);
   const consumedData = consumedItems.slice(0, 5).map(item => item.frequency);
-
   const wastedLabels = wastedItems.slice(0, 5).map(item => item.name);
   const wastedData = wastedItems.slice(0, 5).map(item => item.frequency);
 
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{paddingBottom: 50}}>
+      contentContainerStyle={styles.contentContainer}>
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
         <>
-          <View style={{alignItems: 'center', marginTop: 20}}>
+          <View style={styles.chartContainer}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Consumed Items</Text>
               <AntDesignIcon
@@ -108,7 +96,7 @@ const Insights = () => {
                 labels: consumedLabels,
                 datasets: [{data: consumedData}],
               }}
-              width={Dimensions.get('window').width - 30} // from react-native
+              width={Dimensions.get('window').width - 30}
               height={300}
               yAxisLabel=""
               chartConfig={chartConfig}
@@ -118,7 +106,7 @@ const Insights = () => {
             />
           </View>
 
-          <View style={{alignItems: 'center', marginTop: 20}}>
+          <View style={styles.chartContainer}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Wasted Items</Text>
 
@@ -134,7 +122,7 @@ const Insights = () => {
                 labels: wastedLabels,
                 datasets: [{data: wastedData}],
               }}
-              width={Dimensions.get('window').width - 30} // from react-native
+              width={Dimensions.get('window').width - 30}
               height={300}
               yAxisLabel=""
               chartConfig={chartConfig}

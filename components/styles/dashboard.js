@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  recipesLoadingContainer: {
+  dashLoadingContainer: {
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
@@ -23,16 +23,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 24,
   },
-  selectedItemStyle: {
-    backgroundColor: '#495057',
-  },
-  selectedItemText: {
-    color: 'white',
-  },
   headerIcon: {
     marginHorizontal: 10,
   },
-  recipesContainer: {
+  dashContainer: {
     height: 250,
   },
   rightSwipeContainer: {
@@ -103,38 +97,23 @@ export default StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: {width: 0, height: 2},
   },
-  centerFab: {
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: '50%', // Position the left edge of the element at the center of the screen
-    marginLeft: -28, // Then, shift it back by half its width
-    bottom: 10,
-    backgroundColor: '#495057',
-    borderRadius: 28,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    shadowOffset: {width: 0, height: 2},
-  },
-
-  fabText: {
-    fontSize: 35,
-    color: 'white',
-    fontFamily: 'Avenir-Book',
-  },
-  bottomModal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-  bottomModalRows: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+  // centerFab: {
+  //   position: 'absolute',
+  //   width: 56,
+  //   height: 56,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   left: '50%',
+  //   marginLeft: -28,
+  //   bottom: 10,
+  //   backgroundColor: '#495057',
+  //   borderRadius: 28,
+  //   elevation: 8,
+  //   shadowColor: '#000',
+  //   shadowOpacity: 0.2,
+  //   shadowRadius: 5,
+  //   shadowOffset: {width: 0, height: 2},
+  // },
   modalContent: {
     backgroundColor: 'white',
     marginHorizontal: 30,
@@ -147,11 +126,6 @@ export default StyleSheet.create({
     marginVertical: 10,
     fontFamily: 'Avenir-Book',
     fontSize: 20,
-  },
-  modalText: {
-    fontSize: 25,
-    marginLeft: 5,
-    fontFamily: 'Avenir-Book',
   },
   image: {
     width,
@@ -169,38 +143,6 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
     fontSize: 18,
-    // fontWeight: 'bold',
     marginTop: 5,
-  },
-  suggestionItem: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  suggestionsList: {
-    maxHeight: 200, // Adjust height as needed
-    backgroundColor: 'white',
-    borderColor: 'lightgrey',
-    borderWidth: 1,
-    width: '100%',
-  },
-  fetchRecipesContainer: {
-    height: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f8f9fa', // example background color
-    borderRadius: 10,
-    // marginHorizontal: 20,
-    // margin: 20,
-  },
-  fetchRecipesText: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  fetchRecipesSubText: {
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
   },
 });
