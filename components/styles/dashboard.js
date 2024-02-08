@@ -58,7 +58,7 @@ export default StyleSheet.create({
     backgroundColor: '#f8f9fa',
   },
   itemTextContainer: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'space-between',
   },
   itemText: {
@@ -80,6 +80,14 @@ export default StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
     shadowOffset: {width: 0, height: 2},
+  },
+  emptyFab: {
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#495057',
+    borderRadius: 28,
   },
   leftFab: {
     position: 'absolute',
@@ -144,5 +152,18 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 18,
     marginTop: 5,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: 'center', // Vertically centers the content
+    alignItems: 'center', // Horizontally centers the content
+    paddingHorizontal: 30, // Adds some padding on the sides
+  },
+  emptyStateText: {
+    fontSize: 24, // Adjust the font size as needed
+    fontFamily: 'Avenir-Book',
+    lineHeight: 60,
+    textAlign: 'center', // Ensures the text is centered if it wraps to a new line
+    color: '#666', // A neutral color for the text, but feel free to change it
   },
 });

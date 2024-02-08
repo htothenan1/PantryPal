@@ -201,17 +201,17 @@ const Dashboard = () => {
       </View>
       <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
-          <View style={styles.fetchRecipesContainer}>
-            <TouchableOpacity onPress={handleRefreshRecipes}>
+          <TouchableOpacity onPress={handleRefreshRecipes}>
+            <View style={styles.fetchRecipesContainer}>
               <AntDesignIcon name="reload1" size={30} color="black" />
-            </TouchableOpacity>
-            <Text style={styles.fetchRecipesText}>
-              Get Recipes Based On Your Items!
-            </Text>
-            <Text style={styles.fetchRecipesSubText}>
-              Tap one or more items to get started!
-            </Text>
-          </View>
+              <Text style={styles.fetchRecipesText}>
+                Get Recipes Based On Your Items!
+              </Text>
+              <Text style={styles.fetchRecipesSubText}>
+                Tap one or more items to get started!
+              </Text>
+            </View>
+          </TouchableOpacity>
         )}
 
         {isRecipesLoading ? (

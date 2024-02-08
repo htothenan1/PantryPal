@@ -150,7 +150,7 @@ function MyTabsScreen() {
         component={DashStackScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Dashboard',
+          tabBarLabel: 'Kitchen',
           tabBarIcon: () => dashIcon(),
         }}
       />

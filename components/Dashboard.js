@@ -420,15 +420,15 @@ const Dashboard = () => {
     }, []),
   );
 
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await Camera.requestCameraPermission();
-      if (permission === 'denied') {
-        await Linking.openSettings();
-      }
-    }
-    getPermission();
-  }, []);
+  // useEffect(() => {
+  //   async function getPermission() {
+  //     const permission = await Camera.requestCameraPermission();
+  //     if (permission === 'denied') {
+  //       await Linking.openSettings();
+  //     }
+  //   }
+  //   getPermission();
+  // }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -449,7 +449,7 @@ const Dashboard = () => {
           <View style={styles.itemTextContainer}>
             <Text style={styles.itemText}>{item.name}</Text>
             <Text style={styles.itemText}>
-              {calculateDaysUntilExpiration(item.exp_date)}d
+              {calculateDaysUntilExpiration(item.exp_date)} days remaining
             </Text>
           </View>
         </TouchableOpacity>
@@ -484,6 +484,51 @@ const Dashboard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerText}>
+        <Text style={styles.titleText}>Your Items ({items.length})</Text>
+        {items.length > 0 ? (
+          <TouchableOpacity
+            style={styles.headerIcon}
+            onPress={confirmDeleteAll}>
+            <AntDesignIcon name="delete" size={20} color="black" />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+
+      {items.length > 0 ? (
+        isItemsLoading ? (
+          <View style={styles.itemsLoadingContainer}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        ) : (
+          <FlatList
+            windowSize={10}
+            style={styles.itemsList}
+            data={items}
+            keyExtractor={item => item._id}
+            renderItem={renderItem}
+          />
+        )
+      ) : (
+        <View style={styles.emptyStateContainer}>
+          <Text style={styles.emptyStateText}>
+            No items yet. Tap{' '}
+            <TouchableOpacity
+              style={styles.emptyFab}
+              onPress={() => navToMultiSelect()}>
+              <AntDesignIcon name="plus" size={20} color="white" />
+            </TouchableOpacity>{' '}
+            to choose from our common ingredients, or{' '}
+            <TouchableOpacity
+              style={styles.emptyFab}
+              onPress={() => setAddItemModalVisible(true)}>
+              <AntDesignIcon name="edit" size={20} color="white" />
+            </TouchableOpacity>{' '}
+            to add a custom item
+          </Text>
+        </View>
+      )}
+
+      {/* <View style={styles.headerText}>
         <Text style={styles.titleText}>Dashboard</Text>
         <TouchableOpacity
           style={styles.headerIcon}
@@ -512,7 +557,7 @@ const Dashboard = () => {
             onViewableItemsChanged={onViewRef.current}
           />
         </View>
-      )}
+      )} */}
 
       <DatePicker
         mode="date"
@@ -549,27 +594,6 @@ const Dashboard = () => {
         }}
       />
 
-      <View style={styles.headerText}>
-        <Text style={styles.titleText}>Groceries ({items.length})</Text>
-        <TouchableOpacity style={styles.headerIcon} onPress={confirmDeleteAll}>
-          <AntDesignIcon name="delete" size={20} color="black" />
-        </TouchableOpacity>
-      </View>
-
-      {isItemsLoading ? (
-        <View style={styles.itemsLoadingContainer}>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      ) : (
-        <FlatList
-          windowSize={10}
-          style={styles.itemsList}
-          data={items}
-          keyExtractor={item => item._id}
-          renderItem={renderItem}
-        />
-      )}
-
       <View>
         <TouchableOpacity
           style={styles.leftFab}
@@ -584,7 +608,7 @@ const Dashboard = () => {
         </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
-          <AntDesignIcon name="menuunfold" size={20} color="white" />
+          <AntDesignIcon name="plus" size={20} color="white" />
         </TouchableOpacity>
 
         <Modal
