@@ -55,7 +55,8 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     paddingHorizontal: 25,
     paddingVertical: 14,
-    backgroundColor: '#f8f9fa',
+    // backgroundColor: '#f8f9fa',
+    backgroundColor: 'white',
   },
   itemTextContainer: {
     // flexDirection: 'row',

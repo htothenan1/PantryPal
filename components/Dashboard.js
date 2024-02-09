@@ -26,6 +26,7 @@ import foodRespect from '../assets/food_respect.png';
 // import savingMoney from '../assets/saving_money.png';
 import kitchenPrep from '../assets/kitchen_prep.png';
 import homeCooking from '../assets/home_cooking.png';
+import groceryPic from '../assets/grocery.png'; // Adjust the path as necessary
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const carouselObjects = [
@@ -75,6 +76,28 @@ const Dashboard = () => {
 
   const toggleDashVisibility = () => {
     setIsDashVisible(!isDashVisible);
+  };
+
+  const findIngredient = itemName => {
+    let ingredient = ingredients.find(
+      ing => ing.name.toLowerCase() === itemName.toLowerCase(),
+    );
+
+    if (!ingredient) {
+      for (let item of ingredients) {
+        if (
+          item.subItems &&
+          item.subItems.some(
+            subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
+          )
+        ) {
+          ingredient = item;
+          break;
+        }
+      }
+    }
+
+    return ingredient;
   };
 
   const deleteItem = async (itemId, method) => {
@@ -449,6 +472,9 @@ const Dashboard = () => {
   const renderItem = ({item}) => {
     const daysRemaining = calculateDaysUntilExpiration(item.exp_date);
     const backgroundColor = getBackgroundColor(daysRemaining);
+
+    const ingredient = findIngredient(item.name);
+    const itemImage = ingredient ? ingredient.img : groceryPic; // Use the found image or a default one
     return (
       <Swipeable
         ref={ref => swipeableRefs.set(item._id, ref)}
@@ -456,8 +482,12 @@ const Dashboard = () => {
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
           onPress={() => navToItemDetails(item)}
-          style={styles.item}>
-          <View style={styles.itemTextContainer}>
+          style={[styles.item, {flexDirection: 'row', alignItems: 'center'}]}>
+          <Image
+            source={itemImage}
+            style={{width: 50, height: '100%', resizeMode: 'contain'}}
+          />
+          <View style={{flex: 1, justifyContent: 'center', marginLeft: 10}}>
             <Text style={[styles.itemText, {color: backgroundColor}]}>
               {item.name}
             </Text>
