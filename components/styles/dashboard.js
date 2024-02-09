@@ -13,7 +13,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   itemsLoadingContainer: {
-    height: 500,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

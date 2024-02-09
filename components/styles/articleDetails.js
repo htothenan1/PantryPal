@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
   },
   contentContainer: {
     paddingBottom: 50,
@@ -18,6 +17,7 @@ export default StyleSheet.create({
     height: 200,
     width: '100%',
     marginBottom: 10,
+    resizeMode: 'cover',
   },
   paragraphTitle: {
     fontSize: 20,

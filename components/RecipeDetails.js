@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import styles from './styles/recipeDetails';
@@ -88,52 +88,55 @@ const RecipeDetails = ({route}) => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.titleText}>{recipe.title}</Text>
       <Image source={{uri: recipe.image}} style={styles.image} />
-      <TouchableOpacity
-        onPress={toggleFavoriteRecipe}
-        style={styles.favoriteButton}>
-        <AntDesignIcon
-          name={isFavorited ? 'heart' : 'hearto'}
-          size={24}
-          color={isFavorited ? 'red' : 'black'}
-        />
-        <Text style={styles.favoriteText}>
-          {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
-        </Text>
-      </TouchableOpacity>
-      <Text style={styles.servingsText}>Servings: {recipe.servings}</Text>
+      <View style={{padding: 20}}>
+        <Text style={styles.titleText}>{recipe.title}</Text>
+        <TouchableOpacity
+          onPress={toggleFavoriteRecipe}
+          style={styles.favoriteButton}>
+          <AntDesignIcon
+            name={isFavorited ? 'heart' : 'hearto'}
+            size={24}
+            color={isFavorited ? 'red' : 'black'}
+          />
+          <Text style={styles.favoriteText}>
+            {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+          </Text>
+        </TouchableOpacity>
+        <Text style={styles.servingsText}>Servings: {recipe.servings}</Text>
 
-      <Text style={styles.ingredientsTitleText}>Ingredients:</Text>
-      {recipe.extendedIngredients.map((ingredient, index) => (
-        <Text key={index} style={styles.ingredientsText}>
-          {highlightMatchingWords(
-            ingredient.original,
-            selectedIngredients
-              ? selectedIngredients.map(i => i.toLowerCase())
-              : [],
-          )}
-        </Text>
-      ))}
-
-      {hasInstructions ? (
-        <>
-          <Text style={styles.instructionsTitleText}>Instructions:</Text>
-          {recipe.analyzedInstructions[0].steps.map((step, index) => (
-            <Text key={index} style={styles.instructionsText}>
-              {index + 1}.{' '}
-              {highlightMatchingWords(
-                step.step,
-                selectedIngredients
-                  ? selectedIngredients.map(i => i.toLowerCase())
-                  : [],
-              )}
-            </Text>
-          ))}
-        </>
-      ) : (
-        <Text style={styles.instructionsText}>No instructions available.</Text>
-      )}
+        <Text style={styles.ingredientsTitleText}>Ingredients:</Text>
+        {recipe.extendedIngredients.map((ingredient, index) => (
+          <Text key={index} style={styles.ingredientsText}>
+            {highlightMatchingWords(
+              ingredient.original,
+              selectedIngredients
+                ? selectedIngredients.map(i => i.toLowerCase())
+                : [],
+            )}
+          </Text>
+        ))}
+        {hasInstructions ? (
+          <>
+            <Text style={styles.instructionsTitleText}>Instructions:</Text>
+            {recipe.analyzedInstructions[0].steps.map((step, index) => (
+              <Text key={index} style={styles.instructionsText}>
+                {index + 1}.{' '}
+                {highlightMatchingWords(
+                  step.step,
+                  selectedIngredients
+                    ? selectedIngredients.map(i => i.toLowerCase())
+                    : [],
+                )}
+              </Text>
+            ))}
+          </>
+        ) : (
+          <Text style={styles.instructionsText}>
+            No instructions available.
+          </Text>
+        )}
+      </View>
     </ScrollView>
   );
 };

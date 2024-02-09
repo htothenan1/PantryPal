@@ -400,6 +400,15 @@ const Dashboard = () => {
   // const navToCamera = () => {
   //   navigation.navigate('CameraPage');
   // };
+  const getBackgroundColor = daysRemaining => {
+    if (daysRemaining >= 5) {
+      return '#2c6e49'; // Green background for 5 or more days remaining
+    } else if (daysRemaining >= 2 && daysRemaining <= 4) {
+      return '#2c6e49'; // Yellow background for 2, 3, or 4 days remaining
+    } else {
+      return '#d90429'; // Red background for 1 day or less
+    }
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -438,6 +447,8 @@ const Dashboard = () => {
   };
 
   const renderItem = ({item}) => {
+    const daysRemaining = calculateDaysUntilExpiration(item.exp_date);
+    const backgroundColor = getBackgroundColor(daysRemaining);
     return (
       <Swipeable
         ref={ref => swipeableRefs.set(item._id, ref)}
@@ -447,9 +458,11 @@ const Dashboard = () => {
           onPress={() => navToItemDetails(item)}
           style={styles.item}>
           <View style={styles.itemTextContainer}>
-            <Text style={styles.itemText}>{item.name}</Text>
-            <Text style={styles.itemText}>
-              {calculateDaysUntilExpiration(item.exp_date)} days remaining
+            <Text style={[styles.itemText, {color: backgroundColor}]}>
+              {item.name}
+            </Text>
+            <Text style={[styles.itemText, {color: backgroundColor}]}>
+              {daysRemaining} days remaining
             </Text>
           </View>
         </TouchableOpacity>

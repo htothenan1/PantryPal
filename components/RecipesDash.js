@@ -116,10 +116,10 @@ const Dashboard = () => {
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {item.name}
           </Text>
-          <Text
+          {/* <Text
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {calculateDaysUntilExpiration(item.exp_date)}d
-          </Text>
+          </Text> */}
         </View>
       </TouchableOpacity>
     );
@@ -238,7 +238,7 @@ const Dashboard = () => {
         )}
       </View>
       <View style={styles.headerText}>
-        <Text style={styles.titleText}>Groceries ({items.length})</Text>
+        <Text style={styles.titleText}>Your Items ({items.length})</Text>
       </View>
       {isItemsLoading ? (
         <View style={styles.itemsLoadingContainer}>

@@ -78,7 +78,7 @@ export const articles = [
       'The journey to improving one’s behavior in the kitchen is marked by the willingness to take the first small step. Embracing small, incremental challenges not only makes the goal of becoming a more proficient and responsible cook more achievable but also fosters a sense of confidence and encourages reflection on one’s impact on health and the environment. By focusing on manageable changes, individuals can significantly enhance their culinary skills, make more informed food choices, and cultivate a sustainable and enjoyable kitchen environment.',
   },
   {
-    title: "Mastering the 5 S's of Cooking",
+    title: 'Soups, Sauces, Smoothies, Salads, and Stirfries',
     intro:
       "Mastering the art of preparing the 5 S's—Soups, Sauces, Smoothies, Salads, and Stir-fries—can significantly enhance a home chef's ability to minimize food waste, while laying a solid foundation for culinary creativity and skill development. These versatile and fundamental categories of dishes not only offer a pathway to using up ingredients that might otherwise spoil but also serve as an excellent starting point for beginners aiming to make their kitchens more efficient and their meals more varied and nutritious.",
     paragraghs: [
@@ -139,5 +139,135 @@ export const articles = [
     ],
     conclusion:
       'In conclusion, respecting the foods we purchase is an act of acknowledgment and gratitude for the complex journey food undergoes to nourish us. It is a reminder of the labor, energy, and resources invested in each step of the food chain and a call to action for consumers to engage with food more thoughtfully and sustainably. By understanding and appreciating the efforts behind our food, we can cultivate a sense of responsibility that guides our choices, reduces waste, and supports a more sustainable food system for future generations.',
+  },
+  {
+    title: 'The 5 French Mother Sauces',
+    intro:
+      "Embarking on a culinary journey begins with understanding the fundamental elements that form the backbone of cooking. Among these, the 5 French mother sauces stand as pillars of culinary knowledge, offering a gateway to combining ingredients, appreciating flavors, and fostering creativity in the kitchen. Learning these sauces is not just about following recipes; it's an introduction to the philosophy of cooking, a testament to the art of flavor layering, and a stepping stone to efficient kitchen management and enhanced culinary skills.",
+    paragraghs: [
+      {
+        paraTitle: 'Béchamel: The Creamy Canvas',
+        content:
+          "Originating from the court of King Louis XIV, Béchamel sauce is a testament to the refinement of French cuisine. Made with a roux (butter and flour) and milk, this sauce's velvety texture and mild flavor make it a versatile base for a variety of dishes, from classic lasagna to creamy vegetable gratins. Its simplicity in ingredients belies its complexity in technique, teaching the importance of patience and stirring in achieving the perfect consistency. Béchamel's history and utility make it a perfect starting point for understanding the transformative power of basic ingredients.",
+      },
+      {
+        paraTitle: 'Velouté: The Silky Sophisticate',
+        content:
+          "Velouté sauce, derived from the French word for 'velvety' lives up to its name. It shares a method with Béchamel but uses light stock (chicken, fish, or veal) instead of milk. This substitution introduces aspiring chefs to the concept of stock-based sauces, emphasizing the importance of stock quality and sauce reduction. Learning to make Velouté involves mastering the art of balancing flavors and achieving a silky consistency, foundational skills for any chef looking to elevate their cooking.",
+      },
+      {
+        paraTitle: 'Espagnole: The Rich Tapestry',
+        content:
+          "Espagnole, or brown sauce, delves deeper into the complexity of sauce-making. It starts with a dark roux, to which tomato paste and a robust beef stock are added, creating a deep, complex flavor base. This sauce is often further refined into demi-glace, offering a glimpse into the intricate processes that define haute cuisine. Understanding Espagnole's preparation is crucial for those looking to master the art of rich, meat-based sauces and stews, showcasing the importance of patience and precision in cooking.",
+      },
+      {
+        paraTitle: 'Sauce Tomat: The Versatile Heart',
+        content:
+          "Sauce Tomat, the French mother sauce based on tomatoes, olive oil, vegetables, and stock, is a celebration of the tomato's introduction to European cuisine. Its preparation, involving simmering to achieve a rich flavor, teaches the importance of slow cooking and ingredient integration. This sauce's history and adaptability serve as a reminder of cooking's evolving nature, encouraging chefs to experiment and adapt traditional techniques to modern tastes.",
+      },
+      {
+        paraTitle: 'Hollandaise: The Delicate Emulsion',
+        content:
+          'Hollandaise is an emulsion of egg yolks, butter, and lemon juice, known for its delicate balance and rich flavor. Its preparation, requiring careful temperature control and whisking to achieve a smooth, creamy texture, introduces chefs to the challenge of emulsion sauces. Learning to make Hollandaise is a lesson in precision and technique, essential for mastering the art of delicate sauces and dressings.',
+      },
+    ],
+    conclusion:
+      'The 5 French mother sauces are more than just recipes; they are lessons in history, technique, and flavor. Each sauce offers unique insights into the culinary world, from the importance of foundational techniques to the art of flavor development. For those looking to enhance their culinary skills and kitchen management, mastering these sauces is an optimal starting point. Through them, one learns not only how to combine ingredients but also how to appreciate the nuances of flavor and the creative potential of cooking. This journey through the mother sauces is a celebration of culinary basics, a testament to the artistry of cooking, and a vital step towards becoming a proficient chef.',
+  },
+  {
+    title: 'Avocados',
+    intro:
+      'Avocados, with their creamy texture and rich, nutty flavor, have taken the culinary world by storm. Beyond their allure in the kitchen, avocados boast a variety of health benefits, making them a favored ingredient among chefs and health enthusiasts alike. This informational piece delves into the growth and cultivation of avocados, explores the diverse varieties available, and offers insights into the best practices for storing and preparing them in the kitchen.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Production',
+        content:
+          "Avocados flourish in warm, temperate climates, with Mexico leading the charge as the world's top producer. These fruits demand specific conditions for growth, including well-drained, fertile soil and a climate free from frost. Both small-scale family farms and larger agricultural enterprises invest years into cultivating avocado trees, which can take 3 to 5 years to bear fruit, emphasizing a dedication to the craft of agriculture. The global distribution of avocado farms, from the United States to Peru and beyond, showcases the fruit's adaptability to various environmental conditions, ensuring a steady supply to meet the growing demand.",
+      },
+      {
+        paraTitle: 'Varietal Diversity',
+        content:
+          "The avocado's appeal partly lies in its varietal diversity, which caters to a range of tastes and culinary applications. The Hass variety, known for its textured, dark skin that becomes purplish-black upon ripening, dominates the market for its rich flavor and creamy consistency. Other varieties, such as the smooth-skinned, pear-shaped Fuerte and the large, round Reed, offer subtle differences in taste and texture, making each suitable for specific dishes. This diversity ensures that avocados can be a versatile component in numerous recipes, from traditional guacamole to innovative culinary creations.",
+      },
+      {
+        paraTitle: 'Storage and Culinary Use',
+        content:
+          "Proper storage is key to preserving an avocado's quality. Unripe avocados ripen best at room temperature, while ripe avocados can be refrigerated to slow down the ripening process. For a quicker ripening method, placing avocados in a paper bag with an apple or banana can expedite the process, thanks to ethylene gas. In the kitchen, avocados shine in a variety of dishes; they can be sliced for sandwiches, mashed for dips, or blended into smoothies. The secret to their best use lies in timing their use when perfectly ripe, unlocking the full potential of their flavor and texture.",
+      },
+    ],
+    conclusion:
+      'The journey of avocados from orchard to kitchen table is a fascinating tale of cultivation, variety, and culinary versatility. Understanding the growth process, the range of available varieties, and the best storage and preparation techniques can greatly enhance the enjoyment and nutritional benefits of this beloved fruit. Avocados not only contribute to a healthy diet but also inspire creativity in the kitchen, making them a true culinary treasure.',
+  },
+  {
+    title: 'Apples',
+    intro:
+      'Apples, with their crisp texture and a spectrum of flavors ranging from sweet to tart, are among the most beloved and widely consumed fruits around the globe. Revered not just for their taste but also for their health benefits, apples embody the phrase "an apple a day keeps the doctor away." This article explores the cultivation and varieties of apples, their health benefits, and offers insights into storing and enjoying them in culinary practices.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Varieties',
+        content:
+          'The cultivation of apples is a testament to horticultural skill and dedication, with orchards spanning the temperate zones of the world. Countries like China, the United States, and Poland lead in apple production, each region boasting varieties that reflect local preferences and climatic conditions. Apples are grown on a scale from small family-run farms to large commercial operations, highlighting their universal appeal and adaptability. Among the plethora of apple varieties, some stand out for their popularity and distinct characteristics: the crisp and sweet Honeycrisp, the tangy and versatile Granny Smith, and the rich, dessert-friendly Fuji. Each variety offers a different eating experience and culinary potential, making apples a global staple in diets.',
+      },
+      {
+        paraTitle: 'Nutritional Benefits',
+        content:
+          'Apples are a powerhouse of nutrition, packed with essential vitamins, minerals, and dietary fiber, while being low in calories. Rich in vitamin C and B-complex vitamins, they support immune function and maintain healthy nervous and digestive systems. The presence of dietary fiber, particularly pectin, aids in regulating blood sugar levels and cholesterol, making apples a smart choice for heart health. Furthermore, the phytonutrients and antioxidants in apples, such as quercetin, epicatechin, and flavonoids, contribute to their anti-inflammatory and antioxidant properties, offering protection against chronic diseases.',
+      },
+      {
+        paraTitle: 'Storage and Culinary Use',
+        content:
+          "To maximize their shelf life and flavor, apples should be stored in a cool, dark place or in the refrigerator's crisper drawer, where they can last for several weeks. For those looking to ripen apples more quickly, storing them at room temperature or in a bag with ethylene-producing fruits like bananas can accelerate the process. In the kitchen, apples demonstrate remarkable versatility: they can be baked into pies and tarts, chopped into salads for a crunchy texture, or simply eaten raw as a nutritious snack. Cooking with apples allows for creativity, whether it's incorporating them into savory dishes or creating classic desserts.",
+      },
+    ],
+    conclusion:
+      "Apples stand as a testament to the diversity and adaptability of fruit, offering a range of tastes, textures, and nutritional benefits that cater to a wide audience. From the careful cultivation of different varieties to their role in a healthy diet and their versatility in cooking, apples are a foundational element of global cuisines. Understanding the best practices for storage and the many ways to enjoy apples can enhance one's appreciation of this ubiquitous yet extraordinary fruit, reinforcing its status as a staple in diets around the world.",
+  },
+  {
+    title: 'Potatoes',
+    intro:
+      'Potatoes, the humble root vegetable, have carved out a significant place in the culinary traditions of cultures around the world. Esteemed for their versatility, nutritional value, and ability to adapt to various climates, potatoes have become a staple food in many countries. This article delves into the journey of potatoes from the ground to the dinner table, exploring their cultivation, the wide array of varieties, their health benefits, and the myriad ways they can be prepared and enjoyed in the kitchen.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Varieties',
+        content:
+          'Originating from the South American Andes, potatoes have been cultivated for thousands of years, with Peru and Bolivia hosting a vast array of indigenous varieties. Today, they are grown globally, with China, India, Russia, and Ukraine among the top producers. Potatoes thrive in temperate climates, requiring well-drained soil and moderate temperatures to grow. There are over a thousand varieties of potatoes, categorized broadly into common types such as russet, red, yellow, and purple, each with its unique flavor, texture, and culinary use. Russets are ideal for baking and frying, red potatoes hold their shape well after cooking, making them perfect for salads and soups, while yellow potatoes have a buttery flavor suited for mashing.',
+      },
+      {
+        paraTitle: 'Nutritional Profile',
+        content:
+          'Despite misconceptions about their nutritional value, potatoes are a rich source of vitamins, minerals, and fiber, particularly when eaten with their skin on. They are high in vitamin C, which is essential for iron absorption and immune function, and potassium, crucial for blood pressure regulation. Potatoes also provide a good amount of vitamin B6, which supports metabolism and brain health. Additionally, their complex carbohydrates offer sustained energy, making them a staple energy source. The fiber content in potatoes promotes digestive health and can aid in maintaining a healthy weight.',
+      },
+      {
+        paraTitle: 'Storage and Culinary Flexibility',
+        content:
+          "Storing potatoes in a cool, dark place can prolong their shelf life by preventing sprouting and preserving their firmness. It's best to avoid refrigeration, as cold temperatures can convert their starch into sugar, affecting flavor and texture. In the kitchen, potatoes' culinary potential is vast; they can be boiled, baked, roasted, fried, or mashed, serving as the foundation for countless dishes worldwide. From the classic mashed potatoes to the crispy French fries, the creamy potato salad to the hearty potato stew, their versatility makes potatoes indispensable in both simple home cooking and gourmet cuisine.",
+      },
+    ],
+    conclusion:
+      "Potatoes are more than just a side dish; they are a global culinary phenomenon that has nourished populations for centuries. Their wide range of varieties, significant nutritional benefits, and unmatched culinary flexibility have cemented their status as a beloved staple. Understanding the cultivation of potatoes, the characteristics of different varieties, and the best practices for storage and preparation can enrich one's culinary experiences, making the most of this versatile and nutritious vegetable. Whether it's in a comforting bowl of mashed potatoes or a gourmet potato gratin, the humble potato continues to be a central element in kitchens around the world.",
+  },
+  {
+    title: 'Onions',
+    intro:
+      'Onions, with their pungent aroma and ability to transform any dish, are indispensable in kitchens worldwide. Esteemed not just for their culinary versatility but also for their health benefits, onions have been a cornerstone of cooking for centuries. This article takes a closer look at the journey of onions from farm to table, exploring their cultivation, the diverse varieties available, their nutritional benefits, and the myriad ways they can be prepared and integrated into dishes.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Varieties',
+        content:
+          "Onions are cultivated globally, thriving in a wide range of climates from temperate to semi-arid regions. Major producers include China, India, the United States, and Egypt, reflecting the vegetable's universal appeal and adaptability. The cultivation process begins with planting onion sets or seeds and requires attentive care to ensure a bountiful harvest. Onions come in a vast array of varieties, distinguished by their color, size, and flavor profiles. Yellow onions, with their robust flavor, are a kitchen staple, while red onions offer a milder taste and a pop of color perfect for salads. White onions, known for their sharpness, are often used in Mexican cuisine, and sweet onions, like the Vidalia, are favored for their mild flavor.",
+      },
+      {
+        paraTitle: 'Nutritional Profile',
+        content:
+          'Onions are more than just a flavorful addition to meals; they boast numerous health benefits. Rich in vitamin C, onions support immune function and skin health. They also contain quercetin, a powerful antioxidant that may reduce inflammation and lower blood pressure. Onions are a good source of fiber, which promotes digestive health, and their sulfur compounds have been studied for their potential to protect against certain cancers. Incorporating onions into daily meals can contribute to a balanced and healthy diet.',
+      },
+      {
+        paraTitle: 'Culinary Uses and Storage',
+        content:
+          'The culinary applications of onions are nearly limitless. They can be sautéed to form the base of soups, stews, and sauces, caramelized to bring out their natural sweetness, or used raw in salads for a crisp, pungent kick. Onions are also pickled, roasted, or used as a garnish, showcasing their versatility. To maximize their shelf life, onions should be stored in a cool, dry place with adequate air circulation. Avoid storing them near potatoes, as this can cause both vegetables to spoil more quickly.',
+      },
+    ],
+    conclusion:
+      'Onions play a pivotal role in the culinary world, serving as the backbone of flavor for countless dishes. Their widespread cultivation, diversity of varieties, significant health benefits, and extensive culinary uses make onions a fundamental ingredient in global cuisines. Understanding the nuances of different onion types and mastering their storage and preparation can elevate cooking, allowing chefs and home cooks alike to harness the full potential of this essential vegetable. Onions, with their simple complexity, continue to be a staple in the art of cooking, enhancing flavors and contributing to nutritious, balanced meals.',
   },
 ];

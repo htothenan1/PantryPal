@@ -14,6 +14,7 @@ import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import RecipesDash from './components/RecipesDash';
 import ArticleDetails from './components/ArticleDetails';
+import Learn from './components/Learn';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // import {Image} from 'react-native';
 // import logo from './assets/chefs_hat.png';
@@ -49,6 +50,10 @@ function AccountTitle() {
 }
 
 function RecipesDashTitle() {
+  // return <AntDesignIcon name="search1" size={30} color="black" />;
+  return null;
+}
+function LearnTitle() {
   // return <AntDesignIcon name="search1" size={30} color="black" />;
   return null;
 }
@@ -91,6 +96,26 @@ function DashStackScreen() {
         }}
         name="CameraPage"
         component={CameraPage}
+      />
+    </DashStack.Navigator>
+  );
+}
+
+function LearnStackScreen() {
+  return (
+    <DashStack.Navigator>
+      <DashStack.Screen
+        name="Learn"
+        component={Learn}
+        options={{
+          headerShown: false,
+          headerTitle: props => <LearnTitle {...props} />,
+        }}
+      />
+      <DashStack.Screen
+        options={{headerShown: true, headerTitle: 'Article Details'}}
+        name="ArticleDetails"
+        component={ArticleDetails}
       />
     </DashStack.Navigator>
   );
@@ -142,6 +167,10 @@ const accountIcon = () => {
   return <AntDesignIcon name="user" size={20} color="black" />;
 };
 
+const learnIcon = () => {
+  return <AntDesignIcon name="bulb1" size={20} color="black" />;
+};
+
 function MyTabsScreen() {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
@@ -164,6 +193,16 @@ function MyTabsScreen() {
         }}
       />
       <Tab.Screen
+        name="LearnScreen"
+        component={LearnStackScreen}
+        options={{
+          headerShown: true,
+          headerTitle: props => <LearnTitle {...props} />,
+          tabBarLabel: 'Learn',
+          tabBarIcon: () => learnIcon(),
+        }}
+      />
+      {/* <Tab.Screen
         name="Insights"
         options={{
           headerShown: true,
@@ -172,7 +211,7 @@ function MyTabsScreen() {
           tabBarIcon: () => insightsIcon(),
         }}
         component={Insights}
-      />
+      /> */}
       <Tab.Screen
         name="Account"
         options={{

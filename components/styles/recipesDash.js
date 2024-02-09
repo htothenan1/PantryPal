@@ -21,7 +21,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 24,
+    marginVertical: 20,
+    // marginLeft: 24,
   },
   selectedItemStyle: {
     backgroundColor: '#495057',
@@ -52,14 +53,14 @@ export default StyleSheet.create({
   image: {
     width,
     height: 200,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
   titleText: {
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    marginVertical: 20,
+    // marginTop: 20,
   },
   footerText: {
     textAlign: 'center',
@@ -78,7 +79,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 18,
     fontWeight: 'bold',
-    marginVertical: 10,
+    marginTop: 10,
   },
   fetchRecipesSubText: {
     fontSize: 16,

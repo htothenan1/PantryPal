@@ -12,21 +12,23 @@ const ArticleDetails = ({route}) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       <Image source={article.image} style={styles.image} />
-      <Text style={styles.titleText}>{article.title}</Text>
-      {matchingArticle && (
-        <View>
-          <Text style={styles.paragraphContent}>{matchingArticle.intro}</Text>
-          {matchingArticle.paragraghs.map((paragraph, index) => (
-            <View key={index} style={styles.paragraphContainer}>
-              <Text style={styles.paragraphTitle}>{paragraph.paraTitle}</Text>
-              <Text style={styles.paragraphContent}>{paragraph.content}</Text>
-            </View>
-          ))}
-          <Text style={styles.paragraphContent}>
-            {matchingArticle.conclusion}
-          </Text>
-        </View>
-      )}
+      <View style={{padding: 20}}>
+        <Text style={styles.titleText}>{article.title}</Text>
+        {matchingArticle && (
+          <View>
+            <Text style={styles.paragraphContent}>{matchingArticle.intro}</Text>
+            {matchingArticle.paragraghs.map((paragraph, index) => (
+              <View key={index} style={styles.paragraphContainer}>
+                <Text style={styles.paragraphTitle}>{paragraph.paraTitle}</Text>
+                <Text style={styles.paragraphContent}>{paragraph.content}</Text>
+              </View>
+            ))}
+            <Text style={styles.paragraphContent}>
+              {matchingArticle.conclusion}
+            </Text>
+          </View>
+        )}
+      </View>
     </ScrollView>
   );
 };
