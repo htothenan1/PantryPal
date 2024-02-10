@@ -278,6 +278,32 @@ app.post('/items', async (req, res) => {
   }
 });
 
+// Endpoint to update user's iconName
+app.put('/users/icon', async (req, res) => {
+  const {email, iconName} = req.body;
+
+  if (!email || !iconName) {
+    return res.status(400).send('Email and iconName are required');
+  }
+
+  try {
+    const user = await User.findOneAndUpdate(
+      {email: email},
+      {iconName: iconName},
+      {new: true}, // Return the updated document
+    );
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Error updating user iconName:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 //Update an item's expiration date
 app.put('/items/:id', async (req, res) => {
   try {

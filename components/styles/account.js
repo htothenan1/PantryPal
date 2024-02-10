@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {height} = Dimensions.get('window'); // Get the screen height
 
 export default StyleSheet.create({
   container: {
@@ -9,7 +11,7 @@ export default StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10,
+    // marginVertical: 10,
   },
   titleText: {
     textAlign: 'left',
@@ -43,7 +45,7 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    marginVertical: 20,
+    // marginVertical: 20,
   },
   itemsList: {
     marginTop: 10,
@@ -53,5 +55,16 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Avenir-Book',
     marginVertical: 4,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    height: height * 0.5,
+    backgroundColor: 'white',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    padding: 20,
   },
 });

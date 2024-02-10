@@ -5,7 +5,11 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
+  Modal,
+  Image,
+  Dimensions,
 } from 'react-native';
+import {ingredients} from './data/ingredients';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
 import styles from './styles/account';
@@ -13,16 +17,46 @@ import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
+const {height} = Dimensions.get('window'); // Get the screen height
+
 const Account = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [wastedItems, setWastedItems] = useState([]);
   const [consumedItems, setConsumedItems] = useState([]);
+  const [isIconPickerVisible, setIconPickerVisible] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState(null); // Assume this will hold the URI or require statement for the image
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
+
+  const updateIconName = async selectedIconName => {
+    try {
+      const response = await fetch(`${API_URL}/users/icon`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          iconName: selectedIconName,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      console.log('Icon updated successfully:', updatedUser);
+      // Update local user data if needed
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating icon name:', error);
+    }
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -87,7 +121,17 @@ const Account = () => {
       ) : (
         <>
           <View style={styles.titleContainer}>
-            <AntDesignIcon name="user" size={50} color="black" />
+            <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
+              {selectedIcon ? (
+                <Image
+                  source={selectedIcon}
+                  style={{width: 100, height: 100, resizeMode: 'stretch'}}
+                />
+              ) : (
+                <AntDesignIcon name="user" size={50} color="black" />
+              )}
+            </TouchableOpacity>
+
             <Text style={styles.titleText}>{userData?.firstName}</Text>
             <Text style={styles.item}>
               Total Items Logged: {userData?.itemsCreated}
@@ -135,6 +179,41 @@ const Account = () => {
             onPress={handleLogout}>
             <Text style={styles.logout}>Logout</Text>
           </TouchableOpacity>
+          <Modal
+            visible={isIconPickerVisible}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={() => setIconPickerVisible(false)}>
+            <TouchableOpacity
+              style={styles.modalOverlay}
+              onPress={() => setIconPickerVisible(false)} // Close modal when overlay is pressed
+              activeOpacity={1}>
+              <View style={styles.modalContent}>
+                <ScrollView>
+                  {ingredients.map((ingredient, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        setSelectedIcon(ingredient.img);
+                        // updateIconName(ingredient.name);
+                        setIconPickerVisible(false);
+                      }}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginBottom: 10,
+                      }}>
+                      <Image
+                        source={ingredient.img}
+                        style={{width: 50, height: 50, marginRight: 10}}
+                      />
+                      <Text>{ingredient.name}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </TouchableOpacity>
+          </Modal>
         </>
       )}
     </ScrollView>
