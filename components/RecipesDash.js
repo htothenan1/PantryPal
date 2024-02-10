@@ -97,13 +97,6 @@ const Dashboard = () => {
     }, []),
   );
 
-  const calculateDaysUntilExpiration = expDate => {
-    const currentDate = new Date();
-    const expirationDate = new Date(expDate);
-    const timeDiff = expirationDate.getTime() - currentDate.getTime();
-    return Math.ceil(timeDiff / (1000 * 3600 * 24));
-  };
-
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item.name);
 
@@ -116,10 +109,6 @@ const Dashboard = () => {
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {item.name}
           </Text>
-          {/* <Text
-            style={[styles.itemText, isSelected && styles.selectedItemText]}>
-            {calculateDaysUntilExpiration(item.exp_date)}d
-          </Text> */}
         </View>
       </TouchableOpacity>
     );

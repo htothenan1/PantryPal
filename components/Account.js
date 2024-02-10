@@ -4,11 +4,9 @@ import {
   Text,
   ActivityIndicator,
   TouchableOpacity,
-  FlatList,
   ScrollView,
 } from 'react-native';
 import {auth} from '../firebase';
-import {SPOON_KEY} from '@env';
 import {signOut} from 'firebase/auth';
 import styles from './styles/account';
 import {useNavigation} from '@react-navigation/core';
@@ -20,62 +18,12 @@ const Account = () => {
   const [loading, setLoading] = useState(true);
   const [wastedItems, setWastedItems] = useState([]);
   const [consumedItems, setConsumedItems] = useState([]);
-  const [favoritedRecipes, setFavoritedRecipes] = useState([]);
 
   const userEmail = auth.currentUser?.email;
-  const firstName = auth.currentUser?.displayName;
   const navigation = useNavigation();
 
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
-  const fetchFavoritedRecipes = async () => {
-    if (!userEmail) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_URL}/favorites/user/${userEmail}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setFavoritedRecipes(data);
-    } catch (error) {
-      console.error('Error fetching favorited recipes:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSelectRecipe = async data => {
-    try {
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {recipe});
-    } catch (error) {
-      console.error('Error fetching recipe information:', error.message);
-    }
-  };
-
-  const renderRecipeItem = ({item}) => {
-    return (
-      <TouchableOpacity
-        onPress={() => handleSelectRecipe(item.recipeId)}
-        style={styles.recipeItem}>
-        <View style={styles.itemTextContainer}>
-          <Text style={styles.itemText}>{item.recipeName}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
   useFocusEffect(
     React.useCallback(() => {
       if (userEmail) {
@@ -121,13 +69,6 @@ const Account = () => {
     }, []),
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      fetchFavoritedRecipes();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
-  );
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -145,18 +86,14 @@ const Account = () => {
         <ActivityIndicator size="large" />
       ) : (
         <>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginVertical: 10,
-            }}>
+          <View style={styles.titleContainer}>
             <AntDesignIcon name="user" size={50} color="black" />
             <Text style={styles.titleText}>{userData?.firstName}</Text>
             <Text style={styles.item}>
               Total Items Logged: {userData?.itemsCreated}
             </Text>
           </View>
+
           <View style={styles.itemsList}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Consumed Items</Text>
@@ -174,27 +111,10 @@ const Account = () => {
               </Text>
             ))}
           </View>
-          {/* <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Consumed Items</Text>
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name="like2"
-                size={20}
-                color="green"
-              />
-            </View>
 
-            {consumedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
-          </View> */}
           <View style={styles.itemsList}>
             <View style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Wasted Items</Text>
-
               <AntDesignIcon
                 style={styles.headerIcon}
                 name="dislike2"
@@ -209,18 +129,7 @@ const Account = () => {
               </Text>
             ))}
           </View>
-          {/* <View style={styles.headerText}>
-            <Text style={styles.titleText}>
-              Favorite Recipes ({favoritedRecipes.length})
-            </Text>
-          </View>
 
-          <FlatList
-            windowSize={10}
-            style={styles.itemsList}
-            data={favoritedRecipes}
-            renderItem={renderRecipeItem}
-          /> */}
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={handleLogout}>

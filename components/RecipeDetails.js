@@ -7,7 +7,7 @@ import styles from './styles/recipeDetails';
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const RecipeDetails = ({route}) => {
-  const {recipe, selectedIngredients} = route.params; // Get selectedIngredients from params
+  const {recipe, selectedIngredients} = route.params;
   const [isFavorited, setIsFavorited] = useState(false);
 
   const userEmail = auth.currentUser?.email;
@@ -89,7 +89,7 @@ const RecipeDetails = ({route}) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       <Image source={{uri: recipe.image}} style={styles.image} />
-      <View style={{padding: 20}}>
+      <View style={styles.textContainer}>
         <Text style={styles.titleText}>{recipe.title}</Text>
         <TouchableOpacity
           onPress={toggleFavoriteRecipe}

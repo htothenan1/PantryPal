@@ -10,9 +10,6 @@ export default StyleSheet.create({
   contentContainer: {
     paddingBottom: 50,
   },
-  chartContainer: {
-    alignItems: 'center',
-  },
   image: {
     width,
     height: 200,
@@ -26,28 +23,11 @@ export default StyleSheet.create({
   dashContainer: {
     height: 250,
   },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'left',
-    alignItems: 'center',
-  },
-  headerText: {
-    textAlign: 'left',
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-    marginVertical: 20,
-  },
   titleText: {
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     marginVertical: 20,
-
-    // marginTop: 20,
-  },
-  headerIcon: {
-    marginLeft: 10,
   },
 });

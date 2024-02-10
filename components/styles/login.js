@@ -48,11 +48,11 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 16,
   },
-  // registerText: {
-  //   fontSize: 16,
-  //   fontFamily: 'Avenir-Book',
-  // },
-  // registerHyperlink: {
-  //   color: '#386641',
-  // },
+  registerText: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
+  },
+  registerHyperlink: {
+    color: '#386641',
+  },
 });

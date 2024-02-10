@@ -7,6 +7,9 @@ export default StyleSheet.create({
   contentContainer: {
     paddingBottom: 50,
   },
+  textContainer: {
+    padding: 20,
+  },
   titleText: {
     fontSize: 24,
     fontFamily: 'Avenir-Book',

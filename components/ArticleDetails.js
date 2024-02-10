@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Image, ScrollView, View} from 'react-native';
-import {articles} from './data/articles'; // Assuming this is the correct path
+import {articles} from './data/articles';
 import styles from './styles/articleDetails';
 
 const ArticleDetails = ({route}) => {
@@ -12,13 +12,13 @@ const ArticleDetails = ({route}) => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       <Image source={article.image} style={styles.image} />
-      <View style={{padding: 20}}>
+      <View style={styles.textContainer}>
         <Text style={styles.titleText}>{article.title}</Text>
         {matchingArticle && (
           <View>
             <Text style={styles.paragraphContent}>{matchingArticle.intro}</Text>
             {matchingArticle.paragraghs.map((paragraph, index) => (
-              <View key={index} style={styles.paragraphContainer}>
+              <View key={index}>
                 <Text style={styles.paragraphTitle}>{paragraph.paraTitle}</Text>
                 <Text style={styles.paragraphContent}>{paragraph.content}</Text>
               </View>

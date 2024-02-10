@@ -13,6 +13,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  textContainer: {
+    padding: 20,
+  },
   image: {
     height: 200,
     width: '100%',

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   FlatList,
   Text,
@@ -7,11 +7,11 @@ import {
   Image,
   ActivityIndicator,
   TextInput,
-  Linking,
+  // Linking,
   Button,
   Alert,
 } from 'react-native';
-import {Camera} from 'react-native-vision-camera';
+// import {Camera} from 'react-native-vision-camera';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -21,36 +21,8 @@ import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
-import firstStep from '../assets/first_step.png';
-import foodRespect from '../assets/food_respect.png';
-// import savingMoney from '../assets/saving_money.png';
-import kitchenPrep from '../assets/kitchen_prep.png';
-import homeCooking from '../assets/home_cooking.png';
-import groceryPic from '../assets/grocery.png'; // Adjust the path as necessary
+import groceryPic from '../assets/grocery.png';
 
-const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
-const carouselObjects = [
-  {
-    image: firstStep,
-    title: 'The First Step',
-  },
-  {
-    image: homeCooking,
-    title: "Mastering the 5 S's of Cooking",
-  },
-  {
-    image: foodRespect,
-    title: 'Respecting The Food You Purchase',
-  },
-  // {
-  //   image: savingMoney,
-  //   title: 'The Best Way to Save Money',
-  // },
-  {
-    image: kitchenPrep,
-    title: 'The Many Perks of a Tidy Kitchen',
-  },
-];
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const Dashboard = () => {
@@ -59,11 +31,8 @@ const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const swipeableRefs = useRef(new Map()).current;
-  const flatListRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [isDashVisible, setIsDashVisible] = useState(true);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
   const [customOpen, setCustomOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,10 +42,6 @@ const Dashboard = () => {
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
-
-  const toggleDashVisibility = () => {
-    setIsDashVisible(!isDashVisible);
-  };
 
   const findIngredient = itemName => {
     let ingredient = ingredients.find(
@@ -249,6 +214,7 @@ const Dashboard = () => {
       console.error('Error adding custom item:', error);
     }
   }
+
   async function addCustomItem(itemName) {
     setIsLoading(true);
     try {
@@ -414,22 +380,17 @@ const Dashboard = () => {
     });
   };
 
-  const navToArticleDetails = articleObject => {
-    navigation.navigate('ArticleDetails', {
-      article: articleObject,
-    });
-  };
-
   // const navToCamera = () => {
   //   navigation.navigate('CameraPage');
   // };
+
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
-      return '#2c6e49'; // Green background for 5 or more days remaining
+      return 'black';
     } else if (daysRemaining >= 2 && daysRemaining <= 4) {
-      return '#2c6e49'; // Yellow background for 2, 3, or 4 days remaining
+      return 'black';
     } else {
-      return '#d90429'; // Red background for 1 day or less
+      return '#d90429';
     }
   };
 
@@ -474,7 +435,7 @@ const Dashboard = () => {
     const backgroundColor = getBackgroundColor(daysRemaining);
 
     const ingredient = findIngredient(item.name);
-    const itemImage = ingredient ? ingredient.img : groceryPic; // Use the found image or a default one
+    const itemImage = ingredient ? ingredient.img : groceryPic;
     return (
       <Swipeable
         ref={ref => swipeableRefs.set(item._id, ref)}
@@ -482,12 +443,9 @@ const Dashboard = () => {
         renderLeftActions={() => renderLeftActions(item)}>
         <TouchableOpacity
           onPress={() => navToItemDetails(item)}
-          style={[styles.item, {flexDirection: 'row', alignItems: 'center'}]}>
-          <Image
-            source={itemImage}
-            style={{width: 50, height: '100%', resizeMode: 'contain'}}
-          />
-          <View style={{flex: 1, justifyContent: 'center', marginLeft: 10}}>
+          style={styles.item}>
+          <Image source={itemImage} style={styles.itemImage} />
+          <View style={styles.itemTextContainer}>
             <Text style={[styles.itemText, {color: backgroundColor}]}>
               {item.name}
             </Text>
@@ -502,26 +460,6 @@ const Dashboard = () => {
 
   const navToMultiSelect = () => {
     navigation.navigate('MultiSelect', {items: items});
-  };
-
-  const onViewRef = useRef(({changed}) => {
-    if (changed[0].isViewable) {
-      setCurrentIndex(changed[0].index);
-    }
-  });
-
-  const renderItems = ({item}) => {
-    const title =
-      item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
-
-    return (
-      <TouchableOpacity
-        onPress={() => navToArticleDetails(item)}
-        activeOpacity={1}>
-        <Image source={item.image} style={styles.image} />
-        <Text style={styles.footerText}>{title}</Text>
-      </TouchableOpacity>
-    );
   };
 
   return (
@@ -570,37 +508,6 @@ const Dashboard = () => {
           </Text>
         </View>
       )}
-
-      {/* <View style={styles.headerText}>
-        <Text style={styles.titleText}>Dashboard</Text>
-        <TouchableOpacity
-          style={styles.headerIcon}
-          onPress={toggleDashVisibility}>
-          <AntDesignIcon
-            name={isDashVisible ? 'up' : 'down'}
-            size={20}
-            color="black"
-          />
-        </TouchableOpacity>
-      </View>
-
-      {isDashVisible && (
-        <View style={styles.dashContainer}>
-          <FlatList
-            data={carouselObjects}
-            renderItem={renderItems}
-            keyExtractor={(item, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={true}
-            pagingEnabled
-            ref={ref => {
-              flatListRef.current = ref;
-            }}
-            viewabilityConfig={viewConfigRef}
-            onViewableItemsChanged={onViewRef.current}
-          />
-        </View>
-      )} */}
 
       <DatePicker
         mode="date"

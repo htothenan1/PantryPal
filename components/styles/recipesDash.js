@@ -22,7 +22,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
-    // marginLeft: 24,
   },
   selectedItemStyle: {
     backgroundColor: '#495057',
@@ -60,7 +59,6 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    // marginTop: 20,
   },
   footerText: {
     textAlign: 'center',

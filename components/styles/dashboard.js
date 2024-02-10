@@ -1,16 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native';
-
-const {width} = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  dashLoadingContainer: {
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   itemsLoadingContainer: {
     flex: 1,
@@ -21,13 +14,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 24,
   },
   headerIcon: {
     marginHorizontal: 10,
-  },
-  dashContainer: {
-    height: 250,
   },
   rightSwipeContainer: {
     flexDirection: 'row',
@@ -55,16 +44,23 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     paddingHorizontal: 25,
     paddingVertical: 14,
-    // backgroundColor: '#f8f9fa',
     backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   itemTextContainer: {
-    // flexDirection: 'row',
-    justifyContent: 'space-between',
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 10,
   },
   itemText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
+  },
+  itemImage: {
+    width: 50,
+    height: '100%',
+    resizeMode: 'contain',
   },
   fab: {
     position: 'absolute',
@@ -136,11 +132,6 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 20,
   },
-  image: {
-    width,
-    height: 200,
-    resizeMode: 'cover',
-  },
   titleText: {
     textAlign: 'center',
     fontSize: 20,
@@ -148,23 +139,17 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
   },
-  footerText: {
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-    marginTop: 5,
-  },
   emptyStateContainer: {
     flex: 1,
-    justifyContent: 'center', // Vertically centers the content
-    alignItems: 'center', // Horizontally centers the content
-    paddingHorizontal: 30, // Adds some padding on the sides
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 30,
   },
   emptyStateText: {
-    fontSize: 24, // Adjust the font size as needed
+    fontSize: 24,
     fontFamily: 'Avenir-Book',
     lineHeight: 60,
-    textAlign: 'center', // Ensures the text is centered if it wraps to a new line
-    color: '#666', // A neutral color for the text, but feel free to change it
+    textAlign: 'center',
+    color: '#666',
   },
 });
