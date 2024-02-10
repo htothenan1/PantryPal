@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,6 @@ import {
   ScrollView,
   Modal,
   Image,
-  Dimensions,
 } from 'react-native';
 import {ingredients} from './data/ingredients';
 import {auth} from '../firebase';
@@ -16,8 +15,6 @@ import styles from './styles/account';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-
-const {height} = Dimensions.get('window'); // Get the screen height
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
@@ -50,13 +47,27 @@ const Account = () => {
       }
 
       const updatedUser = await response.json();
-      console.log('Icon updated successfully:', updatedUser);
       // Update local user data if needed
       setUserData(updatedUser);
     } catch (error) {
       console.error('Error updating icon name:', error);
     }
   };
+
+  useEffect(() => {
+    if (userData?.iconName) {
+      const foundIcon = ingredients.find(
+        ingredient => ingredient.name === userData.iconName,
+      )?.img;
+      if (foundIcon) {
+        setSelectedIcon(foundIcon);
+      } else {
+        console.log('Icon not found:', userData.iconName);
+        // Optionally set a default icon if not found
+        // setSelectedIcon(defaultIcon);
+      }
+    }
+  }, [userData]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -128,7 +139,9 @@ const Account = () => {
                   style={{width: 100, height: 100, resizeMode: 'stretch'}}
                 />
               ) : (
-                <AntDesignIcon name="user" size={50} color="black" />
+                <View style={{marginTop: 10}}>
+                  <AntDesignIcon name="user" size={50} color="black" />
+                </View>
               )}
             </TouchableOpacity>
 
@@ -189,23 +202,31 @@ const Account = () => {
               onPress={() => setIconPickerVisible(false)} // Close modal when overlay is pressed
               activeOpacity={1}>
               <View style={styles.modalContent}>
+                <Text style={styles.modalTitleText}>
+                  Choose your Spirit Food
+                </Text>
                 <ScrollView>
                   {ingredients.map((ingredient, index) => (
                     <TouchableOpacity
                       key={index}
                       onPress={() => {
                         setSelectedIcon(ingredient.img);
-                        // updateIconName(ingredient.name);
+                        updateIconName(ingredient.name);
                         setIconPickerVisible(false);
                       }}
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
                         marginBottom: 10,
+                        // borderWidth: 0.2,
                       }}>
                       <Image
                         source={ingredient.img}
-                        style={{width: 50, height: 50, marginRight: 10}}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginRight: 10,
+                        }}
                       />
                       <Text>{ingredient.name}</Text>
                     </TouchableOpacity>

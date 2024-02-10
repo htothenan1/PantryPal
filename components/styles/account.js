@@ -11,14 +11,19 @@ export default StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    // marginVertical: 10,
+  },
+  modalTitleText: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingVertical: 10,
+    backgroundColor: '#e5e5e5',
   },
   titleText: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    marginVertical: 10,
+    marginBottom: 10,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -45,7 +50,6 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    // marginVertical: 20,
   },
   itemsList: {
     marginTop: 10,
