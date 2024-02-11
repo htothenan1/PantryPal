@@ -11,6 +11,7 @@ export default StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     // alignItems: 'center',
+    marginLeft: 8,
   },
   modalTitleText: {
     textAlign: 'center',
