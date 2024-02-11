@@ -131,7 +131,7 @@ const Account = () => {
         <ActivityIndicator size="large" />
       ) : (
         <>
-          <View style={styles.titleContainer}>
+          <View style={{flexDirection: 'row', marginTop: 30}}>
             <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
               {selectedIcon ? (
                 <Image
@@ -145,10 +145,12 @@ const Account = () => {
               )}
             </TouchableOpacity>
 
-            <Text style={styles.titleText}>{userData?.firstName}</Text>
-            <Text style={styles.item}>
-              Total Items Logged: {userData?.itemsCreated}
-            </Text>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>{userData?.firstName}</Text>
+              <Text style={styles.item}>
+                Total Items Logged: {userData?.itemsCreated}
+              </Text>
+            </View>
           </View>
 
           <View style={styles.itemsList}>

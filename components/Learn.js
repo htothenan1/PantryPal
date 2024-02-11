@@ -18,6 +18,7 @@ import potatoArt from '../assets/potato_art.png';
 import avoArt from '../assets/avo_art.png';
 import appleArt from '../assets/apple_art.png';
 import onionArt from '../assets/onion_art.png';
+import miseEnPlace from '../assets/mise_en_place.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -36,6 +37,10 @@ const Learn = () => {
       image: homeCooking,
       title: 'Soups, Sauces, Smoothies, Salads, and Stirfries',
     },
+    {
+      image: miseEnPlace,
+      title: 'Mise en Place',
+    },
   ];
 
   const latestArticlesObjects = [
@@ -52,12 +57,32 @@ const Learn = () => {
       title: 'The Many Perks of a Tidy Kitchen',
     },
     {
+      image: potatoArt,
+      title: 'Potatoes',
+    },
+    {
       image: motherSauces,
       title: 'The 5 French Mother Sauces',
     },
     {
+      image: onionArt,
+      title: 'Onions',
+    },
+    {
       image: homeCooking,
       title: 'Soups, Sauces, Smoothies, Salads, and Stirfries',
+    },
+    {
+      image: appleArt,
+      title: 'Apples',
+    },
+    {
+      image: miseEnPlace,
+      title: 'Mise en Place',
+    },
+    {
+      image: avoArt,
+      title: 'Avocados',
     },
   ];
 
@@ -88,6 +113,10 @@ const Learn = () => {
     {
       image: firstStep,
       title: 'The First Step',
+    },
+    {
+      image: kitchenPrep,
+      title: 'The Many Perks of a Tidy Kitchen',
     },
   ];
 
