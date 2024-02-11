@@ -82,6 +82,7 @@ const Dashboard = () => {
     React.useCallback(() => {
       let isActive = true;
 
+      setSelectedItems([]);
       const fetchData = async () => {
         await fetchItems();
       };

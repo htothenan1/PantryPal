@@ -20,11 +20,11 @@ export default StyleSheet.create({
   },
   rightSwipeContainer: {
     flexDirection: 'row',
-    width: 150,
+    width: 180,
     justifyContent: 'space-between',
   },
   swipeButton: {
-    width: 50,
+    width: 60,
     backgroundColor: '#dee2e6',
     justifyContent: 'center',
     alignItems: 'center',
