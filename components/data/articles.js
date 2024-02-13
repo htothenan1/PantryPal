@@ -294,4 +294,124 @@ export const articles = [
     conclusion:
       'Mise en place is more than just a culinary technique; it is a philosophy that champions preparation, organization, and efficiency in the kitchen. Its historical roots in professional French kitchens have influenced the culinary world at large, underscoring the importance of readiness in achieving culinary excellence. By incorporating mise en place into home cooking, individuals can enjoy the benefits of a more organized approach to preparing meals, ultimately leading to better results and a more enjoyable cooking experience. Whether in a high-end restaurant or a home kitchen, mise en place remains a timeless testament to the power of preparation in the culinary arts.',
   },
+  {
+    title: 'Bananas',
+    intro:
+      'Bananas, often dubbed as the world’s most popular fruit, have a long history of cultivation that stretches back thousands of years and spans across many continents. Originating from Southeast Asia, bananas are now grown in tropical and subtropical regions around the world, with India, China, and Indonesia being the largest producers. The growth of bananas is a year-round process that requires a frost-free environment with plenty of sunlight and well-drained, fertile soil. Family-owned plantations, as well as large-scale commercial farms, contribute to the global supply of bananas, often in countries where the fruit plays a significant role in the economy and the diet of the population.',
+    paragraghs: [
+      {
+        paraTitle: 'A Variety of Choices',
+        content:
+          'There are hundreds of banana varieties, but the most commonly consumed is the Cavendish, valued for its sweet taste and sturdy nature that withstands international shipping. However, many other varieties offer a range of flavors and textures, from the small and sweet Lady Finger bananas to the starchy and potato-like plantains, which are a staple food in many tropical countries. Each variety has its own unique set of characteristics, including size, sweetness, and texture, making some better suited for eating fresh and others for cooking.',
+      },
+      {
+        paraTitle: 'Storing and Enjoying Bananas',
+        content:
+          'Storing bananas properly can greatly extend their shelf life and preserve their quality. They should be kept at room temperature to ripen to their full sweetness and flavor. Once ripe, bananas can be stored in the refrigerator; the skin will darken, but the fruit inside will remain unchanged. In the kitchen, bananas are incredibly versatile. They can be eaten raw, added to smoothies for creaminess, baked into sweet breads, or fried to make indulgent desserts. Unripe green bananas and plantains can be boiled, fried, or mashed in savory dishes, similar to potatoes.',
+      },
+    ],
+    conclusion:
+      'Bananas are more than just a convenient snack; they are a nutritious, versatile fruit with a rich history and a vast array of varieties. Whether grown on small family farms or large commercial operations, bananas are a vital crop that sustains millions of people worldwide. By selecting the right variety, storing them appropriately, and preparing them using a method that suits their type, bananas can be enjoyed in countless ways, contributing to both our health and our culinary enjoyment.',
+  },
+  {
+    title: 'Grapes',
+    intro:
+      'Grapes, one of the oldest cultivated fruits, hold a significant place in history and culture while continuing to delight palates globally with their sweet, tart flavors. Thriving in temperate climates, grapes have become synonymous with regions that have come to define wine culture. However, their appeal extends beyond viniculture, into fresh snacks, culinary ingredients, and health foods. This article will explore the cultivation of grapes, the variety they offer, and the best ways to store and enjoy them both in the glass and on the plate.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Harvest',
+        content:
+          "Grapes are grown worldwide, with notable production in Italy, France, Spain, and the United States, particularly in California’s wine country. They flourish in climates that provide a balance of warm days and cool nights, which helps in developing the fruits' complex flavors. Vineyards are often located on slopes to ensure good drainage and sun exposure. Grapes are typically harvested once a year in a labor-intensive process that significantly affects the quality and flavor of both table grapes and wine. The growers, ranging from family-owned vineyards to large-scale wine producers, carefully monitor the grapes to determine the optimal time for harvest, which can vary significantly based on local climate and desired ripeness.",
+      },
+      {
+        paraTitle: 'A Spectrum of Varieties',
+        content:
+          "The diversity of grape varieties is astounding, with over 10,000 known grape varieties used for wine-making alone. Table grapes such as Thompson Seedless, Flame Seedless, and Concord have become household names. Meanwhile, wine grapes like Cabernet Sauvignon, Merlot, and Chardonnay are celebrated for producing some of the world's finest wines. Each variety has its unique profile, influencing the sweetness, acidity, color, and suitability for consumption as either table grapes or in wine production. The vast array of grape varieties allows for a wide range of wine styles and flavors, catering to diverse consumer tastes and preferences.",
+      },
+      {
+        paraTitle: 'Storage and Culinary Use',
+        content:
+          'Proper storage is crucial for maintaining the freshness and flavor of grapes. Table grapes should be refrigerated, ideally in a perforated bag to allow for air circulation. They should be washed only before consumption to prevent spoilage. Grapes can be enjoyed fresh, frozen as a cool snack, or used in cooking. They are versatile in the kitchen, making excellent additions to salads, cheese boards, and desserts. In winemaking, grapes undergo fermentation, a transformative process that converts their sugars into alcohol, with the grape skins imparting color and tannins to the wine.',
+      },
+    ],
+    conclusion:
+      "Grapes offer a remarkable combination of versatility, flavor, and historical significance. Whether enjoyed as a refreshing table fruit, a complex wine, or a culinary ingredient, grapes have a unique ability to capture the essence of their growing conditions, known as terroir. Understanding the care in cultivation, the range of available varieties, and the nuances of storage and preparation can enhance one's appreciation for this bountiful fruit. From vineyard to table, grapes continue to be a cherished natural offering, celebrated in countless cultures around the world.",
+  },
+  {
+    title: 'Strawberries',
+    intro:
+      'Strawberries are the jewels of the spring, their arrival eagerly anticipated by chefs and food lovers alike. With their vibrant red color, sweet fragrance, and juicy texture, strawberries have enchanted people since ancient times. These berries are not only a symbol of warm weather and sunny days but also a versatile ingredient that can brighten up any dish. This article will delve into the cultivation practices of strawberries, the varieties that exist, and offer guidance on how to best store and savor these delightful fruits.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Harvest',
+        content:
+          "Strawberries are grown in every state in the U.S. and in every province of Canada, but they thrive particularly well in California and Florida, which are the largest U.S. producers. The plants favor mild temperatures and well-drained soil, making them suitable for cultivation in many regions. They are predominantly grown in fields and are handpicked in the cooler parts of the day to prevent bruising. The process from planting to picking spans about a year, with the plants yielding berries for about three to five years. Growers, from small family farms to larger agricultural businesses, often offer 'pick-your-own' sessions during the harvest season, connecting consumers directly with the source of their food.",
+      },
+      {
+        paraTitle: 'Varieties and Selection',
+        content:
+          'There are hundreds of strawberry varieties, each with its nuances in flavor, size, and texture. Classic varieties like Honeoye, Elsanta, and Allstar are favored for their balance of sweetness and acidity, making them perfect for fresh consumption. Meanwhile, other varieties like Seascape and Albion are prized for their larger size and robustness, which make them ideal for culinary preparations. When selecting strawberries, look for bright red berries with fresh, green caps, and try to consume them quickly after purchase as they are highly perishable.',
+      },
+      {
+        paraTitle: 'Storage and Culinary Delights',
+        content:
+          "To preserve their freshness, strawberries should be stored in the refrigerator and washed only right before consumption. They can also be frozen for long-term storage, which is perfect for smoothies or jams. Strawberries' culinary versatility allows them to shine in a myriad of preparations – from fresh in salads or atop cereals to sweet in jams, tarts, and cakes. They can also swing savory in salsas or as a garnish for refreshing drinks. The berries are rich in vitamins and antioxidants, making them a healthful addition to any meal.",
+      },
+    ],
+    conclusion:
+      "Strawberries are more than just a fruit; they are a celebration of the seasons, a source of inspiration in the kitchen, and a reminder of nature's sweetness. With their wide variety of types and uses, they invite both culinary exploration and simple, pure enjoyment. By choosing the right varieties, storing them properly, and incorporating them into both traditional and inventive dishes, strawberries can provide a taste of joy and a burst of flavor that embodies the essence of springtime.",
+  },
+  {
+    title: 'Blueberries',
+    intro:
+      'Blueberries, often hailed as a superfood, are not only beloved for their sweet and tangy flavor but also for their substantial health benefits. These small but mighty berries burst onto the scene each summer, symbolizing the peak of the season’s bounty. Native to North America, blueberries have been cherished for centuries, both for their culinary versatility and medicinal properties. This article will explore the cultivation of blueberries, the various types available, and provide insights into their storage and culinary uses.',
+    paragraghs: [
+      {
+        paraTitle: 'Cultivation and Varieties',
+        content:
+          'Blueberries flourish in acidic and well-drained soil, with major production occurring in the United States, Canada, and Poland. They come in two primary types: highbush, which are commonly cultivated for commercial use, and lowbush or "wild" blueberries, which are smaller and more intense in flavor. Cultivation involves careful management of the soil and protection from birds and pests, with growers utilizing both traditional and organic practices to ensure a healthy crop. The harvesting season for blueberries runs from June to August in the Northern Hemisphere, during which they are either handpicked or harvested with machinery designed to gently shake them from the bushes.',
+      },
+      {
+        paraTitle: 'Nutritional Profile and Health Benefits',
+        content:
+          "Blueberries are a nutritional treasure trove, packed with vitamins C and K, manganese, dietary fibers, and particularly rich in antioxidants known as anthocyanins. These compounds are responsible for the berries' characteristic blue hue and are associated with numerous health benefits, including improved heart health, brain function, and anti-inflammatory properties. Furthermore, blueberries have a low glycemic index, which makes them a favorable fruit choice for those monitoring their sugar intake.",
+      },
+      {
+        paraTitle: 'Storing and Savoring Blueberries',
+        content:
+          'To keep blueberries fresh, refrigerate them as soon as possible after purchase. They should be kept dry in their original container to prevent mold growth and washed only right before eating or using in recipes. Blueberries are highly versatile in the kitchen; they can be eaten fresh, added to baked goods like muffins and pies, or used to create delectable sauces and compotes. They also freeze well, which allows for the enjoyment of their delightful flavor year-round. Whether used as a topping for yogurt or oatmeal or blended into smoothies, blueberries add a nutritious burst of flavor to any dish.',
+      },
+    ],
+    conclusion:
+      "Blueberries are a testament to the adage that good things come in small packages. With their lush flavor profile, ease of cultivation, and a multitude of health benefits, they are a favorite for both growers and consumers. By understanding the types of blueberries, how to store them, and the many ways they can be incorporated into meals, one can fully appreciate these berries' place in a healthy, balanced diet. As summer rolls in, the arrival of blueberries marks the perfect time to indulge in these nutritious, flavorful fruits, enjoying the essence of the season in each delightful bite.",
+  },
+  {
+    title: 'Knife Skills',
+    intro:
+      'Good knife skills are essential for any home chef aiming to enhance kitchen efficiency and take their cooking to the next level. Mastering the art of cutting not only ensures safety but also reduces food preparation time significantly. Each cut serves a distinct purpose in the culinary world, affecting cooking uniformity and the visual appeal of dishes. In this guide, we delve into the top four basic knife cuts—Julienne, Brunoise, Chiffonade, and Dice—exploring their unique applications in the kitchen and demonstrating how these techniques can transform simple ingredients into visually stunning and deliciously consistent meals.',
+    paragraghs: [
+      {
+        paraTitle: 'Julienne Cut',
+        content:
+          'The Julienne cut, often referred to as the "matchstick cut," involves slicing food into thin, uniform strips. Typically, the dimensions for a Julienne cut are about 2-3 inches long and 1/16 to 1/8 inch thick. This type of cut is ideal for stir-fries, salads, and garnishes, as it not only cooks evenly but also adds a refined look to dishes.',
+      },
+      {
+        paraTitle: 'Brunoise Cut',
+        content:
+          'The Brunoise cut is essentially a finer version of the Julienne cut, where the Julienne strips are then diced into small cubes, usually 1/8 inch on each side. This cut is perfect for adding a burst of flavor and color to dishes, such as salsas, soups, and sauces. Because of its small size, the Brunoise cut allows ingredients to distribute evenly throughout a dish.',
+      },
+      {
+        paraTitle: 'Chiffonade Cut',
+        content:
+          'The Chiffonade cut is used for leafy vegetables and herbs, where the leaves are stacked, rolled, and then sliced into thin ribbons. This technique is excellent for preparing herbs for garnishing or incorporating leafy vegetables into salads and soups. It’s a simple way to elevate the appearance and texture of greens in a dish.',
+      },
+      {
+        paraTitle: 'Dice Cut',
+        content:
+          'Dicing involves cutting food into cube-shaped pieces, typically ranging from 1/4 inch (medium dice) to 3/4 inch (large dice). This cut is versatile and used in a wide array of dishes, from soups and stews to salads. The uniform size of the dice ensures that ingredients cook at the same rate, providing consistency in both texture and flavor.',
+      },
+    ],
+    conclusion:
+      "Mastering these four basic knife cuts—Julienne, Brunoise, Chiffonade, and Dice—can dramatically improve any home chef's efficiency and confidence in the kitchen. Not only do these cuts help in achieving uniform cooking and enhancing the visual appeal of dishes, but they also encourage a more mindful and creative approach to preparing ingredients. With practice, these knife skills can transform mundane ingredients into culinary masterpieces, making every meal an opportunity to explore the art of cooking.",
+  },
 ];

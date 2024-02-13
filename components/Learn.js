@@ -19,6 +19,10 @@ import avoArt from '../assets/avo_art.png';
 import appleArt from '../assets/apple_art.png';
 import onionArt from '../assets/onion_art.png';
 import miseEnPlace from '../assets/mise_en_place.png';
+import bananaArt from '../assets/banana_art.png';
+import grapeArt from '../assets/grape_art.png';
+import strawberryArt from '../assets/strawberry_art.png';
+import blueberryArt from '../assets/blueberry_art.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -84,6 +88,14 @@ const Learn = () => {
       image: avoArt,
       title: 'Avocados',
     },
+    {
+      image: strawberryArt,
+      title: 'Strawberries',
+    },
+    {
+      image: blueberryArt,
+      title: 'Blueberries',
+    },
   ];
 
   const featuredFoodObjects = [
@@ -102,6 +114,22 @@ const Learn = () => {
     {
       image: avoArt,
       title: 'Avocados',
+    },
+    {
+      image: bananaArt,
+      title: 'Bananas',
+    },
+    {
+      image: grapeArt,
+      title: 'Grapes',
+    },
+    {
+      image: strawberryArt,
+      title: 'Strawberries',
+    },
+    {
+      image: blueberryArt,
+      title: 'Blueberries',
     },
   ];
 
