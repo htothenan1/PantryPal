@@ -152,4 +152,23 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#666',
   },
+  tabsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 5,
+  },
+  tab: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  selectedTab: {
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+  },
+  tabText: {
+    fontSize: 13,
+  },
+  selectedTabText: {
+    color: 'white',
+  },
 });

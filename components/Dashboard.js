@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   Text,
@@ -39,9 +39,30 @@ const Dashboard = () => {
   const [customSelectedDate, setCustomSelectedDate] = useState(
     new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
   );
+  const [currentCategory, setCurrentCategory] = useState('all'); // 'all' to show all categories by default
+  const [filteredItems, setFilteredItems] = useState(items); // To hold filtered items based on the category
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
+
+  // Function to filter items by category
+  const filterItemsByCategory = () => {
+    if (currentCategory === 'all') {
+      setFilteredItems(items); // If 'all' category is selected, show all items
+    } else {
+      const filtered = items.filter(item => {
+        const ingredient = findIngredient(item.name);
+        return ingredient && ingredient.category === currentCategory;
+      });
+      setFilteredItems(filtered);
+    }
+  };
+
+  // Use effect to filter items whenever items or currentCategory changes
+  useEffect(() => {
+    filterItemsByCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, currentCategory]);
 
   const findIngredient = itemName => {
     let ingredient = ingredients.find(
@@ -474,6 +495,33 @@ const Dashboard = () => {
           </TouchableOpacity>
         ) : null}
       </View>
+      <View style={styles.tabsContainer}>
+        {[
+          'all',
+          'fruits',
+          'vegetables',
+          'meats',
+          'dairy',
+          'grains',
+          'seafoods',
+        ].map(category => (
+          <TouchableOpacity
+            key={category}
+            style={[
+              styles.tab,
+              currentCategory === category && styles.selectedTab,
+            ]}
+            onPress={() => setCurrentCategory(category)}>
+            <Text
+              style={[
+                styles.tabText,
+                currentCategory === category && styles.selectedTabText,
+              ]}>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
       {items.length > 0 ? (
         isItemsLoading ? (
@@ -484,7 +532,7 @@ const Dashboard = () => {
           <FlatList
             windowSize={10}
             style={styles.itemsList}
-            data={items}
+            data={filteredItems}
             keyExtractor={item => item._id}
             renderItem={renderItem}
           />

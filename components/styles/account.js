@@ -55,6 +55,9 @@ export default StyleSheet.create({
   itemsList: {
     marginTop: 10,
   },
+  recipesList: {
+    height: 100,
+  },
   item: {
     textAlign: 'left',
     fontSize: 16,
@@ -71,5 +74,13 @@ export default StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     padding: 20,
+  },
+  itemTextContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  itemText: {
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
   },
 });
