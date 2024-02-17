@@ -41,6 +41,7 @@ const Dashboard = () => {
   );
   const [currentCategory, setCurrentCategory] = useState('all'); // 'all' to show all categories by default
   const [filteredItems, setFilteredItems] = useState(items); // To hold filtered items based on the category
+  const [availableCategories, setAvailableCategories] = useState(['all']);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -57,6 +58,13 @@ const Dashboard = () => {
       setFilteredItems(filtered);
     }
   };
+
+  // Update available categories when items change
+  useEffect(() => {
+    const categories = calculateAvailableCategories();
+    setAvailableCategories(categories);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]); // Ensure this effect runs whenever 'items' changes
 
   // Use effect to filter items whenever items or currentCategory changes
   useEffect(() => {
@@ -358,6 +366,22 @@ const Dashboard = () => {
     }
   };
 
+  const calculateAvailableCategories = () => {
+    let allCategories = [];
+    if (items.length > 0) {
+      allCategories.push('all'); // Only add 'all' if there are items
+    }
+
+    items.forEach(item => {
+      const ingredient = findIngredient(item.name);
+      if (ingredient && !allCategories.includes(ingredient.category)) {
+        allCategories.push(ingredient.category);
+      }
+    });
+
+    return allCategories;
+  };
+
   const renderRightActions = item => {
     return (
       <View style={styles.rightSwipeContainer}>
@@ -496,15 +520,7 @@ const Dashboard = () => {
         ) : null}
       </View>
       <View style={styles.tabsContainer}>
-        {[
-          'all',
-          'fruits',
-          'vegetables',
-          'meats',
-          'dairy',
-          'grains',
-          'seafoods',
-        ].map(category => (
+        {availableCategories.map(category => (
           <TouchableOpacity
             key={category}
             style={[
