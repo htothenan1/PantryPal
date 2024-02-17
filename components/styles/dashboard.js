@@ -17,6 +17,7 @@ export default StyleSheet.create({
   },
   headerIcon: {
     marginHorizontal: 10,
+    marginTop: 10,
   },
   rightSwipeContainer: {
     flexDirection: 'row',
@@ -137,7 +138,8 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   emptyStateContainer: {
     flex: 1,
@@ -155,7 +157,7 @@ export default StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 5,
+    // marginBottom: 5,
   },
   tab: {
     paddingHorizontal: 10,
