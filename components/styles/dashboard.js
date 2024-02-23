@@ -53,6 +53,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginLeft: 10,
+    height: 50,
   },
   itemText: {
     fontSize: 20,
@@ -84,7 +85,7 @@ export default StyleSheet.create({
     height: 56,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#495057',
+    backgroundColor: '#1b4965',
     borderRadius: 28,
   },
   leftFab: {

@@ -25,7 +25,7 @@ import groceryPic from '../assets/grocery.png';
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
-const Dashboard = () => {
+const Dashboard = ({route}) => {
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -39,17 +39,17 @@ const Dashboard = () => {
   const [customSelectedDate, setCustomSelectedDate] = useState(
     new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
   );
-  const [currentCategory, setCurrentCategory] = useState('all'); // 'all' to show all categories by default
-  const [filteredItems, setFilteredItems] = useState(items); // To hold filtered items based on the category
+  const [currentCategory, setCurrentCategory] = useState('all');
+  const [filteredItems, setFilteredItems] = useState(items);
   const [availableCategories, setAvailableCategories] = useState(['all']);
+  const [deletingItemId, setDeletingItemId] = useState(null);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
-  // Function to filter items by category
   const filterItemsByCategory = () => {
     if (currentCategory === 'all') {
-      setFilteredItems(items); // If 'all' category is selected, show all items
+      setFilteredItems(items);
     } else {
       const filtered = items.filter(item => {
         const ingredient = findIngredient(item.name);
@@ -59,14 +59,19 @@ const Dashboard = () => {
     }
   };
 
-  // Update available categories when items change
   useEffect(() => {
+    // fetchItems();
     const categories = calculateAvailableCategories();
     setAvailableCategories(categories);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]); // Ensure this effect runs whenever 'items' changes
+  }, [items]);
 
-  // Use effect to filter items whenever items or currentCategory changes
+  useEffect(() => {
+    fetchItems();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     filterItemsByCategory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,6 +100,7 @@ const Dashboard = () => {
   };
 
   const deleteItem = async (itemId, method) => {
+    setDeletingItemId(itemId); // Indicate which item is being deleted
     try {
       const response = await fetch(
         `${API_URL}/items/${itemId}?method=${method}`,
@@ -115,6 +121,8 @@ const Dashboard = () => {
       );
     } catch (error) {
       console.error('Error deleting item:', error.message);
+    } finally {
+      setDeletingItemId(null); // Reset deleting item indicator
     }
   };
 
@@ -181,70 +189,6 @@ const Dashboard = () => {
   };
 
   async function addCustomItem(itemName) {
-    try {
-      const existingIngredient = ingredients.find(
-        ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
-      );
-
-      let storageTip = 'Not available';
-      let expInt = calculateDaysUntilExpiration(customSelectedDate);
-
-      if (existingIngredient) {
-        storageTip = existingIngredient.storage_tip;
-        expInt = existingIngredient.exp_int;
-      } else {
-        const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({item: itemName}),
-        });
-
-        if (!tipResponse.ok) {
-          console.error(`HTTP error! Status: ${tipResponse.status}`);
-        } else {
-          const tipData = await tipResponse.json();
-          storageTip = tipData.storageTip;
-        }
-      }
-
-      const newItem = {
-        name: itemName,
-        exp_int: expInt,
-        storage_tip: storageTip,
-        user: userEmail,
-      };
-
-      const response = await fetch(`${API_URL}/items`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          items: [newItem],
-          userEmail: userEmail,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(
-          `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
-        );
-      }
-
-      const savedItems = await response.json();
-      setItems(currentItems => [...currentItems, ...savedItems]);
-      setAddItemModalVisible(false);
-      setNewItemName('');
-      setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
-    } catch (error) {
-      console.error('Error adding custom item:', error);
-    }
-  }
-
-  async function addCustomItem(itemName) {
     setIsLoading(true);
     try {
       const existingIngredient = ingredients.find(
@@ -304,6 +248,7 @@ const Dashboard = () => {
       setAddItemModalVisible(false);
       setNewItemName('');
       setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
+      fetchItems();
     } catch (error) {
       console.error('Error adding custom item:', error);
     } finally {
@@ -439,23 +384,41 @@ const Dashboard = () => {
     }
   };
 
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     let isActive = true;
+
+  //     const fetchData = async () => {
+  //       await fetchItems();
+  //     };
+
+  //     if (isActive) {
+  //       fetchData().catch(console.error);
+  //     }
+
+  //     return () => {
+  //       isActive = false;
+  //     };
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, []),
+  // );
+
   useFocusEffect(
     React.useCallback(() => {
-      let isActive = true;
+      const unsubscribe = navigation.addListener('focus', () => {
+        // Check if navigation was triggered with the itemsAdded parameter
+        if (route.params?.itemsAdded) {
+          fetchItems();
 
-      const fetchData = async () => {
-        await fetchItems();
-      };
+          // Optional: Reset the parameter so the fetch doesn't occur again
+          // on subsequent focuses unless explicitly triggered
+          navigation.setParams({itemsAdded: false});
+        }
+      });
 
-      if (isActive) {
-        fetchData().catch(console.error);
-      }
-
-      return () => {
-        isActive = false;
-      };
+      return unsubscribe;
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
+    }, [navigation, route.params?.itemsAdded]),
   );
 
   // useEffect(() => {
@@ -481,6 +444,7 @@ const Dashboard = () => {
 
     const ingredient = findIngredient(item.name);
     const itemImage = ingredient ? ingredient.img : groceryPic;
+
     return (
       <Swipeable
         ref={ref => swipeableRefs.set(item._id, ref)}
@@ -491,12 +455,18 @@ const Dashboard = () => {
           style={styles.item}>
           <Image source={itemImage} style={styles.itemImage} />
           <View style={styles.itemTextContainer}>
-            <Text style={[styles.itemText, {color: backgroundColor}]}>
-              {item.name}
-            </Text>
-            <Text style={[styles.itemText, {color: backgroundColor}]}>
-              {daysRemaining} days remaining
-            </Text>
+            {deletingItemId === item._id ? (
+              <ActivityIndicator size="medium" color="#0000ff" />
+            ) : (
+              <>
+                <Text style={[styles.itemText, {color: backgroundColor}]}>
+                  {item.name}
+                </Text>
+                <Text style={[styles.itemText, {color: backgroundColor}]}>
+                  {daysRemaining} days remaining
+                </Text>
+              </>
+            )}
           </View>
         </TouchableOpacity>
       </Swipeable>

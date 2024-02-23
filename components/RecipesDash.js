@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   Text,
@@ -21,7 +21,7 @@ const Dashboard = () => {
   const [items, setItems] = useState([]);
   const [fetchedRecipes, setFetchedRecipes] = useState(null);
   const flatListRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currId, setCurrentIndex] = useState(0);
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
@@ -97,6 +97,12 @@ const Dashboard = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
+
+  // useEffect(() => {
+  //   fetchItems();
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item.name);

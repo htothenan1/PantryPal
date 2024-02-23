@@ -135,7 +135,7 @@ const MultiSelectScreen = ({route}) => {
       const data = await response.json();
       const updatedItems = items.filter(item => !itemsArray.includes(item));
       setItems(updatedItems);
-      navigation.navigate('Dashboard');
+      navigation.navigate('Dashboard', {itemsAdded: true});
       return data;
     } catch (error) {
       console.error('Error adding items:', error.message);

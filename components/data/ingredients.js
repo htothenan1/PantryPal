@@ -19,6 +19,7 @@ import broccoli from '../../assets/broccoli.png';
 import bread from '../../assets/bread.png';
 import rabe from '../../assets/rabe.png';
 import broccolini from '../../assets/broccolini.png';
+import brusselssprouts from '../../assets/brusselssprouts.png';
 import butter from '../../assets/butter.png';
 import cabbage from '../../assets/cabbage.png';
 import carrots from '../../assets/carrots.png';
@@ -60,7 +61,7 @@ import mushrooms from '../../assets/mushrooms.png';
 import nectarines from '../../assets/nectarines.png';
 import okra from '../../assets/okra.png';
 import olives from '../../assets/olives.png';
-import onions from '../../assets/onion_art.png';
+import onions from '../../assets/onions.png';
 import oranges from '../../assets/oranges.png';
 import parsley from '../../assets/parsley.png';
 import parsnips from '../../assets/parsnips.png';
@@ -73,7 +74,7 @@ import pineapples from '../../assets/pineapples.png';
 import plums from '../../assets/plums.png';
 import pomegranates from '../../assets/pomegranates.png';
 import pork from '../../assets/pork.png';
-import potatoes from '../../assets/potato_art.png';
+import potatoes from '../../assets/potatoes.png';
 import pumpkin from '../../assets/pumpkin.png';
 import radishes from '../../assets/radishes.png';
 import raspberries from '../../assets/raspberries.png';
@@ -84,7 +85,7 @@ import shallots from '../../assets/shallots.png';
 import shrimp from '../../assets/shrimp.png';
 import spinach from '../../assets/spinach.png';
 import squash from '../../assets/squash.png';
-import strawberries from '../../assets/strawberry_art.png';
+import strawberries from '../../assets/strawberries.png';
 import thyme from '../../assets/thyme.png';
 import tomatoes from '../../assets/tomatoes.png';
 import turnips from '../../assets/turnips.png';
@@ -1257,6 +1258,7 @@ export const ingredients = [
   {
     item_id: 'b3dc2001-39f2-4f40-bd3f-f75af6b8b263',
     name: 'Brussels Sprouts',
+    img: brusselssprouts,
     exp_int: 7,
     category: 'vegetables',
     storage_tip:
