@@ -67,7 +67,11 @@ const Dashboard = ({route}) => {
   }, [items]);
 
   useEffect(() => {
+    // setIsItemsLoading(true);
+    setIsItemsLoading(true);
+
     fetchItems();
+    // setIsItemsLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -159,8 +163,6 @@ const Dashboard = ({route}) => {
   };
 
   const fetchItems = async () => {
-    setIsItemsLoading(true);
-
     try {
       if (!userEmail) {
         console.error('User email is not available');
