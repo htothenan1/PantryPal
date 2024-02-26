@@ -67,14 +67,39 @@ const Dashboard = ({route}) => {
   }, [items]);
 
   useEffect(() => {
-    // setIsItemsLoading(true);
-    setIsItemsLoading(true);
+    setIsItemsLoading(true); // Activate loading state immediately
 
-    fetchItems();
-    // setIsItemsLoading(false);
+    const fetchFirstItems = async () => {
+      try {
+        if (!userEmail) {
+          console.error('User email is not available');
+          setIsItemsLoading(false); // Deactivate loading state on error
+          return;
+        }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        const response = await fetch(`${API_URL}/items?email=${userEmail}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        const sortedItems = data.sort((a, b) => {
+          const dateA = new Date(a.exp_date);
+          const dateB = new Date(b.exp_date);
+          return dateA - dateB;
+        });
+
+        setItems(sortedItems);
+      } catch (error) {
+        console.error('Error fetching items:', error.message);
+      } finally {
+        setIsItemsLoading(false); // Deactivate loading state after fetch
+      }
+    };
+
+    fetchFirstItems();
+  }, [userEmail]); // Assuming `userEmail` is stable and doesn't change often
 
   useEffect(() => {
     filterItemsByCategory();
@@ -166,6 +191,7 @@ const Dashboard = ({route}) => {
     try {
       if (!userEmail) {
         console.error('User email is not available');
+        setIsItemsLoading(false); // Deactivate loading state on error
         return;
       }
 
@@ -183,10 +209,10 @@ const Dashboard = ({route}) => {
       });
 
       setItems(sortedItems);
-      setIsItemsLoading(false);
     } catch (error) {
       console.error('Error fetching items:', error.message);
-      setIsItemsLoading(false);
+    } finally {
+      setIsItemsLoading(false); // Deactivate loading state after fetch
     }
   };
 
@@ -511,21 +537,22 @@ const Dashboard = ({route}) => {
         ))}
       </View>
 
-      {items.length > 0 ? (
-        isItemsLoading ? (
-          <View style={styles.itemsLoadingContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
-        ) : (
-          <FlatList
-            windowSize={10}
-            style={styles.itemsList}
-            data={filteredItems}
-            keyExtractor={item => item._id}
-            renderItem={renderItem}
-          />
-        )
+      {isItemsLoading ? (
+        // If items are being loaded, show a spinner
+        <View style={styles.itemsLoadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : items.length > 0 ? (
+        // If loading is complete and there are items, show the list
+        <FlatList
+          windowSize={10}
+          style={styles.itemsList}
+          data={filteredItems}
+          keyExtractor={item => item._id}
+          renderItem={renderItem}
+        />
       ) : (
+        // If loading is complete and there are no items, show the empty state
         <View style={styles.emptyStateContainer}>
           <Text style={styles.emptyStateText}>
             No items yet. Tap{' '}

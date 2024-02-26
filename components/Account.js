@@ -110,7 +110,7 @@ const Account = () => {
   useFocusEffect(
     React.useCallback(() => {
       fetchFavoritedRecipes();
-      console.log(favoritedRecipes);
+      // console.log(favoritedRecipes);
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );

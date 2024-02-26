@@ -23,6 +23,7 @@ import bananaArt from '../assets/banana_art.png';
 import grapeArt from '../assets/grape_art.png';
 import strawberryArt from '../assets/strawberry_art.png';
 import blueberryArt from '../assets/blueberry_art.png';
+import steps from '../assets/5steps.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -51,6 +52,10 @@ const Learn = () => {
     {
       image: firstStep,
       title: 'The First Step',
+    },
+    {
+      image: steps,
+      title: '5 Steps to Reducing Personal Food Waste',
     },
     {
       image: foodRespect,
