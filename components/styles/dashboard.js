@@ -128,6 +128,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 12,
     padding: 20,
+    position: 'absolute', // Use absolute positioning to place the modal
+    top: '15%', // Adjust this to move the modal higher, 25% from the top
+    left: 0,
+    right: 0,
   },
   modalHeader: {
     marginVertical: 10,

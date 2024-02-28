@@ -43,6 +43,7 @@ const Dashboard = ({route}) => {
   const [filteredItems, setFilteredItems] = useState(items);
   const [availableCategories, setAvailableCategories] = useState(['all']);
   const [deletingItemId, setDeletingItemId] = useState(null);
+  const [updatingItemId, setUpdatingItemId] = useState(null);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -285,6 +286,7 @@ const Dashboard = ({route}) => {
   }
 
   const updateExpDate = async (item, newDate) => {
+    setUpdatingItemId(item._id);
     const formattedDate = newDate.toISOString().split('T')[0];
 
     try {
@@ -314,6 +316,8 @@ const Dashboard = ({route}) => {
       }
     } catch (error) {
       console.error('Error updating expiration date:', error.message);
+    } finally {
+      setUpdatingItemId(null);
     }
   };
 
@@ -483,7 +487,7 @@ const Dashboard = ({route}) => {
           style={styles.item}>
           <Image source={itemImage} style={styles.itemImage} />
           <View style={styles.itemTextContainer}>
-            {deletingItemId === item._id ? (
+            {deletingItemId === item._id || updatingItemId === item._id ? (
               <ActivityIndicator size="medium" color="#0000ff" />
             ) : (
               <>
@@ -626,8 +630,15 @@ const Dashboard = ({route}) => {
 
         <Modal
           isVisible={isAddItemModalVisible}
-          onBackdropPress={() => setAddItemModalVisible(false)}>
+          onBackdropPress={() => setAddItemModalVisible(false)}
+          style={{alignItems: 'center'}} // Center the modal
+        >
           <View style={styles.modalContent}>
+            <TouchableOpacity
+              style={{position: 'absolute', top: 10, right: 10}} // Position the close icon
+              onPress={() => setAddItemModalVisible(false)}>
+              <AntDesignIcon name="close" size={24} color="black" />
+            </TouchableOpacity>
             <AntDesignIcon name="edit" size={30} color="black" />
             <Text style={styles.modalHeader}>Add Custom Item</Text>
             <TextInput
