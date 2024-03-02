@@ -25,8 +25,8 @@ const Tab = createBottomTabNavigator();
 const DashStack = createNativeStackNavigator();
 
 function LogoTitle() {
-  // return <AntDesignIcon name="home" size={30} color="black" />;
-  return null;
+  return <AntDesignIcon name="home" size={30} color="black" />;
+  // return null;
 }
 
 function InsightsTitle() {
@@ -35,8 +35,8 @@ function InsightsTitle() {
 }
 
 function CameraTitle() {
-  // return <AntDesignIcon name="camerao" size={30} color="black" />;
-  return null;
+  return <AntDesignIcon name="camerao" size={30} color="black" />;
+  // return null;
 }
 
 function MultiSelectTitle() {
@@ -45,17 +45,17 @@ function MultiSelectTitle() {
 }
 
 function AccountTitle() {
-  // return <AntDesignIcon name="user" size={30} color="black" />;
-  return null;
+  return <AntDesignIcon name="user" size={30} color="black" />;
+  // return null;
 }
 
 function RecipesDashTitle() {
-  // return <AntDesignIcon name="search1" size={30} color="black" />;
-  return null;
+  return <AntDesignIcon name="search1" size={30} color="black" />;
+  // return null;
 }
 function LearnTitle() {
-  // return <AntDesignIcon name="search1" size={30} color="black" />;
-  return null;
+  return <AntDesignIcon name="bulb1" size={30} color="black" />;
+  // return null;
 }
 
 function DashStackScreen() {
@@ -124,7 +124,10 @@ function AccountStackScreen() {
   return (
     <DashStack.Navigator>
       <DashStack.Screen
-        options={{headerTitle: props => <AccountTitle {...props} />}}
+        options={{
+          headerShown: true,
+          headerTitle: props => <AccountTitle {...props} />,
+        }}
         name="MyAccount"
         component={Account}
       />

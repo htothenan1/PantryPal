@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const {Storage} = require('@google-cloud/storage');
 const multer = require('multer');
 const fs = require('fs');
 const cors = require('cors');
@@ -13,6 +14,10 @@ const FavoritedRecipe = require('./models/favoritedRecipe');
 
 const OpenAI = require('openai');
 
+const storage = new Storage();
+
+const bucketName = 'thephotobucket';
+
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API,
 });
@@ -23,7 +28,8 @@ const imagePrompt =
 const receiptPrompt =
   'Please analyze the receipt in the image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Don not include any labels or keys in the array. If an item in the receipt is not a common grocery item that can be consumed, please omit it from the list. For example, if the receipt lists apples, bananas, and laundry detergent, the result should be formatted as ["Apples", "Bananas"].';
 
-const upload = multer({dest: 'uploads/'});
+// const upload = multer({dest: 'uploads/'});
+const upload = multer({storage: multer.memoryStorage()});
 
 app.use('/public', express.static('../assets'));
 app.use(cors());
@@ -31,19 +37,47 @@ app.use(express.json());
 
 connectDB();
 
-function convertToBase64(filePath) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(`data:image/jpeg;base64,${data}`);
-      }
-    });
-  });
-}
+// function convertToBase64(filePath) {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
+//       if (err) {
+//         reject(err);
+//       } else {
+//         resolve(`data:image/jpeg;base64,${data}`);
+//       }
+//     });
+//   });
+// }
 
-async function veggiesTest(base64Image, mode) {
+// async function veggiesTest(base64Image, mode) {
+//   try {
+//     const response = await openai.chat.completions.create({
+//       model: 'gpt-4-vision-preview',
+//       messages: [
+//         {
+//           role: 'user',
+//           content: [
+//             {
+//               type: 'text',
+//               text: `${mode === 'groceries' ? imagePrompt : receiptPrompt}`,
+//             },
+//             {
+//               type: 'image_url',
+//               image_url: base64Image,
+//             },
+//           ],
+//         },
+//       ],
+//       max_tokens: 2000,
+//     });
+
+//     return response.choices[0];
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+async function veggiesTest(imageSource, mode) {
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4-vision-preview',
@@ -56,8 +90,8 @@ async function veggiesTest(base64Image, mode) {
               text: `${mode === 'groceries' ? imagePrompt : receiptPrompt}`,
             },
             {
-              type: 'image_url',
-              image_url: base64Image,
+              type: 'image',
+              image: imageSource, // This now expects a URL directly
             },
           ],
         },
@@ -193,19 +227,59 @@ app.post('/favorites/toggle', async (req, res) => {
 });
 
 // Analyze image with OpenAI and return list of grocery items
+// app.post('/analyzeImage', upload.single('image'), async (req, res) => {
+//   try {
+//     const imgFile = req.file.path;
+//     const base64Image = await convertToBase64(imgFile);
+//     const mode = req.body.mode;
+//     const response = await veggiesTest(base64Image, mode);
+//     console.log(response);
+//     const itemsArray = JSON.parse(response.message.content);
+//     res.json(itemsArray);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Error processing image');
+//   }
+// });
+
 app.post('/analyzeImage', upload.single('image'), async (req, res) => {
-  try {
-    const imgFile = req.file.path;
-    const base64Image = await convertToBase64(imgFile);
-    const mode = req.body.mode;
-    const response = await veggiesTest(base64Image, mode);
-    console.log(response);
-    const itemsArray = JSON.parse(response.message.content);
-    res.json(itemsArray);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error processing image');
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
   }
+
+  // Create a Google Cloud Storage bucket reference
+  const bucket = storage.bucket(bucketName);
+  // Create a blob in the bucket for the uploaded file
+  const blob = bucket.file(req.file.originalname);
+  const blobStream = blob.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype,
+    },
+  });
+
+  blobStream.on('error', err => res.status(500).send(err.toString()));
+
+  blobStream.on('finish', async () => {
+    // The file is uploaded, now make it publicly accessible (if needed)
+    await blob.makePublic();
+
+    // Construct the public URL
+    const publicUrl = `https://storage.googleapis.com/${bucketName}/${blob.name}`;
+
+    // Now you can use this URL with your veggiesTest function or any other processing
+    try {
+      const mode = req.body.mode;
+      const response = await veggiesTest(publicUrl, mode); // Adjust veggiesTest to accept a URL instead of base64
+      console.log(response);
+      const itemsArray = JSON.parse(response.message.content);
+      res.json(itemsArray);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error processing image');
+    }
+  });
+
+  blobStream.end(req.file.buffer);
 });
 
 // Return OpenAI storage tips
