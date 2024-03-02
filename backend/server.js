@@ -77,28 +77,26 @@ connectDB();
 //   }
 // }
 
-async function veggiesTest(imageSource, mode) {
+async function veggiesTest(imageUrl, mode) {
   try {
+    const promptText = mode === 'groceries' ? imagePrompt : receiptPrompt; // Use the appropriate prompt based on the mode
     const response = await openai.chat.completions.create({
       model: 'gpt-4-vision-preview',
       messages: [
         {
           role: 'user',
           content: [
+            {type: 'text', text: promptText},
             {
-              type: 'text',
-              text: `${mode === 'groceries' ? imagePrompt : receiptPrompt}`,
-            },
-            {
-              type: 'image',
-              image: imageSource, // This now expects a URL directly
+              type: 'image_url',
+              image_url: {
+                url: imageUrl, // Ensure this matches the documentation's structure
+              },
             },
           ],
         },
       ],
-      max_tokens: 2000,
     });
-
     return response.choices[0];
   } catch (error) {
     console.error(error);
