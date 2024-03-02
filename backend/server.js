@@ -247,9 +247,7 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
     return res.status(400).send('No file uploaded.');
   }
 
-  // Create a Google Cloud Storage bucket reference
   const bucket = storage.bucket(bucketName);
-  // Create a blob in the bucket for the uploaded file
   const blob = bucket.file(req.file.originalname);
   const blobStream = blob.createWriteStream({
     metadata: {
@@ -260,16 +258,12 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   blobStream.on('error', err => res.status(500).send(err.toString()));
 
   blobStream.on('finish', async () => {
-    // The file is uploaded, now make it publicly accessible (if needed)
-    await blob.makePublic();
-
-    // Construct the public URL
+    // Construct the public URL or a signed URL
     const publicUrl = `https://storage.googleapis.com/${bucketName}/${blob.name}`;
 
-    // Now you can use this URL with your veggiesTest function or any other processing
     try {
       const mode = req.body.mode;
-      const response = await veggiesTest(publicUrl, mode); // Adjust veggiesTest to accept a URL instead of base64
+      const response = await veggiesTest(publicUrl, mode);
       console.log(response);
       const itemsArray = JSON.parse(response.message.content);
       res.json(itemsArray);
