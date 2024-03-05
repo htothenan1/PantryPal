@@ -8,6 +8,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
@@ -225,17 +227,28 @@ const MultiSelectScreen = ({route}) => {
       />
       <View style={styles.buttonContainer}>
         {isLoading ? (
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#495057" />
         ) : (
-          <Pressable
-            disabled={selectedItems.length === 0}
-            onPress={() => addItems(selectedItems)}
-            style={styles.button}>
-            <Text
-              style={
-                styles.buttonText
-              }>{`Add Items (${selectedItems.length})`}</Text>
-          </Pressable>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}>
+            <Text style={styles.counterText}>
+              Items Selected: {selectedItems.length}
+            </Text>
+            <Pressable
+              disabled={selectedItems.length === 0}
+              onPress={() => addItems(selectedItems)}
+              style={({pressed}) => [
+                styles.button,
+                {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#76c893'},
+                selectedItems.length === 0 && styles.disabledButton,
+              ]}>
+              <AntDesignIcon name="save" size={20} color={'white'} />
+            </Pressable>
+          </View>
         )}
       </View>
     </View>

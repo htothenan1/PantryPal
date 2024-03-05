@@ -1,13 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
+  ScrollView,
   Text,
   View,
   TouchableOpacity,
   Image,
   ActivityIndicator,
   TextInput,
-  Linking,
+  Pressable,
+  // Linking,
   Button,
   Alert,
 } from 'react-native';
@@ -402,9 +404,9 @@ const Dashboard = ({route}) => {
     });
   };
 
-  const navToCamera = () => {
-    navigation.navigate('CameraPage');
-  };
+  // const navToCamera = () => {
+  //   navigation.navigate('CameraPage');
+  // };
 
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
@@ -453,15 +455,15 @@ const Dashboard = ({route}) => {
     }, [navigation, route.params?.itemsAdded]),
   );
 
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await Camera.requestCameraPermission();
-      if (permission === 'denied') {
-        await Linking.openSettings();
-      }
-    }
-    getPermission();
-  }, []);
+  // useEffect(() => {
+  //   async function getPermission() {
+  //     const permission = await Camera.requestCameraPermission();
+  //     if (permission === 'denied') {
+  //       await Linking.openSettings();
+  //     }
+  //   }
+  //   getPermission();
+  // }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -488,7 +490,7 @@ const Dashboard = ({route}) => {
           <Image source={itemImage} style={styles.itemImage} />
           <View style={styles.itemTextContainer}>
             {deletingItemId === item._id || updatingItemId === item._id ? (
-              <ActivityIndicator size="medium" color="#0000ff" />
+              <ActivityIndicator size="medium" color="#495057" />
             ) : (
               <>
                 <Text style={[styles.itemText, {color: backgroundColor}]}>
@@ -544,7 +546,7 @@ const Dashboard = ({route}) => {
       {isItemsLoading ? (
         // If items are being loaded, show a spinner
         <View style={styles.itemsLoadingContainer}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#495057" />
         </View>
       ) : items.length > 0 ? (
         // If loading is complete and there are items, show the list
@@ -557,23 +559,26 @@ const Dashboard = ({route}) => {
         />
       ) : (
         // If loading is complete and there are no items, show the empty state
-        <View style={styles.emptyStateContainer}>
+        <ScrollView contentContainerStyle={styles.emptyStateContainer}>
           <Text style={styles.emptyStateText}>
-            No items yet. Tap{' '}
-            <TouchableOpacity
-              style={styles.emptyFab}
-              onPress={() => navToMultiSelect()}>
-              <AntDesignIcon name="plus" size={20} color="white" />
-            </TouchableOpacity>{' '}
-            to choose from our common ingredients, or{' '}
+            Logging your items with FlavrAi will help you keep your kitchen
+            under control! Tap{' '}
             <TouchableOpacity
               style={styles.emptyFab}
               onPress={() => setAddItemModalVisible(true)}>
               <AntDesignIcon name="edit" size={20} color="white" />
             </TouchableOpacity>{' '}
-            to add a custom item
+            to add a single item, or{' '}
+            <TouchableOpacity
+              style={styles.emptyFab}
+              onPress={() => navToMultiSelect()}>
+              <AntDesignIcon name="bars" size={20} color="white" />
+            </TouchableOpacity>{' '}
+            to select multiple items at once from our list of common
+            ingredients. The more you log, the more benefits you'll get from
+            FlavrAi!
           </Text>
-        </View>
+        </ScrollView>
       )}
 
       <DatePicker
@@ -618,14 +623,14 @@ const Dashboard = ({route}) => {
           <AntDesignIcon name="edit" size={20} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.centerFab}
           onPress={() => navToCamera()}>
           <AntDesignIcon name="camerao" size={20} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
-          <AntDesignIcon name="plus" size={20} color="white" />
+          <AntDesignIcon name="bars" size={20} color="white" />
         </TouchableOpacity>
 
         <Modal
@@ -640,7 +645,7 @@ const Dashboard = ({route}) => {
               <AntDesignIcon name="close" size={24} color="black" />
             </TouchableOpacity>
             <AntDesignIcon name="edit" size={30} color="black" />
-            <Text style={styles.modalHeader}>Add Custom Item</Text>
+            <Text style={styles.modalHeader}>Add Single Item</Text>
             <TextInput
               style={styles.input}
               placeholder="Item Name"
@@ -648,21 +653,35 @@ const Dashboard = ({route}) => {
               value={newItemName}
               onChangeText={setNewItemName}
             />
-            <Button
+            {/* <Button
               title={`Use In The Next: ${calculateDaysUntilExpiration(
                 customSelectedDate,
               )} days`}
               onPress={() => setCustomOpen(true)}
-            />
+            /> */}
             {isLoading ? (
               <View style={styles.confirmButtonContainer}>
-                <ActivityIndicator size="small" color="#0000ff" />
+                <ActivityIndicator size="large" color="#495057" />
               </View>
             ) : (
-              <Button
-                title="Confirm"
+              // <Button
+              //   title="Confirm"
+              // onPress={() => addCustomItem(newItemName)}
+              // />
+              <Pressable
+                disabled={!newItemName}
                 onPress={() => addCustomItem(newItemName)}
-              />
+                style={({pressed}) => [
+                  styles.button,
+                  {
+                    backgroundColor: pressed
+                      ? 'rgba(0, 0, 255, 0.5)'
+                      : '#76c893',
+                  },
+                  !newItemName && styles.disabledButton,
+                ]}>
+                <AntDesignIcon name="save" size={20} color={'white'} />
+              </Pressable>
             )}
           </View>
         </Modal>

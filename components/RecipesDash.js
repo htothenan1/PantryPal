@@ -212,7 +212,7 @@ const Dashboard = () => {
 
         {isRecipesLoading ? (
           <View style={styles.recipesLoadingContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="large" color="#495057" />
           </View>
         ) : (
           fetchedRecipes &&
@@ -238,7 +238,7 @@ const Dashboard = () => {
       </View>
       {isItemsLoading ? (
         <View style={styles.itemsLoadingContainer}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#495057" />
         </View>
       ) : (
         <FlatList

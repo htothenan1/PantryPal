@@ -66,4 +66,18 @@ export default StyleSheet.create({
   selectedSubItemText: {
     color: 'white',
   },
+  counterText: {
+    alignSelf: 'center', // Adjust this as needed
+    fontSize: 16, // Adjust font size as needed
+    color: '#000', // Adjust text color as needed
+    fontFamily: 'Avenir-Book',
+  },
+  disabledButton: {
+    backgroundColor: '#ccc', // A light grey to indicate the button is disabled
+  },
+  button: {
+    padding: 10, // Adjust padding as needed
+    borderRadius: 5, // Adjust border radius as needed
+    // Ensure you have backgroundColor set for when the button is enabled
+  },
 });

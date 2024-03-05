@@ -78,7 +78,7 @@ const Insights = () => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       {loading ? (
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#495057" />
       ) : (
         <>
           <View style={styles.chartContainer}>

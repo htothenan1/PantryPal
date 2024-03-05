@@ -148,14 +148,14 @@ export default StyleSheet.create({
   },
   emptyStateContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 30,
   },
   emptyStateText: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'Avenir-Book',
-    lineHeight: 60,
+    lineHeight: 55,
     textAlign: 'center',
     color: '#666',
   },
@@ -177,5 +177,13 @@ export default StyleSheet.create({
   },
   selectedTabText: {
     color: 'white',
+  },
+  button: {
+    padding: 10, // Adjust padding as needed
+    borderRadius: 5, // Adjust border radius as needed
+    // Ensure you have backgroundColor set for when the button is enabled
+  },
+  disabledButton: {
+    backgroundColor: '#ccc', // A light grey to indicate the button is disabled
   },
 });

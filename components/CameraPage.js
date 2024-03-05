@@ -142,7 +142,7 @@ const CameraPage = () => {
           });
         }
         setIsLoading(false);
-        navigation.navigate('Dashboard');
+        navigation.navigate('Dashboard', {itemsAdded: true});
       })
       .catch(error => {
         console.error('Error:', error);
@@ -173,7 +173,7 @@ const CameraPage = () => {
           />
 
           <View style={styles.buttonContainer}>
-            <View style={styles.modeToggleContainer}>
+            {/* <View style={styles.modeToggleContainer}>
               <TouchableOpacity
                 onPress={toggleMode}
                 style={styles.modeToggleButton}>
@@ -183,7 +183,7 @@ const CameraPage = () => {
                     : 'Switch to Groceries Mode'}
                 </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <TouchableOpacity
               style={styles.camButton}
               onPress={() => capturePhoto()}>
@@ -218,7 +218,7 @@ const CameraPage = () => {
                 onPress={() => confirmPhoto(imageSource, mode)}
                 disabled={isLoading}>
                 {isLoading ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color="#495057" />
                 ) : (
                   <Text style={styles.usePhotoText}>Use Photo</Text>
                 )}
