@@ -9,12 +9,15 @@ import Dashboard from './components/Dashboard';
 import MultiSelectScreen from './components/MultiSelect';
 import ItemDetails from './components/ItemDetails';
 import RecipeDetails from './components/RecipeDetails';
-import Insights from './components/Insights';
+// import Insights from './components/Insights';
 import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import RecipesDash from './components/RecipesDash';
 import ArticleDetails from './components/ArticleDetails';
 import Learn from './components/Learn';
+import ModuleStartScreen from './components/ModuleStartScreen';
+import ModuleScreen from './components/ModuleScreen';
+import ModuleQuizScreen from './components/ModuleQuizScreen';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // import {Image} from 'react-native';
 // import logo from './assets/chefs_hat.png';
@@ -24,15 +27,17 @@ const Tab = createBottomTabNavigator();
 
 const DashStack = createNativeStackNavigator();
 
+const ModuleStack = createNativeStackNavigator();
+
 function LogoTitle() {
   return <AntDesignIcon name="home" size={30} color="black" />;
   // return null;
 }
 
-function InsightsTitle() {
-  // return <AntDesignIcon name="barschart" size={30} color="black" />;
-  return null;
-}
+// function InsightsTitle() {
+//   // return <AntDesignIcon name="barschart" size={30} color="black" />;
+//   return null;
+// }
 
 function CameraTitle() {
   return <AntDesignIcon name="camerao" size={30} color="black" />;
@@ -101,6 +106,28 @@ function DashStackScreen() {
   );
 }
 
+function ModuleStackScreen() {
+  return (
+    <ModuleStack.Navigator initialRouteName="ModuleStartScreen">
+      <ModuleStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="ModuleStartScreen"
+        component={ModuleStartScreen}
+      />
+      <ModuleStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="ModuleScreen"
+        component={ModuleScreen}
+      />
+      <ModuleStack.Screen name="ModuleQuiz" component={ModuleQuizScreen} />
+    </ModuleStack.Navigator>
+  );
+}
+
 function LearnStackScreen() {
   return (
     <DashStack.Navigator>
@@ -116,6 +143,11 @@ function LearnStackScreen() {
         options={{headerShown: true, headerTitle: 'Article Details'}}
         name="ArticleDetails"
         component={ArticleDetails}
+      />
+      <DashStack.Screen
+        options={{headerShown: false, headerTitle: 'Module'}}
+        name="ModuleStack"
+        component={ModuleStackScreen}
       />
     </DashStack.Navigator>
   );

@@ -112,7 +112,7 @@ export const articles = [
       "In essence, the 5 S's provide a robust foundation for both culinary skill development and the battle against food waste. By mastering soups, sauces, smoothies, salads, and stir-fries, home chefs not only learn to prepare a wide range of dishes but also develop a mindset of resourcefulness and creativity. These dishes teach fundamental cooking principles and techniques that are easily transferable to more advanced recipes, making them an ideal starting point for anyone looking to enhance their kitchen prowess and make their cooking practices more sustainable.",
   },
   {
-    title: 'Respecting The Food You Purchase',
+    title: 'Respecting Your Food',
     intro:
       'Respecting the foods we purchase is a fundamental principle that extends far beyond mere consumption; it embodies a deep appreciation for the journey food undertakes from farm to table and acknowledges our role in this cycle. This respect is cultivated through an understanding of the tremendous effort and resources involved in growing, transporting, and refrigerating food before it reaches our homes. By recognizing the value of food, not just as a commodity but as a precious resource, we foster a sense of responsibility towards consumption, waste reduction, and sustainability.',
     paragraghs: [
