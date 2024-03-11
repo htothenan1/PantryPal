@@ -7,6 +7,7 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
@@ -39,16 +40,15 @@ const CameraPage = () => {
     }
   };
 
-  const toggleMode = () => {
-    setMode(mode === 'groceries' ? 'receipt' : 'groceries');
-  };
+  // const toggleMode = () => {
+  //   setMode(mode === 'groceries' ? 'receipt' : 'groceries');
+  // };
 
   async function addCustomItem(itemName) {
     try {
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
       );
-
       let storageTip = 'Not available';
       let expInt = 6;
 
@@ -65,7 +65,7 @@ const CameraPage = () => {
         });
 
         if (!tipResponse.ok) {
-          console.error(`HTTP error! Status: ${tipResponse.status}`);
+          throw new Error(`HTTP error! Status: ${tipResponse.status}`);
         } else {
           const tipData = await tipResponse.json();
           storageTip = tipData.storageTip;
@@ -78,28 +78,22 @@ const CameraPage = () => {
         storage_tip: storageTip,
         user: userEmail,
       };
-
       const response = await fetch(`${API_URL}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          items: [newItem],
-          userEmail: userEmail,
-        }),
+        body: JSON.stringify({items: [newItem], userEmail: userEmail}),
       });
 
       if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(
-          `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
-        );
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      await response.json();
+      return {success: true};
     } catch (error) {
       console.error('Error adding custom item:', error);
+      return {success: false, message: error.message};
     }
   }
 
@@ -115,8 +109,6 @@ const CameraPage = () => {
     data.append('userEmail', userEmail);
     data.append('mode', currentMode);
 
-    console.log('this the data', data);
-
     fetch(`${API_URL}/analyzeImage`, {
       method: 'POST',
       body: data,
@@ -125,28 +117,38 @@ const CameraPage = () => {
       },
     })
       .then(response => {
-        console.log('Raw Response:', response);
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.text().then(text => {
-            throw new Error(text);
-          });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        return response.json();
       })
       .then(data => {
-        console.log('Success:', data);
         if (Array.isArray(data)) {
-          data.forEach(itemName => {
-            addCustomItem(itemName);
-          });
+          return Promise.allSettled(
+            data.map(itemName => addCustomItem(itemName)),
+          );
+        } else {
+          throw new Error('Invalid data format');
         }
+      })
+      .then(results => {
+        const allSuccess = results.every(
+          result => result.status === 'fulfilled' && result.value.success,
+        );
         setIsLoading(false);
-        navigation.navigate('Dashboard', {itemsAdded: true});
+        if (allSuccess) {
+          navigation.navigate('Dashboard', {itemsAdded: true});
+        } else {
+          Alert.alert(
+            'Error',
+            'Some items could not be added. Please try again!',
+          );
+        }
       })
       .catch(error => {
         console.error('Error:', error);
         setIsLoading(false);
+        Alert.alert('Error', 'Something went wrong. Please try again!');
       });
   };
 

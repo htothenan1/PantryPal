@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  // Linking,
+  Linking,
   Button,
   Alert,
 } from 'react-native';
@@ -404,9 +404,9 @@ const Dashboard = ({route}) => {
     });
   };
 
-  // const navToCamera = () => {
-  //   navigation.navigate('CameraPage');
-  // };
+  const navToCamera = () => {
+    navigation.navigate('CameraPage');
+  };
 
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
@@ -455,15 +455,15 @@ const Dashboard = ({route}) => {
     }, [navigation, route.params?.itemsAdded]),
   );
 
-  // useEffect(() => {
-  //   async function getPermission() {
-  //     const permission = await Camera.requestCameraPermission();
-  //     if (permission === 'denied') {
-  //       await Linking.openSettings();
-  //     }
-  //   }
-  //   getPermission();
-  // }, []);
+  useEffect(() => {
+    async function getPermission() {
+      const permission = await Camera.requestCameraPermission();
+      if (permission === 'denied') {
+        await Linking.openSettings();
+      }
+    }
+    getPermission();
+  }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -623,11 +623,11 @@ const Dashboard = ({route}) => {
           <AntDesignIcon name="edit" size={20} color="white" />
         </TouchableOpacity>
 
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={styles.centerFab}
           onPress={() => navToCamera()}>
           <AntDesignIcon name="camerao" size={20} color="white" />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
           <AntDesignIcon name="bars" size={20} color="white" />
