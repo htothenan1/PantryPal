@@ -25,7 +25,8 @@ const ModuleStartScreen = ({route, navigation}) => {
           </Text>
         ))}
       </View>
-      {/* Use a View to apply flex styles to the Button */}
+      <Text style={styles.introText}>{module.intro}</Text>
+
       <View style={styles.startButton}>
         <TouchableOpacity style={styles.buttonContainer} onPress={startModule}>
           <Text style={styles.buttonText}>Start Module</Text>

@@ -224,29 +224,14 @@ app.post('/favorites/toggle', async (req, res) => {
   }
 });
 
-// Analyze image with OpenAI and return list of grocery items
-// app.post('/analyzeImage', upload.single('image'), async (req, res) => {
-//   try {
-//     const imgFile = req.file.path;
-//     const base64Image = await convertToBase64(imgFile);
-//     const mode = req.body.mode;
-//     const response = await veggiesTest(base64Image, mode);
-//     console.log(response);
-//     const itemsArray = JSON.parse(response.message.content);
-//     res.json(itemsArray);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Error processing image');
-//   }
-// });
-
 app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
 
   const bucket = storage.bucket(bucketName);
-  const blob = bucket.file(req.file.originalname);
+  const uniqueFilename = `${Date.now()}-${req.file.originalname}`;
+  const blob = bucket.file(uniqueFilename);
   const blobStream = blob.createWriteStream({
     metadata: {
       contentType: req.file.mimetype,
@@ -264,6 +249,7 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
       const response = await veggiesTest(publicUrl, mode);
       console.log(response);
       const itemsArray = JSON.parse(response.message.content);
+      res.set('Cache-Control', 'no-store');
       res.json(itemsArray);
     } catch (error) {
       console.error(error);

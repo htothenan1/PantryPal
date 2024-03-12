@@ -27,6 +27,11 @@ import humidityArt from '../assets/humidity_art.png';
 import temperatureArt from '../assets/temperature_art.png';
 import ethyleneArt from '../assets/ethylene_art.png';
 import airArt from '../assets/air_art.png';
+import pantryArt from '../assets/pantry_art.png';
+import counterArt from '../assets/counter_art.png';
+import fridgeArt from '../assets/fridge_art.png';
+import freezerArt from '../assets/freezer_art.png';
+import kitchenArt from '../assets/kitchen_art.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -35,21 +40,6 @@ const Learn = () => {
   const flatListRef = useRef(null);
 
   const navigation = useNavigation();
-
-  const culinarySkillsObjects = [
-    {
-      image: motherSauces,
-      title: 'The 5 French Mother Sauces',
-    },
-    {
-      image: homeCooking,
-      title: 'Soups, Sauces, Smoothies, Salads, and Stirfries',
-    },
-    {
-      image: miseEnPlace,
-      title: 'Mise en Place',
-    },
-  ];
 
   const latestArticlesObjects = [
     {
@@ -65,63 +55,25 @@ const Learn = () => {
       title: 'The Many Perks of a Tidy Kitchen',
     },
     {
-      image: potatoArt,
-      title: 'Potatoes',
-    },
-    {
       image: motherSauces,
       title: 'The 5 French Mother Sauces',
-    },
-    {
-      image: onionArt,
-      title: 'Onions',
     },
     {
       image: homeCooking,
       title: 'Soups, Sauces, Smoothies, Salads, and Stirfries',
     },
     {
-      image: appleArt,
-      title: 'Apples',
-    },
-    {
       image: miseEnPlace,
       title: 'Mise en Place',
     },
-    {
-      image: avoArt,
-      title: 'Avocados',
-    },
-    {
-      image: strawberryArt,
-      title: 'Strawberries',
-    },
-    {
-      image: blueberryArt,
-      title: 'Blueberries',
-    },
   ];
 
-  const beyondTheKitchenObjects = [
-    {
-      image: foodRespect,
-      title: 'Respecting The Food You Purchase',
-    },
-    {
-      image: firstStep,
-      title: 'The First Step',
-    },
-    {
-      image: kitchenPrep,
-      title: 'The Many Perks of a Tidy Kitchen',
-    },
-  ];
-
-  const modules = [
+  const ingredientModules = [
     {
       title: 'Potatoes',
       image: potatoArt,
-      intro: 'This will be the intro text for Potatoes',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Potatoes',
       content: [
         {
           contentTitle: 'Humidity',
@@ -164,7 +116,8 @@ const Learn = () => {
     {
       title: 'Onions',
       image: onionArt,
-      intro: 'This will be the intro text for Onions',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Onions',
       content: [
         {
           contentTitle: 'Humidity',
@@ -206,7 +159,8 @@ const Learn = () => {
     {
       title: 'Apples',
       image: appleArt,
-      intro: 'This will be the intro text for Apples',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Apples',
       content: [
         {
           contentTitle: 'Humidity',
@@ -249,7 +203,8 @@ const Learn = () => {
     {
       title: 'Bananas',
       image: bananaArt,
-      intro: 'This will be the intro text for Bananas',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Bananas',
       content: [
         {
           contentTitle: 'Humidity',
@@ -292,7 +247,8 @@ const Learn = () => {
     {
       title: 'Grapes',
       image: grapeArt,
-      intro: 'This will be the intro text for Grapes',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Grapes',
       content: [
         {
           contentTitle: 'Humidity',
@@ -335,7 +291,8 @@ const Learn = () => {
     {
       title: 'Strawberries',
       image: strawberryArt,
-      intro: 'This will be the intro text for Strawberries',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Strawberries',
       content: [
         {
           contentTitle: 'Humidity',
@@ -376,7 +333,8 @@ const Learn = () => {
     {
       title: 'Blueberries',
       image: blueberryArt,
-      intro: 'This will be the intro text for Blueberries',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Blueberries',
       content: [
         {
           contentTitle: 'Humidity',
@@ -419,7 +377,8 @@ const Learn = () => {
     {
       title: 'Avocados',
       image: avoArt,
-      intro: 'This will be the intro text for Avocados',
+      intro:
+        'By completing this module, you will be better equipped to handle and store Avocados',
       content: [
         {
           contentTitle: 'Humidity',
@@ -452,10 +411,60 @@ const Learn = () => {
           contentTitle: 'Air Circulation',
           contentImage: airArt,
           contentText: [
-            ' Good air circulation is important for avocados, especially when they are stored at room temperature to ripen.',
+            'Good air circulation is important for avocados, especially when they are stored at room temperature to ripen.',
             'Avoid sealing avocados in airtight containers when ripening at room temperature.',
             'If you are ripening multiple avocados together, make sure they are not packed too tightly and that air can circulate around them. ',
             'In the refrigerator, ensure they are not crammed in a drawer where air flow is restricted.',
+          ],
+        },
+      ],
+    },
+  ];
+  const kitchenPrepModules = [
+    {
+      title: 'The 4 Kitchen Domains',
+      image: kitchenArt,
+      intro:
+        'By learning how the 4 domains fit into an efficient kitchen operation, you can maximize the benefits of each.',
+      content: [
+        {
+          contentTitle: 'The Pantry',
+          contentImage: pantryArt,
+          contentText: [
+            'The pantry is ideal for storing non-perishable food items, such as grains, legumes, canned goods, and spices.',
+            'These items generally have a long shelf life and do not require refrigeration.',
+            'Keep your pantry organized by grouping similar items together and using clear, labeled containers for bulk items like flour, sugar, and rice.',
+            'Rotate items so that older stock is used first ("first in, first out").',
+          ],
+        },
+        {
+          contentTitle: 'The Counter',
+          contentImage: counterArt,
+          contentText: [
+            'The counter is suitable for storing fruits and vegetables that ripen off the vine, like tomatoes, avocados, and peaches, as well as those that degrade in flavor or texture when refrigerated, like potatoes, onions, and garlic.',
+            'Use bowls or baskets to store ripening fruits and vegetables on the counter.',
+            'Keep ethylene-producing fruits separate from ethylene-sensitive produce to prevent premature ripening or spoilage.',
+            'Ensure there is enough space for air to circulate around each item to prevent mold growth.',
+          ],
+        },
+        {
+          contentTitle: 'The Fridge',
+          contentImage: fridgeArt,
+          contentText: [
+            'The refrigerator is essential for preserving the freshness and extending the shelf life of perishable items like dairy, meats, fish, and many fruits and vegetables.',
+            'However, improper storage can lead to cold spots, freezer burn, or accelerated spoilage.',
+            'Organize your fridge by assigning specific areas for different types of food (e.g., drawers for fruits and vegetables, shelves for dairy and cooked meals).',
+            'Regularly check and remove spoiled items to prevent odors and contamination.',
+          ],
+        },
+        {
+          contentTitle: 'The Freezer',
+          contentImage: freezerArt,
+          contentText: [
+            'The freezer acts as a pause button, significantly extending the shelf life of almost any food from bread to meat, to prepared meals.',
+            'However, without proper organization and maintenance, it can become cluttered and less efficient.',
+            'Use labeled, freezer-safe containers or bags to store food in portions, making it easier to organize and retrieve what you need without thawing more than necessary.',
+            'Avoid overfilling your freezer, as this can restrict air circulation and lead to uneven freezing.',
           ],
         },
       ],
@@ -512,10 +521,10 @@ const Learn = () => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.titleText}>Learning Modules</Text>
+      <Text style={styles.titleText}>Kitchen Prep</Text>
       <View style={styles.dashContainer}>
         <FlatList
-          data={modules}
+          data={kitchenPrepModules}
           renderItem={renderModuleItems}
           keyExtractor={(item, index) => index.toString()}
           horizontal
@@ -528,42 +537,26 @@ const Learn = () => {
           onViewableItemsChanged={onViewRef.current}
         />
       </View>
-      <Text style={styles.titleText}>Latest Articles</Text>
+      <Text style={styles.titleText}>Know Your Foods</Text>
+      <View style={styles.dashContainer}>
+        <FlatList
+          data={ingredientModules}
+          renderItem={renderModuleItems}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={true}
+          pagingEnabled
+          ref={ref => {
+            flatListRef.current = ref;
+          }}
+          viewabilityConfig={viewConfigRef}
+          onViewableItemsChanged={onViewRef.current}
+        />
+      </View>
+      <Text style={styles.titleText}>Articles</Text>
       <View style={styles.dashContainer}>
         <FlatList
           data={latestArticlesObjects}
-          renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={true}
-          pagingEnabled
-          ref={ref => {
-            flatListRef.current = ref;
-          }}
-          viewabilityConfig={viewConfigRef}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      </View>
-      <Text style={styles.titleText}>Culinary Skills</Text>
-      <View style={styles.dashContainer}>
-        <FlatList
-          data={culinarySkillsObjects}
-          renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={true}
-          pagingEnabled
-          ref={ref => {
-            flatListRef.current = ref;
-          }}
-          viewabilityConfig={viewConfigRef}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      </View>
-      <Text style={styles.titleText}>Beyond the Kitchen</Text>
-      <View style={styles.dashContainer}>
-        <FlatList
-          data={beyondTheKitchenObjects}
           renderItem={renderItems}
           keyExtractor={(item, index) => index.toString()}
           horizontal

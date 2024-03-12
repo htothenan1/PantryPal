@@ -123,14 +123,37 @@ const CameraPage = () => {
         return response.json();
       })
       .then(data => {
+        setIsLoading(false); // Stop loading indicator
+
         if (Array.isArray(data)) {
-          return Promise.allSettled(
-            data.map(itemName => addCustomItem(itemName)),
+          // Show the alert with the identified items
+          Alert.alert(
+            'Items Identified',
+            `The following items were identified: ${data.join(', ')}`,
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'Confirm', onPress: () => addItems(data)}, // Proceed to add items if confirmed
+            ],
           );
         } else {
           throw new Error('Invalid data format');
         }
       })
+      .catch(error => {
+        console.error('Error:', error);
+        setIsLoading(false);
+        Alert.alert('Error', 'Something went wrong. Please try again!');
+      });
+  };
+
+  const addItems = items => {
+    setIsLoading(true); // Show loading indicator again
+
+    Promise.allSettled(items.map(itemName => addCustomItem(itemName)))
       .then(results => {
         const allSuccess = results.every(
           result => result.status === 'fulfilled' && result.value.success,
@@ -146,9 +169,12 @@ const CameraPage = () => {
         }
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error adding items:', error);
         setIsLoading(false);
-        Alert.alert('Error', 'Something went wrong. Please try again!');
+        Alert.alert(
+          'Error',
+          'Something went wrong while adding items. Please try again!',
+        );
       });
   };
 

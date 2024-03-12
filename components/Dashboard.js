@@ -10,7 +10,7 @@ import {
   TextInput,
   Pressable,
   Linking,
-  Button,
+  // Button,
   Alert,
 } from 'react-native';
 import {Camera} from 'react-native-vision-camera';

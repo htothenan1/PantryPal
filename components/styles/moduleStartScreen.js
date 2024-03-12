@@ -28,6 +28,12 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 22,
   },
+  introText: {
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+    fontSize: 20,
+    marginHorizontal: 12,
+  },
   bulletText: {
     marginLeft: 20,
     fontFamily: 'Avenir-Book',
