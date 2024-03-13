@@ -24,7 +24,11 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    marginBottom: 10,
+  },
+  levelText: {
+    textAlign: 'left',
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -42,9 +46,6 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginTop: 10,
     padding: 5,
-  },
-  buttonContainer: {
-    alignSelf: 'center',
   },
   headerText: {
     textAlign: 'left',
@@ -82,5 +83,26 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
+  },
+  startButton: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    backgroundColor: '#1b4965',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10, // Adjust for more or less rounded corners
+    marginHorizontal: 50, // Adds some margin on the sides
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book', // or any preferred font
   },
 });

@@ -30,8 +30,8 @@ const DashStack = createNativeStackNavigator();
 const ModuleStack = createNativeStackNavigator();
 
 function LogoTitle() {
-  return <AntDesignIcon name="home" size={30} color="black" />;
-  // return null;
+  // return <AntDesignIcon name="home" size={30} color="black" />;
+  return null;
 }
 
 // function InsightsTitle() {
@@ -40,8 +40,8 @@ function LogoTitle() {
 // }
 
 function CameraTitle() {
-  return <AntDesignIcon name="camerao" size={30} color="black" />;
-  // return null;
+  // return <AntDesignIcon name="camerao" size={30} color="black" />;
+  return null;
 }
 
 function MultiSelectTitle() {
@@ -50,17 +50,17 @@ function MultiSelectTitle() {
 }
 
 function AccountTitle() {
-  return <AntDesignIcon name="user" size={30} color="black" />;
-  // return null;
+  // return <AntDesignIcon name="user" size={30} color="black" />;
+  return null;
 }
 
 function RecipesDashTitle() {
-  return <AntDesignIcon name="search1" size={30} color="black" />;
-  // return null;
+  // return <AntDesignIcon name="search1" size={30} color="black" />;
+  return null;
 }
 function LearnTitle() {
-  return <AntDesignIcon name="bulb1" size={30} color="black" />;
-  // return null;
+  // return <AntDesignIcon name="bulb1" size={30} color="black" />;
+  return null;
 }
 
 function DashStackScreen() {

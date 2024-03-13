@@ -24,10 +24,46 @@ import {ingredients} from './data/ingredients';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
 import groceryPic from '../assets/grocery.png';
+import appleIcon from '../assets/apple_icon.png';
+import avoIcon from '../assets/avo_icon.png';
+import bellpepperIcon from '../assets/bellpepper_icon.png';
+import broccoliIcon from '../assets/broccoli_icon.png';
+import onionIcon from '../assets/onion_icon.png';
+
+const icons = [
+  {
+    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
+    name: 'Ruby',
+    img: appleIcon,
+  },
+  {
+    item_id: '9g7d41g6-7g1e-4gf9-bc1c-7919egf1efg4',
+    name: 'Hass',
+    img: avoIcon,
+  },
+  {
+    item_id: '987df1b6-7f1e-4ff9-bcwc-7919ewf1ew54',
+    name: 'Peppy',
+    img: bellpepperIcon,
+  },
+  {
+    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
+    name: 'Brock',
+    img: broccoliIcon,
+  },
+  {
+    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
+    name: 'Ollie',
+    img: onionIcon,
+  },
+];
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const Dashboard = ({route}) => {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedIcon, setSelectedIcon] = useState(null);
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -418,6 +454,58 @@ const Dashboard = ({route}) => {
     }
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `${API_URL}/users/data?email=${userEmail}`,
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userEmail) {
+      fetchUserData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this effect runs once on mount
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     if (userEmail) {
+  //       const fetchUserData = async () => {
+  //         try {
+  //           setLoading(true);
+  //           const response = await fetch(
+  //             `${API_URL}/users/data?email=${userEmail}`,
+  //           );
+  //           if (!response.ok) {
+  //             throw new Error(`HTTP error! Status: ${response.status}`);
+  //           }
+  //           const data = await response.json();
+  //           setUserData(data);
+  //         } catch (error) {
+  //           console.error('Error fetching user data:', error.message);
+  //         } finally {
+  //           setLoading(false);
+  //         }
+  //       };
+
+  //       fetchUserData();
+  //     }
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, []),
+  // );
+
   // useFocusEffect(
   //   React.useCallback(() => {
   //     let isActive = true;
@@ -454,6 +542,19 @@ const Dashboard = ({route}) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigation, route.params?.itemsAdded]),
   );
+
+  useEffect(() => {
+    if (userData?.iconName) {
+      const foundIcon = icons.find(
+        icon => icon.name === userData.iconName,
+      )?.img;
+      if (foundIcon) {
+        setSelectedIcon(foundIcon);
+      } else {
+        console.log('Icon not found:', userData.iconName);
+      }
+    }
+  }, [userData]);
 
   useEffect(() => {
     async function getPermission() {
@@ -496,7 +597,8 @@ const Dashboard = ({route}) => {
                 <Text style={[styles.itemText, {color: backgroundColor}]}>
                   {item.name}
                 </Text>
-                <Text style={[styles.itemText, {color: backgroundColor}]}>
+                <Text
+                  style={[styles.remainingDaysText, {color: backgroundColor}]}>
                   {daysRemaining} days remaining
                 </Text>
               </>
@@ -513,6 +615,46 @@ const Dashboard = ({route}) => {
 
   return (
     <View style={styles.container}>
+      {loading ? (
+        <ActivityIndicator size="large" color="#495057" />
+      ) : (
+        <>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Account')}
+            style={styles.headerContainer}>
+            <View
+              onPress={() => {
+                /* handle profile icon click */
+              }}>
+              <Image source={selectedIcon} style={styles.userIcon} />
+            </View>
+            <View>
+              <Text style={styles.userName}>{userData?.firstName}</Text>
+              <Text style={styles.levelText}>Level 1</Text>
+            </View>
+          </TouchableOpacity>
+          {/* <View style={{flexDirection: 'row', marginTop: 30}}>
+            <View>
+              {selectedIcon ? (
+                <Image
+                  source={selectedIcon}
+                  style={{width: 100, height: 100, resizeMode: 'stretch'}}
+                />
+              ) : (
+                <View style={{marginTop: 10}}>
+                  <AntDesignIcon name="user" size={50} color="black" />
+                </View>
+              )}
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>{userData?.firstName}</Text>
+              <Text style={styles.item}>
+                Total Items Logged: {userData?.itemsCreated}
+              </Text>
+            </View>
+          </View> */}
+        </>
+      )}
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Items ({items.length})</Text>
         {items.length > 0 ? (
@@ -561,22 +703,21 @@ const Dashboard = ({route}) => {
         // If loading is complete and there are no items, show the empty state
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
           <Text style={styles.emptyStateText}>
-            Logging your items with FlavrAi will help you keep your kitchen
-            under control! Tap{' '}
+            Logging your items with FlavrAi will help you stay organized in the
+            kitchen! Tap{' '}
             <TouchableOpacity
               style={styles.emptyFab}
               onPress={() => setAddItemModalVisible(true)}>
-              <AntDesignIcon name="edit" size={20} color="white" />
-            </TouchableOpacity>{' '}
-            to add a single item, or{' '}
-            <TouchableOpacity
-              style={styles.emptyFab}
-              onPress={() => navToMultiSelect()}>
               <AntDesignIcon name="bars" size={20} color="white" />
             </TouchableOpacity>{' '}
             to select multiple items at once from our list of common
-            ingredients. The more you log, the more benefits you'll get from
-            FlavrAi!
+            ingredients. Tap
+            <TouchableOpacity
+              style={styles.emptyFab}
+              onPress={() => navToMultiSelect()}>
+              <AntDesignIcon name="edit" size={20} color="white" />
+            </TouchableOpacity>{' '}
+            to add a single item via text.
           </Text>
         </ScrollView>
       )}
@@ -616,22 +757,26 @@ const Dashboard = ({route}) => {
         }}
       />
 
-      <View>
-        <TouchableOpacity
-          style={styles.leftFab}
-          onPress={() => setAddItemModalVisible(true)}>
-          <AntDesignIcon name="edit" size={20} color="white" />
-        </TouchableOpacity>
+      <View style={styles.fabContainer}>
+        <View style={styles.fabContainer}>
+          <TouchableOpacity
+            style={styles.leftFab}
+            onPress={() => setAddItemModalVisible(true)}>
+            <AntDesignIcon name="edit" size={20} color="white" />
+          </TouchableOpacity>
 
-        <TouchableOpacity
+          {/* <TouchableOpacity
           style={styles.centerFab}
           onPress={() => navToCamera()}>
           <AntDesignIcon name="camerao" size={20} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <TouchableOpacity style={styles.fab} onPress={() => navToMultiSelect()}>
-          <AntDesignIcon name="bars" size={20} color="white" />
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.fab}
+            onPress={() => navToMultiSelect()}>
+            <AntDesignIcon name="bars" size={20} color="white" />
+          </TouchableOpacity>
+        </View>
 
         <Modal
           isVisible={isAddItemModalVisible}

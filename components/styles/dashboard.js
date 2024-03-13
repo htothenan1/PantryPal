@@ -14,6 +14,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    // paddingLeft: 28,
   },
   headerIcon: {
     marginHorizontal: 10,
@@ -39,7 +40,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   itemsList: {
-    marginBottom: 80,
+    marginBottom: 75,
   },
   item: {
     borderWidth: 0.2,
@@ -59,10 +60,17 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
   },
+  remainingDaysText: {
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
+  },
   itemImage: {
     width: 50,
     height: '100%',
     resizeMode: 'contain',
+  },
+  fabContainer: {
+    borderTopWidth: 0.3,
   },
   fab: {
     position: 'absolute',
@@ -139,12 +147,11 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   titleText: {
-    textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 4,
   },
   emptyStateContainer: {
     flex: 1,
@@ -156,16 +163,20 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     lineHeight: 55,
-    textAlign: 'center',
+    // textAlign: 'center',
     color: '#666',
   },
   tabsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    // marginBottom: 5,
+    justifyContent: 'space-evenly', // Ensure content starts from the left and stacks to the right
+    // flexWrap: 'wrap', // Optional: If you want to wrap tabs to the next line when they overflow
+    // marginBottom: 10, // Keep or adjust as necessary
+    // paddingHorizontal: 2, // Add padding to align with the titleText's start
   },
+
   tab: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
+    // marginHorizontal: 2,
     paddingVertical: 10,
   },
   selectedTab: {
@@ -185,5 +196,36 @@ export default StyleSheet.create({
   },
   disabledButton: {
     backgroundColor: '#ccc', // A light grey to indicate the button is disabled
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderBottomWidth: 0.2,
+    backgroundColor: '#f8f9fa',
+    // Add other styling as necessary
+  },
+  userIcon: {
+    width: 50, // Set the width as you like
+    height: 50, // Set the height as you like
+    borderRadius: 25, // This will make it round, adjust as necessary
+    borderWidth: 0.4,
+    borderColor: '#1b4965',
+    // Add other styling as necessary
+  },
+  userName: {
+    marginLeft: 10, // Adjust the spacing between the icon and the name as necessary
+    fontSize: 18, // Adjust the font size as necessary
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    // Add other styling as necessary
+  },
+  levelText: {
+    marginLeft: 10, // Adjust the spacing between the icon and the name as necessary
+    fontSize: 18, // Adjust the font size as necessary
+    fontWeight: 800,
+    fontFamily: 'Avenir-Book',
+    // Add other styling as necessary
   },
 });
