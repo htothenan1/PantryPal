@@ -25,7 +25,7 @@ export default StyleSheet.create({
     // marginLeft: 24,
   },
   selectedItemStyle: {
-    backgroundColor: '#495057',
+    backgroundColor: '#1b4965',
   },
   selectedItemText: {
     color: 'white',

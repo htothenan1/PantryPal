@@ -14,6 +14,7 @@ import {
   Alert,
 } from 'react-native';
 import {Camera} from 'react-native-vision-camera';
+import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -622,17 +623,26 @@ const Dashboard = ({route}) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('Account')}
             style={styles.headerContainer}>
-            <View
-              onPress={() => {
-                /* handle profile icon click */
-              }}>
-              <Image source={selectedIcon} style={styles.userIcon} />
-            </View>
+            <Image source={selectedIcon} style={styles.userIcon} />
             <View>
               <Text style={styles.userName}>{userData?.firstName}</Text>
               <Text style={styles.levelText}>Level 1</Text>
             </View>
           </TouchableOpacity>
+          <View style={styles.progressContainer}>
+            <Text style={styles.progressTitle}>Your Progress</Text>
+            <ProgressBar
+              progress={0.3}
+              width={null} // Use full width of the container
+              height={10} // Your desired height
+              borderRadius={5} // Match your design
+              color="#1b4965" // Progress bar color
+              unfilledColor="#E0E0E0" // Remaining progress bar color
+              borderWidth={0} // No border
+              style={styles.progressBar}
+            />
+            <Text style={styles.progressText}>120/1000 XP</Text>
+          </View>
           {/* <View style={{flexDirection: 'row', marginTop: 30}}>
             <View>
               {selectedIcon ? (
@@ -665,24 +675,36 @@ const Dashboard = ({route}) => {
           </TouchableOpacity>
         ) : null}
       </View>
-      <View style={styles.tabsContainer}>
-        {availableCategories.map(category => (
-          <TouchableOpacity
-            key={category}
-            style={[
-              styles.tab,
-              currentCategory === category && styles.selectedTab,
-            ]}
-            onPress={() => setCurrentCategory(category)}>
-            <Text
+      <View>
+        <ScrollView
+          horizontal={true} // Enables horizontal scrolling
+          showsHorizontalScrollIndicator={false} // Optionally hide the scrollbar
+          contentContainerStyle={{
+            margin: 0,
+            padding: 0,
+            height: 50,
+            paddingBottom: 0,
+          }}
+          style={styles.scrollViewStyle} // Use this to style the ScrollView itself
+        >
+          {availableCategories.map(category => (
+            <TouchableOpacity
+              key={category}
               style={[
-                styles.tabText,
-                currentCategory === category && styles.selectedTabText,
-              ]}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </Text>
-          </TouchableOpacity>
-        ))}
+                styles.tab,
+                currentCategory === category && styles.selectedTab,
+              ]}
+              onPress={() => setCurrentCategory(category)}>
+              <Text
+                style={[
+                  styles.tabText,
+                  currentCategory === category && styles.selectedTabText,
+                ]}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
 
       {isItemsLoading ? (
@@ -703,21 +725,20 @@ const Dashboard = ({route}) => {
         // If loading is complete and there are no items, show the empty state
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
           <Text style={styles.emptyStateText}>
-            Logging your items with FlavrAi will help you stay organized in the
-            kitchen! Tap{' '}
+            Logging your items with FlavrAi will help keep your kitchen
+            organized! Tap{' '}
             <TouchableOpacity
               style={styles.emptyFab}
               onPress={() => setAddItemModalVisible(true)}>
-              <AntDesignIcon name="bars" size={20} color="white" />
+              <AntDesignIcon name="edit" size={20} color="white" />
             </TouchableOpacity>{' '}
-            to select multiple items at once from our list of common
-            ingredients. Tap
+            to add a single item by text, or{' '}
             <TouchableOpacity
               style={styles.emptyFab}
               onPress={() => navToMultiSelect()}>
-              <AntDesignIcon name="edit" size={20} color="white" />
+              <AntDesignIcon name="bars" size={20} color="white" />
             </TouchableOpacity>{' '}
-            to add a single item via text.
+            to select multiple items from our curated list of ingredients.
           </Text>
         </ScrollView>
       )}

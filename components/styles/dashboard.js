@@ -13,8 +13,8 @@ export default StyleSheet.create({
   headerText: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    // paddingLeft: 28,
+    justifyContent: 'flex-start',
+    paddingLeft: 28,
   },
   headerIcon: {
     marginHorizontal: 10,
@@ -166,29 +166,48 @@ export default StyleSheet.create({
     // textAlign: 'center',
     color: '#666',
   },
+  scrollViewStyle: {
+    marginHorizontal: 24,
+    marginVertical: 10,
+  },
+
   tabsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly', // Ensure content starts from the left and stacks to the right
-    // flexWrap: 'wrap', // Optional: If you want to wrap tabs to the next line when they overflow
-    // marginBottom: 10, // Keep or adjust as necessary
-    // paddingHorizontal: 2, // Add padding to align with the titleText's start
+    alignItems: 'center', // Ensure this doesn't contribute to the height
+    // Remove paddingVertical if it's creating extra space
+    // padding: 10,
+    margin: 0,
   },
 
   tab: {
-    paddingHorizontal: 8,
-    // marginHorizontal: 2,
-    paddingVertical: 10,
+    justifyContent: 'center', // Center the text horizontally within the tab
+    alignItems: 'center', // Center the text vertically within the tab
+    paddingVertical: 0, // Reduce the vertical padding inside each tab
+    paddingHorizontal: 12, // Horizontal padding inside each tab
+    borderRadius: 20, // Rounded corners
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
+    marginRight: 4, // Space between tabs
+    // Other styles...
   },
+
+  // ... other styles remain the same
+
   selectedTab: {
     backgroundColor: '#1b4965',
-    borderRadius: 10,
+    borderRadius: 20,
+    borderColor: '#1b4965',
   },
+
   tabText: {
     fontSize: 13,
   },
+
   selectedTabText: {
     color: 'white',
   },
+
   button: {
     padding: 10, // Adjust padding as needed
     borderRadius: 5, // Adjust border radius as needed
@@ -200,10 +219,10 @@ export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 14,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
-    backgroundColor: '#f8f9fa',
+    // backgroundColor: '#f8f9fa',
     // Add other styling as necessary
   },
   userIcon: {
@@ -211,7 +230,6 @@ export default StyleSheet.create({
     height: 50, // Set the height as you like
     borderRadius: 25, // This will make it round, adjust as necessary
     borderWidth: 0.4,
-    borderColor: '#1b4965',
     // Add other styling as necessary
   },
   userName: {
@@ -227,5 +245,29 @@ export default StyleSheet.create({
     fontWeight: 800,
     fontFamily: 'Avenir-Book',
     // Add other styling as necessary
+  },
+  progressContainer: {
+    // Styles for the progress bar container
+    paddingVertical: 14,
+    paddingHorizontal: 25,
+    borderBottomWidth: 0.2,
+  },
+  progressTitle: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 16,
+    color: '#000', // Choose your color
+    // Align and padding as needed
+  },
+  progressBar: {
+    alignSelf: 'stretch', // Ensures the bar stretches to the container width
+    marginVertical: 10, // Adjust as necessary
+    // Other styling as necessary
+  },
+  progressText: {
+    textAlign: 'left', // Centers the text
+    fontSize: 16,
+    color: '#000', // Choose your color
+    fontFamily: 'Avenir-Book',
+    // Any other styling you need
   },
 });
