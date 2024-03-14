@@ -36,7 +36,7 @@ export default StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#343a40',
+    backgroundColor: '#1b4965',
     width: '100%',
     paddingVertical: 15,
     marginVertical: 15,

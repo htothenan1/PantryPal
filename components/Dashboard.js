@@ -9,11 +9,10 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  Linking,
-  // Button,
+  // Linking,
   Alert,
 } from 'react-native';
-import {Camera} from 'react-native-vision-camera';
+// import {Camera} from 'react-native-vision-camera';
 import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -100,20 +99,19 @@ const Dashboard = ({route}) => {
   };
 
   useEffect(() => {
-    // fetchItems();
     const categories = calculateAvailableCategories();
     setAvailableCategories(categories);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   useEffect(() => {
-    setIsItemsLoading(true); // Activate loading state immediately
+    setIsItemsLoading(true);
 
     const fetchFirstItems = async () => {
       try {
         if (!userEmail) {
           console.error('User email is not available');
-          setIsItemsLoading(false); // Deactivate loading state on error
+          setIsItemsLoading(false);
           return;
         }
 
@@ -134,12 +132,12 @@ const Dashboard = ({route}) => {
       } catch (error) {
         console.error('Error fetching items:', error.message);
       } finally {
-        setIsItemsLoading(false); // Deactivate loading state after fetch
+        setIsItemsLoading(false);
       }
     };
 
     fetchFirstItems();
-  }, [userEmail]); // Assuming `userEmail` is stable and doesn't change often
+  }, [userEmail]);
 
   useEffect(() => {
     filterItemsByCategory();
@@ -169,7 +167,7 @@ const Dashboard = ({route}) => {
   };
 
   const deleteItem = async (itemId, method) => {
-    setDeletingItemId(itemId); // Indicate which item is being deleted
+    setDeletingItemId(itemId);
     try {
       const response = await fetch(
         `${API_URL}/items/${itemId}?method=${method}`,
@@ -191,7 +189,7 @@ const Dashboard = ({route}) => {
     } catch (error) {
       console.error('Error deleting item:', error.message);
     } finally {
-      setDeletingItemId(null); // Reset deleting item indicator
+      setDeletingItemId(null);
     }
   };
 
@@ -231,7 +229,7 @@ const Dashboard = ({route}) => {
     try {
       if (!userEmail) {
         console.error('User email is not available');
-        setIsItemsLoading(false); // Deactivate loading state on error
+        setIsItemsLoading(false);
         return;
       }
 
@@ -252,7 +250,7 @@ const Dashboard = ({route}) => {
     } catch (error) {
       console.error('Error fetching items:', error.message);
     } finally {
-      setIsItemsLoading(false); // Deactivate loading state after fetch
+      setIsItemsLoading(false);
     }
   };
 
@@ -385,7 +383,7 @@ const Dashboard = ({route}) => {
   const calculateAvailableCategories = () => {
     let allCategories = [];
     if (items.length > 0) {
-      allCategories.push('all'); // Only add 'all' if there are items
+      allCategories.push('all');
     }
 
     items.forEach(item => {
@@ -441,9 +439,9 @@ const Dashboard = ({route}) => {
     });
   };
 
-  const navToCamera = () => {
-    navigation.navigate('CameraPage');
-  };
+  // const navToCamera = () => {
+  //   navigation.navigate('CameraPage');
+  // };
 
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
@@ -478,63 +476,14 @@ const Dashboard = ({route}) => {
       fetchUserData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array ensures this effect runs once on mount
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     if (userEmail) {
-  //       const fetchUserData = async () => {
-  //         try {
-  //           setLoading(true);
-  //           const response = await fetch(
-  //             `${API_URL}/users/data?email=${userEmail}`,
-  //           );
-  //           if (!response.ok) {
-  //             throw new Error(`HTTP error! Status: ${response.status}`);
-  //           }
-  //           const data = await response.json();
-  //           setUserData(data);
-  //         } catch (error) {
-  //           console.error('Error fetching user data:', error.message);
-  //         } finally {
-  //           setLoading(false);
-  //         }
-  //       };
-
-  //       fetchUserData();
-  //     }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, []),
-  // );
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     let isActive = true;
-
-  //     const fetchData = async () => {
-  //       await fetchItems();
-  //     };
-
-  //     if (isActive) {
-  //       fetchData().catch(console.error);
-  //     }
-
-  //     return () => {
-  //       isActive = false;
-  //     };
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, []),
-  // );
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
       const unsubscribe = navigation.addListener('focus', () => {
-        // Check if navigation was triggered with the itemsAdded parameter
         if (route.params?.itemsAdded) {
           fetchItems();
 
-          // Optional: Reset the parameter so the fetch doesn't occur again
-          // on subsequent focuses unless explicitly triggered
           navigation.setParams({itemsAdded: false});
         }
       });
@@ -557,15 +506,15 @@ const Dashboard = ({route}) => {
     }
   }, [userData]);
 
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await Camera.requestCameraPermission();
-      if (permission === 'denied') {
-        await Linking.openSettings();
-      }
-    }
-    getPermission();
-  }, []);
+  // useEffect(() => {
+  //   async function getPermission() {
+  //     const permission = await Camera.requestCameraPermission();
+  //     if (permission === 'denied') {
+  //       await Linking.openSettings();
+  //     }
+  //   }
+  //   getPermission();
+  // }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -633,36 +582,16 @@ const Dashboard = ({route}) => {
             <Text style={styles.progressTitle}>Your Progress</Text>
             <ProgressBar
               progress={0.3}
-              width={null} // Use full width of the container
-              height={10} // Your desired height
-              borderRadius={5} // Match your design
-              color="#1b4965" // Progress bar color
-              unfilledColor="#E0E0E0" // Remaining progress bar color
-              borderWidth={0} // No border
+              width={null}
+              height={10}
+              borderRadius={5}
+              color="#1b4965"
+              unfilledColor="#E0E0E0"
+              borderWidth={0}
               style={styles.progressBar}
             />
             <Text style={styles.progressText}>120/1000 XP</Text>
           </View>
-          {/* <View style={{flexDirection: 'row', marginTop: 30}}>
-            <View>
-              {selectedIcon ? (
-                <Image
-                  source={selectedIcon}
-                  style={{width: 100, height: 100, resizeMode: 'stretch'}}
-                />
-              ) : (
-                <View style={{marginTop: 10}}>
-                  <AntDesignIcon name="user" size={50} color="black" />
-                </View>
-              )}
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>{userData?.firstName}</Text>
-              <Text style={styles.item}>
-                Total Items Logged: {userData?.itemsCreated}
-              </Text>
-            </View>
-          </View> */}
         </>
       )}
       <View style={styles.headerText}>
@@ -677,16 +606,15 @@ const Dashboard = ({route}) => {
       </View>
       <View>
         <ScrollView
-          horizontal={true} // Enables horizontal scrolling
-          showsHorizontalScrollIndicator={false} // Optionally hide the scrollbar
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             margin: 0,
             padding: 0,
             height: 50,
             paddingBottom: 0,
           }}
-          style={styles.scrollViewStyle} // Use this to style the ScrollView itself
-        >
+          style={styles.scrollViewStyle}>
           {availableCategories.map(category => (
             <TouchableOpacity
               key={category}
@@ -708,12 +636,10 @@ const Dashboard = ({route}) => {
       </View>
 
       {isItemsLoading ? (
-        // If items are being loaded, show a spinner
         <View style={styles.itemsLoadingContainer}>
           <ActivityIndicator size="large" color="#495057" />
         </View>
       ) : items.length > 0 ? (
-        // If loading is complete and there are items, show the list
         <FlatList
           windowSize={10}
           style={styles.itemsList}
@@ -722,7 +648,6 @@ const Dashboard = ({route}) => {
           renderItem={renderItem}
         />
       ) : (
-        // If loading is complete and there are no items, show the empty state
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
           <Text style={styles.emptyStateText}>
             Logging your items with FlavrAi will help keep your kitchen
@@ -802,11 +727,10 @@ const Dashboard = ({route}) => {
         <Modal
           isVisible={isAddItemModalVisible}
           onBackdropPress={() => setAddItemModalVisible(false)}
-          style={{alignItems: 'center'}} // Center the modal
-        >
+          style={{alignItems: 'center'}}>
           <View style={styles.modalContent}>
             <TouchableOpacity
-              style={{position: 'absolute', top: 10, right: 10}} // Position the close icon
+              style={{position: 'absolute', top: 10, right: 10}}
               onPress={() => setAddItemModalVisible(false)}>
               <AntDesignIcon name="close" size={24} color="black" />
             </TouchableOpacity>
@@ -819,21 +743,12 @@ const Dashboard = ({route}) => {
               value={newItemName}
               onChangeText={setNewItemName}
             />
-            {/* <Button
-              title={`Use In The Next: ${calculateDaysUntilExpiration(
-                customSelectedDate,
-              )} days`}
-              onPress={() => setCustomOpen(true)}
-            /> */}
+
             {isLoading ? (
               <View style={styles.confirmButtonContainer}>
                 <ActivityIndicator size="large" color="#495057" />
               </View>
             ) : (
-              // <Button
-              //   title="Confirm"
-              // onPress={() => addCustomItem(newItemName)}
-              // />
               <Pressable
                 disabled={!newItemName}
                 onPress={() => addCustomItem(newItemName)}

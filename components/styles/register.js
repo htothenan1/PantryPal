@@ -36,7 +36,7 @@ export default StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#343a40',
+    backgroundColor: '#1b4965',
     width: '100%',
     paddingVertical: 15,
     marginVertical: 15,
@@ -51,8 +51,8 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: '700',
     fontSize: 16,
+    fontFamily: 'Avenir-Book',
   },
   buttonOutlineText: {
     color: '#0782F9',

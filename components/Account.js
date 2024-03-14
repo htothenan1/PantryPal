@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,9 @@ import {
   ScrollView,
   Modal,
   Image,
-  FlatList,
 } from 'react-native';
-// import {ingredients} from './data/ingredients';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
-import {SPOON_KEY} from '@env';
 import styles from './styles/account';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -22,8 +19,6 @@ import avoIcon from '../assets/avo_icon.png';
 import bellpepperIcon from '../assets/bellpepper_icon.png';
 import broccoliIcon from '../assets/broccoli_icon.png';
 import onionIcon from '../assets/onion_icon.png';
-
-const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
 const icons = [
   {
@@ -60,93 +55,11 @@ const Account = () => {
   const [consumedItems, setConsumedItems] = useState([]);
   const [isIconPickerVisible, setIconPickerVisible] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null);
-  const [favoritedRecipes, setFavoritedRecipes] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef(null);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-
-  const onViewRef = useRef(({changed}) => {
-    if (changed[0].isViewable) {
-      setCurrentIndex(changed[0].index);
-    }
-  });
-
-  const renderItems = ({item}) => {
-    const title = 'recipe';
-
-    return (
-      <TouchableOpacity
-        // onPress={() => navToArticleDetails(item)}
-        activeOpacity={1}>
-        <Image source={item.image} style={styles.image} />
-        <Text style={styles.footerText}>{title}</Text>
-      </TouchableOpacity>
-    );
-  };
-
-  const fetchFavoritedRecipes = async () => {
-    if (!userEmail) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_URL}/favorites/user/${userEmail}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setFavoritedRecipes(data);
-    } catch (error) {
-      console.error('Error fetching favorited recipes:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSelectRecipe = async data => {
-    try {
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/${data}/information?apiKey=${SPOON_KEY}&includeNutrition=false`,
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {recipe});
-    } catch (error) {
-      console.error('Error fetching recipe information:', error.message);
-    }
-  };
-
-  const renderRecipeItem = ({item}) => {
-    return (
-      //   <TouchableOpacity onPress={() => handleSelectRecipe(item.recipeId)}>
-      //     <Text style={styles.recipeItem}>{item.recipeName}</Text>
-      //   </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => handleSelectRecipe(item.recipeId)}
-        style={styles.item}>
-        <View style={styles.itemTextContainer}>
-          <Text style={styles.itemText}>{item.recipeName}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  useFocusEffect(
-    React.useCallback(() => {
-      fetchFavoritedRecipes();
-      // console.log(favoritedRecipes);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
-  );
 
   const updateIconName = async selectedIconName => {
     try {
@@ -269,36 +182,6 @@ const Account = () => {
               </Text>
             </View>
           </View>
-          {/* <Text style={styles.titleText}>Latest Articles</Text>
-          <View style={styles.dashContainer}>
-            <FlatList
-              data={favoritedRecipes}
-              renderItem={renderItems}
-              keyExtractor={(item, index) => index.toString()}
-              horizontal
-              showsHorizontalScrollIndicator={true}
-              pagingEnabled
-              ref={ref => {
-                flatListRef.current = ref;
-              }}
-              viewabilityConfig={viewConfigRef}
-              onViewableItemsChanged={onViewRef.current}
-            />
-          </View> */}
-
-          {/* <View style={styles.headerText}>
-            <Text style={styles.titleText}>
-              Favorite Recipes ({favoritedRecipes.length})
-            </Text>
-          </View>
-
-          <FlatList
-            windowSize={10}
-            style={styles.recipesList}
-            data={favoritedRecipes}
-            // keyExtractor={item => item.id.toString()}
-            renderItem={renderRecipeItem}
-          /> */}
 
           <View style={styles.itemsList}>
             <View style={styles.headerContainer}>

@@ -136,8 +136,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 12,
     padding: 20,
-    position: 'absolute', // Use absolute positioning to place the modal
-    top: '15%', // Adjust this to move the modal higher, 25% from the top
+    position: 'absolute',
+    top: '15%',
     left: 0,
     right: 0,
   },
@@ -163,7 +163,7 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     lineHeight: 55,
-    // textAlign: 'center',
+
     color: '#666',
   },
   scrollViewStyle: {
@@ -173,26 +173,22 @@ export default StyleSheet.create({
 
   tabsContainer: {
     flexDirection: 'row',
-    alignItems: 'center', // Ensure this doesn't contribute to the height
-    // Remove paddingVertical if it's creating extra space
-    // padding: 10,
+    alignItems: 'center',
+
     margin: 0,
   },
 
   tab: {
-    justifyContent: 'center', // Center the text horizontally within the tab
-    alignItems: 'center', // Center the text vertically within the tab
-    paddingVertical: 0, // Reduce the vertical padding inside each tab
-    paddingHorizontal: 12, // Horizontal padding inside each tab
-    borderRadius: 20, // Rounded corners
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 0,
+    paddingHorizontal: 12,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: '#E0E0E0',
     backgroundColor: '#FFFFFF',
-    marginRight: 4, // Space between tabs
-    // Other styles...
+    marginRight: 4,
   },
-
-  // ... other styles remain the same
 
   selectedTab: {
     backgroundColor: '#1b4965',
@@ -209,12 +205,11 @@ export default StyleSheet.create({
   },
 
   button: {
-    padding: 10, // Adjust padding as needed
-    borderRadius: 5, // Adjust border radius as needed
-    // Ensure you have backgroundColor set for when the button is enabled
+    padding: 10,
+    borderRadius: 5,
   },
   disabledButton: {
-    backgroundColor: '#ccc', // A light grey to indicate the button is disabled
+    backgroundColor: '#ccc',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -222,32 +217,26 @@ export default StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
-    // backgroundColor: '#f8f9fa',
-    // Add other styling as necessary
   },
   userIcon: {
-    width: 50, // Set the width as you like
-    height: 50, // Set the height as you like
-    borderRadius: 25, // This will make it round, adjust as necessary
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     borderWidth: 0.4,
-    // Add other styling as necessary
   },
   userName: {
-    marginLeft: 10, // Adjust the spacing between the icon and the name as necessary
-    fontSize: 18, // Adjust the font size as necessary
+    marginLeft: 10,
+    fontSize: 18,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
-    // Add other styling as necessary
   },
   levelText: {
-    marginLeft: 10, // Adjust the spacing between the icon and the name as necessary
-    fontSize: 18, // Adjust the font size as necessary
+    marginLeft: 10,
+    fontSize: 18,
     fontWeight: 800,
     fontFamily: 'Avenir-Book',
-    // Add other styling as necessary
   },
   progressContainer: {
-    // Styles for the progress bar container
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
@@ -255,19 +244,16 @@ export default StyleSheet.create({
   progressTitle: {
     fontFamily: 'Avenir-Book',
     fontSize: 16,
-    color: '#000', // Choose your color
-    // Align and padding as needed
+    color: '#000',
   },
   progressBar: {
-    alignSelf: 'stretch', // Ensures the bar stretches to the container width
-    marginVertical: 10, // Adjust as necessary
-    // Other styling as necessary
+    alignSelf: 'stretch',
+    marginVertical: 10,
   },
   progressText: {
-    textAlign: 'left', // Centers the text
+    textAlign: 'left',
     fontSize: 16,
-    color: '#000', // Choose your color
+    color: '#000',
     fontFamily: 'Avenir-Book',
-    // Any other styling you need
   },
 });
