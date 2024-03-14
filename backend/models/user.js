@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
     byConsume: {type: Number, default: 0},
     byWaste: {type: Number, default: 0},
   },
+  xp: {type: Number, default: 0},
+  level: {type: Number, default: 1},
 });
 
 const User = mongoose.model('User', userSchema);
