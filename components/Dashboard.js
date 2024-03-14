@@ -314,6 +314,7 @@ const Dashboard = ({route}) => {
       setAddItemModalVisible(false);
       setNewItemName('');
       setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
+      fetchUserData();
       fetchItems();
     } catch (error) {
       console.error('Error adding custom item:', error);
@@ -478,11 +479,31 @@ const Dashboard = ({route}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const fetchUserData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/users/data?email=${userEmail}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching user data:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useFocusEffect(
     React.useCallback(() => {
       const unsubscribe = navigation.addListener('focus', () => {
         if (route.params?.itemsAdded) {
           fetchItems();
+
+          if (userEmail) {
+            fetchUserData();
+          }
 
           navigation.setParams({itemsAdded: false});
         }
@@ -504,7 +525,7 @@ const Dashboard = ({route}) => {
         console.log('Icon not found:', userData.iconName);
       }
     }
-  }, [userData]);
+  }, [userData?.iconName]);
 
   // useEffect(() => {
   //   async function getPermission() {
@@ -575,13 +596,13 @@ const Dashboard = ({route}) => {
             <Image source={selectedIcon} style={styles.userIcon} />
             <View>
               <Text style={styles.userName}>{userData?.firstName}</Text>
-              <Text style={styles.levelText}>Level 1</Text>
+              <Text style={styles.levelText}>Level {userData?.level}</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.progressContainer}>
             <Text style={styles.progressTitle}>Your Progress</Text>
             <ProgressBar
-              progress={0.3}
+              progress={userData?.xp / 1000}
               width={null}
               height={10}
               borderRadius={5}
@@ -590,7 +611,7 @@ const Dashboard = ({route}) => {
               borderWidth={0}
               style={styles.progressBar}
             />
-            <Text style={styles.progressText}>120/1000 XP</Text>
+            <Text style={styles.progressText}>{userData?.xp}/1000 XP</Text>
           </View>
         </>
       )}
