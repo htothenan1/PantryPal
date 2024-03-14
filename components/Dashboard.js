@@ -525,7 +525,7 @@ const Dashboard = ({route}) => {
         console.log('Icon not found:', userData.iconName);
       }
     }
-  }, [userData?.iconName]);
+  }, [userData]);
 
   // useEffect(() => {
   //   async function getPermission() {
