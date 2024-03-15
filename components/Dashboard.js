@@ -9,10 +9,10 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  // Linking,
+  Linking,
   Alert,
 } from 'react-native';
-// import {Camera} from 'react-native-vision-camera';
+import {Camera} from 'react-native-vision-camera';
 import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -440,9 +440,9 @@ const Dashboard = ({route}) => {
     });
   };
 
-  // const navToCamera = () => {
-  //   navigation.navigate('CameraPage');
-  // };
+  const navToCamera = () => {
+    navigation.navigate('CameraPage');
+  };
 
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
@@ -527,15 +527,15 @@ const Dashboard = ({route}) => {
     }
   }, [userData]);
 
-  // useEffect(() => {
-  //   async function getPermission() {
-  //     const permission = await Camera.requestCameraPermission();
-  //     if (permission === 'denied') {
-  //       await Linking.openSettings();
-  //     }
-  //   }
-  //   getPermission();
-  // }, []);
+  useEffect(() => {
+    async function getPermission() {
+      const permission = await Camera.requestCameraPermission();
+      if (permission === 'denied') {
+        await Linking.openSettings();
+      }
+    }
+    getPermission();
+  }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -732,11 +732,11 @@ const Dashboard = ({route}) => {
             <AntDesignIcon name="edit" size={20} color="white" />
           </TouchableOpacity>
 
-          {/* <TouchableOpacity
-          style={styles.centerFab}
-          onPress={() => navToCamera()}>
-          <AntDesignIcon name="camerao" size={20} color="white" />
-        </TouchableOpacity> */}
+          <TouchableOpacity
+            style={styles.centerFab}
+            onPress={() => navToCamera()}>
+            <AntDesignIcon name="camerao" size={20} color="white" />
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.fab}

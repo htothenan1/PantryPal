@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Alert,
+  Modal,
 } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
@@ -15,12 +16,15 @@ import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {auth} from '../firebase';
 import styles from './styles/cameraPage';
 import {ingredients} from './data/ingredients';
+import {ScrollView} from 'react-native';
 
 const CameraPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [imageSource, setImageSource] = useState('');
   const [mode, setMode] = useState('groceries');
+  const [isItemsModalVisible, setIsItemsModalVisible] = useState(false);
+  const [identifiedItems, setIdentifiedItems] = useState([]);
 
   const camera = useRef(null);
   const device = useCameraDevice('back');
@@ -35,8 +39,8 @@ const CameraPage = () => {
       const photo = await camera.current.takePhoto({});
       setImageSource(photo.path);
       setShowCamera(false);
-      console.log(photo.path);
-      console.log(mode);
+      // console.log(photo.path);
+      // console.log(mode);
     }
   };
 
@@ -123,22 +127,13 @@ const CameraPage = () => {
         return response.json();
       })
       .then(data => {
-        setIsLoading(false); // Stop loading indicator
+        setIsLoading(false);
 
         if (Array.isArray(data)) {
-          // Show the alert with the identified items
-          Alert.alert(
-            'Items Identified',
-            `The following items were identified: ${data.join(', ')}`,
-            [
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-              },
-              {text: 'Confirm', onPress: () => addItems(data)}, // Proceed to add items if confirmed
-            ],
-          );
+          if (Array.isArray(data)) {
+            setIdentifiedItems(data);
+            setIsItemsModalVisible(true);
+          }
         } else {
           throw new Error('Invalid data format');
         }
@@ -151,7 +146,7 @@ const CameraPage = () => {
   };
 
   const addItems = items => {
-    setIsLoading(true); // Show loading indicator again
+    setIsLoading(true);
 
     Promise.allSettled(items.map(itemName => addCustomItem(itemName)))
       .then(results => {
@@ -255,6 +250,35 @@ const CameraPage = () => {
           </View>
         </>
       )}
+      <Modal
+        visible={isItemsModalVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setIsItemsModalVisible(false)}>
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          onPress={() => setIsItemsModalVisible(false)}
+          activeOpacity={1}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitleText}>Items Identified</Text>
+            <ScrollView>
+              {identifiedItems.map((item, index) => (
+                <Text key={index} style={styles.modalItemText}>
+                  {item}
+                </Text>
+              ))}
+            </ScrollView>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={() => {
+                addItems(identifiedItems);
+                setIsItemsModalVisible(false);
+              }}>
+              <Text style={styles.confirmButtonText}>Confirm</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      </Modal>
     </View>
   );
 };

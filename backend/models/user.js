@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
   },
   xp: {type: Number, default: 0},
   level: {type: Number, default: 1},
+  achievements: [
+    {
+      achievementId: {type: mongoose.Schema.Types.ObjectId, ref: 'Achievement'},
+      dateEarned: {type: Date, default: Date.now},
+    },
+  ],
 });
 
 const User = mongoose.model('User', userSchema);

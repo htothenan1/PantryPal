@@ -252,7 +252,7 @@ export const ingredients = [
       'Eggs',
       'Garlic',
       'Grapefruit',
-      'Sliced Ham',
+      'Ham',
       'Leeks',
       'Lemon',
       'Lobster',
@@ -529,36 +529,6 @@ export const ingredients = [
     goodSourceOf: 'protein, b vitamins',
     storage_tip:
       "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
-    // subItems: [
-    //   {
-    //     name: 'Classic Smoked Bacon',
-    //     item_id: 'ac49a54a-8103-4c16-b026-65899ccb6aee',
-    //   },
-    //   {
-    //     name: 'Maple Flavored Bacon',
-    //     item_id: 'fa8bdddc-d046-4fe9-8f67-5de87cb180e0',
-    //   },
-    //   {
-    //     name: 'Hickory Smoked Bacon',
-    //     item_id: '90ec2250-ef64-4406-a033-2e8aa30e9189',
-    //   },
-    //   {
-    //     name: 'Applewood Smoked Bacon',
-    //     item_id: 'f4958281-6edf-41e9-9f9d-93c234ac7464',
-    //   },
-    //   {name: 'Peppered Bacon', item_id: 'caf2a398-2b23-46e7-8d62-3f38a1dd598c'},
-    //   {
-    //     name: 'Thick Cut Bacon',
-    //     item_id: '5880f3a5-33c5-44f8-a0ad-630d71a1ab43',
-    //   },
-    //   {name: 'Turkey Bacon', item_id: '0afbfcfe-f2d9-4ce3-88c2-e199b01df6a9'},
-    //   {name: 'Canadian Bacon', item_id: 'b7929c33-3bc9-4f68-844b-f43ee9b855e5'},
-    //   {name: 'Pancetta', item_id: '0a97e373-2af5-4b20-8480-979cf4dad3bd'},
-    //   {
-    //     name: 'Vegetarian Baconx',
-    //     item_id: 'c2dd82de-4c36-4cd0-8b87-34fd55cf72aa',
-    //   },
-    // ],
     techniques: 'broil, roast, sauté',
     compatibles: [
       'Avocados',
@@ -635,19 +605,6 @@ export const ingredients = [
     goodSourceOf: 'potassium, vitamin C, folate',
     storage_tip:
       'If cut, sprinkle with lemon juice.  If your bananas are still in a bunch, consider separating them. This helps prevent them from ripening too quickly and becoming overripe.',
-    // subItems: [
-    //   {
-    //     name: 'Cavendish Bananas',
-    //     item_id: '09d96c7a-9318-462c-999b-a2067aa29995',
-    //   },
-    //   {name: 'Red Bananas', item_id: 'f8c18fdc-3c4e-42f5-b510-b799a68bda30'},
-    //   {name: 'Plantains', item_id: '3d5a48b6-78d6-4bf4-97bc-70172f5a261f'},
-    //   {
-    //     name: 'Lady Finger Bananas',
-    //     item_id: 'def57d80-dcc8-44d7-82e8-03ef93f0157a',
-    //   },
-    //   {name: 'Other Bananas', item_id: 'c34d9729-b8f1-42fb-9591-e1af38c3ca12'},
-    // ],
     techniques: 'bake, broil, caramelize, deep-fry, grill, poach, raw, sauté',
     compatibles: [
       'Almonds',
@@ -701,14 +658,6 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Before storing basil, trim the stems by about an inch and remove any leaves that will be submerged in water. Basil is best used fresh, as it can lose its vibrant color and flavor over time.',
-    // subItems: [
-    //   {name: 'Sweet Basil', item_id: '38de44d4-9284-4a32-b49e-2984a81882b5'},
-    //   {name: 'Thai Basil', item_id: '185046f5-c90d-47c4-a90a-f3a86d3efae9'},
-    //   {name: 'Lemon Basil', item_id: '6a1bb52b-3bd2-4b21-899f-b0148deb4bcd'},
-    //   {name: 'Holy Basil', item_id: '7cbf69eb-ad7b-463f-ae0d-d069d6b3061d'},
-    //   {name: 'Purple Basil', item_id: '8a428b46-18b1-46c3-bad3-9f6c230f966c'},
-    //   {name: 'Other Basil', item_id: '10036f95-0a99-410f-be37-eafcb3898dd5'},
-    // ],
     techniques: 'add just before serving',
     compatibles: [
       'Apricots',
@@ -1653,7 +1602,7 @@ export const ingredients = [
       'Bread Crumbs',
       'Butter, Unsalted',
       'Capers',
-      'Cheese', //Fontina, Gruyère, Parmesan
+      'Cheese',
       'Chickpeas',
       'Cilantro',
       'Cumin',
