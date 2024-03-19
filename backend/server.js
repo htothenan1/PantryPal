@@ -11,6 +11,7 @@ const User = require('./models/user');
 const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
 const FavoritedRecipe = require('./models/favoritedRecipe');
+const Achievement = require('./models/achievement');
 
 const OpenAI = require('openai');
 

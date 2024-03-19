@@ -18,6 +18,8 @@ import Learn from './components/Learn';
 import ModuleStartScreen from './components/ModuleStartScreen';
 import ModuleScreen from './components/ModuleScreen';
 import ModuleQuizScreen from './components/ModuleQuizScreen';
+import OnboardingStartScreen from './components/OnboardingStartScreen';
+import OnboardingScreen from './components/OnboardingScreen';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // import {Image} from 'react-native';
 // import logo from './assets/chefs_hat.png';
@@ -102,6 +104,11 @@ function DashStackScreen() {
         name="CameraPage"
         component={CameraPage}
       />
+      <DashStack.Screen
+        options={{headerShown: false, headerTitle: 'Module'}}
+        name="OnboardingStack"
+        component={OnboardingStackScreen}
+      />
     </DashStack.Navigator>
   );
 }
@@ -122,6 +129,28 @@ function ModuleStackScreen() {
         }}
         name="ModuleScreen"
         component={ModuleScreen}
+      />
+      <ModuleStack.Screen name="ModuleQuiz" component={ModuleQuizScreen} />
+    </ModuleStack.Navigator>
+  );
+}
+
+function OnboardingStackScreen() {
+  return (
+    <ModuleStack.Navigator initialRouteName="ModuleStartScreen">
+      <ModuleStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="OnboardingStartScreen"
+        component={OnboardingStartScreen}
+      />
+      <ModuleStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="OnboardingScreen"
+        component={OnboardingScreen}
       />
       <ModuleStack.Screen name="ModuleQuiz" component={ModuleQuizScreen} />
     </ModuleStack.Navigator>

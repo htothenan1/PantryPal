@@ -96,6 +96,13 @@ export default StyleSheet.create({
     backgroundColor: '#1b4965',
     borderRadius: 28,
   },
+  chefFab: {
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 28,
+  },
   leftFab: {
     position: 'absolute',
     width: 56,
@@ -156,14 +163,13 @@ export default StyleSheet.create({
   emptyStateContainer: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     paddingHorizontal: 30,
   },
   emptyStateText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     lineHeight: 55,
-
     color: '#666',
   },
   scrollViewStyle: {
@@ -174,7 +180,6 @@ export default StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-
     margin: 0,
   },
 
@@ -255,5 +260,18 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#000',
     fontFamily: 'Avenir-Book',
+  },
+  actionItemContainer: {
+    flexDirection: 'row', // Align children horizontally.
+    alignItems: 'center', // Center children vertically in the cross axis.
+    marginBottom: 10, // Add some space between each item.
+  },
+
+  actionItemText: {
+    fontSize: 20,
+    fontFamily: 'Avenir-Book',
+    lineHeight: 55,
+    color: '#666',
+    marginLeft: 10, // Add some space between the icon and the text.
   },
 });

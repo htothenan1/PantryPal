@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const seedAchievements = require('./seedAchievements');
 
 const connectDB = () => {
   const url =
@@ -12,7 +13,9 @@ const connectDB = () => {
     console.error(err.message);
     process.exit(1);
   }
+
   const dbConnection = mongoose.connection;
+  seedAchievements();
   dbConnection.once('open', _ => {
     console.log(`Database connected: ${url}`);
   });
