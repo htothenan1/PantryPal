@@ -16,9 +16,9 @@ const ModuleStartScreen = ({route, navigation}) => {
     <View style={styles.container}>
       <Image source={module.image} style={styles.image} />
 
-      <Text style={styles.titleText}>All About {module.title}</Text>
+      <Text style={styles.titleText}>{module.title}</Text>
       <View style={styles.overviewContainer}>
-        <Text style={styles.overviewTitle}>Topics covered in this module:</Text>
+        <Text style={styles.overviewTitle}>Topics covered:</Text>
         {module.content.map((item, index) => (
           <Text key={index} style={styles.bulletText}>
             • {item.contentTitle}

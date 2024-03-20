@@ -32,6 +32,7 @@ import counterArt from '../assets/counter_art.png';
 import fridgeArt from '../assets/fridge_art.png';
 import freezerArt from '../assets/freezer_art.png';
 import kitchenArt from '../assets/kitchen_art.png';
+import chefLogo from '../assets/chefs_hat.png';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 
@@ -420,16 +421,17 @@ const Learn = () => {
       ],
     },
   ];
-  const onboardingModule = [
+
+  const kitchenPrepModules = [
     {
-      title: 'The 3 Actions',
-      image: kitchenArt,
+      title: 'How to use FlavrAi',
+      image: chefLogo,
       intro:
-        'By making consistent effort to follow these 5 steps, it will empower you to have an efficient kitchen',
+        'By consistently doing these 3 Core Actions in our app, you will gain the skills neccessary to maintain an efficient kitchen.',
       content: [
         {
           contentTitle: 'Logging your Foods',
-          contentImage: pantryArt,
+          contentImage: chefLogo,
           contentText: [
             'Regularly logging your grocery items and their freshest-by dates reduces food waste significantly, as it allows you to prioritize the consumption of items that are nearing their end of freshness.',
             'The app simplifies inventory management by enabling users to easily log and track their groceries along with their freshest-by dates.',
@@ -439,7 +441,7 @@ const Learn = () => {
         },
         {
           contentTitle: 'Setting SMART goals',
-          contentImage: counterArt,
+          contentImage: chefLogo,
           contentText: [
             'Setting Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) goals for food consumption can significantly increase the likelihood of using all purchased items.',
             'Our app helps users set SMART goals for their groceries by providing logical default "freshest-by" dates for over 100 of the most common items purchased.',
@@ -449,7 +451,7 @@ const Learn = () => {
         },
         {
           contentTitle: 'Learning about your Foods',
-          contentImage: counterArt,
+          contentImage: chefLogo,
           contentText: [
             'Understanding the properties and optimal storage conditions of the foods you buy ensures that foods are consumed at their peak freshness and nutritional content.',
             'Our app provides detailed information on each logged item, including storage tips, nutritional facts, and flavor compatibilities.',
@@ -459,8 +461,6 @@ const Learn = () => {
         },
       ],
     },
-  ];
-  const kitchenPrepModules = [
     {
       title: 'The 4 Kitchen Domains',
       image: kitchenArt,
@@ -561,7 +561,7 @@ const Learn = () => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.titleText}>Kitchen Prep</Text>
+      <Text style={styles.titleText}>Getting Started</Text>
       <View style={styles.dashContainer}>
         <FlatList
           data={kitchenPrepModules}

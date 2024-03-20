@@ -11,7 +11,6 @@ import styles from './styles/moduleScreen';
 
 const ModuleScreen = ({route, navigation}) => {
   const {content, currentIndex} = route.params;
-
   const currentContent = content[currentIndex];
   const isLastContent = currentIndex === content.length - 1;
 
