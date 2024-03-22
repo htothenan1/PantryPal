@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';

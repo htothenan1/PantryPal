@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  // Button,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import styles from './styles/onboardingScreen';
 
 const OnboardingScreen = ({route, navigation}) => {

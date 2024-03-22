@@ -60,7 +60,7 @@ const Insights = () => {
     backgroundColor: '#fff',
     backgroundGradientFrom: '#fff',
     backgroundGradientTo: '#fff',
-    decimalPlaces: 0, // optional, defaults to 2dp
+    decimalPlaces: 0,
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     style: {

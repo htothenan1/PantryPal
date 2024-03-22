@@ -9,7 +9,6 @@ import Dashboard from './components/Dashboard';
 import MultiSelectScreen from './components/MultiSelect';
 import ItemDetails from './components/ItemDetails';
 import RecipeDetails from './components/RecipeDetails';
-// import Insights from './components/Insights';
 import Account from './components/Account';
 import CameraPage from './components/CameraPage';
 import RecipesDash from './components/RecipesDash';
@@ -21,8 +20,6 @@ import ModuleQuizScreen from './components/ModuleQuizScreen';
 import OnboardingStartScreen from './components/OnboardingStartScreen';
 import OnboardingScreen from './components/OnboardingScreen';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-// import {Image} from 'react-native';
-// import logo from './assets/chefs_hat.png';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,11 +32,6 @@ function LogoTitle() {
   // return <AntDesignIcon name="home" size={30} color="black" />;
   return null;
 }
-
-// function InsightsTitle() {
-//   // return <AntDesignIcon name="barschart" size={30} color="black" />;
-//   return null;
-// }
 
 function CameraTitle() {
   // return <AntDesignIcon name="camerao" size={30} color="black" />;
@@ -218,9 +210,6 @@ function RecipesDashStackScreen() {
   );
 }
 
-const insightsIcon = () => {
-  return <AntDesignIcon name="barschart" size={20} color="black" />;
-};
 const dashIcon = () => {
   return <AntDesignIcon name="home" size={20} color="black" />;
 };
@@ -266,16 +255,6 @@ function MyTabsScreen() {
           tabBarIcon: () => learnIcon(),
         }}
       />
-      {/* <Tab.Screen
-        name="Insights"
-        options={{
-          headerShown: true,
-          headerTitle: props => <InsightsTitle {...props} />,
-          tabBarLabel: 'Insights',
-          tabBarIcon: () => insightsIcon(),
-        }}
-        component={Insights}
-      /> */}
       <Tab.Screen
         name="Account"
         options={{

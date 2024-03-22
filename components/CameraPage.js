@@ -32,15 +32,12 @@ const CameraPage = () => {
   const navigation = useNavigation();
 
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-  // const API_URL = 'https://localhost:3000/';
 
   const capturePhoto = async () => {
     if (camera.current !== null) {
       const photo = await camera.current.takePhoto({});
       setImageSource(photo.path);
       setShowCamera(false);
-      // console.log(photo.path);
-      // console.log(mode);
     }
   };
 

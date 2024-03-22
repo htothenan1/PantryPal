@@ -21,87 +21,12 @@ import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
+import {icons} from './data/icons';
+import {onboardingModule} from './data/modules';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
 import groceryPic from '../assets/grocery.png';
-import appleIcon from '../assets/apple_icon.png';
-import avoIcon from '../assets/avo_icon.png';
-import bellpepperIcon from '../assets/bellpepper_icon.png';
-import broccoliIcon from '../assets/broccoli_icon.png';
-import onionIcon from '../assets/onion_icon.png';
 import chefLogo from '../assets/chefs_hat.png';
-import logging from '../assets/loggin2.png';
-import goalSetting from '../assets/goal_setting2.png';
-import itemDetails from '../assets/item_details.png';
-
-const onboardingModule = [
-  {
-    title: 'The 3 Core Actions',
-    image: chefLogo,
-    intro:
-      'By consistently doing these 3 Core Actions in our app, you will gain the skills neccessary to maintain an efficient kitchen.',
-    content: [
-      {
-        contentTitle: 'Logging your Foods',
-        contentImage: chefLogo,
-        contentText: [
-          'Regularly logging your grocery items and their freshest-by dates reduces food waste significantly, as it allows you to prioritize the consumption of items that are nearing their end of freshness.',
-          'The app simplifies inventory management by enabling users to easily log and track their groceries along with their freshest-by dates.',
-          'By leaning on human-centered design principles and the power of AI, our logger is intuitive, fast, educational, and rewarding',
-          'By maintaining awareness of your food inventory and condition through a digital device, you can make informed decisions beyond the kitchen, enhancing efficiency everywhere you go.',
-        ],
-      },
-      {
-        contentTitle: 'Setting SMART goals',
-        contentImage: chefLogo,
-        contentText: [
-          'Setting Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) goals for food consumption can significantly increase the likelihood of using all purchased items.',
-          'Our app helps users set SMART goals for their groceries by providing logical default "freshest-by" dates for over 100 of the most common items purchased.',
-          'This encourages users to plan their meals around what needs to be used first, fostering a more mindful and efficient kitchen.',
-          'At our core, we view the setting of SMART goals as a skill that, with practice and refinement over time, can dramatically enhance your kitchen efficiency and sustainability; ',
-        ],
-      },
-      {
-        contentTitle: 'Learning about your Foods',
-        contentImage: chefLogo,
-        contentText: [
-          'Understanding the properties and optimal storage conditions of the foods you buy ensures that foods are consumed at their peak freshness and nutritional content.',
-          'Our app provides detailed information on each logged item, including storage tips, nutritional facts, and flavor compatibilities.',
-          'This knowledge empowers users to make informed decisions about food storage, preparation, and pairing, enhancing the overall quality of meals.',
-          'In addition, we provide an advanced recipe search tool based on your specific items, to aid in answering finding your perfect meal to cook',
-        ],
-      },
-    ],
-  },
-];
-
-const icons = [
-  {
-    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
-    name: 'Ruby',
-    img: appleIcon,
-  },
-  {
-    item_id: '9g7d41g6-7g1e-4gf9-bc1c-7919egf1efg4',
-    name: 'Hass',
-    img: avoIcon,
-  },
-  {
-    item_id: '987df1b6-7f1e-4ff9-bcwc-7919ewf1ew54',
-    name: 'Peppy',
-    img: bellpepperIcon,
-  },
-  {
-    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
-    name: 'Brock',
-    img: broccoliIcon,
-  },
-  {
-    item_id: '987d41b6-711e-41f9-bc1c-7919eef1ef54',
-    name: 'Ollie',
-    img: onionIcon,
-  },
-];
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 

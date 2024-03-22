@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   FlatList,
   Text,
@@ -97,12 +97,6 @@ const Dashboard = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
-
-  // useEffect(() => {
-  //   fetchItems();
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item.name);

@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const {Storage} = require('@google-cloud/storage');
 const multer = require('multer');
-const fs = require('fs');
 const cors = require('cors');
 const connectDB = require('./db');
 const Item = require('./models/item');
@@ -11,7 +10,6 @@ const User = require('./models/user');
 const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
 const FavoritedRecipe = require('./models/favoritedRecipe');
-const Achievement = require('./models/achievement');
 
 const OpenAI = require('openai');
 
@@ -29,7 +27,6 @@ const imagePrompt =
 const receiptPrompt =
   'Please analyze the receipt in the image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Don not include any labels or keys in the array. If an item in the receipt is not a common grocery item that can be consumed, please omit it from the list. For example, if the receipt lists apples, bananas, and laundry detergent, the result should be formatted as ["Apples", "Bananas"].';
 
-// const upload = multer({dest: 'uploads/'});
 const upload = multer({storage: multer.memoryStorage()});
 
 app.use('/public', express.static('../assets'));
@@ -38,49 +35,9 @@ app.use(express.json());
 
 connectDB();
 
-// function convertToBase64(filePath) {
-//   return new Promise((resolve, reject) => {
-//     fs.readFile(filePath, {encoding: 'base64'}, (err, data) => {
-//       if (err) {
-//         reject(err);
-//       } else {
-//         resolve(`data:image/jpeg;base64,${data}`);
-//       }
-//     });
-//   });
-// }
-
-// async function veggiesTest(base64Image, mode) {
-//   try {
-//     const response = await openai.chat.completions.create({
-//       model: 'gpt-4-vision-preview',
-//       messages: [
-//         {
-//           role: 'user',
-//           content: [
-//             {
-//               type: 'text',
-//               text: `${mode === 'groceries' ? imagePrompt : receiptPrompt}`,
-//             },
-//             {
-//               type: 'image_url',
-//               image_url: base64Image,
-//             },
-//           ],
-//         },
-//       ],
-//       max_tokens: 2000,
-//     });
-
-//     return response.choices[0];
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
 async function veggiesTest(imageUrl, mode) {
   try {
-    const promptText = mode === 'groceries' ? imagePrompt : receiptPrompt; // Use the appropriate prompt based on the mode
+    const promptText = mode === 'groceries' ? imagePrompt : receiptPrompt;
     const response = await openai.chat.completions.create({
       model: 'gpt-4-vision-preview',
       messages: [
@@ -91,7 +48,7 @@ async function veggiesTest(imageUrl, mode) {
             {
               type: 'image_url',
               image_url: {
-                url: imageUrl, // Ensure this matches the documentation's structure
+                url: imageUrl,
               },
             },
           ],
@@ -225,22 +182,7 @@ app.post('/favorites/toggle', async (req, res) => {
   }
 });
 
-// Analyze image with OpenAI and return list of grocery items
-// app.post('/analyzeImage', upload.single('image'), async (req, res) => {
-//   try {
-//     const imgFile = req.file.path;
-//     const base64Image = await convertToBase64(imgFile);
-//     const mode = req.body.mode;
-//     const response = await veggiesTest(base64Image, mode);
-//     console.log(response);
-//     const itemsArray = JSON.parse(response.message.content);
-//     res.json(itemsArray);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Error processing image');
-//   }
-// });
-
+// Open AI analyze image
 app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
@@ -257,7 +199,6 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   blobStream.on('error', err => res.status(500).send(err.toString()));
 
   blobStream.on('finish', async () => {
-    // Construct the public URL or a signed URL
     const publicUrl = `https://storage.googleapis.com/${bucketName}/${blob.name}`;
 
     try {
@@ -336,7 +277,7 @@ app.post('/items', async (req, res) => {
     const user = await User.findOne({email: userEmail});
     if (user) {
       user.itemsCreated += itemsData.length;
-      user.xp += 10 * itemsData.length; // Increment the user's XP by 10 for each created item
+      user.xp += 10 * itemsData.length;
       await user.save();
     }
 
@@ -358,7 +299,7 @@ app.put('/users/icon', async (req, res) => {
     const user = await User.findOneAndUpdate(
       {email: email},
       {iconName: iconName},
-      {new: true}, // Return the updated document
+      {new: true},
     );
 
     if (!user) {
@@ -406,7 +347,7 @@ app.delete('/items/deleteAll', async (req, res) => {
 // Delete one item by id
 app.delete('/items/:id', async (req, res) => {
   try {
-    const deletionMethod = req.query.method; // Expecting 'undo', 'consume', or 'waste'
+    const deletionMethod = req.query.method;
     const deletedItem = await Item.findById(req.params.id);
     if (!deletedItem) {
       return res.status(404).send('Item not found');
@@ -432,10 +373,8 @@ app.delete('/items/:id', async (req, res) => {
       }
     }
 
-    // Now delete the item
     await Item.findByIdAndDelete(req.params.id);
 
-    // Increment the user's deletion counters
     const user = await User.findOne({email: deletedItem.user});
     if (user) {
       user.itemsDeleted.total += 1;
