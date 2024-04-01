@@ -275,4 +275,9 @@ export default StyleSheet.create({
     color: '#666',
     marginLeft: 10, // Add some space between the icon and the text.
   },
+  saveText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 14,
+    color: 'black',
+  },
 });

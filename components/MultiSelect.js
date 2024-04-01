@@ -245,7 +245,7 @@ const MultiSelectScreen = ({route}) => {
                 {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#76c893'},
                 selectedItems.length === 0 && styles.disabledButton,
               ]}>
-              <AntDesignIcon name="save" size={20} color={'white'} />
+              <Text style={styles.saveText}>Save</Text>
             </Pressable>
           </View>
         )}

@@ -730,7 +730,8 @@ const Dashboard = ({route}) => {
           <TouchableOpacity
             style={styles.leftFab}
             onPress={() => setAddItemModalVisible(true)}>
-            <AntDesignIcon name="edit" size={20} color="white" />
+            {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
+            <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
           </TouchableOpacity>
 
           {/* <TouchableOpacity
@@ -743,6 +744,7 @@ const Dashboard = ({route}) => {
             style={styles.fab}
             onPress={() => navToMultiSelect()}>
             <AntDesignIcon name="bars" size={20} color="white" />
+            {/* <Text style={{fontSize: 14, color: 'white'}}>Add from list</Text> */}
           </TouchableOpacity>
         </View>
 
@@ -783,7 +785,7 @@ const Dashboard = ({route}) => {
                   },
                   !newItemName && styles.disabledButton,
                 ]}>
-                <AntDesignIcon name="save" size={20} color={'white'} />
+                <Text style={styles.saveText}>Save</Text>
               </Pressable>
             )}
           </View>
