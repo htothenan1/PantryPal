@@ -153,6 +153,14 @@ const Dashboard = ({route}) => {
         );
       }
 
+      const data = await response.json();
+      if (data.levelChanged) {
+        Alert.alert(
+          'Congratulations!',
+          `You've reached level ${data.newLevel}!`,
+        );
+      }
+
       setItems(currentItems =>
         currentItems.filter(item => item._id !== itemId),
       );
@@ -316,7 +324,13 @@ const Dashboard = ({route}) => {
         );
       }
 
-      await response.json();
+      const data = await response.json();
+      if (data.levelChanged) {
+        Alert.alert(
+          'Congratulations!',
+          `You've reached level ${data.newLevel}!`,
+        );
+      }
       fetchItems();
       fetchUserData();
       setSelectedDate(new Date());

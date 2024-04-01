@@ -21,6 +21,22 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API,
 });
 
+function calculateUserLevel(xp) {
+  if (xp < 1000) return 1;
+  if (xp >= 1000 && xp < 2000) return 2;
+  if (xp >= 2000 && xp < 3000) return 3;
+  if (xp >= 3000) return 4;
+  return 1;
+}
+
+function updateUserLevelAndCheckChange(user) {
+  const oldLevel = user.level;
+  const newLevel = calculateUserLevel(user.xp);
+  const levelChanged = oldLevel !== newLevel;
+  user.level = newLevel; // Ensure the user's level is always updated to the current level
+  return {levelChanged, newLevel, xp: user.xp};
+}
+
 const imagePrompt =
   'Please analyze the attached image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the image is not clearly identifiable or distinguishable, please omit it from the list. For example, if the image clearly shows apples, bananas, and a loaf of bread, the result should be formatted as ["Apples", "Bananas", "Bread"].';
 
@@ -278,12 +294,15 @@ app.post('/items', async (req, res) => {
     if (user) {
       user.itemsCreated += itemsData.length;
       user.xp += 3 * itemsData.length;
+      // Check for level change and update the user accordingly
+      const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
       await user.save();
+      return res.json({savedItems, levelChanged, newLevel, xp}); // Note the return statement here
     }
 
-    res.json(savedItems);
+    return res.json(savedItems); // Also added return here for clarity
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error); // It's good practice to return after sending a response in catch block as well
   }
 });
 
@@ -318,9 +337,7 @@ app.put('/items/:id', async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
-      {
-        exp_date: new Date(req.body.exp_date),
-      },
+      {exp_date: new Date(req.body.exp_date)},
       {new: true},
     );
     if (updatedItem) {
@@ -328,9 +345,15 @@ app.put('/items/:id', async (req, res) => {
       const user = await User.findOne({email: updatedItem.user});
       if (user) {
         user.xp += 2; // Gain 2 XP for updating expiration date
+        // Check for level change and update the user accordingly
+        const {levelChanged, newLevel, xp} =
+          updateUserLevelAndCheckChange(user);
         await user.save();
+        // Include level change information in the response
+        res.json({item: updatedItem, levelChanged, newLevel, xp});
+      } else {
+        res.status(404).send('User not found');
       }
-      res.json(updatedItem);
     } else {
       res.status(404).send('Item not found');
     }
@@ -368,7 +391,7 @@ app.delete('/items/:id', async (req, res) => {
       });
 
       if (existingItem) {
-        existingItem.frequency = (existingItem.frequency || 0) + 1;
+        existingItem.frequency += 1;
         await existingItem.save();
       } else {
         await ItemModel.create({
@@ -395,14 +418,19 @@ app.delete('/items/:id', async (req, res) => {
       }
       if (deletionMethod === 'waste') {
         user.itemsDeleted.byWaste += 1;
-        xpGain += 1; // Gain 2 XP for consume method
+        xpGain += 1; // Gain 1 XP for waste method
       }
 
       user.xp += xpGain;
-
+      // Check for level change and update the user accordingly
+      const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
       await user.save();
+
+      // If the request expects a JSON response
+      res.json({message: 'Item deleted', levelChanged, newLevel, xp});
+    } else {
+      res.status(404).send('User not found');
     }
-    res.status(204).send();
   } catch (error) {
     res.status(400).send('Bad request: ' + error.message);
   }
