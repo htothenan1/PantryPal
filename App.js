@@ -181,7 +181,7 @@ function AccountStackScreen() {
     <DashStack.Navigator>
       <DashStack.Screen
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle: props => <AccountTitle {...props} />,
         }}
         name="MyAccount"
@@ -259,7 +259,7 @@ function MyTabsScreen() {
         name="LearnScreen"
         component={LearnStackScreen}
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle: props => <LearnTitle {...props} />,
           tabBarLabel: 'Learn',
           tabBarIcon: () => learnIcon(),

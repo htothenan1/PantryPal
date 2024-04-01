@@ -198,7 +198,8 @@ const Dashboard = () => {
                 Get Recipes Based On Your Items!
               </Text>
               <Text style={styles.fetchRecipesSubText}>
-                Tap one or more items to get started!
+                Choose one or more items and tap the search icon to find
+                recipes!
               </Text>
             </View>
           </TouchableOpacity>

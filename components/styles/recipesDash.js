@@ -83,5 +83,7 @@ export default StyleSheet.create({
   fetchRecipesSubText: {
     fontSize: 16,
     fontFamily: 'Avenir-Book',
+    textAlign: 'center',
+    paddingHorizontal: 14,
   },
 });

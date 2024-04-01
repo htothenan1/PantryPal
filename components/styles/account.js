@@ -7,10 +7,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingHorizontal: 30,
+    marginTop: 50,
   },
   titleContainer: {
     justifyContent: 'center',
-    // alignItems: 'center',
     marginLeft: 8,
   },
   modalTitleText: {
