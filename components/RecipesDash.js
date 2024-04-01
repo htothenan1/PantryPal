@@ -186,14 +186,14 @@ const Dashboard = () => {
         <TouchableOpacity
           style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
-          <AntDesignIcon name="reload1" size={20} color="black" />
+          <AntDesignIcon name="search1" size={20} color="black" />
         </TouchableOpacity>
       </View>
       <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
           <TouchableOpacity onPress={handleRefreshRecipes}>
             <View style={styles.fetchRecipesContainer}>
-              <AntDesignIcon name="reload1" size={30} color="black" />
+              <AntDesignIcon name="search1" size={30} color="black" />
               <Text style={styles.fetchRecipesText}>
                 Get Recipes Based On Your Items!
               </Text>

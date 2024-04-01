@@ -62,7 +62,7 @@ const ItemDetails = ({route}) => {
 
       {compatibleUserItems.length > 0 && (
         <View>
-          <Text style={styles.compatibleHeader}>Your Compatibles:</Text>
+          <Text style={styles.compatibleHeader}>Best Pairings:</Text>
           {compatibleUserItems.map((compatibleItem, index) => (
             <Text key={index} style={styles.compatibleItem}>
               {compatibleItem}

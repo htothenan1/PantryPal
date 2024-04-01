@@ -6,6 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    marginTop: 50,
   },
   recipesLoadingContainer: {
     height: 250,
@@ -22,7 +23,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 20,
-    // marginLeft: 24,
   },
   selectedItemStyle: {
     backgroundColor: '#1b4965',

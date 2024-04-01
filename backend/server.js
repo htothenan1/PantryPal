@@ -277,7 +277,7 @@ app.post('/items', async (req, res) => {
     const user = await User.findOne({email: userEmail});
     if (user) {
       user.itemsCreated += itemsData.length;
-      user.xp += 10 * itemsData.length;
+      user.xp += 3 * itemsData.length;
       await user.save();
     }
 
@@ -324,6 +324,12 @@ app.put('/items/:id', async (req, res) => {
       {new: true},
     );
     if (updatedItem) {
+      // Find the user associated with the item and increase their XP
+      const user = await User.findOne({email: updatedItem.user});
+      if (user) {
+        user.xp += 2; // Gain 2 XP for updating expiration date
+        await user.save();
+      }
       res.json(updatedItem);
     } else {
       res.status(404).send('Item not found');
@@ -378,15 +384,22 @@ app.delete('/items/:id', async (req, res) => {
     const user = await User.findOne({email: deletedItem.user});
     if (user) {
       user.itemsDeleted.total += 1;
+      let xpGain = 0; // Initialize XP gain variable
+
       if (deletionMethod === 'undo') {
         user.itemsDeleted.byUndo += 1;
       }
       if (deletionMethod === 'consume') {
         user.itemsDeleted.byConsume += 1;
+        xpGain += 2; // Gain 2 XP for consume method
       }
       if (deletionMethod === 'waste') {
         user.itemsDeleted.byWaste += 1;
+        xpGain += 1; // Gain 2 XP for consume method
       }
+
+      user.xp += xpGain;
+
       await user.save();
     }
     res.status(204).send();

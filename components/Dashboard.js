@@ -156,6 +156,7 @@ const Dashboard = ({route}) => {
       setItems(currentItems =>
         currentItems.filter(item => item._id !== itemId),
       );
+      fetchUserData();
     } catch (error) {
       console.error('Error deleting item:', error.message);
     } finally {
@@ -317,6 +318,7 @@ const Dashboard = ({route}) => {
 
       await response.json();
       fetchItems();
+      fetchUserData();
       setSelectedDate(new Date());
       const swipeable = swipeableRefs.get(item._id);
       if (swipeable) {
@@ -563,35 +565,40 @@ const Dashboard = ({route}) => {
 
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#495057" />
-      ) : (
-        <>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Account')}
-            style={styles.headerContainer}>
-            <Image source={selectedIcon} style={styles.userIcon} />
-            <View>
-              <Text style={styles.userName}>{userData?.firstName}</Text>
-              <Text style={styles.levelText}>Level {userData?.level}</Text>
-            </View>
-          </TouchableOpacity>
-          <View style={styles.progressContainer}>
-            <Text style={styles.progressTitle}>Your Progress</Text>
-            <ProgressBar
-              progress={userData?.xp / 1000}
-              width={null}
-              height={10}
-              borderRadius={5}
-              color="#1b4965"
-              unfilledColor="#E0E0E0"
-              borderWidth={0}
-              style={styles.progressBar}
-            />
-            <Text style={styles.progressText}>{userData?.xp}/1000 XP</Text>
+      <>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Account')}
+          style={styles.headerContainer}>
+          <Image source={selectedIcon} style={styles.userIcon} />
+          <View>
+            <Text style={styles.userName}>{userData?.firstName}</Text>
+            <Text style={styles.levelText}>Level {userData?.level}</Text>
           </View>
-        </>
-      )}
+        </TouchableOpacity>
+        <View style={styles.progressContainer}>
+          <Text style={styles.progressTitle}>Your Progress</Text>
+          {loading ? (
+            <View style={{height: 52}}>
+              <ActivityIndicator size="small" color="#495057" />
+            </View>
+          ) : (
+            <>
+              <ProgressBar
+                progress={userData?.xp / 1000}
+                width={null}
+                height={10}
+                borderRadius={5}
+                color="#1b4965"
+                unfilledColor="#E0E0E0"
+                borderWidth={0}
+                style={styles.progressBar}
+              />
+              <Text style={styles.progressText}>{userData?.xp}/1000 XP</Text>
+            </>
+          )}
+        </View>
+      </>
+
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Items ({items.length})</Text>
         {items.length > 0 ? (

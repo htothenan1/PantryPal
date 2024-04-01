@@ -61,7 +61,10 @@ function DashStackScreen() {
   return (
     <DashStack.Navigator>
       <DashStack.Screen
-        options={{headerTitle: props => <LogoTitle {...props} />}}
+        options={{
+          headerShown: false,
+          headerTitle: props => <LogoTitle {...props} />,
+        }}
         name="Dashboard"
         component={Dashboard}
       />
@@ -197,7 +200,10 @@ function RecipesDashStackScreen() {
   return (
     <DashStack.Navigator>
       <DashStack.Screen
-        options={{headerTitle: props => <RecipesDashTitle {...props} />}}
+        options={{
+          headerShown: false,
+          headerTitle: props => <RecipesDashTitle {...props} />,
+        }}
         name="RecipesDash"
         component={RecipesDash}
       />
@@ -232,7 +238,11 @@ function MyTabsScreen() {
         component={DashStackScreen}
         options={{
           headerShown: false,
+          headerStyle: {
+            backgroundColor: 'black',
+          },
           tabBarLabel: 'Kitchen',
+
           tabBarIcon: () => dashIcon(),
         }}
       />

@@ -222,6 +222,7 @@ export default StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
+    marginTop: 50,
   },
   userIcon: {
     width: 50,
