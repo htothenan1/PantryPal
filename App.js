@@ -164,12 +164,12 @@ function LearnStackScreen() {
         }}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Article Details'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="ArticleDetails"
         component={ArticleDetails}
       />
       <DashStack.Screen
-        options={{headerShown: false, headerTitle: 'Module'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="ModuleStack"
         component={ModuleStackScreen}
       />

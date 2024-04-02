@@ -144,7 +144,7 @@ const Account = () => {
 
             <View style={styles.titleContainer}>
               <Text style={styles.titleText}>{userData?.firstName}</Text>
-              <Text style={styles.levelText}>Level 1</Text>
+              <Text style={styles.levelText}>Level {userData?.level}</Text>
               <Text style={styles.item}>
                 Total Items Logged: {userData?.itemsCreated}
               </Text>

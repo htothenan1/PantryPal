@@ -137,6 +137,47 @@ app.get('/items/useremail/:userEmail', async (req, res) => {
   }
 });
 
+//fetch users top items logged
+app.get('/users/topItems/:email', async (req, res) => {
+  try {
+    const userEmail = req.params.email;
+    const consumedItems = await ConsumedItem.find({user: userEmail});
+    const wastedItems = await WastedItem.find({user: userEmail});
+
+    let itemFrequencies = {};
+
+    consumedItems.forEach(item => {
+      if (itemFrequencies[item.name]) {
+        itemFrequencies[item.name] += item.frequency;
+      } else {
+        itemFrequencies[item.name] = item.frequency;
+      }
+    });
+
+    wastedItems.forEach(item => {
+      if (itemFrequencies[item.name]) {
+        itemFrequencies[item.name] += item.frequency;
+      } else {
+        itemFrequencies[item.name] = item.frequency;
+      }
+    });
+
+    // Convert the itemFrequencies object into an array and sort it by frequency
+    let sortedItems = Object.keys(itemFrequencies)
+      .map(name => ({
+        name,
+        frequency: itemFrequencies[name],
+      }))
+      .sort((a, b) => b.frequency - a.frequency)
+      .slice(0, 30);
+
+    res.json(sortedItems);
+  } catch (error) {
+    console.error('Error fetching top items:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 // Get a single item by ID
 app.get('/items/:id', async (req, res) => {
   try {

@@ -30,6 +30,13 @@ import chefLogo from '../assets/chefs_hat.png';
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
+const lvlToXp = lvl => {
+  if (lvl === 1) return 1000;
+  if (lvl === 2) return 2000;
+  if (lvl === 3) return 3000;
+  if (lvl === 4) return 4000;
+};
+
 const Dashboard = ({route}) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -598,7 +605,10 @@ const Dashboard = ({route}) => {
           ) : (
             <>
               <ProgressBar
-                progress={userData?.xp / 1000}
+                progress={
+                  (userData?.xp % 1000) /
+                  (lvlToXp(userData?.level) / userData?.level)
+                }
                 width={null}
                 height={10}
                 borderRadius={5}
@@ -607,7 +617,9 @@ const Dashboard = ({route}) => {
                 borderWidth={0}
                 style={styles.progressBar}
               />
-              <Text style={styles.progressText}>{userData?.xp}/1000 XP</Text>
+              <Text style={styles.progressText}>
+                {userData?.xp}/{lvlToXp(userData?.level)} XP
+              </Text>
             </>
           )}
         </View>
@@ -668,27 +680,27 @@ const Dashboard = ({route}) => {
         />
       ) : (
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
-          <View style={styles.actionItemContainer}>
-            <TouchableOpacity
+          <TouchableOpacity style={styles.actionItemContainer}>
+            <View
               style={styles.emptyFab}
               onPress={() => setAddItemModalVisible(true)}>
-              <AntDesignIcon name="edit" size={20} color="white" />
-            </TouchableOpacity>
-            <Text style={styles.actionItemText}>Add Single Item by text</Text>
-          </View>
-          <View style={styles.actionItemContainer}>
-            <TouchableOpacity
-              style={styles.emptyFab}
-              onPress={() => navToMultiSelect()}>
+              {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
+              <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
+            </View>
+            <Text style={styles.actionItemText}>Add Single Item</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navToMultiSelect()}
+            style={styles.actionItemContainer}>
+            <View style={styles.emptyFab}>
               <AntDesignIcon name="bars" size={20} color="white" />
-            </TouchableOpacity>
-            <Text style={styles.actionItemText}>
-              BulkSelect (fastest method)
-            </Text>
-          </View>
-          <View style={styles.actionItemContainer}>
-            <TouchableOpacity
-              onPress={() => navToOnboardingStack(onboardingModule)}>
+            </View>
+            <Text style={styles.actionItemText}>MultiSelect from list</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navToOnboardingStack(onboardingModule)}
+            style={styles.actionItemContainer}>
+            <View>
               <Image
                 source={chefLogo}
                 style={{
@@ -698,9 +710,9 @@ const Dashboard = ({route}) => {
                   justifyContent: 'center',
                 }}
               />
-            </TouchableOpacity>
+            </View>
             <Text style={styles.actionItemText}>How to use FlavrAi</Text>
-          </View>
+          </TouchableOpacity>
         </ScrollView>
       )}
 
