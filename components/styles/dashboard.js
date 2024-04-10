@@ -239,7 +239,7 @@ export default StyleSheet.create({
   levelText: {
     marginLeft: 10,
     fontSize: 18,
-    fontWeight: 800,
+    fontWeight: '800',
     fontFamily: 'Avenir-Book',
   },
   progressContainer: {

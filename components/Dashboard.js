@@ -680,7 +680,9 @@ const Dashboard = ({route}) => {
         />
       ) : (
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
-          <TouchableOpacity style={styles.actionItemContainer}>
+          <TouchableOpacity
+            style={styles.actionItemContainer}
+            onPress={() => setAddItemModalVisible(true)}>
             <View
               style={styles.emptyFab}
               onPress={() => setAddItemModalVisible(true)}>

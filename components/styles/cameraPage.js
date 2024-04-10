@@ -47,7 +47,7 @@ export default StyleSheet.create({
   },
   retakeText: {
     color: '#77c3ec',
-    fontWeight: 500,
+    fontWeight: '500',
   },
   usePhotoButton: {
     backgroundColor: '#77c3ec',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
   },
   usePhotoText: {
     color: 'white',
-    fontWeight: 500,
+    fontWeight: '500',
   },
   modeToggleContainer: {
     marginTop: 10,
