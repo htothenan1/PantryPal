@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
@@ -39,7 +40,30 @@ const Login = () => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
       })
-      .catch(error => console.log(error.message));
+      .catch(error => {
+        console.log(error.code, error.message);
+        let errorMessage;
+
+        switch (error.code) {
+          case 'auth/invalid-email':
+            errorMessage = 'The email address is formatted incorrectly.';
+            break;
+          case 'auth/user-disabled':
+            errorMessage =
+              'Your account has been disabled. Please contact support.';
+            break;
+          case 'auth/user-not-found':
+            errorMessage = 'No user found with this email. Please sign up.';
+            break;
+          case 'auth/wrong-password':
+            errorMessage = 'Incorrect password. Please try again.';
+            break;
+          default:
+            errorMessage = 'An unknown error occurred. Please try again later.';
+        }
+
+        Alert.alert('Login Error', errorMessage);
+      });
   };
 
   return (

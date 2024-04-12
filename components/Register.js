@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import chefsHat from '../assets/chefs_hat.png';
@@ -29,6 +30,8 @@ const Register = () => {
       .then(userCreds => {
         const userEmail = userCreds.user.email;
         console.log('Registered successfully with:', userEmail);
+
+        // API call to register the user in your MongoDB database
         return fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: {
@@ -37,11 +40,39 @@ const Register = () => {
           body: JSON.stringify({email: userEmail, firstName: name}),
         });
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to register user in the database.');
+        }
+        return response.json();
+      })
       .then(userData => {
         console.log('MongoDB User created:', userData);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        // console.error(error);
+        let errorMessage;
+
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            errorMessage =
+              'The email address is already in use by another account.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'The email address is badly formatted.';
+            break;
+          case 'auth/weak-password':
+            errorMessage =
+              'The password is too weak. Please enter a stronger password.';
+            break;
+          default:
+            errorMessage =
+              error.message ||
+              'An unknown error occurred. Please try again later.';
+        }
+
+        Alert.alert('Registration Error', errorMessage);
+      });
   };
 
   return (
