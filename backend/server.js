@@ -403,11 +403,21 @@ app.put('/items/:id', async (req, res) => {
   }
 });
 
-// Delete all items
-app.delete('/items/deleteAll', async (req, res) => {
+// Delete all items for a specific user
+app.delete('/items/deleteAll/:userEmail', async (req, res) => {
+  const userEmail = req.params.userEmail;
+  if (!userEmail) {
+    return res.status(400).send('User email is required');
+  }
+
   try {
-    await Item.deleteMany({});
-    res.status(204).send();
+    const user = await User.findOne({email: userEmail});
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    await Item.deleteMany({user: userEmail});
+    res.status(204).send(); // 204 No Content, indicates successful deletion without returning any content
   } catch (error) {
     console.error('Server error:', error);
     res.status(500).send(error.message);

@@ -196,8 +196,13 @@ const Dashboard = ({route}) => {
   };
 
   const deleteAllItems = async () => {
+    if (!userEmail) {
+      console.error('User email is not provided');
+      return;
+    }
+
     try {
-      const response = await fetch(`${API_URL}/items/deleteAll`, {
+      const response = await fetch(`${API_URL}/items/deleteAll/${userEmail}`, {
         method: 'DELETE',
       });
 
@@ -205,7 +210,7 @@ const Dashboard = ({route}) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      fetchItems();
+      fetchItems(userEmail);
     } catch (error) {
       console.error('Error deleting items:', error.message);
     }
