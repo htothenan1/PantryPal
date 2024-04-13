@@ -107,7 +107,7 @@ const Dashboard = ({route}) => {
 
         setItems(sortedItems);
       } catch (error) {
-        console.error('Error fetching items:', error.message);
+        console.error('Error fetching items in useEffect:', error.message);
       } finally {
         setIsItemsLoading(false);
       }
@@ -122,8 +122,15 @@ const Dashboard = ({route}) => {
   }, [items, currentCategory]);
 
   const findIngredient = itemName => {
+    if (typeof itemName !== 'string') {
+      // console.error(
+      //   `findIngredient was called with a non-string argument: ${itemName}`,
+      // );
+      return null;
+    }
+
     let ingredient = ingredients.find(
-      ing => ing.name.toLowerCase() === itemName.toLowerCase(),
+      ing => ing.name && ing.name.toLowerCase() === itemName.toLowerCase(),
     );
 
     if (!ingredient) {
@@ -131,13 +138,19 @@ const Dashboard = ({route}) => {
         if (
           item.subItems &&
           item.subItems.some(
-            subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
+            subItem =>
+              subItem.name &&
+              subItem.name.toLowerCase() === itemName.toLowerCase(),
           )
         ) {
           ingredient = item;
           break;
         }
       }
+    }
+
+    if (!ingredient) {
+      console.error(`Ingredient not found for item name: ${itemName}`);
     }
 
     return ingredient;
@@ -301,7 +314,11 @@ const Dashboard = ({route}) => {
       }
 
       const savedItems = await response.json();
-      setItems(currentItems => [...currentItems, ...savedItems]);
+      setItems(currentItems => [
+        ...currentItems,
+        ...(Array.isArray(savedItems) ? savedItems : [savedItems]),
+      ]);
+
       setAddItemModalVisible(false);
       setNewItemName('');
       setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
