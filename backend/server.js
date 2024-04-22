@@ -33,7 +33,7 @@ function updateUserLevelAndCheckChange(user) {
   const oldLevel = user.level;
   const newLevel = calculateUserLevel(user.xp);
   const levelChanged = oldLevel !== newLevel;
-  user.level = newLevel; // Ensure the user's level is always updated to the current level
+  user.level = newLevel;
   return {levelChanged, newLevel, xp: user.xp};
 }
 

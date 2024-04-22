@@ -9,10 +9,10 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  // Linking,
+  Linking,
   Alert,
 } from 'react-native';
-// import {Camera} from 'react-native-vision-camera';
+import {Camera} from 'react-native-vision-camera';
 import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -22,6 +22,7 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
@@ -117,6 +118,24 @@ const Dashboard = ({route}) => {
   }, [userEmail]);
 
   useEffect(() => {
+    const checkOnboarding = async () => {
+      const hasCompletedOnboarding = await AsyncStorage.getItem(
+        `hasCompletedOnboarding-${userEmail}`,
+      );
+
+      if (!hasCompletedOnboarding) {
+        navigation.navigate('OnboardingStack', {
+          screen: 'OnboardingStartScreen',
+          params: {module: onboardingModule[0]}, // Using 'onboardingModule[0]' from the import
+        });
+      }
+    };
+
+    checkOnboarding();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     filterItemsByCategory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, currentCategory]);
@@ -149,9 +168,9 @@ const Dashboard = ({route}) => {
       }
     }
 
-    if (!ingredient) {
-      console.error(`Ingredient not found for item name: ${itemName}`);
-    }
+    // if (!ingredient) {
+    //   console.error(`Ingredient not found for item name: ${itemName}`);
+    // }
 
     return ingredient;
   };
@@ -455,9 +474,9 @@ const Dashboard = ({route}) => {
     });
   };
 
-  // const navToCamera = () => {
-  //   navigation.navigate('CameraPage');
-  // };
+  const navToCamera = () => {
+    navigation.navigate('CameraPage');
+  };
 
   const getBackgroundColor = daysRemaining => {
     if (daysRemaining >= 5) {
@@ -542,15 +561,15 @@ const Dashboard = ({route}) => {
     }
   }, [userData]);
 
-  // useEffect(() => {
-  //   async function getPermission() {
-  //     const permission = await Camera.requestCameraPermission();
-  //     if (permission === 'denied') {
-  //       await Linking.openSettings();
-  //     }
-  //   }
-  //   getPermission();
-  // }, []);
+  useEffect(() => {
+    async function getPermission() {
+      const permission = await Camera.requestCameraPermission();
+      if (permission === 'denied') {
+        await Linking.openSettings();
+      }
+    }
+    getPermission();
+  }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
@@ -784,11 +803,11 @@ const Dashboard = ({route}) => {
             <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
           </TouchableOpacity>
 
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={styles.centerFab}
             onPress={() => navToCamera()}>
             <AntDesignIcon name="camerao" size={20} color="white" />
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.fab}

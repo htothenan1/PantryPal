@@ -79,4 +79,43 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  modalContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: 'white', // Assuming modal background is white
+  },
+  modalTitleText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20, // Space between title and items list
+  },
+  modalItemText: {
+    fontSize: 18,
+    color: '#333', // Ensuring good contrast for readability
+    paddingVertical: 10, // Adds space between items
+  },
+  confirmButton: {
+    backgroundColor: '#77c3ec', // Color similar to usePhotoButton
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'white',
+    marginTop: 20, // Space above the button
+  },
+  confirmButtonText: {
+    color: 'white',
+    fontWeight: '500',
+    fontSize: 16, // Matching the text size of usePhotoButton
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 80,
+  },
 });

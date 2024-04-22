@@ -4,6 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    marginTop: 80,
   },
   titleText: {
     textAlign: 'center',
@@ -29,15 +30,16 @@ export default StyleSheet.create({
     fontSize: 22,
   },
   introText: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: 'Avenir-Book',
     fontSize: 20,
-    marginHorizontal: 12,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
   bulletText: {
     marginLeft: 20,
     fontFamily: 'Avenir-Book',
-    fontSize: 18,
+    fontSize: 20,
   },
   startButton: {
     position: 'absolute',

@@ -41,9 +41,9 @@ const CameraPage = () => {
     }
   };
 
-  // const toggleMode = () => {
-  //   setMode(mode === 'groceries' ? 'receipt' : 'groceries');
-  // };
+  const toggleMode = () => {
+    setMode(mode === 'groceries' ? 'receipt' : 'groceries');
+  };
 
   async function addCustomItem(itemName) {
     try {
@@ -193,7 +193,7 @@ const CameraPage = () => {
           />
 
           <View style={styles.buttonContainer}>
-            {/* <View style={styles.modeToggleContainer}>
+            <View style={styles.modeToggleContainer}>
               <TouchableOpacity
                 onPress={toggleMode}
                 style={styles.modeToggleButton}>
@@ -203,7 +203,7 @@ const CameraPage = () => {
                     : 'Switch to Groceries Mode'}
                 </Text>
               </TouchableOpacity>
-            </View> */}
+            </View>
             <TouchableOpacity
               style={styles.camButton}
               onPress={() => capturePhoto()}>
@@ -249,7 +249,7 @@ const CameraPage = () => {
       )}
       <Modal
         visible={isItemsModalVisible}
-        transparent={true}
+        transparent={false}
         animationType="slide"
         onRequestClose={() => setIsItemsModalVisible(false)}>
         <TouchableOpacity
