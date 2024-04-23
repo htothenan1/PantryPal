@@ -38,6 +38,106 @@ const lvlToXp = lvl => {
   if (lvl === 4) return 4000;
 };
 
+export const itemNames = [
+  'Apples',
+  'Apricots',
+  'Artichokes',
+  'Arugula',
+  'Asparagus',
+  'Avocados',
+  'Baby Carrots',
+  'Baby Spinach',
+  'Bacon',
+  'Bagels',
+  'Bananas',
+  'Basil',
+  'Beets',
+  'Bell Peppers',
+  'Blackberries',
+  'Blueberries',
+  'Bok Choy',
+  'Bread',
+  'Broccoli',
+  'Broccolini',
+  'Broccoli Rabe',
+  'Brussels Sprouts',
+  'Butter',
+  'Cabbage',
+  'Carrots',
+  'Cauliflower',
+  'Celery',
+  'Chard',
+  'Cheese',
+  'Cherries',
+  'Chervil',
+  'Chicken',
+  'Chives',
+  'Cilantro',
+  'Coconuts',
+  'Collard Greens',
+  'Corn',
+  'Cranberries',
+  'Cucumbers',
+  'Eggplants',
+  'Eggs',
+  'Endive',
+  'Fish',
+  'Garlic',
+  'Ginger',
+  'Grapefruit',
+  'Grapes',
+  'Green Beans',
+  'Ground Beef',
+  'Kale',
+  'Kiwis',
+  'Lamb',
+  'Leeks',
+  'Lemons',
+  'Lettuce',
+  'Limes',
+  'Lobster',
+  'Mangos',
+  'Milk',
+  'Mushrooms',
+  'Nectarines',
+  'Okra',
+  'Olives',
+  'Onions',
+  'Oranges',
+  'Parsley',
+  'Parsnips',
+  'Pasta',
+  'Peaches',
+  'Pears',
+  'Peas',
+  'Persimmons',
+  'Pineapples',
+  'Plums',
+  'Pomegranates',
+  'Pork',
+  'Potatoes',
+  'Pumpkin',
+  'Radishes',
+  'Raspberries',
+  'Rosemary',
+  'Salad Greens',
+  'Scallions',
+  'Shallots',
+  'Shrimp',
+  'Spinach',
+  'Squash',
+  'Strawberries',
+  'Thyme',
+  'Tofu',
+  'Tomatoes',
+  'Turkey',
+  'Turnips',
+  'Watermelon',
+  'Yams',
+  'Yogurt',
+  'Zucchini',
+];
+
 const Dashboard = ({route}) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -60,6 +160,8 @@ const Dashboard = ({route}) => {
   const [availableCategories, setAvailableCategories] = useState(['all']);
   const [deletingItemId, setDeletingItemId] = useState(null);
   const [updatingItemId, setUpdatingItemId] = useState(null);
+  const [input, setInput] = useState('');
+  const [filteredItemNames, setFilteredItemNames] = useState([]);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -75,6 +177,28 @@ const Dashboard = ({route}) => {
       setFilteredItems(filtered);
     }
   };
+
+  useEffect(() => {
+    if (input.trim() === '') {
+      setFilteredItemNames([]);
+    } else {
+      const filtered = itemNames.filter(item =>
+        item.toLowerCase().startsWith(input.toLowerCase()),
+      );
+      setFilteredItemNames(filtered);
+    }
+  }, [input]);
+
+  const renderFoodItem = ({item}) => (
+    <TouchableOpacity
+      onPress={() => {
+        setInput(item);
+        setFilteredItemNames([]); // Clear suggestions after selection
+      }}
+      style={{padding: 10, backgroundColor: '#f9f9f9'}}>
+      <Text>{item}</Text>
+    </TouchableOpacity>
+  );
 
   useEffect(() => {
     const categories = calculateAvailableCategories();
@@ -340,6 +464,7 @@ const Dashboard = ({route}) => {
 
       setAddItemModalVisible(false);
       setNewItemName('');
+      setInput('');
       setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
       fetchUserData();
       fetchItems();
@@ -831,11 +956,20 @@ const Dashboard = ({route}) => {
             <Text style={styles.modalHeader}>Add Single Item</Text>
             <TextInput
               style={styles.input}
-              placeholder="Item Name"
+              placeholder="Search Items"
               placeholderTextColor={'black'}
-              value={newItemName}
-              onChangeText={setNewItemName}
+              value={input}
+              onChangeText={setInput}
             />
+
+            {filteredItemNames.length > 0 && (
+              <FlatList
+                data={filteredItemNames}
+                keyExtractor={item => item}
+                renderItem={renderFoodItem}
+                style={{maxHeight: 200, borderColor: '#ccc', borderWidth: 1}}
+              />
+            )}
 
             {isLoading ? (
               <View style={styles.confirmButtonContainer}>
@@ -843,8 +977,8 @@ const Dashboard = ({route}) => {
               </View>
             ) : (
               <Pressable
-                disabled={!newItemName}
-                onPress={() => addCustomItem(newItemName)}
+                disabled={!input}
+                onPress={() => addCustomItem(input)}
                 style={({pressed}) => [
                   styles.button,
                   {
