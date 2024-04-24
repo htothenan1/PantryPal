@@ -124,7 +124,7 @@ export const ingredientModules = [
         contentText: [
           'Onions are not only sensitive to ethylene gas but also produce it, albeit at lower levels compared to some fruits.',
           'Their ethylene production can affect other produce stored nearby.',
-          ' Store onions separately from fruits and vegetables that are sensitive to ethylene, such as potatoes, to prevent them from spoiling prematurely.',
+          'Store onions separately from fruits and vegetables that are sensitive to ethylene, such as potatoes, to prevent them from spoiling prematurely.',
         ],
       },
       {
@@ -291,7 +291,7 @@ export const ingredientModules = [
         contentImage: temperatureArt,
         contentText: [
           'Strawberries are best stored at cold temperatures, around 32°F to 36°F (0°C to 2°C). The cold environment slows down the decay process and helps maintain their freshness.',
-          ' Keep strawberries in the crisper drawer of your refrigerator to take advantage of the slightly higher humidity and cooler temperatures, which are ideal for their storage.',
+          'Keep strawberries in the crisper drawer of your refrigerator to take advantage of the slightly higher humidity and cooler temperatures, which are ideal for their storage.',
         ],
       },
       {
@@ -497,7 +497,7 @@ export const onboardingModule = [
     title: 'The 3 Core Actions',
     image: chefLogo,
     intro:
-      'By consistently doing these 3 Core Actions in our app, you will gain the skills neccessary to maintain an efficient kitchen.',
+      'By consistently practicing the 3 Core Actions in our app, you will help yourself maintain an efficient kitchen.',
     content: [
       {
         contentTitle: 'The effort is worth it!',
@@ -512,9 +512,9 @@ export const onboardingModule = [
         contentTitle: 'Logging Your Items',
         contentImage: chefLogo,
         contentText: [
-          'In order to benefit fully from FlavrAi, you should log your items when you purchase them, and mark how they were consumed. This should only take seconds.',
-          'By logging an item, you give yourself an opportunity to make good decisions about that item. When you would like to eat it by, and how.',
-          '3 intuitive ways to log your items: Bulk logging from common items, custom logging by text, or AI logging by snapping a pic of your receipt.',
+          'In order to benefit fully from FlavrAi, you should log your foods when you purchase them, and mark how they were consumed. This will only take seconds.',
+          'By logging an item, you give yourself an opportunity to make good decisions. Specifically, when and how you would like to eat it by.',
+          'We provide 3 intuitive ways to log your items: MultiSelect from common items, add a single item by text, or use our AI by snapping a pic of your produce or receipt.',
         ],
       },
       {

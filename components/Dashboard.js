@@ -847,25 +847,6 @@ const Dashboard = ({route}) => {
       ) : (
         <ScrollView contentContainerStyle={styles.emptyStateContainer}>
           <TouchableOpacity
-            style={styles.actionItemContainer}
-            onPress={() => setAddItemModalVisible(true)}>
-            <View
-              style={styles.emptyFab}
-              onPress={() => setAddItemModalVisible(true)}>
-              {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
-              <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
-            </View>
-            <Text style={styles.actionItemText}>Add Single Item</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navToMultiSelect()}
-            style={styles.actionItemContainer}>
-            <View style={styles.emptyFab}>
-              <AntDesignIcon name="bars" size={20} color="white" />
-            </View>
-            <Text style={styles.actionItemText}>MultiSelect from list</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             onPress={() => navToOnboardingStack(onboardingModule)}
             style={styles.actionItemContainer}>
             <View>
@@ -880,6 +861,35 @@ const Dashboard = ({route}) => {
               />
             </View>
             <Text style={styles.actionItemText}>How to use FlavrAi</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionItemContainer}
+            onPress={() => setAddItemModalVisible(true)}>
+            <View
+              style={styles.emptyFab}
+              onPress={() => setAddItemModalVisible(true)}>
+              {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
+              <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
+            </View>
+            <Text style={styles.actionItemText}>Add Single Item</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionItemContainer}
+            onPress={() => navToCamera()}>
+            <View
+              style={styles.emptyFab}
+              onPress={() => setAddItemModalVisible(true)}>
+              <AntDesignIcon name="camerao" size={20} color="white" />
+            </View>
+            <Text style={styles.actionItemText}>AI Camera Logging</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navToMultiSelect()}
+            style={styles.actionItemContainer}>
+            <View style={styles.emptyFab}>
+              <AntDesignIcon name="bars" size={20} color="white" />
+            </View>
+            <Text style={styles.actionItemText}>MultiSelect from List</Text>
           </TouchableOpacity>
         </ScrollView>
       )}
