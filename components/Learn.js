@@ -71,7 +71,7 @@ const Learn = () => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.titleText}>Getting Started</Text>
+      <Text style={styles.titleText}>Kitchen Prep</Text>
       <View style={styles.dashContainer}>
         <FlatList
           data={kitchenPrepModules}
@@ -87,7 +87,7 @@ const Learn = () => {
           onViewableItemsChanged={onViewRef.current}
         />
       </View>
-      <Text style={styles.titleText}>Know Your Foods</Text>
+      <Text style={styles.titleText}>Food Knowledge</Text>
       <View style={styles.dashContainer}>
         <FlatList
           data={ingredientModules}

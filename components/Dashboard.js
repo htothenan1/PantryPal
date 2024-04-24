@@ -945,18 +945,18 @@ const Dashboard = ({route}) => {
         <Modal
           isVisible={isAddItemModalVisible}
           onBackdropPress={() => setAddItemModalVisible(false)}
-          style={{alignItems: 'center'}}>
+          style={{alignItems: 'left', padding: 100}}>
           <View style={styles.modalContent}>
             <TouchableOpacity
               style={{position: 'absolute', top: 10, right: 10}}
               onPress={() => setAddItemModalVisible(false)}>
               <AntDesignIcon name="close" size={24} color="black" />
             </TouchableOpacity>
-            <AntDesignIcon name="edit" size={30} color="black" />
+            {/* <AntDesignIcon name="edit" size={30} color="black" /> */}
             <Text style={styles.modalHeader}>Add Single Item</Text>
             <TextInput
               style={styles.input}
-              placeholder="Search Items"
+              placeholder="Search Item Name"
               placeholderTextColor={'black'}
               value={input}
               onChangeText={setInput}
@@ -967,7 +967,7 @@ const Dashboard = ({route}) => {
                 data={filteredItemNames}
                 keyExtractor={item => item}
                 renderItem={renderFoodItem}
-                style={{maxHeight: 200, borderColor: '#ccc', borderWidth: 1}}
+                style={{maxHeight: 150, borderColor: '#ccc', borderWidth: 1}}
               />
             )}
 

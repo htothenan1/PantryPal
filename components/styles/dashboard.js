@@ -33,7 +33,7 @@ export default StyleSheet.create({
   },
   input: {
     height: 50,
-    width: 100,
+    width: 150,
     margin: 12,
     borderWidth: 1,
     borderRadius: 5,

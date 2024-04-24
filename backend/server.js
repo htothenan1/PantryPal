@@ -38,10 +38,10 @@ function updateUserLevelAndCheckChange(user) {
 }
 
 const imagePrompt =
-  'Please analyze the attached image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the image is not clearly identifiable or distinguishable, please omit it from the list. For example, if the image clearly shows apples, bananas, and a loaf of bread, the result should be formatted as ["Apples", "Bananas", "Bread"].';
+  'Please analyze the attached image and identify any grocery items that are clearly visible. Return the results as a JSON array of the common grocery item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the image is not clearly identifiable or distinguishable, please omit it from the list. For example, if the image clearly shows apples, bananas, and a loaf of bread, the result should be formatted as ["Apples", "Bananas", "Bread"].';
 
 const receiptPrompt =
-  'Please analyze the receipt in the image and identify any grocery items that are clearly visible. Return the results as a JSON array of the item names. Each item should be in its plural form. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Don not include any labels or keys in the array. If an item in the receipt is not a common grocery item that can be consumed, please omit it from the list. For example, if the receipt lists apples, bananas, and laundry detergent, the result should be formatted as ["Apples", "Bananas"].';
+  'Please analyze the receipt in the image and identify any grocery items that are clearly visible. Return the results as a JSON array of the common grocery item names. Please list the name as its most common ingredient name, avoiding descriptors such as organic, or reduced fat. Each item should be in its plural form, if grammatically correct. The format should be a simple list: ["Item1", "Item2", "Item3", ...]. Do not include any labels or keys in the array. If an item in the receipt is not a common grocery item that can be consumed, please omit it from the list. For example, if the receipt lists apples, bananas, and laundry detergent, the result should be formatted as ["Apples", "Bananas"].';
 
 const upload = multer({storage: multer.memoryStorage()});
 

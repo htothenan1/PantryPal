@@ -404,44 +404,44 @@ export const ingredientModules = [
 ];
 
 export const kitchenPrepModules = [
-  {
-    title: 'How to use FlavrAi',
-    image: chefLogo,
-    intro:
-      'By consistently doing these 3 Core Actions in our app, you will gain the skills neccessary to maintain an efficient kitchen.',
-    content: [
-      {
-        contentTitle: 'Logging your Foods',
-        contentImage: chefLogo,
-        contentText: [
-          'Regularly logging your grocery items and their freshest-by dates reduces food waste significantly, as it allows you to prioritize the consumption of items that are nearing their end of freshness.',
-          'The app simplifies inventory management by enabling users to easily log and track their groceries along with their freshest-by dates.',
-          'By leaning on human-centered design principles and the power of AI, our logger is intuitive, fast, educational, and rewarding',
-          'By maintaining awareness of your food inventory and condition through a digital device, you can make informed decisions beyond the kitchen, enhancing efficiency everywhere you go.',
-        ],
-      },
-      {
-        contentTitle: 'Setting SMART goals',
-        contentImage: chefLogo,
-        contentText: [
-          'Setting Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) goals for food consumption can significantly increase the likelihood of using all purchased items.',
-          'Our app helps users set SMART goals for their groceries by providing logical default "freshest-by" dates for over 100 of the most common items purchased.',
-          'This encourages users to plan their meals around what needs to be used first, fostering a more mindful and efficient kitchen.',
-          'At our core, we view the setting of SMART goals as a skill that, with practice and refinement over time, can dramatically enhance your kitchen efficiency and sustainability; ',
-        ],
-      },
-      {
-        contentTitle: 'Learning about your Foods',
-        contentImage: chefLogo,
-        contentText: [
-          'Understanding the properties and optimal storage conditions of the foods you buy ensures that foods are consumed at their peak freshness and nutritional content.',
-          'Our app provides detailed information on each logged item, including storage tips, nutritional facts, and flavor compatibilities.',
-          'This knowledge empowers users to make informed decisions about food storage, preparation, and pairing, enhancing the overall quality of meals.',
-          'In addition, we provide an advanced recipe search tool based on your specific items, to aid in answering finding your perfect meal to cook',
-        ],
-      },
-    ],
-  },
+  // {
+  //   title: 'How to use FlavrAi',
+  //   image: chefLogo,
+  //   intro:
+  //     'By consistently doing these 3 Core Actions in our app, you will gain the skills neccessary to maintain an efficient kitchen.',
+  //   content: [
+  //     {
+  //       contentTitle: 'Logging your Foods',
+  //       contentImage: chefLogo,
+  //       contentText: [
+  //         'Regularly logging your grocery items and their freshest-by dates reduces food waste significantly, as it allows you to prioritize the consumption of items that are nearing their end of freshness.',
+  //         'The app simplifies inventory management by enabling users to easily log and track their groceries along with their freshest-by dates.',
+  //         'By leaning on human-centered design principles and the power of AI, our logger is intuitive, fast, educational, and rewarding',
+  //         'By maintaining awareness of your food inventory and condition through a digital device, you can make informed decisions beyond the kitchen, enhancing efficiency everywhere you go.',
+  //       ],
+  //     },
+  //     {
+  //       contentTitle: 'Setting SMART goals',
+  //       contentImage: chefLogo,
+  //       contentText: [
+  //         'Setting Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) goals for food consumption can significantly increase the likelihood of using all purchased items.',
+  //         'Our app helps users set SMART goals for their groceries by providing logical default "freshest-by" dates for over 100 of the most common items purchased.',
+  //         'This encourages users to plan their meals around what needs to be used first, fostering a more mindful and efficient kitchen.',
+  //         'At our core, we view the setting of SMART goals as a skill that, with practice and refinement over time, can dramatically enhance your kitchen efficiency and sustainability; ',
+  //       ],
+  //     },
+  //     {
+  //       contentTitle: 'Learning about your Foods',
+  //       contentImage: chefLogo,
+  //       contentText: [
+  //         'Understanding the properties and optimal storage conditions of the foods you buy ensures that foods are consumed at their peak freshness and nutritional content.',
+  //         'Our app provides detailed information on each logged item, including storage tips, nutritional facts, and flavor compatibilities.',
+  //         'This knowledge empowers users to make informed decisions about food storage, preparation, and pairing, enhancing the overall quality of meals.',
+  //         'In addition, we provide an advanced recipe search tool based on your specific items, to aid in answering finding your perfect meal to cook',
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     title: 'The 4 Kitchen Domains',
     image: kitchenArt,
