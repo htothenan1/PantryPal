@@ -802,34 +802,36 @@ const Dashboard = ({route}) => {
         ) : null}
       </View>
       <View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            margin: 0,
-            padding: 0,
-            height: 50,
-            paddingBottom: 0,
-          }}
-          style={styles.scrollViewStyle}>
-          {availableCategories.map(category => (
-            <TouchableOpacity
-              key={category}
-              style={[
-                styles.tab,
-                currentCategory === category && styles.selectedTab,
-              ]}
-              onPress={() => setCurrentCategory(category)}>
-              <Text
+        {items.length > 0 ? (
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              margin: 0,
+              padding: 0,
+              height: 50,
+              paddingBottom: 0,
+            }}
+            style={styles.scrollViewStyle}>
+            {availableCategories.map(category => (
+              <TouchableOpacity
+                key={category}
                 style={[
-                  styles.tabText,
-                  currentCategory === category && styles.selectedTabText,
-                ]}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+                  styles.tab,
+                  currentCategory === category && styles.selectedTab,
+                ]}
+                onPress={() => setCurrentCategory(category)}>
+                <Text
+                  style={[
+                    styles.tabText,
+                    currentCategory === category && styles.selectedTabText,
+                  ]}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        ) : null}
       </View>
 
       {isItemsLoading ? (
@@ -845,7 +847,9 @@ const Dashboard = ({route}) => {
           renderItem={renderItem}
         />
       ) : (
-        <ScrollView contentContainerStyle={styles.emptyStateContainer}>
+        <ScrollView
+          style={{marginTop: 20, marginBottom: 80}}
+          contentContainerStyle={styles.emptyStateContainer}>
           <TouchableOpacity
             onPress={() => navToOnboardingStack(onboardingModule)}
             style={styles.actionItemContainer}>

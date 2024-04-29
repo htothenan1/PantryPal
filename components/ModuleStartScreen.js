@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
 import styles from './styles/moduleStartScreen';
 
 const ModuleStartScreen = ({route, navigation}) => {
@@ -14,18 +14,20 @@ const ModuleStartScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Image source={module.image} style={styles.image} />
+      <ScrollView style={{marginBottom: 80}}>
+        <Image source={module.image} style={styles.image} />
 
-      <Text style={styles.titleText}>{module.title}</Text>
-      <View style={styles.overviewContainer}>
-        <Text style={styles.overviewTitle}>Topics covered:</Text>
-        {module.content.map((item, index) => (
-          <Text key={index} style={styles.bulletText}>
-            • {item.contentTitle}
-          </Text>
-        ))}
-      </View>
-      <Text style={styles.introText}>{module.intro}</Text>
+        <Text style={styles.titleText}>{module.title}</Text>
+        <View style={styles.overviewContainer}>
+          <Text style={styles.overviewTitle}>Topics covered:</Text>
+          {module.content.map((item, index) => (
+            <Text key={index} style={styles.bulletText}>
+              • {item.contentTitle}
+            </Text>
+          ))}
+        </View>
+        <Text style={styles.introText}>{module.intro}</Text>
+      </ScrollView>
 
       <View style={styles.startButton}>
         <TouchableOpacity style={styles.buttonContainer} onPress={startModule}>

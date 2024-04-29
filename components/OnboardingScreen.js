@@ -33,21 +33,21 @@ const OnboardingScreen = ({route, navigation}) => {
     <View style={styles.container}>
       {/* <Image source={currentContent.contentImage} style={styles.image} /> */}
 
-      <View
-        style={{
-          alignItems: 'center',
-        }}>
-        <Image
-          source={chefLogo}
+      <ScrollView style={{marginBottom: 80}}>
+        <View
           style={{
-            height: 80,
-            width: 80,
-          }}
-        />
-      </View>
+            alignItems: 'center',
+          }}>
+          <Image
+            source={chefLogo}
+            style={{
+              height: 80,
+              width: 80,
+            }}
+          />
+        </View>
 
-      <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
-      <ScrollView>
+        <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
         {currentContent.contentText.map((text, index) => (
           <Text key={index} style={styles.contentText}>
             {text}

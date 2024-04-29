@@ -20,14 +20,16 @@ const ModuleScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Image source={currentContent.contentImage} style={styles.image} />
-      <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
-      <ScrollView>
-        {currentContent.contentText.map((text, index) => (
-          <Text key={index} style={styles.contentText}>
-            • {text}
-          </Text>
-        ))}
+      <ScrollView style={{marginBottom: 80}}>
+        <Image source={currentContent.contentImage} style={styles.image} />
+        <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
+        <ScrollView>
+          {currentContent.contentText.map((text, index) => (
+            <Text key={index} style={styles.contentText}>
+              • {text}
+            </Text>
+          ))}
+        </ScrollView>
       </ScrollView>
       <View style={styles.startButton}>
         <TouchableOpacity
