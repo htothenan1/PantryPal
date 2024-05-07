@@ -10,6 +10,7 @@ const User = require('./models/user');
 const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
 const FavoritedRecipe = require('./models/favoritedRecipe');
+const CustomItem = require('./models/customItem');
 
 const OpenAI = require('openai');
 
@@ -217,6 +218,48 @@ app.get('/favorites/user/:userEmail', async (req, res) => {
     res.status(200).json(favoritedRecipes);
   } catch (error) {
     res.status(500).send('Server error: ' + error.message);
+  }
+});
+
+// Endpoint to get storage tip for a custom item
+app.get('/customItems/storageTip', async (req, res) => {
+  const itemName = req.query.itemName;
+
+  if (!itemName) {
+    return res.status(400).send('Item name and user email are required');
+  }
+
+  try {
+    const customItem = await CustomItem.findOne({
+      itemName: itemName.toLowerCase(),
+    });
+
+    if (customItem) {
+      res.json({storageTip: customItem.storageTip});
+    } else {
+      res.status(404).send('No custom item found');
+    }
+  } catch (error) {
+    console.error('Failed to fetch custom item:', error);
+    res.status(500).send('Error fetching custom item');
+  }
+});
+
+// Endpoint to add a custom item
+app.post('/customItems', async (req, res) => {
+  const {itemName, storageTip, userEmail} = req.body;
+  try {
+    const newCustomItem = new CustomItem({
+      itemName: itemName,
+      storageTip: storageTip,
+      userEmail: userEmail,
+      dateTime: new Date(), // capturing the current dateTime
+    });
+    await newCustomItem.save();
+    res.status(201).json(newCustomItem);
+  } catch (error) {
+    console.error('Failed to save custom item:', error);
+    res.status(500).send('Error saving custom item');
   }
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
 import groceryPic from '../assets/grocery.png';
+import chefLogo from '../assets/chefs_hat.png';
 import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
 
@@ -26,7 +27,7 @@ const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
   const userItems = route.params?.userItems || [];
   const ingredient = item ? findIngredient(item.name) : null;
-  const itemImage = ingredient ? ingredient.img : groceryPic;
+  const itemImage = ingredient ? ingredient.img : chefLogo;
 
   const findCompatibleUserItems = () => {
     const compatibleIngredients = ingredients.find(
