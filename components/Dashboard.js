@@ -752,262 +752,283 @@ const Dashboard = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Account')}
-          style={styles.headerContainer}>
-          <Image source={selectedIcon} style={styles.userIcon} />
-          <View>
-            <Text style={styles.userName}>{userData?.firstName}</Text>
-            <Text style={styles.levelText}>Level {userData?.level}</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={styles.progressContainer}>
-          <Text style={styles.progressTitle}>Your Progress</Text>
-          {loading ? (
-            <View style={{height: 52}}>
-              <ActivityIndicator size="small" color="#495057" />
-            </View>
-          ) : (
-            <>
-              <ProgressBar
-                progress={
-                  (userData?.xp % 1000) /
-                  (lvlToXp(userData?.level) / userData?.level)
-                }
-                width={null}
-                height={10}
-                borderRadius={5}
-                color="#1b4965"
-                unfilledColor="#E0E0E0"
-                borderWidth={0}
-                style={styles.progressBar}
-              />
-              <Text style={styles.progressText}>
-                {userData?.xp}/{lvlToXp(userData?.level)} XP
-              </Text>
-            </>
-          )}
-        </View>
-      </>
-
-      <View style={styles.headerText}>
-        <Text style={styles.titleText}>Your Items ({items.length})</Text>
-        {items.length > 0 ? (
-          <TouchableOpacity
-            style={styles.headerIcon}
-            onPress={confirmDeleteAll}>
-            <AntDesignIcon name="delete" size={20} color="black" />
-          </TouchableOpacity>
-        ) : null}
-      </View>
-      <View>
-        {items.length > 0 ? (
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              margin: 0,
-              padding: 0,
-              height: 50,
-              paddingBottom: 0,
+      {loading || isItemsLoading ? (
+        <>
+          <Image
+            source={chefLogo}
+            style={{
+              height: 156,
+              width: 156,
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
-            style={styles.scrollViewStyle}>
-            {availableCategories.map(category => (
-              <TouchableOpacity
-                key={category}
-                style={[
-                  styles.tab,
-                  currentCategory === category && styles.selectedTab,
-                ]}
-                onPress={() => setCurrentCategory(category)}>
-                <Text
-                  style={[
-                    styles.tabText,
-                    currentCategory === category && styles.selectedTabText,
-                  ]}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        ) : null}
-      </View>
+          />
 
-      {isItemsLoading ? (
-        <View style={styles.itemsLoadingContainer}>
-          <ActivityIndicator size="large" color="#495057" />
-        </View>
-      ) : items.length > 0 ? (
-        <FlatList
-          windowSize={10}
-          style={styles.itemsList}
-          data={filteredItems}
-          keyExtractor={item => item._id}
-          renderItem={renderItem}
-        />
+          <ActivityIndicator size="large" color="#0000ff" />
+          <Text>Loading your data...</Text>
+        </>
       ) : (
-        <ScrollView
-          style={{marginTop: 20, marginBottom: 80}}
-          contentContainerStyle={styles.emptyStateContainer}>
+        <>
           <TouchableOpacity
-            onPress={() => navToOnboardingStack(onboardingModule)}
-            style={styles.actionItemContainer}>
+            onPress={() => navigation.navigate('Account')}
+            style={styles.headerContainer}>
+            <Image source={selectedIcon} style={styles.userIcon} />
             <View>
-              <Image
-                source={chefLogo}
-                style={{
-                  height: 56,
-                  width: 56,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              />
+              <Text style={styles.userName}>{userData?.firstName}</Text>
+              <Text style={styles.levelText}>Level {userData?.level}</Text>
             </View>
-            <Text style={styles.actionItemText}>How to use FlavrAi</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.actionItemContainer}
-            onPress={() => setAddItemModalVisible(true)}>
-            <View
-              style={styles.emptyFab}
-              onPress={() => setAddItemModalVisible(true)}>
-              {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
-              <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
-            </View>
-            <Text style={styles.actionItemText}>Add Single Item</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.actionItemContainer}
-            onPress={() => navToCamera()}>
-            <View
-              style={styles.emptyFab}
-              onPress={() => setAddItemModalVisible(true)}>
-              <AntDesignIcon name="camerao" size={20} color="white" />
-            </View>
-            <Text style={styles.actionItemText}>AI Camera Logging</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navToMultiSelect()}
-            style={styles.actionItemContainer}>
-            <View style={styles.emptyFab}>
-              <AntDesignIcon name="bars" size={20} color="white" />
-            </View>
-            <Text style={styles.actionItemText}>MultiSelect from List</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      )}
-
-      <DatePicker
-        mode="date"
-        modal
-        open={open}
-        date={selectedDate}
-        minimumDate={new Date()}
-        maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-        onConfirm={date => {
-          setOpen(false);
-          setSelectedDate(date);
-          if (currentItem) {
-            updateExpDate(currentItem, date);
-          }
-        }}
-        onCancel={() => {
-          setOpen(false);
-        }}
-      />
-
-      <DatePicker
-        mode="date"
-        modal
-        open={customOpen}
-        date={customSelectedDate}
-        minimumDate={new Date()}
-        maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-        onConfirm={date => {
-          setCustomOpen(false);
-          setCustomSelectedDate(date);
-        }}
-        onCancel={() => {
-          setCustomOpen(false);
-        }}
-      />
-
-      <View style={styles.fabContainer}>
-        <View style={styles.fabContainer}>
-          <TouchableOpacity
-            style={styles.leftFab}
-            onPress={() => setAddItemModalVisible(true)}>
-            {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
-            <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.centerFab}
-            onPress={() => navToCamera()}>
-            <AntDesignIcon name="camerao" size={20} color="white" />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.fab}
-            onPress={() => navToMultiSelect()}>
-            <AntDesignIcon name="bars" size={20} color="white" />
-            {/* <Text style={{fontSize: 14, color: 'white'}}>Add from list</Text> */}
-          </TouchableOpacity>
-        </View>
-
-        <Modal
-          isVisible={isAddItemModalVisible}
-          onBackdropPress={() => setAddItemModalVisible(false)}
-          style={{alignItems: 'left', padding: 100}}>
-          <View style={styles.modalContent}>
-            <TouchableOpacity
-              style={{position: 'absolute', top: 10, right: 10}}
-              onPress={() => setAddItemModalVisible(false)}>
-              <AntDesignIcon name="close" size={24} color="black" />
-            </TouchableOpacity>
-            {/* <AntDesignIcon name="edit" size={30} color="black" /> */}
-            <Text style={styles.modalHeader}>Add Single Item</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Search Item Name"
-              placeholderTextColor={'black'}
-              value={input}
-              onChangeText={setInput}
-            />
-
-            {filteredItemNames.length > 0 && (
-              <FlatList
-                data={filteredItemNames}
-                keyExtractor={item => item}
-                renderItem={renderFoodItem}
-                style={{maxHeight: 150, borderColor: '#ccc', borderWidth: 1}}
-              />
-            )}
-
-            {isLoading ? (
-              <View style={styles.confirmButtonContainer}>
-                <ActivityIndicator size="large" color="#495057" />
+          <View style={styles.progressContainer}>
+            <Text style={styles.progressTitle}>Your Progress</Text>
+            {loading ? (
+              <View style={{height: 52}}>
+                <ActivityIndicator size="small" color="#495057" />
               </View>
             ) : (
-              <Pressable
-                disabled={!input}
-                onPress={() => addCustomItem(input)}
-                style={({pressed}) => [
-                  styles.button,
-                  {
-                    backgroundColor: pressed
-                      ? 'rgba(0, 0, 255, 0.5)'
-                      : '#76c893',
-                  },
-                  !newItemName && styles.disabledButton,
-                ]}>
-                <Text style={styles.saveText}>Save</Text>
-              </Pressable>
+              <>
+                <ProgressBar
+                  progress={
+                    (userData?.xp % 1000) /
+                    (lvlToXp(userData?.level) / userData?.level)
+                  }
+                  width={null}
+                  height={10}
+                  borderRadius={5}
+                  color="#1b4965"
+                  unfilledColor="#E0E0E0"
+                  borderWidth={0}
+                  style={styles.progressBar}
+                />
+                <Text style={styles.progressText}>
+                  {userData?.xp}/{lvlToXp(userData?.level)} XP
+                </Text>
+              </>
             )}
           </View>
-        </Modal>
-      </View>
+
+          <View style={styles.headerText}>
+            <Text style={styles.titleText}>Your Items ({items.length})</Text>
+            {items.length > 0 ? (
+              <TouchableOpacity
+                style={styles.headerIcon}
+                onPress={confirmDeleteAll}>
+                <AntDesignIcon name="delete" size={20} color="black" />
+              </TouchableOpacity>
+            ) : null}
+          </View>
+          <View>
+            {items.length > 0 ? (
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  margin: 0,
+                  padding: 0,
+                  height: 50,
+                  paddingBottom: 0,
+                }}
+                style={styles.scrollViewStyle}>
+                {availableCategories.map(category => (
+                  <TouchableOpacity
+                    key={category}
+                    style={[
+                      styles.tab,
+                      currentCategory === category && styles.selectedTab,
+                    ]}
+                    onPress={() => setCurrentCategory(category)}>
+                    <Text
+                      style={[
+                        styles.tabText,
+                        currentCategory === category && styles.selectedTabText,
+                      ]}>
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            ) : null}
+          </View>
+
+          {isItemsLoading ? (
+            <View style={styles.itemsLoadingContainer}>
+              <ActivityIndicator size="large" color="#495057" />
+            </View>
+          ) : items.length > 0 ? (
+            <FlatList
+              windowSize={10}
+              style={styles.itemsList}
+              data={filteredItems}
+              keyExtractor={item => item._id}
+              renderItem={renderItem}
+            />
+          ) : (
+            <ScrollView
+              style={{marginTop: 20, marginBottom: 80}}
+              contentContainerStyle={styles.emptyStateContainer}>
+              <TouchableOpacity
+                onPress={() => navToOnboardingStack(onboardingModule)}
+                style={styles.actionItemContainer}>
+                <View>
+                  <Image
+                    source={chefLogo}
+                    style={{
+                      height: 56,
+                      width: 56,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  />
+                </View>
+                <Text style={styles.actionItemText}>How to use FlavrAi</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionItemContainer}
+                onPress={() => setAddItemModalVisible(true)}>
+                <View
+                  style={styles.emptyFab}
+                  onPress={() => setAddItemModalVisible(true)}>
+                  {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
+                  <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
+                </View>
+                <Text style={styles.actionItemText}>Add Single Item</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionItemContainer}
+                onPress={() => navToCamera()}>
+                <View
+                  style={styles.emptyFab}
+                  onPress={() => setAddItemModalVisible(true)}>
+                  <AntDesignIcon name="camerao" size={20} color="white" />
+                </View>
+                <Text style={styles.actionItemText}>AI Camera Logging</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navToMultiSelect()}
+                style={styles.actionItemContainer}>
+                <View style={styles.emptyFab}>
+                  <AntDesignIcon name="bars" size={20} color="white" />
+                </View>
+                <Text style={styles.actionItemText}>MultiSelect from List</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          )}
+
+          <DatePicker
+            mode="date"
+            modal
+            open={open}
+            date={selectedDate}
+            minimumDate={new Date()}
+            maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
+            onConfirm={date => {
+              setOpen(false);
+              setSelectedDate(date);
+              if (currentItem) {
+                updateExpDate(currentItem, date);
+              }
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
+
+          <DatePicker
+            mode="date"
+            modal
+            open={customOpen}
+            date={customSelectedDate}
+            minimumDate={new Date()}
+            maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
+            onConfirm={date => {
+              setCustomOpen(false);
+              setCustomSelectedDate(date);
+            }}
+            onCancel={() => {
+              setCustomOpen(false);
+            }}
+          />
+
+          <View style={styles.fabContainer}>
+            <View style={styles.fabContainer}>
+              <TouchableOpacity
+                style={styles.leftFab}
+                onPress={() => setAddItemModalVisible(true)}>
+                {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
+                <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.centerFab}
+                onPress={() => navToCamera()}>
+                <AntDesignIcon name="camerao" size={20} color="white" />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.fab}
+                onPress={() => navToMultiSelect()}>
+                <AntDesignIcon name="bars" size={20} color="white" />
+                {/* <Text style={{fontSize: 14, color: 'white'}}>Add from list</Text> */}
+              </TouchableOpacity>
+            </View>
+
+            <Modal
+              isVisible={isAddItemModalVisible}
+              onBackdropPress={() => setAddItemModalVisible(false)}
+              style={{alignItems: 'left', padding: 100}}>
+              <View style={styles.modalContent}>
+                <TouchableOpacity
+                  style={{position: 'absolute', top: 10, right: 10}}
+                  onPress={() => setAddItemModalVisible(false)}>
+                  <AntDesignIcon name="close" size={24} color="black" />
+                </TouchableOpacity>
+                {/* <AntDesignIcon name="edit" size={30} color="black" /> */}
+                <Text style={styles.modalHeader}>Add Single Item</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Search Item Name"
+                  placeholderTextColor={'black'}
+                  value={input}
+                  onChangeText={setInput}
+                />
+
+                {filteredItemNames.length > 0 && (
+                  <FlatList
+                    data={filteredItemNames}
+                    keyExtractor={item => item}
+                    renderItem={renderFoodItem}
+                    style={{
+                      maxHeight: 150,
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                    }}
+                  />
+                )}
+
+                {isLoading ? (
+                  <View style={styles.confirmButtonContainer}>
+                    <ActivityIndicator size="large" color="#495057" />
+                  </View>
+                ) : (
+                  <Pressable
+                    disabled={!input}
+                    onPress={() => addCustomItem(input)}
+                    style={({pressed}) => [
+                      styles.button,
+                      {
+                        backgroundColor: pressed
+                          ? 'rgba(0, 0, 255, 0.5)'
+                          : '#76c893',
+                      },
+                      !newItemName && styles.disabledButton,
+                    ]}>
+                    <Text style={styles.saveText}>Save</Text>
+                  </Pressable>
+                )}
+              </View>
+            </Modal>
+          </View>
+        </>
+      )}
     </View>
   );
 };

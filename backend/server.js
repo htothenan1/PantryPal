@@ -253,7 +253,7 @@ app.post('/customItems', async (req, res) => {
       itemName: itemName,
       storageTip: storageTip,
       userEmail: userEmail,
-      dateTime: new Date(), // capturing the current dateTime
+      dateTime: new Date(),
     });
     await newCustomItem.save();
     res.status(201).json(newCustomItem);
@@ -369,6 +369,7 @@ app.post('/items', async (req, res) => {
         storage_tip: itemData.storage_tip,
         exp_date: expDate,
         user: itemData.user,
+        dateTime: new Date(),
       });
       const savedItem = await newItem.save();
       savedItems.push(savedItem);
