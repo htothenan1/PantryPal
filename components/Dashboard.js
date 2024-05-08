@@ -753,20 +753,25 @@ const Dashboard = ({route}) => {
   return (
     <View style={styles.container}>
       {loading || isItemsLoading ? (
-        <>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <Image
             source={chefLogo}
             style={{
-              height: 156,
-              width: 156,
+              height: 100,
+              width: 100,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           />
 
           <ActivityIndicator size="large" color="#0000ff" />
-          <Text>Loading your data...</Text>
-        </>
+          <Text style={{fontSize: 40}}>Loading Your Items...</Text>
+        </View>
       ) : (
         <>
           <TouchableOpacity
