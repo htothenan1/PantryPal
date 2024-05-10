@@ -708,7 +708,7 @@ const Dashboard = ({route}) => {
     const backgroundColor = getBackgroundColor(daysRemaining);
 
     const ingredient = findIngredient(item.name);
-    const itemImage = ingredient ? ingredient.img : groceryPic;
+    const itemImage = ingredient ? ingredient.img : chefLogo;
 
     return (
       <Swipeable
@@ -721,7 +721,7 @@ const Dashboard = ({route}) => {
           <Image source={itemImage} style={styles.itemImage} />
           <View style={styles.itemTextContainer}>
             {deletingItemId === item._id || updatingItemId === item._id ? (
-              <ActivityIndicator size="medium" color="#495057" />
+              <ActivityIndicator size="small" color="#495057" />
             ) : (
               <>
                 <Text style={[styles.itemText, {color: backgroundColor}]}>
@@ -752,7 +752,7 @@ const Dashboard = ({route}) => {
 
   return (
     <View style={styles.container}>
-      {loading || isItemsLoading ? (
+      {isItemsLoading ? (
         <View
           style={{
             flex: 1,
@@ -769,15 +769,31 @@ const Dashboard = ({route}) => {
             }}
           />
 
-          <ActivityIndicator size="large" color="#0000ff" />
-          <Text style={{fontSize: 40}}>Loading Your Items...</Text>
+          <ActivityIndicator
+            style={{marginVertical: 10}}
+            size="large"
+            color="#1b4965"
+          />
+          <Text style={styles.loadingText}>Loading Your Items...</Text>
         </View>
       ) : (
         <>
           <TouchableOpacity
             onPress={() => navigation.navigate('Account')}
             style={styles.headerContainer}>
-            <Image source={selectedIcon} style={styles.userIcon} />
+            {selectedIcon ? (
+              <Image source={selectedIcon} style={styles.userIcon} />
+            ) : (
+              <View style={{marginTop: 10}}>
+                <AntDesignIcon
+                  style={styles.userIcon}
+                  name="user"
+                  size={53}
+                  color="black"
+                />
+              </View>
+            )}
+            {/* <Image source={selectedIcon} style={styles.userIcon} /> */}
             <View>
               <Text style={styles.userName}>{userData?.firstName}</Text>
               <Text style={styles.levelText}>Level {userData?.level}</Text>

@@ -165,6 +165,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingHorizontal: 30,
+    paddingBottom: 40,
   },
   emptyStateText: {
     fontSize: 20,
@@ -225,10 +226,10 @@ export default StyleSheet.create({
     marginTop: 50,
   },
   userIcon: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     borderRadius: 25,
-    borderWidth: 0.4,
+    // borderWidth: 0.4,
   },
   userName: {
     marginLeft: 10,
@@ -278,6 +279,11 @@ export default StyleSheet.create({
   saveText: {
     fontFamily: 'Avenir-Book',
     fontSize: 14,
+    color: 'black',
+  },
+  loadingText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 30,
     color: 'black',
   },
 });
