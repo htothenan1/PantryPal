@@ -1,4 +1,4 @@
-aconst mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const customItemSchema = new mongoose.Schema({
   itemName: {type: String, required: true},
