@@ -9,6 +9,15 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     marginTop: 50,
   },
+  accountInfoWrapper: {
+    flexDirection: 'row',
+    marginTop: 30
+  },
+  accountImage: {
+    width: 100,
+    height: 100,
+    resizeMode: 'stretch'
+    },
   titleContainer: {
     justifyContent: 'center',
     marginLeft: 8,
@@ -75,6 +84,16 @@ export default StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     padding: 20,
+  },
+  modalItemButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  modalItemImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
   },
   itemTextContainer: {
     flexDirection: 'row',

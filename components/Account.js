@@ -128,12 +128,12 @@ const Account = () => {
         <ActivityIndicator size="large" color="#495057" />
       ) : (
         <ScrollView>
-          <View style={{flexDirection: 'row', marginTop: 30}}>
+          <View style={styles.accountInfoWrapper}>
             <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
               {selectedIcon ? (
                 <Image
                   source={selectedIcon}
-                  style={{width: 100, height: 100, resizeMode: 'stretch'}}
+                  style={styles.accountImage}
                 />
               ) : (
                 <View style={{marginTop: 10}}>
@@ -207,18 +207,10 @@ const Account = () => {
                         updateIconName(icon.name);
                         setIconPickerVisible(false);
                       }}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginBottom: 10,
-                      }}>
+                      style={styles.modalItemButton}>
                       <Image
                         source={icon.img}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          marginRight: 10,
-                        }}
+                        style={styles.modalItemImage}
                       />
                       <Text>{icon.name}</Text>
                     </TouchableOpacity>
