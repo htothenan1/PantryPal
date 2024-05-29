@@ -31,19 +31,12 @@ const OnboardingScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      {/* <Image source={currentContent.contentImage} style={styles.image} /> */}
-
-      <ScrollView style={{marginBottom: 80}}>
+      <ScrollView style={styles.screenWrapper}>
         <View
-          style={{
-            alignItems: 'center',
-          }}>
+          style={styles.imageWrapper}>
           <Image
             source={chefLogo}
-            style={{
-              height: 80,
-              width: 80,
-            }}
+            style={styles.image}
           />
         </View>
 

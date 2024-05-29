@@ -14,7 +14,7 @@ const ModuleStartScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{marginBottom: 80}}>
+      <ScrollView style={styles.screenWrapper}>
         <Image source={module.image} style={styles.image} />
 
         <Text style={styles.titleText}>{module.title}</Text>

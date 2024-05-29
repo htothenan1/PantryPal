@@ -6,6 +6,12 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 80,
   },
+  screenWrapper: {
+    marginBottom: 80,
+  },
+  imageWrapper : {
+    alignItems: 'center',
+  },
   titleText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
@@ -13,10 +19,8 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   image: {
-    height: 200,
-    width: '100%',
-    marginBottom: 10,
-    resizeMode: 'center',
+    height: 80,
+    width: 80,
   },
   overviewContainer: {
     padding: 20,

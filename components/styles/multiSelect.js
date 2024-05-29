@@ -66,6 +66,11 @@ export default StyleSheet.create({
   selectedSubItemText: {
     color: 'white',
   },
+  selectedWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
   counterText: {
     alignSelf: 'center', // Adjust this as needed
     fontSize: 16, // Adjust font size as needed

@@ -16,18 +16,12 @@ const OnboardingStartScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      {/* <Image source={module.image} style={styles.image} /> */}
-      <ScrollView style={{marginBottom: 80}}>
+      <ScrollView style={styles.screenWrapper}>
         <View
-          style={{
-            alignItems: 'center',
-          }}>
+          style={styles.imageWrapper}>
           <Image
             source={chefLogo}
-            style={{
-              height: 80,
-              width: 80,
-            }}
+            style={styles.image}
           />
         </View>
         <Text style={styles.titleText}>Welcome to FlavrAi!</Text>

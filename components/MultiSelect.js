@@ -229,11 +229,7 @@ const MultiSelectScreen = ({route}) => {
           <ActivityIndicator size="large" color="#495057" />
         ) : (
           <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: '100%',
-            }}>
+            style={styles.selectedWrapper}>
             <Text style={styles.counterText}>
               Items Selected: {selectedItems.length}
             </Text>
