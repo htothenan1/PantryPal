@@ -136,7 +136,7 @@ const Account = () => {
                   style={styles.accountImage}
                 />
               ) : (
-                <View style={{marginTop: 10}}>
+                <View style={styles.accountImageDefault}>
                   <AntDesignIcon name="user" size={50} color="black" />
                 </View>
               )}

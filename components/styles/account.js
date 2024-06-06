@@ -18,6 +18,9 @@ export default StyleSheet.create({
     height: 100,
     resizeMode: 'stretch'
     },
+  accountImageDefault: {
+    marginTop: 10,
+  },
   titleContainer: {
     justifyContent: 'center',
     marginLeft: 8,

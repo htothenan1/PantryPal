@@ -6,11 +6,15 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 80,
   },
+  screenWrapper: {
+    marginBottom: 80,
+  },
+  imageWrapper : {
+      alignItems: 'center',
+  },
   image: {
-    height: 200,
-    width: '100%',
-    marginBottom: 10,
-    resizeMode: 'repeat',
+     height: 80,
+     width: 80,
   },
   titleText: {
     textAlign: 'center',

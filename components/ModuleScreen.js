@@ -20,7 +20,7 @@ const ModuleScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={{marginBottom: 80}}>
+      <ScrollView style={styles.screenWrapper}>
         <Image source={currentContent.contentImage} style={styles.image} />
         <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
         <ScrollView>

@@ -5,6 +5,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  screenWrapper: {
+    marginBottom: 80,
+  },
   image: {
     height: 200,
     width: '100%',
