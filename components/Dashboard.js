@@ -26,16 +26,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/dashboard';
 import DatePicker from 'react-native-date-picker';
-import groceryPic from '../assets/grocery.png';
 import chefLogo from '../assets/chefs_hat.png';
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const lvlToXp = lvl => {
-  if (lvl === 1) return 1000;
-  if (lvl === 2) return 2000;
-  if (lvl === 3) return 3000;
-  if (lvl === 4) return 4000;
+  if (lvl === 1) {
+    return 1000;
+  }
+  if (lvl === 2) {
+    return 2000;
+  }
+  if (lvl === 3) {
+    return 3000;
+  }
+  if (lvl === 4) {
+    return 4000;
+  }
 };
 
 export const itemNames = [

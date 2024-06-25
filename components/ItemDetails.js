@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
-import groceryPic from '../assets/grocery.png';
 import chefLogo from '../assets/chefs_hat.png';
 import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
@@ -54,16 +53,9 @@ const ItemDetails = ({route}) => {
       <Text style={styles.compatibleHeader}>Storage Tips:</Text>
       <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
 
-      {ingredient?.techniques && (
-        <View>
-          <Text style={styles.techniquesHeader}>Cooking Techniques:</Text>
-          <Text style={styles.techniquesText}>{ingredient.techniques}</Text>
-        </View>
-      )}
-
       {compatibleUserItems.length > 0 && (
         <View>
-          <Text style={styles.compatibleHeader}>Best Pairings:</Text>
+          <Text style={styles.compatibleHeader}>Your Best Pairings:</Text>
           {compatibleUserItems.map((compatibleItem, index) => (
             <Text key={index} style={styles.compatibleItem}>
               {compatibleItem}
