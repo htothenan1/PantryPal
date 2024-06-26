@@ -924,7 +924,7 @@ const Dashboard = ({route}) => {
                 </View>
                 <Text style={styles.actionItemText}>Add Single Item</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={styles.actionItemContainer}
                 onPress={() => navToCamera()}>
                 <View
@@ -933,7 +933,7 @@ const Dashboard = ({route}) => {
                   <AntDesignIcon name="camerao" size={20} color="white" />
                 </View>
                 <Text style={styles.actionItemText}>AI Camera Logging</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 onPress={() => navToMultiSelect()}
                 style={styles.actionItemContainer}>
