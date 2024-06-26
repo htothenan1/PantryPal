@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+// import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
@@ -23,6 +23,13 @@ const MultiSelectScreen = ({route}) => {
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
   const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
+
+  const capitalizeWords = str => {
+    if (!str) {
+      return '';
+    }
+    return str.replace(/\b\w/g, char => char.toUpperCase());
+  };
 
   const toggleSelection = item => {
     let newSelectedItems = [...selectedItems];
@@ -162,7 +169,7 @@ const MultiSelectScreen = ({route}) => {
             styles.subItemText,
             selectedItems.includes(subItem) && styles.selectedSubItemText,
           ]}>
-          {subItem.name}
+          {capitalizeWords(subItem.name)}
         </Text>
       </TouchableOpacity>
     );
@@ -185,7 +192,7 @@ const MultiSelectScreen = ({route}) => {
           onPress={handlePress}>
           <Text
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
-            {item.name}
+            {capitalizeWords(item.name)}
           </Text>
         </TouchableOpacity>
         {isExpanded && item.subItems && (
@@ -228,8 +235,7 @@ const MultiSelectScreen = ({route}) => {
         {isLoading ? (
           <ActivityIndicator size="large" color="#495057" />
         ) : (
-          <View
-            style={styles.selectedWrapper}>
+          <View style={styles.selectedWrapper}>
             <Text style={styles.counterText}>
               Items Selected: {selectedItems.length}
             </Text>

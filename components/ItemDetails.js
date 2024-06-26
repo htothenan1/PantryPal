@@ -22,6 +22,10 @@ const findIngredient = itemName => {
   return ingredient;
 };
 
+function capitalizeWords(str) {
+  return str.replace(/\b\w/g, char => char.toUpperCase());
+}
+
 const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
   const userItems = route.params?.userItems || [];
@@ -48,7 +52,7 @@ const ItemDetails = ({route}) => {
       contentContainerStyle={styles.contentContainer}>
       <View style={styles.header}>
         <Image source={itemImage} style={styles.background} />
-        <Text style={styles.headerText}>{item?.name}</Text>
+        <Text style={styles.headerText}>{capitalizeWords(item?.name)}</Text>
       </View>
       <Text style={styles.compatibleHeader}>Storage Tips:</Text>
       <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
@@ -58,7 +62,7 @@ const ItemDetails = ({route}) => {
           <Text style={styles.compatibleHeader}>Your Best Pairings:</Text>
           {compatibleUserItems.map((compatibleItem, index) => (
             <Text key={index} style={styles.compatibleItem}>
-              {compatibleItem}
+              {capitalizeWords(compatibleItem)}
             </Text>
           ))}
         </View>

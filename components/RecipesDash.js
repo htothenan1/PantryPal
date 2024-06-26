@@ -26,6 +26,13 @@ const Dashboard = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
 
+  const capitalizeWords = str => {
+    if (!str) {
+      return '';
+    }
+    return str.replace(/\b\w/g, char => char.toUpperCase());
+  };
+
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
@@ -108,7 +115,7 @@ const Dashboard = () => {
         <View style={styles.itemTextContainer}>
           <Text
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
-            {item.name}
+            {capitalizeWords(item.name)}
           </Text>
         </View>
       </TouchableOpacity>

@@ -9,10 +9,10 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  Linking,
+  // Linking,
   Alert,
 } from 'react-native';
-import {Camera} from 'react-native-vision-camera';
+// import {Camera} from 'react-native-vision-camera';
 import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -46,103 +46,103 @@ const lvlToXp = lvl => {
 };
 
 export const itemNames = [
-  'Apples',
-  'Apricots',
-  'Artichokes',
-  'Arugula',
-  'Asparagus',
-  'Avocados',
-  'Baby Carrots',
-  'Baby Spinach',
-  'Bacon',
-  'Bagels',
-  'Bananas',
-  'Basil',
-  'Beets',
-  'Bell Peppers',
-  'Blackberries',
-  'Blueberries',
-  'Bok Choy',
-  'Bread',
-  'Broccoli',
-  'Broccolini',
-  'Broccoli Rabe',
-  'Brussels Sprouts',
-  'Butter',
-  'Cabbage',
-  'Carrots',
-  'Cauliflower',
-  'Celery',
-  'Chard',
-  'Cheese',
-  'Cherries',
-  'Chervil',
-  'Chicken',
-  'Chives',
-  'Cilantro',
-  'Coconuts',
-  'Collard Greens',
-  'Corn',
-  'Cranberries',
-  'Cucumbers',
-  'Eggplants',
-  'Eggs',
-  'Endive',
-  'Fish',
-  'Garlic',
-  'Ginger',
-  'Grapefruit',
-  'Grapes',
-  'Green Beans',
-  'Ground Beef',
-  'Kale',
-  'Kiwis',
-  'Lamb',
-  'Leeks',
-  'Lemons',
-  'Lettuce',
-  'Limes',
-  'Lobster',
-  'Mangos',
-  'Milk',
-  'Mushrooms',
-  'Nectarines',
-  'Okra',
-  'Olives',
-  'Onions',
-  'Oranges',
-  'Parsley',
-  'Parsnips',
-  'Pasta',
-  'Peaches',
-  'Pears',
-  'Peas',
-  'Persimmons',
-  'Pineapples',
-  'Plums',
-  'Pomegranates',
-  'Pork',
-  'Potatoes',
-  'Pumpkin',
-  'Radishes',
-  'Raspberries',
-  'Rosemary',
-  'Salad Greens',
-  'Scallions',
-  'Shallots',
-  'Shrimp',
-  'Spinach',
-  'Squash',
-  'Strawberries',
-  'Thyme',
-  'Tofu',
-  'Tomatoes',
-  'Turkey',
-  'Turnips',
-  'Watermelon',
-  'Yams',
-  'Yogurt',
-  'Zucchini',
+  'apples',
+  'apricots',
+  'artichokes',
+  'arugula',
+  'asparagus',
+  'avocados',
+  'baby carrots',
+  'baby spinach',
+  'bacon',
+  'bagels',
+  'bananas',
+  'basil',
+  'beets',
+  'bell peppers',
+  'blackberries',
+  'blueberries',
+  'bok choy',
+  'bread',
+  'broccoli',
+  'broccolini',
+  'broccoli rabe',
+  'brussels sprouts',
+  'butter',
+  'cabbage',
+  'carrots',
+  'cauliflower',
+  'celery',
+  'chard',
+  'cheese',
+  'cherries',
+  'chervil',
+  'chicken',
+  'chives',
+  'cilantro',
+  'coconuts',
+  'collard greens',
+  'corn',
+  'cranberries',
+  'cucumbers',
+  'eggplants',
+  'eggs',
+  'endive',
+  'fish',
+  'garlic',
+  'ginger',
+  'grapefruit',
+  'grapes',
+  'green beans',
+  'ground beef',
+  'kale',
+  'kiwis',
+  'lamb',
+  'leeks',
+  'lemons',
+  'lettuce',
+  'limes',
+  'lobster',
+  'mangos',
+  'milk',
+  'mushrooms',
+  'nectarines',
+  'okra',
+  'olives',
+  'onions',
+  'oranges',
+  'parsley',
+  'parsnips',
+  'pasta',
+  'peaches',
+  'pears',
+  'peas',
+  'persimmons',
+  'pineapples',
+  'plums',
+  'pomegranates',
+  'pork',
+  'potatoes',
+  'pumpkin',
+  'radishes',
+  'raspberries',
+  'rosemary',
+  'salad greens',
+  'scallions',
+  'shallots',
+  'shrimp',
+  'spinach',
+  'squash',
+  'strawberries',
+  'thyme',
+  'tofu',
+  'tomatoes',
+  'turkey',
+  'turnips',
+  'watermelon',
+  'yams',
+  'yogurt',
+  'zucchini',
 ];
 
 const Dashboard = ({route}) => {
@@ -200,10 +200,10 @@ const Dashboard = ({route}) => {
     <TouchableOpacity
       onPress={() => {
         setInput(item);
-        setFilteredItemNames([]); // Clear suggestions after selection
+        setFilteredItemNames([]);
       }}
       style={{padding: 10, backgroundColor: '#f9f9f9'}}>
-      <Text>{item}</Text>
+      <Text>{capitalizeWords(item)}</Text>
     </TouchableOpacity>
   );
 
@@ -273,9 +273,6 @@ const Dashboard = ({route}) => {
 
   const findIngredient = itemName => {
     if (typeof itemName !== 'string') {
-      // console.error(
-      //   `findIngredient was called with a non-string argument: ${itemName}`,
-      // );
       return null;
     }
 
@@ -298,10 +295,6 @@ const Dashboard = ({route}) => {
         }
       }
     }
-
-    // if (!ingredient) {
-    //   console.error(`Ingredient not found for item name: ${itemName}`);
-    // }
 
     return ingredient;
   };
@@ -411,6 +404,10 @@ const Dashboard = ({route}) => {
   async function addCustomItem(itemName) {
     setIsLoading(true);
     try {
+      if (!itemName) {
+        throw new Error('Item name is required');
+      }
+
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
       );
@@ -693,21 +690,28 @@ const Dashboard = ({route}) => {
     }
   }, [userData]);
 
-  useEffect(() => {
-    async function getPermission() {
-      const permission = await Camera.requestCameraPermission();
-      if (permission === 'denied') {
-        await Linking.openSettings();
-      }
-    }
-    getPermission();
-  }, []);
+  // useEffect(() => {
+  //   async function getPermission() {
+  //     const permission = await Camera.requestCameraPermission();
+  //     if (permission === 'denied') {
+  //       await Linking.openSettings();
+  //     }
+  //   }
+  //   getPermission();
+  // }, []);
 
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
     const expirationDate = new Date(expDate);
     const timeDiff = expirationDate.getTime() - currentDate.getTime();
     return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  };
+
+  const capitalizeWords = str => {
+    if (!str) {
+      return '';
+    }
+    return str.replace(/\b\w/g, char => char.toUpperCase());
   };
 
   const renderItem = ({item}) => {
@@ -732,7 +736,7 @@ const Dashboard = ({route}) => {
             ) : (
               <>
                 <Text style={[styles.itemText, {color: backgroundColor}]}>
-                  {item.name}
+                  {capitalizeWords(item.name)}
                 </Text>
                 <Text
                   style={[styles.remainingDaysText, {color: backgroundColor}]}>
@@ -985,11 +989,11 @@ const Dashboard = ({route}) => {
                 <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={styles.centerFab}
                 onPress={() => navToCamera()}>
                 <AntDesignIcon name="camerao" size={20} color="white" />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity
                 style={styles.fab}
@@ -1009,13 +1013,12 @@ const Dashboard = ({route}) => {
                   onPress={() => setAddItemModalVisible(false)}>
                   <AntDesignIcon name="close" size={24} color="black" />
                 </TouchableOpacity>
-                {/* <AntDesignIcon name="edit" size={30} color="black" /> */}
                 <Text style={styles.modalHeader}>Add Single Item</Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Search Item Name"
                   placeholderTextColor={'black'}
-                  value={input}
+                  value={capitalizeWords(input)}
                   onChangeText={setInput}
                 />
 
@@ -1025,9 +1028,10 @@ const Dashboard = ({route}) => {
                     keyExtractor={item => item}
                     renderItem={renderFoodItem}
                     style={{
-                      maxHeight: 150,
+                      maxHeight: 250,
                       borderColor: '#ccc',
                       borderWidth: 1,
+                      marginBottom: 10,
                     }}
                   />
                 )}
