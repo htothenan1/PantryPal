@@ -1,6 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
+const cardWidth = (width * 2) / 3;
 
 export default StyleSheet.create({
   container: {
@@ -51,9 +52,10 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
   },
   image: {
-    width,
+    width: cardWidth,
     height: 200,
     resizeMode: 'cover',
+    marginRight: 50,
   },
   titleText: {
     textAlign: 'center',
@@ -64,8 +66,9 @@ export default StyleSheet.create({
   footerText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 18,
+    fontSize: 15,
     marginTop: 5,
+    width: cardWidth,
   },
   fetchRecipesContainer: {
     height: 250,
@@ -85,5 +88,18 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     textAlign: 'center',
     paddingHorizontal: 14,
+  },
+  emptyStateContainer: {
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9fa',
+    borderRadius: 10,
+  },
+  emptyStateText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
   },
 });

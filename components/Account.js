@@ -131,10 +131,7 @@ const Account = () => {
           <View style={styles.accountInfoWrapper}>
             <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
               {selectedIcon ? (
-                <Image
-                  source={selectedIcon}
-                  style={styles.accountImage}
-                />
+                <Image source={selectedIcon} style={styles.accountImage} />
               ) : (
                 <View style={styles.accountImageDefault}>
                   <AntDesignIcon name="user" size={50} color="black" />
@@ -208,10 +205,7 @@ const Account = () => {
                         setIconPickerVisible(false);
                       }}
                       style={styles.modalItemButton}>
-                      <Image
-                        source={icon.img}
-                        style={styles.modalItemImage}
-                      />
+                      <Image source={icon.img} style={styles.modalItemImage} />
                       <Text>{icon.name}</Text>
                     </TouchableOpacity>
                   ))}

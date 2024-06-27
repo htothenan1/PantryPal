@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -15,6 +16,8 @@ import {auth} from '../firebase';
 import styles from './styles/recipesDash';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
+const {width} = Dimensions.get('window');
+const cardWidth = (width * 2) / 3;
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const Dashboard = () => {
@@ -25,6 +28,7 @@ const Dashboard = () => {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isItemsLoading, setIsItemsLoading] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
 
   const capitalizeWords = str => {
     if (!str) {
@@ -52,6 +56,7 @@ const Dashboard = () => {
         ? items.filter(item => selectedItems.includes(item.name))
         : items.slice(0, 10);
 
+    setHasFetched(true);
     fetchRecipes(itemsToUse);
   };
 
@@ -89,7 +94,7 @@ const Dashboard = () => {
     React.useCallback(() => {
       let isActive = true;
 
-      setSelectedItems([]);
+      // setSelectedItems([]);
       const fetchData = async () => {
         await fetchItems();
       };
@@ -148,6 +153,7 @@ const Dashboard = () => {
         console.error('Error fetching recipes:', error.message);
       }
     } else {
+      setFetchedRecipes([]);
       setIsRecipesLoading(false);
     }
   };
@@ -179,7 +185,8 @@ const Dashboard = () => {
     return (
       <TouchableOpacity
         onPress={() => handleSelectRecipe(item.id)}
-        activeOpacity={1}>
+        activeOpacity={1}
+        style={{width: cardWidth, marginRight: 50}}>
         <Image source={{uri: item.image}} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>
@@ -216,22 +223,28 @@ const Dashboard = () => {
           <View style={styles.recipesLoadingContainer}>
             <ActivityIndicator size="large" color="#495057" />
           </View>
+        ) : fetchedRecipes && fetchedRecipes.length > 0 ? (
+          <FlatList
+            data={fetchedRecipes}
+            renderItem={renderItems}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={true}
+            pagingEnabled
+            ref={ref => {
+              flatListRef.current = ref;
+            }}
+            viewabilityConfig={viewConfigRef}
+            onViewableItemsChanged={onViewRef.current}
+          />
         ) : (
-          fetchedRecipes &&
-          fetchedRecipes.length > 0 && (
-            <FlatList
-              data={fetchedRecipes}
-              renderItem={renderItems}
-              keyExtractor={(item, index) => index.toString()}
-              horizontal
-              showsHorizontalScrollIndicator={true}
-              pagingEnabled
-              ref={ref => {
-                flatListRef.current = ref;
-              }}
-              viewabilityConfig={viewConfigRef}
-              onViewableItemsChanged={onViewRef.current}
-            />
+          hasFetched && (
+            <View style={styles.emptyStateContainer}>
+              <Text style={styles.emptyStateText}>
+                No recipes found with the selected ingredients. Try selecting
+                different items.
+              </Text>
+            </View>
           )
         )}
       </View>
