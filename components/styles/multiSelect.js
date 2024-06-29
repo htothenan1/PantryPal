@@ -3,18 +3,33 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollViewStyle: {
+    marginVertical: 10,
+  },
+  listContentContainer: {
+    paddingBottom: 75,
   },
   tabsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    margin: 0,
   },
   tab: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 0,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
+    marginRight: 4,
   },
   selectedTab: {
     backgroundColor: '#1b4965',
-    borderRadius: 10,
+    borderRadius: 20,
+    borderColor: '#1b4965',
   },
   tabText: {
     fontSize: 13,
@@ -39,13 +54,12 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
   },
   buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     padding: 10,
     backgroundColor: 'white',
-  },
-  buttonText: {
-    fontSize: 25,
-    color: '#5fa8d3',
-    textAlign: 'center',
   },
   subItemsContainer: {
     paddingLeft: 20,
@@ -72,17 +86,21 @@ export default StyleSheet.create({
     width: '100%',
   },
   counterText: {
-    alignSelf: 'center', // Adjust this as needed
-    fontSize: 16, // Adjust font size as needed
-    color: '#000', // Adjust text color as needed
+    alignSelf: 'center',
+    fontSize: 16,
+    color: '#000',
     fontFamily: 'Avenir-Book',
   },
   disabledButton: {
-    backgroundColor: '#ccc', // A light grey to indicate the button is disabled
+    backgroundColor: '#ccc',
   },
   button: {
-    padding: 10, // Adjust padding as needed
-    borderRadius: 5, // Adjust border radius as needed
-    // Ensure you have backgroundColor set for when the button is enabled
+    padding: 10,
+    borderRadius: 5,
+  },
+  saveText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 14,
+    color: 'black',
   },
 });

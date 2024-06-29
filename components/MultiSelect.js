@@ -6,9 +6,9 @@ import {
   FlatList,
   Pressable,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-// import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
@@ -18,6 +18,7 @@ const MultiSelectScreen = ({route}) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
   const [currentCategory, setCurrentCategory] = useState('fruits');
+  const [consumedItems, setConsumedItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const userEmail = auth.currentUser?.email;
@@ -55,6 +56,16 @@ const MultiSelectScreen = ({route}) => {
       );
 
       if (!newSelectedItems.includes(item) && !anySubItemSelected) {
+        const matchedItem = ingredients.find(
+          ingredient =>
+            ingredient.name.toLowerCase() === item.name.toLowerCase(),
+        );
+
+        if (matchedItem) {
+          item.storage_tip = matchedItem.storage_tip;
+          item.exp_int = matchedItem.exp_int;
+        }
+
         newSelectedItems.push(item);
         newExpandedItems = newExpandedItems.filter(
           expandedItem => expandedItem !== item,
@@ -74,16 +85,43 @@ const MultiSelectScreen = ({route}) => {
   };
 
   useEffect(() => {
-    const itemsFromDashboard = route.params?.items.map(item => item.name) || [];
+    const fetchItemsData = async emailString => {
+      try {
+        const response = await fetch(
+          `${API_URL}/items/useremail/${emailString}`,
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const res = await response.json();
+        const itemsMap = res.consumedItems.map(item => ({
+          ...item,
+          category: 'consumed',
+          item_id: item._id,
+          exp_int: 5,
+          storage_tip: 'custom',
+        }));
+        setConsumedItems(itemsMap);
+      } catch (error) {
+        console.error('Error fetching items data:', error.message);
+      }
+    };
+
+    fetchItemsData(userEmail);
+  }, [userEmail]);
+
+  useEffect(() => {
+    const itemsFromDashboard =
+      route.params?.items.map(item => item.name.toLowerCase()) || [];
 
     const filteredItems = ingredients.filter(ingredient => {
-      if (itemsFromDashboard.includes(ingredient.name)) {
+      if (itemsFromDashboard.includes(ingredient.name.toLowerCase())) {
         return false;
       }
 
       if (ingredient.subItems) {
         const filteredSubItems = ingredient.subItems.filter(
-          subItem => !itemsFromDashboard.includes(subItem.name),
+          subItem => !itemsFromDashboard.includes(subItem.name.toLowerCase()),
         );
         if (filteredSubItems.length === 0) {
           return false;
@@ -95,12 +133,18 @@ const MultiSelectScreen = ({route}) => {
       return true;
     });
 
-    const filteredItemsByCategory = filteredItems.filter(
+    let filteredItemsByCategory = filteredItems.filter(
       ingredient => ingredient.category === currentCategory,
     );
 
+    if (currentCategory === 'consumed') {
+      filteredItemsByCategory = consumedItems.filter(
+        item => !itemsFromDashboard.includes(item.name.toLowerCase()),
+      );
+    }
+
     setItems(filteredItemsByCategory);
-  }, [route, currentCategory]);
+  }, [route, currentCategory, consumedItems]);
 
   async function addItems(itemsArray) {
     setIsLoading(true);
@@ -220,17 +264,35 @@ const MultiSelectScreen = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.tabsContainer}>
-        {['fruits', 'vegetables', 'meats', 'dairy', 'grains', 'seafoods'].map(
-          renderTab,
-        )}
+      <View>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            marginHorizontal: 24,
+            marginVertical: 10,
+            height: 50,
+            paddingBottom: 10,
+          }}
+          style={styles.scrollViewStyle}>
+          {[
+            'fruits',
+            'vegetables',
+            'meats',
+            'dairy',
+            'grains',
+            'seafoods',
+            'consumed',
+          ].map(renderTab)}
+        </ScrollView>
+        <FlatList
+          contentContainerStyle={{paddingBottom: 100}} // Adjust the padding bottom to give space for the button
+          data={items}
+          renderItem={renderItem}
+          keyExtractor={item => item.item_id}
+          extraData={selectedItems}
+        />
       </View>
-      <FlatList
-        data={items}
-        renderItem={renderItem}
-        keyExtractor={item => item.item_id}
-        extraData={selectedItems}
-      />
       <View style={styles.buttonContainer}>
         {isLoading ? (
           <ActivityIndicator size="large" color="#495057" />
