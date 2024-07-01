@@ -167,6 +167,7 @@ const Dashboard = ({route}) => {
   const [updatingItemId, setUpdatingItemId] = useState(null);
   const [input, setInput] = useState('');
   const [filteredItemNames, setFilteredItemNames] = useState([]);
+  const [isDeletingAllItems, setIsDeletingAllItems] = useState(false);
 
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
@@ -355,6 +356,8 @@ const Dashboard = ({route}) => {
       return;
     }
 
+    setIsDeletingAllItems(true);
+
     try {
       const response = await fetch(`${API_URL}/items/deleteAll/${userEmail}`, {
         method: 'DELETE',
@@ -367,6 +370,8 @@ const Dashboard = ({route}) => {
       fetchItems(userEmail);
     } catch (error) {
       console.error('Error deleting items:', error.message);
+    } finally {
+      setIsDeletingAllItems(false);
     }
   };
 
@@ -792,7 +797,6 @@ const Dashboard = ({route}) => {
                 />
               </View>
             )}
-            {/* <Image source={selectedIcon} style={styles.userIcon} /> */}
             <View>
               <Text style={styles.userName}>{userData?.firstName}</Text>
               <Text style={styles.levelText}>Level {userData?.level}</Text>
@@ -829,11 +833,15 @@ const Dashboard = ({route}) => {
           <View style={styles.headerText}>
             <Text style={styles.titleText}>Your Items ({items.length})</Text>
             {items.length > 0 ? (
-              <TouchableOpacity
-                style={styles.headerIcon}
-                onPress={confirmDeleteAll}>
-                <AntDesignIcon name="delete" size={20} color="black" />
-              </TouchableOpacity>
+              isDeletingAllItems ? (
+                <ActivityIndicator size="small" color="#495057" />
+              ) : (
+                <TouchableOpacity
+                  style={styles.headerIcon}
+                  onPress={confirmDeleteAll}>
+                  <AntDesignIcon name="delete" size={20} color="black" />
+                </TouchableOpacity>
+              )
             ) : null}
           </View>
           <View>

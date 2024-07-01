@@ -391,6 +391,31 @@ app.post('/items', async (req, res) => {
   }
 });
 
+app.put('/users/preferences', async (req, res) => {
+  const {email, omitMeats, omitSeafoods, omitDairy} = req.body;
+
+  if (!email) {
+    return res.status(400).send('Email is required');
+  }
+
+  try {
+    const user = await User.findOneAndUpdate(
+      {email: email},
+      {omitMeats: omitMeats, omitSeafoods: omitSeafoods, omitDairy: omitDairy},
+      {new: true},
+    );
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Error updating user preferences:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 // Endpoint to update user's iconName
 app.put('/users/icon', async (req, res) => {
   const {email, iconName} = req.body;

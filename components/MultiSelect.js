@@ -14,12 +14,16 @@ import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
 
 const MultiSelectScreen = ({route}) => {
-  const [items, setItems] = useState(ingredients);
+  const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
   const [currentCategory, setCurrentCategory] = useState('fruits');
   const [consumedItems, setConsumedItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [omitMeats, setOmitMeats] = useState(false);
+  const [omitSeafoods, setOmitSeafoods] = useState(false);
+  const [omitDairy, setOmitDairy] = useState(false); // New state for omitting dairy
+  const [availableCategories, setAvailableCategories] = useState([]);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -85,6 +89,25 @@ const MultiSelectScreen = ({route}) => {
   };
 
   useEffect(() => {
+    const fetchUserData = async email => {
+      try {
+        const response = await fetch(`${API_URL}/users/data?email=${email}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setOmitMeats(data.omitMeats);
+        setOmitSeafoods(data.omitSeafoods);
+        setOmitDairy(data.omitDairy); // Set omitDairy from user data
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    };
+
+    fetchUserData(userEmail);
+  }, [userEmail]);
+
+  useEffect(() => {
     const fetchItemsData = async emailString => {
       try {
         const response = await fetch(
@@ -133,18 +156,54 @@ const MultiSelectScreen = ({route}) => {
       return true;
     });
 
-    let filteredItemsByCategory = filteredItems.filter(
+    let itemsByCategory = filteredItems.filter(ingredient => {
+      if (omitMeats && ingredient.category === 'meats') {
+        return false;
+      }
+      if (omitSeafoods && ingredient.category === 'seafoods') {
+        return false;
+      }
+      if (omitDairy && ingredient.category === 'dairy') {
+        return false;
+      }
+      return true;
+    });
+
+    let availableCategories = [
+      'fruits',
+      'vegetables',
+      'meats',
+      'dairy',
+      'grains',
+      'seafoods',
+      'consumed',
+    ].filter(
+      category =>
+        itemsByCategory.some(item => item.category === category) ||
+        (category === 'consumed' && consumedItems.length > 0),
+    );
+
+    setAvailableCategories(availableCategories);
+
+    itemsByCategory = itemsByCategory.filter(
       ingredient => ingredient.category === currentCategory,
     );
 
     if (currentCategory === 'consumed') {
-      filteredItemsByCategory = consumedItems.filter(
+      itemsByCategory = consumedItems.filter(
         item => !itemsFromDashboard.includes(item.name.toLowerCase()),
       );
     }
 
-    setItems(filteredItemsByCategory);
-  }, [route, currentCategory, consumedItems]);
+    setItems(itemsByCategory);
+  }, [
+    route,
+    currentCategory,
+    consumedItems,
+    omitMeats,
+    omitSeafoods,
+    omitDairy,
+  ]);
 
   async function addItems(itemsArray) {
     setIsLoading(true);
@@ -270,15 +329,7 @@ const MultiSelectScreen = ({route}) => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.tabsContainer}
           style={styles.scrollViewStyle}>
-          {[
-            'fruits',
-            'vegetables',
-            'meats',
-            'dairy',
-            'grains',
-            'seafoods',
-            'consumed',
-          ].map(renderTab)}
+          {availableCategories.map(renderTab)}
         </ScrollView>
         <FlatList
           contentContainerStyle={{paddingBottom: 120}}

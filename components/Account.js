@@ -7,6 +7,7 @@ import {
   ScrollView,
   Modal,
   Image,
+  Switch,
 } from 'react-native';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
@@ -23,6 +24,9 @@ const Account = () => {
   const [consumedItems, setConsumedItems] = useState([]);
   const [isIconPickerVisible, setIconPickerVisible] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [omitMeats, setOmitMeats] = useState(false);
+  const [omitSeafoods, setOmitSeafoods] = useState(false);
+  const [omitDairy, setOmitDairy] = useState(false); // New state for omitting dairy
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -53,6 +57,32 @@ const Account = () => {
     }
   };
 
+  const updatePreferences = async (meats, seafoods, dairy) => {
+    try {
+      const response = await fetch(`${API_URL}/users/preferences`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          omitMeats: meats,
+          omitSeafoods: seafoods,
+          omitDairy: dairy, // Include omitDairy in the request
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating preferences:', error);
+    }
+  };
+
   useEffect(() => {
     if (userData?.iconName) {
       const foundIcon = icons.find(
@@ -63,6 +93,12 @@ const Account = () => {
       } else {
         console.log('Icon not found:', userData.iconName);
       }
+    }
+
+    if (userData) {
+      setOmitMeats(userData.omitMeats);
+      setOmitSeafoods(userData.omitSeafoods);
+      setOmitDairy(userData.omitDairy); // Set omitDairy from userData
     }
   }, [userData]);
 
@@ -120,6 +156,7 @@ const Account = () => {
         console.log(error);
       });
   };
+
   return (
     <View
       style={styles.container}
@@ -146,6 +183,39 @@ const Account = () => {
                 Total Items Logged: {userData?.itemsCreated}
               </Text>
             </View>
+          </View>
+
+          <View style={styles.toggleContainer}>
+            <Text style={styles.toggleLabel}>Omit Meats:</Text>
+            <Switch
+              value={omitMeats}
+              onValueChange={value => {
+                setOmitMeats(value);
+                updatePreferences(value, omitSeafoods, omitDairy);
+              }}
+            />
+          </View>
+
+          <View style={styles.toggleContainer}>
+            <Text style={styles.toggleLabel}>Omit Seafoods:</Text>
+            <Switch
+              value={omitSeafoods}
+              onValueChange={value => {
+                setOmitSeafoods(value);
+                updatePreferences(omitMeats, value, omitDairy);
+              }}
+            />
+          </View>
+
+          <View style={styles.toggleContainer}>
+            <Text style={styles.toggleLabel}>Omit Dairy:</Text>
+            <Switch
+              value={omitDairy}
+              onValueChange={value => {
+                setOmitDairy(value);
+                updatePreferences(omitMeats, omitSeafoods, value);
+              }}
+            />
           </View>
 
           <View style={styles.itemsList}>

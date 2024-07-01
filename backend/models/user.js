@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
       dateEarned: {type: Date, default: Date.now},
     },
   ],
+  omitMeats: {type: Boolean, default: false},
+  omitSeafoods: {type: Boolean, default: false},
+  omitDairy: {type: Boolean, default: false},
 });
 
 const User = mongoose.model('User', userSchema);

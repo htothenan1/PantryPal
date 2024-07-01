@@ -11,13 +11,13 @@ export default StyleSheet.create({
   },
   accountInfoWrapper: {
     flexDirection: 'row',
-    marginTop: 30
+    marginTop: 30,
   },
   accountImage: {
     width: 100,
     height: 100,
-    resizeMode: 'stretch'
-    },
+    resizeMode: 'stretch',
+  },
   accountImageDefault: {
     marginTop: 10,
   },
@@ -126,5 +126,16 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontFamily: 'Avenir-Book', // or any preferred font
+  },
+  toggleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
+  toggleLabel: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
   },
 });
