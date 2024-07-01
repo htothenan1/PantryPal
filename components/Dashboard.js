@@ -9,10 +9,8 @@ import {
   ActivityIndicator,
   TextInput,
   Pressable,
-  // Linking,
   Alert,
 } from 'react-native';
-// import {Camera} from 'react-native-vision-camera';
 import ProgressBar from 'react-native-progress/Bar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -690,16 +688,6 @@ const Dashboard = ({route}) => {
     }
   }, [userData]);
 
-  // useEffect(() => {
-  //   async function getPermission() {
-  //     const permission = await Camera.requestCameraPermission();
-  //     if (permission === 'denied') {
-  //       await Linking.openSettings();
-  //     }
-  //   }
-  //   getPermission();
-  // }, []);
-
   const calculateDaysUntilExpiration = expDate => {
     const currentDate = new Date();
     const expirationDate = new Date(expDate);
@@ -919,21 +907,10 @@ const Dashboard = ({route}) => {
                 <View
                   style={styles.emptyFab}
                   onPress={() => setAddItemModalVisible(true)}>
-                  {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
                   <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
                 </View>
                 <Text style={styles.actionItemText}>Add Single Item</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity
-                style={styles.actionItemContainer}
-                onPress={() => navToCamera()}>
-                <View
-                  style={styles.emptyFab}
-                  onPress={() => setAddItemModalVisible(true)}>
-                  <AntDesignIcon name="camerao" size={20} color="white" />
-                </View>
-                <Text style={styles.actionItemText}>AI Camera Logging</Text>
-              </TouchableOpacity> */}
               <TouchableOpacity
                 onPress={() => navToMultiSelect()}
                 style={styles.actionItemContainer}>
@@ -985,21 +962,13 @@ const Dashboard = ({route}) => {
               <TouchableOpacity
                 style={styles.leftFab}
                 onPress={() => setAddItemModalVisible(true)}>
-                {/* <AntDesignIcon name="edit" size={20} color="white" /> */}
                 <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
               </TouchableOpacity>
-
-              {/* <TouchableOpacity
-                style={styles.centerFab}
-                onPress={() => navToCamera()}>
-                <AntDesignIcon name="camerao" size={20} color="white" />
-              </TouchableOpacity> */}
 
               <TouchableOpacity
                 style={styles.fab}
                 onPress={() => navToMultiSelect()}>
                 <AntDesignIcon name="bars" size={20} color="white" />
-                {/* <Text style={{fontSize: 14, color: 'white'}}>Add from list</Text> */}
               </TouchableOpacity>
             </View>
 

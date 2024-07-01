@@ -187,27 +187,26 @@ export default StyleSheet.create({
   tab: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 0,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    backgroundColor: '#FFFFFF',
-    marginRight: 4,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: '#F2F2F2',
+    marginRight: 8,
   },
 
   selectedTab: {
-    backgroundColor: '#1b4965',
-    borderRadius: 20,
-    borderColor: '#1b4965',
+    backgroundColor: '#D8D8D8',
+    borderRadius: 12,
   },
 
   tabText: {
     fontSize: 13,
+    color: '#333',
+    fontFamily: 'Avenir-Book',
   },
 
   selectedTabText: {
-    color: 'white',
+    color: '#333',
   },
 
   button: {

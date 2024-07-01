@@ -268,12 +268,7 @@ const MultiSelectScreen = ({route}) => {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            marginHorizontal: 24,
-            marginVertical: 10,
-            height: 50,
-            paddingBottom: 10,
-          }}
+          contentContainerStyle={styles.tabsContainer}
           style={styles.scrollViewStyle}>
           {[
             'fruits',
@@ -286,7 +281,7 @@ const MultiSelectScreen = ({route}) => {
           ].map(renderTab)}
         </ScrollView>
         <FlatList
-          contentContainerStyle={{paddingBottom: 100}} // Adjust the padding bottom to give space for the button
+          contentContainerStyle={{paddingBottom: 120}}
           data={items}
           renderItem={renderItem}
           keyExtractor={item => item.item_id}
