@@ -9,8 +9,13 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     marginTop: 50,
   },
+  contentContainer: {
+    paddingBottom: 120, // Adjust padding as needed
+  },
   accountInfoWrapper: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 30,
   },
   accountImage: {
@@ -24,6 +29,7 @@ export default StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     marginLeft: 8,
+    flex: 1,
   },
   modalTitleText: {
     textAlign: 'center',
@@ -44,20 +50,21 @@ export default StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    justifyContent: 'left',
     alignItems: 'center',
   },
   headerIcon: {
     marginLeft: 10,
   },
-  logout: {
+  logoutButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+  },
+  logoutButtonText: {
+    color: 'white',
+    fontSize: 14,
     textAlign: 'center',
-    fontSize: 20,
     fontFamily: 'Avenir-Book',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 10,
-    padding: 5,
   },
   headerText: {
     textAlign: 'left',
@@ -67,9 +74,6 @@ export default StyleSheet.create({
   },
   itemsList: {
     marginTop: 10,
-  },
-  recipesList: {
-    height: 100,
   },
   item: {
     textAlign: 'left',

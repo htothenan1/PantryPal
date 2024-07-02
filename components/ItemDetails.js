@@ -5,15 +5,21 @@ import styles from './styles/itemDetails';
 import {ingredients} from './data/ingredients';
 
 const findIngredient = itemName => {
-  let ingredient = ingredients.find(ing => ing.name === itemName);
+  let ingredient = ingredients.find(
+    ing => ing.name.toLowerCase() === itemName.toLowerCase(),
+  );
 
   if (!ingredient) {
     for (let item of ingredients) {
       if (
         item.subItems &&
-        item.subItems.some(subItem => subItem.name === itemName)
+        item.subItems.some(
+          subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
+        )
       ) {
-        ingredient = item;
+        ingredient = item.subItems.find(
+          subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
+        );
         break;
       }
     }
@@ -30,17 +36,21 @@ const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
   const userItems = route.params?.userItems || [];
   const ingredient = item ? findIngredient(item.name) : null;
-  const itemImage = ingredient ? ingredient.img : chefLogo;
+  const itemImage = ingredient
+    ? ingredient.img
+    : item?.img
+    ? {uri: item.img}
+    : chefLogo;
 
   const findCompatibleUserItems = () => {
-    const compatibleIngredients = ingredients.find(
-      ing => ing.name === item?.name,
-    );
+    const compatibleIngredients =
+      item?.compatibles || ingredient?.compatibles || [];
 
-    const compatibles = compatibleIngredients?.compatibles || [];
-
-    return compatibles.filter(compatibleItemName =>
-      userItems.some(userItem => userItem.name === compatibleItemName),
+    return compatibleIngredients.filter(compatibleItemName =>
+      userItems.some(
+        userItem =>
+          userItem.name.toLowerCase() === compatibleItemName.toLowerCase(),
+      ),
     );
   };
 

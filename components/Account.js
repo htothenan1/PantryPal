@@ -158,13 +158,11 @@ const Account = () => {
   };
 
   return (
-    <View
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}>
+    <View style={styles.container}>
       {loading ? (
         <ActivityIndicator size="large" color="#495057" />
       ) : (
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.accountInfoWrapper}>
             <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
               {selectedIcon ? (
@@ -179,43 +177,51 @@ const Account = () => {
             <View style={styles.titleContainer}>
               <Text style={styles.titleText}>{userData?.firstName}</Text>
               <Text style={styles.levelText}>Level {userData?.level}</Text>
-              <Text style={styles.item}>
+              {/* <Text style={styles.item}>
                 Total Items Logged: {userData?.itemsCreated}
-              </Text>
+              </Text> */}
             </View>
+
+            <TouchableOpacity
+              style={styles.logoutButton}
+              onPress={handleLogout}>
+              <Text style={styles.logoutButtonText}>Logout</Text>
+            </TouchableOpacity>
           </View>
 
-          <View style={styles.toggleContainer}>
-            <Text style={styles.toggleLabel}>Omit Meats:</Text>
-            <Switch
-              value={omitMeats}
-              onValueChange={value => {
-                setOmitMeats(value);
-                updatePreferences(value, omitSeafoods, omitDairy);
-              }}
-            />
-          </View>
+          <View style={{marginBottom: 10}}>
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Meats:</Text>
+              <Switch
+                value={omitMeats}
+                onValueChange={value => {
+                  setOmitMeats(value);
+                  updatePreferences(value, omitSeafoods, omitDairy);
+                }}
+              />
+            </View>
 
-          <View style={styles.toggleContainer}>
-            <Text style={styles.toggleLabel}>Omit Seafoods:</Text>
-            <Switch
-              value={omitSeafoods}
-              onValueChange={value => {
-                setOmitSeafoods(value);
-                updatePreferences(omitMeats, value, omitDairy);
-              }}
-            />
-          </View>
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
+              <Switch
+                value={omitSeafoods}
+                onValueChange={value => {
+                  setOmitSeafoods(value);
+                  updatePreferences(omitMeats, value, omitDairy);
+                }}
+              />
+            </View>
 
-          <View style={styles.toggleContainer}>
-            <Text style={styles.toggleLabel}>Omit Dairy:</Text>
-            <Switch
-              value={omitDairy}
-              onValueChange={value => {
-                setOmitDairy(value);
-                updatePreferences(omitMeats, omitSeafoods, value);
-              }}
-            />
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Dairy:</Text>
+              <Switch
+                value={omitDairy}
+                onValueChange={value => {
+                  setOmitDairy(value);
+                  updatePreferences(omitMeats, omitSeafoods, value);
+                }}
+              />
+            </View>
           </View>
 
           <View style={styles.itemsList}>
@@ -285,11 +291,6 @@ const Account = () => {
           </Modal>
         </ScrollView>
       )}
-      <View style={styles.startButton}>
-        <TouchableOpacity style={styles.buttonContainer} onPress={handleLogout}>
-          <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };

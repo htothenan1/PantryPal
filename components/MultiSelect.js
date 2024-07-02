@@ -68,6 +68,10 @@ const MultiSelectScreen = ({route}) => {
         if (matchedItem) {
           item.storage_tip = matchedItem.storage_tip;
           item.exp_int = matchedItem.exp_int;
+          item.compatibles = matchedItem.compatibles;
+          item.img = matchedItem.img;
+          item.category = matchedItem.category;
+          item.goodSourceOf = matchedItem.goodsourceof;
         }
 
         newSelectedItems.push(item);
@@ -117,13 +121,23 @@ const MultiSelectScreen = ({route}) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const res = await response.json();
-        const itemsMap = res.consumedItems.map(item => ({
-          ...item,
-          category: 'consumed',
-          item_id: item._id,
-          exp_int: 5,
-          storage_tip: 'custom',
-        }));
+        const itemsMap = res.consumedItems.map(item => {
+          const matchedItem = ingredients.find(
+            ingredient =>
+              ingredient.name.toLowerCase() === item.name.toLowerCase(),
+          );
+          return {
+            ...item,
+            category: 'consumed',
+            item_id: item._id,
+            name: item.name.toLowerCase(), // Ensure name is lowercased
+            exp_int: matchedItem?.exp_int || item.exp_int,
+            storage_tip: matchedItem?.storage_tip || item.storage_tip,
+            img: matchedItem?.img || item.img,
+            compatibles: matchedItem?.compatibles || item.compatibles,
+            goodSourceOf: matchedItem?.goodSourceOf || item.goodSourceOf,
+          };
+        });
         setConsumedItems(itemsMap);
       } catch (error) {
         console.error('Error fetching items data:', error.message);
