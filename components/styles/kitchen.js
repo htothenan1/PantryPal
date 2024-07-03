@@ -71,19 +71,20 @@ export default StyleSheet.create({
   },
   fabContainer: {
     flexDirection: 'row',
-    // borderTopWidth: 0.3,
     position: 'absolute',
     bottom: 0,
     width: '100%',
   },
   fabButton: {
     flex: 1,
-    height: 80,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#1b4965',
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 20,
+    paddingVertical: 10,
+    marginHorizontal: 10,
+    marginVertical: 10,
   },
   fabButtonText: {
     fontSize: 16,
@@ -261,7 +262,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
   },
   progressContainer: {
-    paddingVertical: 14,
+    paddingVertical: 10,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
   },
@@ -272,7 +273,7 @@ export default StyleSheet.create({
   },
   progressBar: {
     alignSelf: 'stretch',
-    marginVertical: 10,
+    marginVertical: 5,
   },
   progressText: {
     textAlign: 'left',

@@ -994,7 +994,7 @@ const Kitchen = ({route}) => {
             <TouchableOpacity
               style={styles.fabButton}
               onPress={() => navToMultiSelect()}>
-              <Text style={styles.fabButtonText}>Add Multiple Items</Text>
+              <Text style={styles.fabButtonText}>MultiSelect From List</Text>
             </TouchableOpacity>
           </View>
 

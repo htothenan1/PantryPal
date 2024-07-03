@@ -514,7 +514,6 @@ export const onboardingModule = [
         contentText: [
           'In order to benefit fully from FlavrAi, you should log your foods when you purchase them, and mark how they were consumed. This will only take seconds.',
           'By logging an item, you give yourself an opportunity to make good decisions. Specifically, when and how you would like to eat it by.',
-          'We provide 3 intuitive ways to log your items: MultiSelect from common items, add a single item by text, or use our AI by snapping a pic of your produce or receipt.',
         ],
       },
       {
@@ -523,7 +522,6 @@ export const onboardingModule = [
         contentText: [
           'SMART = Specific, Measurable, Achievable, Relevant, and Time-bound. Extremely effective if applied to setting use-by dates for food consumption.',
           'FlavrAi helps users set SMART goals for their items by providing curated data and default dates for over 100 of the most common items purchased.',
-          'While we equip you with some crucially helpful data, no app can determine the true condition of your items. We expect the user to adjust the dates accordingly.',
           'We view SMART goal setting as a crucial skill that, with practice and refinement, can dramatically improve your overall kitchen efficiency.',
         ],
       },
