@@ -41,6 +41,9 @@ export default StyleSheet.create({
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 80,
   },
   selectedItem: {
     backgroundColor: '#5fa8d3',
@@ -50,6 +53,16 @@ export default StyleSheet.create({
     color: 'white',
   },
   itemText: {
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
+    flex: 1,
+  },
+  itemImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
+  },
+  itemExpInt: {
     fontSize: 16,
     fontFamily: 'Avenir-Book',
   },

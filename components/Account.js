@@ -26,7 +26,9 @@ const Account = () => {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [omitMeats, setOmitMeats] = useState(false);
   const [omitSeafoods, setOmitSeafoods] = useState(false);
-  const [omitDairy, setOmitDairy] = useState(false); // New state for omitting dairy
+  const [omitDairy, setOmitDairy] = useState(false);
+  const [showConsumedItems, setShowConsumedItems] = useState(false);
+  const [showWastedItems, setShowWastedItems] = useState(false);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -68,7 +70,7 @@ const Account = () => {
           email: userEmail,
           omitMeats: meats,
           omitSeafoods: seafoods,
-          omitDairy: dairy, // Include omitDairy in the request
+          omitDairy: dairy,
         }),
       });
 
@@ -98,7 +100,7 @@ const Account = () => {
     if (userData) {
       setOmitMeats(userData.omitMeats);
       setOmitSeafoods(userData.omitSeafoods);
-      setOmitDairy(userData.omitDairy); // Set omitDairy from userData
+      setOmitDairy(userData.omitDairy);
     }
   }, [userData]);
 
@@ -147,6 +149,10 @@ const Account = () => {
     }, []),
   );
 
+  const navToPantry = articleObject => {
+    navigation.navigate('Pantry');
+  };
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -177,87 +183,100 @@ const Account = () => {
             <View style={styles.titleContainer}>
               <Text style={styles.titleText}>{userData?.firstName}</Text>
               <Text style={styles.levelText}>Level {userData?.level}</Text>
-              {/* <Text style={styles.item}>
-                Total Items Logged: {userData?.itemsCreated}
-              </Text> */}
+            </View>
+          </View>
+
+          <View style={styles.preferencesContainer}>
+            <Text style={styles.preferencesTitle}>Kitchen Preferences</Text>
+            <View style={{marginBottom: 10}}>
+              <View style={styles.toggleContainer}>
+                <Text style={styles.toggleLabel}>Remove Meats:</Text>
+                <Switch
+                  value={omitMeats}
+                  onValueChange={value => {
+                    setOmitMeats(value);
+                    updatePreferences(value, omitSeafoods, omitDairy);
+                  }}
+                  trackColor={{false: '#767577', true: '#1b4965'}}
+                />
+              </View>
+
+              <View style={styles.toggleContainer}>
+                <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
+                <Switch
+                  value={omitSeafoods}
+                  onValueChange={value => {
+                    setOmitSeafoods(value);
+                    updatePreferences(omitMeats, value, omitDairy);
+                  }}
+                  trackColor={{false: '#767577', true: '#1b4965'}}
+                />
+              </View>
+
+              <View style={styles.toggleContainer}>
+                <Text style={styles.toggleLabel}>Remove Dairy:</Text>
+                <Switch
+                  value={omitDairy}
+                  onValueChange={value => {
+                    setOmitDairy(value);
+                    updatePreferences(omitMeats, omitSeafoods, value);
+                  }}
+                  trackColor={{false: '#767577', true: '#1b4965'}}
+                />
+              </View>
             </View>
 
-            <TouchableOpacity
-              style={styles.logoutButton}
-              onPress={handleLogout}>
-              <Text style={styles.logoutButtonText}>Logout</Text>
+            <TouchableOpacity style={styles.logoutButton} onPress={navToPantry}>
+              <Text style={styles.logoutButtonText}>Go To Pantry</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={{marginBottom: 10}}>
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Meats:</Text>
-              <Switch
-                value={omitMeats}
-                onValueChange={value => {
-                  setOmitMeats(value);
-                  updatePreferences(value, omitSeafoods, omitDairy);
-                }}
-              />
-            </View>
-
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
-              <Switch
-                value={omitSeafoods}
-                onValueChange={value => {
-                  setOmitSeafoods(value);
-                  updatePreferences(omitMeats, value, omitDairy);
-                }}
-              />
-            </View>
-
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Dairy:</Text>
-              <Switch
-                value={omitDairy}
-                onValueChange={value => {
-                  setOmitDairy(value);
-                  updatePreferences(omitMeats, omitSeafoods, value);
-                }}
-              />
-            </View>
-          </View>
-
           <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
+            <TouchableOpacity
+              onPress={() => setShowConsumedItems(!showConsumedItems)}
+              style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Consumed Items</Text>
               <AntDesignIcon
                 style={styles.headerIcon}
-                name="like2"
+                name={showConsumedItems ? 'caretup' : 'caretdown'}
                 size={20}
                 color="green"
               />
-            </View>
-
-            {consumedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
+            </TouchableOpacity>
+            {showConsumedItems &&
+              consumedItems.slice(0, 5).map(item => (
+                <Text key={item._id} style={styles.item}>
+                  {item.name} ({item.frequency})
+                </Text>
+              ))}
           </View>
 
           <View style={styles.itemsList}>
-            <View style={styles.headerContainer}>
+            <TouchableOpacity
+              onPress={() => setShowWastedItems(!showWastedItems)}
+              style={styles.headerContainer}>
               <Text style={styles.headerText}>Top 5 Wasted Items</Text>
               <AntDesignIcon
                 style={styles.headerIcon}
-                name="dislike2"
+                name={showWastedItems ? 'caretup' : 'caretdown'}
                 size={20}
                 color="red"
               />
-            </View>
+            </TouchableOpacity>
+            {showWastedItems &&
+              wastedItems.slice(0, 5).map(item => (
+                <Text key={item._id} style={styles.item}>
+                  {item.name} ({item.frequency})
+                </Text>
+              ))}
+          </View>
 
-            {wastedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {item.name} ({item.frequency})
-              </Text>
-            ))}
+          <View style={{marginTop: 50}}>
+            <TouchableOpacity
+              style={styles.logoutButton}
+              onPress={handleLogout}>
+              <Text style={styles.logoutButtonText}>Log Out</Text>
+            </TouchableOpacity>
           </View>
 
           <Modal

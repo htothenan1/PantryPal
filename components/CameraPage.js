@@ -152,7 +152,7 @@ const CameraPage = () => {
         );
         setIsLoading(false);
         if (allSuccess) {
-          navigation.navigate('Dashboard', {itemsAdded: true});
+          navigation.navigate('Kitchen', {itemsAdded: true});
         } else {
           Alert.alert(
             'Error',

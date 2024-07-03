@@ -19,25 +19,21 @@ const OnboardingScreen = ({route, navigation}) => {
         currentIndex: currentIndex + 1,
       });
     } else {
-      navigation.navigate('Dashboard');
+      navigation.navigate('Kitchen');
     }
   };
 
   const finishOnboarding = async () => {
     await AsyncStorage.setItem(`hasCompletedOnboarding-${userEmail}`, 'true');
 
-    navigation.navigate('Dashboard');
+    navigation.navigate('Kitchen');
   };
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.screenWrapper}>
-        <View
-          style={styles.imageWrapper}>
-          <Image
-            source={chefLogo}
-            style={styles.image}
-          />
+        <View style={styles.imageWrapper}>
+          <Image source={chefLogo} style={styles.image} />
         </View>
 
         <Text style={styles.titleText}>{currentContent.contentTitle}</Text>

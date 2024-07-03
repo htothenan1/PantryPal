@@ -16,7 +16,7 @@ import {ingredientModules} from './data/modules';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const {width} = Dimensions.get('window');
-const cardWidth = (width * 2) / 3;
+const cardWidth = (width * 2) / 4;
 
 const Learn = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +38,7 @@ const Learn = () => {
       <TouchableOpacity
         onPress={() => navToArticleDetails(item)}
         activeOpacity={1}
-        style={{width: cardWidth, marginRight: 50}}>
+        style={{width: cardWidth, marginRight: 20}}>
         <Image source={item.image} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>
@@ -53,7 +53,7 @@ const Learn = () => {
       <TouchableOpacity
         onPress={() => navToModuleStack(item)}
         activeOpacity={1}
-        style={{width: cardWidth, marginRight: 50}}>
+        style={{width: cardWidth, marginRight: 20}}>
         <Image source={item.image} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>

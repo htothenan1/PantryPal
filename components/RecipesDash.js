@@ -17,10 +17,10 @@ import styles from './styles/recipesDash';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const {width} = Dimensions.get('window');
-const cardWidth = (width * 2) / 3;
+const cardWidth = (width * 2) / 4;
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
-const Dashboard = () => {
+const RecipesDash = () => {
   const [items, setItems] = useState([]);
   const [fetchedRecipes, setFetchedRecipes] = useState(null);
   const flatListRef = useRef(null);
@@ -180,13 +180,13 @@ const Dashboard = () => {
 
   const renderItems = ({item}) => {
     const title =
-      item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
+      item.title.length > 35 ? `${item.title.slice(0, 50)}...` : item.title;
 
     return (
       <TouchableOpacity
         onPress={() => handleSelectRecipe(item.id)}
         activeOpacity={1}
-        style={{width: cardWidth, marginRight: 50}}>
+        style={{width: cardWidth, marginRight: 20}}>
         <Image source={{uri: item.image}} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>
@@ -267,4 +267,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default RecipesDash;

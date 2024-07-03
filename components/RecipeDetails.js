@@ -22,7 +22,7 @@ const RecipeDetails = ({route}) => {
       return text;
     }
 
-    const regex = new RegExp(`(${keywords.join('|')})`, 'gi');
+    const regex = new RegExp(`\\b(${keywords.join('|')})(s?)\\b`, 'gi');
     return text.split(regex).map((part, index) => {
       if (keywords.includes(part.toLowerCase())) {
         return (

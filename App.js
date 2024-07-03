@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Login from './components/Login';
 import Register from './components/Register';
-import Dashboard from './components/Dashboard';
+import Kitchen from './components/Kitchen';
 import MultiSelectScreen from './components/MultiSelect';
 import ItemDetails from './components/ItemDetails';
 import RecipeDetails from './components/RecipeDetails';
@@ -19,6 +19,7 @@ import ModuleScreen from './components/ModuleScreen';
 import ModuleQuizScreen from './components/ModuleQuizScreen';
 import OnboardingStartScreen from './components/OnboardingStartScreen';
 import OnboardingScreen from './components/OnboardingScreen';
+import Pantry from './components/Pantry';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +57,10 @@ function LearnTitle() {
   // return <AntDesignIcon name="bulb1" size={30} color="black" />;
   return null;
 }
+// function PantryTitle() {
+//   // return <AntDesignIcon name="bulb1" size={30} color="black" />;
+//   return null;
+// }
 
 function DashStackScreen() {
   return (
@@ -65,8 +70,8 @@ function DashStackScreen() {
           headerShown: false,
           headerTitle: props => <LogoTitle {...props} />,
         }}
-        name="Dashboard"
-        component={Dashboard}
+        name="Kitchen"
+        component={Kitchen}
       />
       <DashStack.Screen
         options={{
@@ -77,12 +82,12 @@ function DashStackScreen() {
         component={MultiSelectScreen}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Item Details'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="ItemDetails"
         component={ItemDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Recipe Details'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="RecipeDetails"
         component={RecipeDetails}
       />
@@ -188,9 +193,14 @@ function AccountStackScreen() {
         component={Account}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Recipe Details'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="RecipeDetails"
         component={RecipeDetails}
+      />
+      <DashStack.Screen
+        options={{headerShown: true, headerTitle: ''}}
+        name="Pantry"
+        component={Pantry}
       />
     </DashStack.Navigator>
   );
@@ -208,7 +218,7 @@ function RecipesDashStackScreen() {
         component={RecipesDash}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Recipe Details'}}
+        options={{headerShown: true, headerTitle: ''}}
         name="RecipeDetails"
         component={RecipeDetails}
       />

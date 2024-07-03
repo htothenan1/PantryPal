@@ -22,7 +22,7 @@ import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
-import styles from './styles/dashboard';
+import styles from './styles/kitchen';
 import DatePicker from 'react-native-date-picker';
 import chefLogo from '../assets/chefs_hat.png';
 
@@ -143,7 +143,7 @@ export const itemNames = [
   'zucchini',
 ];
 
-const Dashboard = ({route}) => {
+const Kitchen = ({route}) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -195,16 +195,35 @@ const Dashboard = ({route}) => {
     }
   }, [input]);
 
-  const renderFoodItem = ({item}) => (
-    <TouchableOpacity
-      onPress={() => {
-        setInput(item);
-        setFilteredItemNames([]);
-      }}
-      style={{padding: 10, backgroundColor: '#f9f9f9'}}>
-      <Text>{capitalizeWords(item)}</Text>
-    </TouchableOpacity>
-  );
+  const renderFoodItem = ({item}) => {
+    const ingredient = findIngredient(item);
+    const itemImage = ingredient ? ingredient.img : chefLogo;
+
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setInput(item);
+          setFilteredItemNames([]);
+        }}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 10,
+          backgroundColor: '#f9f9f9',
+        }}>
+        <Image
+          source={itemImage}
+          style={{
+            width: 40,
+            height: 40,
+            resizeMode: 'contain',
+            marginRight: 10,
+          }}
+        />
+        <Text>{capitalizeWords(item)}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   useEffect(() => {
     const categories = calculateAvailableCategories();
@@ -966,80 +985,78 @@ const Dashboard = ({route}) => {
           />
 
           <View style={styles.fabContainer}>
-            <View style={styles.fabContainer}>
-              <TouchableOpacity
-                style={styles.leftFab}
-                onPress={() => setAddItemModalVisible(true)}>
-                <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.fabButton}
+              onPress={() => setAddItemModalVisible(true)}>
+              <Text style={styles.fabButtonText}>Add Single Item</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.fab}
-                onPress={() => navToMultiSelect()}>
-                <AntDesignIcon name="bars" size={20} color="white" />
-              </TouchableOpacity>
-            </View>
-
-            <Modal
-              isVisible={isAddItemModalVisible}
-              onBackdropPress={() => setAddItemModalVisible(false)}
-              style={{alignItems: 'left', padding: 100}}>
-              <View style={styles.modalContent}>
-                <TouchableOpacity
-                  style={{position: 'absolute', top: 10, right: 10}}
-                  onPress={() => setAddItemModalVisible(false)}>
-                  <AntDesignIcon name="close" size={24} color="black" />
-                </TouchableOpacity>
-                <Text style={styles.modalHeader}>Add Single Item</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Search Item Name"
-                  placeholderTextColor={'black'}
-                  value={capitalizeWords(input)}
-                  onChangeText={setInput}
-                />
-
-                {filteredItemNames.length > 0 && (
-                  <FlatList
-                    data={filteredItemNames}
-                    keyExtractor={item => item}
-                    renderItem={renderFoodItem}
-                    style={{
-                      maxHeight: 250,
-                      borderColor: '#ccc',
-                      borderWidth: 1,
-                      marginBottom: 10,
-                    }}
-                  />
-                )}
-
-                {isLoading ? (
-                  <View style={styles.confirmButtonContainer}>
-                    <ActivityIndicator size="large" color="#495057" />
-                  </View>
-                ) : (
-                  <Pressable
-                    disabled={!input}
-                    onPress={() => addCustomItem(input)}
-                    style={({pressed}) => [
-                      styles.button,
-                      {
-                        backgroundColor: pressed
-                          ? 'rgba(0, 0, 255, 0.5)'
-                          : '#76c893',
-                      },
-                      !newItemName && styles.disabledButton,
-                    ]}>
-                    <Text style={styles.saveText}>Save</Text>
-                  </Pressable>
-                )}
-              </View>
-            </Modal>
+            <TouchableOpacity
+              style={styles.fabButton}
+              onPress={() => navToMultiSelect()}>
+              <Text style={styles.fabButtonText}>Add Multiple Items</Text>
+            </TouchableOpacity>
           </View>
+
+          <Modal
+            isVisible={isAddItemModalVisible}
+            onBackdropPress={() => setAddItemModalVisible(false)}
+            style={{alignItems: 'left', padding: 100}}>
+            <View style={styles.modalContent}>
+              <TouchableOpacity
+                style={{position: 'absolute', top: 10, right: 10}}
+                onPress={() => setAddItemModalVisible(false)}>
+                <AntDesignIcon name="close" size={24} color="black" />
+              </TouchableOpacity>
+              <Text style={styles.modalHeader}>Add Single Item</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Search Item Name"
+                placeholderTextColor={'black'}
+                value={capitalizeWords(input)}
+                onChangeText={setInput}
+              />
+
+              {filteredItemNames.length > 0 && (
+                <FlatList
+                  data={filteredItemNames}
+                  keyExtractor={item => item}
+                  renderItem={renderFoodItem}
+                  style={{
+                    maxHeight: 250,
+                    borderColor: '#ccc',
+                    borderWidth: 1,
+                    marginBottom: 10,
+                  }}
+                />
+              )}
+
+              {isLoading ? (
+                <View style={styles.confirmButtonContainer}>
+                  <ActivityIndicator size="large" color="#495057" />
+                </View>
+              ) : (
+                <Pressable
+                  disabled={!input}
+                  onPress={() => addCustomItem(input)}
+                  style={({pressed}) => [
+                    styles.button,
+                    {
+                      backgroundColor: pressed
+                        ? 'rgba(0, 0, 255, 0.5)'
+                        : '#76c893',
+                    },
+                    !newItemName && styles.disabledButton,
+                  ]}>
+                  <Text style={styles.saveText}>Save</Text>
+                </Pressable>
+              )}
+            </View>
+          </Modal>
         </>
       )}
     </View>
   );
 };
 
-export default Dashboard;
+export default Kitchen;

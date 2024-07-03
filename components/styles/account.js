@@ -51,14 +51,25 @@ export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: '#f7f7f7',
+    borderRadius: 10,
   },
   headerIcon: {
     marginLeft: 10,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   logoutButton: {
     padding: 10,
     backgroundColor: '#1b4965',
     borderRadius: 10,
+    marginBottom: 20,
   },
   logoutButtonText: {
     color: 'white',
@@ -122,24 +133,35 @@ export default StyleSheet.create({
     backgroundColor: '#1b4965',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 10, // Adjust for more or less rounded corners
-    marginHorizontal: 50, // Adds some margin on the sides
+    borderRadius: 10,
+    marginHorizontal: 50,
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Avenir-Book', // or any preferred font
+    fontFamily: 'Avenir-Book',
   },
   toggleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 20,
-    paddingHorizontal: 10,
   },
   toggleLabel: {
     fontSize: 16,
     fontFamily: 'Avenir-Book',
+  },
+  preferencesContainer: {
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: '#f7f7f7',
+    borderRadius: 10,
+  },
+  preferencesTitle: {
+    fontSize: 18,
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });

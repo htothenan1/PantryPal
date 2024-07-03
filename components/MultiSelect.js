@@ -7,11 +7,13 @@ import {
   Pressable,
   ActivityIndicator,
   ScrollView,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase';
 import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
+import chefLogo from '../assets/chefs_hat.png';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState([]);
@@ -22,7 +24,7 @@ const MultiSelectScreen = ({route}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [omitMeats, setOmitMeats] = useState(false);
   const [omitSeafoods, setOmitSeafoods] = useState(false);
-  const [omitDairy, setOmitDairy] = useState(false); // New state for omitting dairy
+  const [omitDairy, setOmitDairy] = useState(false);
   const [availableCategories, setAvailableCategories] = useState([]);
 
   const userEmail = auth.currentUser?.email;
@@ -102,7 +104,7 @@ const MultiSelectScreen = ({route}) => {
         const data = await response.json();
         setOmitMeats(data.omitMeats);
         setOmitSeafoods(data.omitSeafoods);
-        setOmitDairy(data.omitDairy); // Set omitDairy from user data
+        setOmitDairy(data.omitDairy);
       } catch (error) {
         console.error('Error fetching user data:', error.message);
       }
@@ -121,23 +123,30 @@ const MultiSelectScreen = ({route}) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const res = await response.json();
-        const itemsMap = res.consumedItems.map(item => {
-          const matchedItem = ingredients.find(
-            ingredient =>
-              ingredient.name.toLowerCase() === item.name.toLowerCase(),
-          );
-          return {
-            ...item,
-            category: 'consumed',
-            item_id: item._id,
-            name: item.name.toLowerCase(), // Ensure name is lowercased
-            exp_int: matchedItem?.exp_int || item.exp_int,
-            storage_tip: matchedItem?.storage_tip || item.storage_tip,
-            img: matchedItem?.img || item.img,
-            compatibles: matchedItem?.compatibles || item.compatibles,
-            goodSourceOf: matchedItem?.goodSourceOf || item.goodSourceOf,
-          };
-        });
+        const itemsMap = res.consumedItems
+          .filter(item =>
+            ingredients.some(
+              ingredient =>
+                ingredient.name.toLowerCase() === item.name.toLowerCase(),
+            ),
+          )
+          .map(item => {
+            const matchedItem = ingredients.find(
+              ingredient =>
+                ingredient.name.toLowerCase() === item.name.toLowerCase(),
+            );
+            return {
+              ...item,
+              category: 'consumed',
+              item_id: item._id,
+              name: item.name.toLowerCase(),
+              exp_int: matchedItem?.exp_int || item.exp_int,
+              storage_tip: matchedItem?.storage_tip || item.storage_tip,
+              img: matchedItem?.img || item.img,
+              compatibles: matchedItem?.compatibles || item.compatibles,
+              goodSourceOf: matchedItem?.goodSourceOf || item.goodSourceOf,
+            };
+          });
         setConsumedItems(itemsMap);
       } catch (error) {
         console.error('Error fetching items data:', error.message);
@@ -148,17 +157,17 @@ const MultiSelectScreen = ({route}) => {
   }, [userEmail]);
 
   useEffect(() => {
-    const itemsFromDashboard =
+    const itemsFromKitchen =
       route.params?.items.map(item => item.name.toLowerCase()) || [];
 
     const filteredItems = ingredients.filter(ingredient => {
-      if (itemsFromDashboard.includes(ingredient.name.toLowerCase())) {
+      if (itemsFromKitchen.includes(ingredient.name.toLowerCase())) {
         return false;
       }
 
       if (ingredient.subItems) {
         const filteredSubItems = ingredient.subItems.filter(
-          subItem => !itemsFromDashboard.includes(subItem.name.toLowerCase()),
+          subItem => !itemsFromKitchen.includes(subItem.name.toLowerCase()),
         );
         if (filteredSubItems.length === 0) {
           return false;
@@ -205,7 +214,7 @@ const MultiSelectScreen = ({route}) => {
 
     if (currentCategory === 'consumed') {
       itemsByCategory = consumedItems.filter(
-        item => !itemsFromDashboard.includes(item.name.toLowerCase()),
+        item => !itemsFromKitchen.includes(item.name.toLowerCase()),
       );
     }
 
@@ -228,17 +237,19 @@ const MultiSelectScreen = ({route}) => {
             subItem => subItem.item_id === item.item_id,
           ),
         );
+        const expInt = item.exp_int || 5;
+
         if (parentItem) {
           return {
             name: `${item.name}`,
-            exp_int: parentItem.exp_int,
+            exp_int: parentItem.exp_int || expInt,
             storage_tip: parentItem.storage_tip,
             user: userEmail,
           };
         } else {
           return {
             name: item.name,
-            exp_int: item.exp_int,
+            exp_int: expInt,
             storage_tip: item.storage_tip,
             user: userEmail,
           };
@@ -260,7 +271,7 @@ const MultiSelectScreen = ({route}) => {
       const data = await response.json();
       const updatedItems = items.filter(item => !itemsArray.includes(item));
       setItems(updatedItems);
-      navigation.navigate('Dashboard', {itemsAdded: true});
+      navigation.navigate('Kitchen', {itemsAdded: true});
       return data;
     } catch (error) {
       console.error('Error adding items:', error.message);
@@ -272,6 +283,8 @@ const MultiSelectScreen = ({route}) => {
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item);
     const isExpanded = expandedItems.includes(item);
+    const itemImage = item.img ? item.img : chefLogo;
+    const itemExpInt = item.exp_int ? `${item.exp_int} days` : 'N/A';
 
     const renderSubItem = (subItem, parentItemId) => (
       <TouchableOpacity
@@ -307,9 +320,14 @@ const MultiSelectScreen = ({route}) => {
         <TouchableOpacity
           style={[styles.item, isSelected && styles.selectedItem]}
           onPress={handlePress}>
+          <Image source={itemImage} style={styles.itemImage} />
           <Text
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {capitalizeWords(item.name)}
+          </Text>
+          <Text
+            style={(styles.itemExpInt, isSelected && styles.selectedItemText)}>
+            Default Exp: {itemExpInt}
           </Text>
         </TouchableOpacity>
         {isExpanded && item.subItems && (

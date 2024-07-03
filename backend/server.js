@@ -11,6 +11,7 @@ const WastedItem = require('./models/wasteItem');
 const ConsumedItem = require('./models/consumedItem');
 const FavoritedRecipe = require('./models/favoritedRecipe');
 const CustomItem = require('./models/customItem');
+const PantryItem = require('./models/pantryItem');
 
 const OpenAI = require('openai');
 
@@ -89,6 +90,21 @@ app.get('/items', async (req, res) => {
     }
 
     const items = await Item.find({user: userEmail});
+    res.json(items);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Fetch all pantry items for a user
+app.get('/pantryItems', async (req, res) => {
+  try {
+    const userEmail = req.query.email;
+    if (!userEmail) {
+      return res.status(400).send('Email parameter is required');
+    }
+
+    const items = await PantryItem.find({user: userEmail});
     res.json(items);
   } catch (error) {
     res.status(500).send(error);
@@ -242,6 +258,24 @@ app.get('/customItems/storageTip', async (req, res) => {
   } catch (error) {
     console.error('Failed to fetch custom item:', error);
     res.status(500).send('Error fetching custom item');
+  }
+});
+
+// Save pantry items for a user
+app.post('/pantryItems', async (req, res) => {
+  try {
+    const {items, userEmail} = req.body;
+
+    // Clear existing pantry items for the user
+    await PantryItem.deleteMany({user: userEmail});
+
+    // Save new pantry items
+    const pantryItems = items.map(item => ({itemName: item, user: userEmail}));
+    await PantryItem.insertMany(pantryItems);
+
+    res.status(200).send('Pantry items updated successfully');
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

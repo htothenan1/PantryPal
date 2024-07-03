@@ -70,7 +70,25 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   fabContainer: {
-    borderTopWidth: 0.3,
+    flexDirection: 'row',
+    // borderTopWidth: 0.3,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+  },
+  fabButton: {
+    flex: 1,
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    padding: 10,
+  },
+  fabButtonText: {
+    fontSize: 16,
+    color: 'white',
+    fontFamily: 'Avenir-Book',
   },
   fab: {
     position: 'absolute',
