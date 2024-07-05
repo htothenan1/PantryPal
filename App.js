@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {IconToolsKitchen2, IconFridge} from '@tabler/icons-react-native';
 import Login from './components/Login';
 import Register from './components/Register';
 import Kitchen from './components/Kitchen';
@@ -227,10 +228,11 @@ function RecipesDashStackScreen() {
 }
 
 const dashIcon = () => {
-  return <AntDesignIcon name="home" size={20} color="black" />;
+  return <IconFridge size={20} color="black" />;
 };
 const recipesIcon = () => {
-  return <AntDesignIcon name="search1" size={20} color="black" />;
+  // return <AntDesignIcon name="search1" size={20} color="black" />;
+  return <IconToolsKitchen2 color={'black'} size={20} />;
 };
 const accountIcon = () => {
   return <AntDesignIcon name="user" size={20} color="black" />;

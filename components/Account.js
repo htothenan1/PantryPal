@@ -166,7 +166,9 @@ const Account = () => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <ActivityIndicator size="large" color="#495057" />
+        <View style={{marginTop: 250}}>
+          <ActivityIndicator size="large" color="#495057" />
+        </View>
       ) : (
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.accountInfoWrapper}>
@@ -226,8 +228,8 @@ const Account = () => {
               </View>
             </View>
 
-            <TouchableOpacity style={styles.logoutButton} onPress={navToPantry}>
-              <Text style={styles.logoutButtonText}>Go To Pantry</Text>
+            <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
+              <Text style={styles.pantryButtonText}>Go To Pantry</Text>
             </TouchableOpacity>
           </View>
 

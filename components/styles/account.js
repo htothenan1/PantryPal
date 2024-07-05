@@ -77,6 +77,18 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
+  pantryButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    marginVertical: 20,
+  },
+  pantryButtonText: {
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+  },
   headerText: {
     textAlign: 'left',
     fontSize: 20,

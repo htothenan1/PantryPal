@@ -8,77 +8,10 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import {pantryItems} from './data/itemNames';
 import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase'; // Adjust the path as needed
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-
-const pantryItems = [
-  'White Rice',
-  'Basmati Rice',
-  'Jasmine Rice',
-  'Arborio Rice',
-  'Brown Rice',
-  'Sushi Rice',
-  'Spaghetti',
-  'Penne',
-  'Fettuccine',
-  'Macaroni',
-  'Linguine',
-  'Fusilli',
-  'Lasagna',
-  'Angel Hair',
-  'Rigatoni',
-  'Rotini',
-  'Black Beans',
-  'Pinto Beans',
-  'Kidney Beans',
-  'Garbanzo Beans',
-  'Cannellini Beans',
-  'Navy Beans',
-  'Lima Beans',
-  'Canned Tomatoes',
-  'Olive Oil',
-  'Canola Oil',
-  'Vegetable Oil',
-  'Coconut Oil',
-  'Avocado Oil',
-  'Sunflower Oil',
-  'Grapeseed Oil',
-  'Peanut Oil',
-  'Sesame Oil',
-  'Corn Oil',
-  'Table Salt',
-  'Kosher Salt',
-  'Sea Salt',
-  'Fleur de Sel',
-  'Himalayan Pink Salt',
-  'Black Pepper',
-  'White Pepper',
-  'All-Purpose Flour',
-  'Bread Flour',
-  'Cake Flour',
-  'Tapioca Flour',
-  'Granulated Sugar',
-  'Brown Sugar',
-  'Powdered Sugar',
-  'Raw Sugar',
-  'Superfine Sugar',
-  'Baking Soda',
-  'Baking Powder',
-  'White Wine Vinegar',
-  'Apple Cider Vinegar',
-  'Rice Vinegar',
-  'Balsamic Vinegar',
-  'Red Wine Vinegar',
-  'Rolled Oats',
-  'Steel-Cut Oats',
-  'Oat Bran',
-  'Oats',
-  'Peanut Butter',
-  'Cereal',
-  'Tea',
-  'Coffee',
-];
 
 const Pantry = () => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -133,15 +66,15 @@ const Pantry = () => {
     }
   };
 
-  const handleLongPress = item => {
-    setExpandedItem(item === expandedItem ? null : item);
-    Animated.timing(animations[item].size, {
-      toValue: item === expandedItem ? 100 : 150, // Adjusted size for expansion
-      duration: 300,
-      easing: Easing.inOut(Easing.ease),
-      useNativeDriver: false,
-    }).start();
-  };
+  // const handleLongPress = item => {
+  //   setExpandedItem(item === expandedItem ? null : item);
+  //   Animated.timing(animations[item].size, {
+  //     toValue: item === expandedItem ? 100 : 150, // Adjusted size for expansion
+  //     duration: 300,
+  //     easing: Easing.inOut(Easing.ease),
+  //     useNativeDriver: false,
+  //   }).start();
+  // };
 
   return (
     <View style={styles.container}>
@@ -158,7 +91,8 @@ const Pantry = () => {
                 isSelected ? styles.selectedBubble : styles.unselectedBubble,
               ]}
               onPress={() => toggleItemSelection(item)}
-              onLongPress={() => handleLongPress(item)}>
+              // onLongPress={() => handleLongPress(item)}
+            >
               <Animated.View
                 style={[
                   {
@@ -191,6 +125,7 @@ const Pantry = () => {
           );
         })}
       </ScrollView>
+
       <TouchableOpacity onPress={savePantryItems} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Save Changes</Text>
       </TouchableOpacity>
@@ -201,13 +136,14 @@ const Pantry = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1b4965',
+    // backgroundColor: '#1b4965',
+    backgroundColor: 'white',
     alignItems: 'center',
     padding: 10,
   },
   headerText: {
     fontSize: 24,
-    color: 'white',
+    // color: 'white',
     marginBottom: 20,
     fontFamily: 'Avenir-Book',
   },
@@ -217,31 +153,34 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bubble: {
-    margin: 10,
+    margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   selectedBubble: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
+    backgroundColor: '#1b4965',
     borderRadius: 50,
+    borderWidth: 1,
+    borderColor: 'black', // Add white border to unselected items
   },
   unselectedBubble: {
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderWidth: 1,
-    borderColor: 'white', // Add white border to unselected items
+    borderColor: 'black', // Add white border to unselected items
     borderRadius: 50,
   },
   bubbleText: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: 'Avenir-Book',
     paddingHorizontal: 8,
     textAlign: 'center',
   },
   selectedText: {
-    color: 'black',
+    color: 'white',
   },
   unselectedText: {
-    color: 'white',
+    // color: 'white',
   },
   expandedBubble: {
     justifyContent: 'flex-start',
@@ -257,15 +196,28 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: 'Avenir-Book',
   },
-  nextButton: {
-    marginTop: 20,
-    backgroundColor: 'white',
-    padding: 15,
+  logoutButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
     borderRadius: 10,
+    marginBottom: 20,
+  },
+  logoutButtonText: {
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+  },
+  nextButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    marginBottom: 20,
   },
   nextButtonText: {
-    color: '#1b4965',
+    color: 'white',
     fontSize: 16,
+    textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
 });

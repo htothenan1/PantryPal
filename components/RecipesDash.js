@@ -196,12 +196,12 @@ const RecipesDash = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerText}>
-        <Text style={styles.titleText}>Recipes</Text>
-        <TouchableOpacity
+        {/* <Text style={styles.titleText}>Recipes</Text> */}
+        {/* <TouchableOpacity
           style={styles.headerIcon}
           onPress={handleRefreshRecipes}>
           <AntDesignIcon name="search1" size={20} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
@@ -250,6 +250,11 @@ const RecipesDash = () => {
       </View>
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Items ({items.length})</Text>
+        <TouchableOpacity
+          style={styles.headerIcon}
+          onPress={handleRefreshRecipes}>
+          <AntDesignIcon name="search1" size={20} color="black" />
+        </TouchableOpacity>
       </View>
       {isItemsLoading ? (
         <View style={styles.itemsLoadingContainer}>

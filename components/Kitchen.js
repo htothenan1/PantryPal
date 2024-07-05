@@ -20,6 +20,7 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
+import {itemNames} from './data/itemNames';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/kitchen';
@@ -42,106 +43,6 @@ const lvlToXp = lvl => {
     return 4000;
   }
 };
-
-export const itemNames = [
-  'apples',
-  'apricots',
-  'artichokes',
-  'arugula',
-  'asparagus',
-  'avocados',
-  'baby carrots',
-  'baby spinach',
-  'bacon',
-  'bagels',
-  'bananas',
-  'basil',
-  'beets',
-  'bell peppers',
-  'blackberries',
-  'blueberries',
-  'bok choy',
-  'bread',
-  'broccoli',
-  'broccolini',
-  'broccoli rabe',
-  'brussels sprouts',
-  'butter',
-  'cabbage',
-  'carrots',
-  'cauliflower',
-  'celery',
-  'chard',
-  'cheese',
-  'cherries',
-  'chervil',
-  'chicken',
-  'chives',
-  'cilantro',
-  'coconuts',
-  'collard greens',
-  'corn',
-  'cranberries',
-  'cucumbers',
-  'eggplants',
-  'eggs',
-  'endive',
-  'fish',
-  'garlic',
-  'ginger',
-  'grapefruit',
-  'grapes',
-  'green beans',
-  'ground beef',
-  'kale',
-  'kiwis',
-  'lamb',
-  'leeks',
-  'lemons',
-  'lettuce',
-  'limes',
-  'lobster',
-  'mangos',
-  'milk',
-  'mushrooms',
-  'nectarines',
-  'okra',
-  'olives',
-  'onions',
-  'oranges',
-  'parsley',
-  'parsnips',
-  'pasta',
-  'peaches',
-  'pears',
-  'peas',
-  'persimmons',
-  'pineapples',
-  'plums',
-  'pomegranates',
-  'pork',
-  'potatoes',
-  'pumpkin',
-  'radishes',
-  'raspberries',
-  'rosemary',
-  'salad greens',
-  'scallions',
-  'shallots',
-  'shrimp',
-  'spinach',
-  'squash',
-  'strawberries',
-  'thyme',
-  'tofu',
-  'tomatoes',
-  'turkey',
-  'turnips',
-  'watermelon',
-  'yams',
-  'yogurt',
-  'zucchini',
-];
 
 const Kitchen = ({route}) => {
   const [userData, setUserData] = useState(null);
@@ -824,7 +725,7 @@ const Kitchen = ({route}) => {
           <View style={styles.progressContainer}>
             <Text style={styles.progressTitle}>Your Progress</Text>
             {loading ? (
-              <View style={{height: 52}}>
+              <View style={{height: 42}}>
                 <ActivityIndicator size="small" color="#495057" />
               </View>
             ) : (

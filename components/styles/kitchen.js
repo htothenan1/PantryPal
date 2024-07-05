@@ -46,7 +46,7 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     paddingHorizontal: 25,
     paddingVertical: 14,
-    backgroundColor: 'white',
+    backgroundColor: '#f8f9fa',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -262,7 +262,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
   },
   progressContainer: {
-    paddingVertical: 10,
+    paddingVertical: 11,
     paddingHorizontal: 25,
     borderBottomWidth: 0.2,
   },
