@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
@@ -21,6 +22,7 @@ import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
 import {itemNames} from './data/itemNames';
+import {lvlToXp, getBackgroundColor} from './helpers/functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/kitchen';
@@ -28,21 +30,6 @@ import DatePicker from 'react-native-date-picker';
 import chefLogo from '../assets/chefs_hat.png';
 
 const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-
-const lvlToXp = lvl => {
-  if (lvl === 1) {
-    return 1000;
-  }
-  if (lvl === 2) {
-    return 2000;
-  }
-  if (lvl === 3) {
-    return 3000;
-  }
-  if (lvl === 4) {
-    return 4000;
-  }
-};
 
 const Kitchen = ({route}) => {
   const [userData, setUserData] = useState(null);
@@ -106,21 +93,8 @@ const Kitchen = ({route}) => {
           setInput(item);
           setFilteredItemNames([]);
         }}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 10,
-          backgroundColor: '#f9f9f9',
-        }}>
-        <Image
-          source={itemImage}
-          style={{
-            width: 40,
-            height: 40,
-            resizeMode: 'contain',
-            marginRight: 10,
-          }}
-        />
+        style={styles.singleAddItem}>
+        <Image source={itemImage} style={styles.singleAddItemIcon} />
         <Text>{capitalizeWords(item)}</Text>
       </TouchableOpacity>
     );
@@ -129,7 +103,6 @@ const Kitchen = ({route}) => {
   useEffect(() => {
     const categories = calculateAvailableCategories();
     setAvailableCategories(categories);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   useEffect(() => {
@@ -165,7 +138,7 @@ const Kitchen = ({route}) => {
     };
 
     fetchFirstItems();
-  }, [userEmail]);
+  }, []);
 
   useEffect(() => {
     const checkOnboarding = async () => {
@@ -176,18 +149,16 @@ const Kitchen = ({route}) => {
       if (!hasCompletedOnboarding) {
         navigation.navigate('OnboardingStack', {
           screen: 'OnboardingStartScreen',
-          params: {module: onboardingModule[0]}, // Using 'onboardingModule[0]' from the import
+          params: {module: onboardingModule[0]},
         });
       }
     };
 
     checkOnboarding();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     filterItemsByCategory();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, currentCategory]);
 
   const findIngredient = itemName => {
@@ -198,22 +169,6 @@ const Kitchen = ({route}) => {
     let ingredient = ingredients.find(
       ing => ing.name && ing.name.toLowerCase() === itemName.toLowerCase(),
     );
-
-    if (!ingredient) {
-      for (let item of ingredients) {
-        if (
-          item.subItems &&
-          item.subItems.some(
-            subItem =>
-              subItem.name &&
-              subItem.name.toLowerCase() === itemName.toLowerCase(),
-          )
-        ) {
-          ingredient = item;
-          break;
-        }
-      }
-    }
 
     return ingredient;
   };
@@ -526,20 +481,6 @@ const Kitchen = ({route}) => {
     });
   };
 
-  const navToCamera = () => {
-    navigation.navigate('CameraPage');
-  };
-
-  const getBackgroundColor = daysRemaining => {
-    if (daysRemaining >= 5) {
-      return 'black';
-    } else if (daysRemaining >= 2 && daysRemaining <= 4) {
-      return 'black';
-    } else {
-      return '#d90429';
-    }
-  };
-
   useEffect(() => {
     const fetchUserData = async () => {
       setLoading(true);
@@ -562,7 +503,6 @@ const Kitchen = ({route}) => {
     if (userEmail) {
       fetchUserData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchUserData = async () => {
@@ -596,7 +536,6 @@ const Kitchen = ({route}) => {
       });
 
       return unsubscribe;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigation, route.params?.itemsAdded]),
   );
 

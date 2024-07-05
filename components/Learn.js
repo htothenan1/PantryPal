@@ -10,7 +10,11 @@ import {
 } from 'react-native';
 import styles from './styles/learn';
 import {useNavigation} from '@react-navigation/core';
-import {kitchenPrepModules} from './data/modules';
+import {
+  kitchenPrepModules,
+  kitchenSkillsModules,
+  beyondTheKitchenModules,
+} from './data/modules';
 import {latestArticlesObjects} from './data/modules';
 import {ingredientModules} from './data/modules';
 
@@ -47,7 +51,7 @@ const Learn = () => {
 
   const renderModuleItems = ({item}) => {
     const title =
-      item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
+      item.title.length > 15 ? `${item.title.slice(0, 40)}...` : item.title;
 
     return (
       <TouchableOpacity
@@ -77,7 +81,7 @@ const Learn = () => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      {/* <Text style={styles.titleText}>Kitchen Prep</Text>
+      <Text style={styles.titleText}>Kitchen Prep</Text>
       <View style={styles.dashContainer}>
         <FlatList
           data={kitchenPrepModules}
@@ -92,7 +96,7 @@ const Learn = () => {
           viewabilityConfig={viewConfigRef}
           onViewableItemsChanged={onViewRef.current}
         />
-      </View> */}
+      </View>
       <Text style={styles.titleText}>Food Knowledge</Text>
       <View style={styles.dashContainer}>
         <FlatList
@@ -109,8 +113,40 @@ const Learn = () => {
           onViewableItemsChanged={onViewRef.current}
         />
       </View>
-      <Text style={styles.titleText}>Articles</Text>
+      <Text style={styles.titleText}>Kitchen Skills</Text>
       <View style={styles.dashContainer}>
+        <FlatList
+          data={kitchenSkillsModules}
+          renderItem={renderModuleItems}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={true}
+          pagingEnabled
+          ref={ref => {
+            flatListRef.current = ref;
+          }}
+          viewabilityConfig={viewConfigRef}
+          onViewableItemsChanged={onViewRef.current}
+        />
+      </View>
+      <Text style={styles.titleText}>Beyond the Kitchen</Text>
+      <View style={styles.dashContainer}>
+        <FlatList
+          data={beyondTheKitchenModules}
+          renderItem={renderModuleItems}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={true}
+          pagingEnabled
+          ref={ref => {
+            flatListRef.current = ref;
+          }}
+          viewabilityConfig={viewConfigRef}
+          onViewableItemsChanged={onViewRef.current}
+        />
+      </View>
+      {/* <Text style={styles.titleText}>Articles</Text> */}
+      {/* <View style={styles.dashContainer}>
         <FlatList
           data={latestArticlesObjects}
           renderItem={renderItems}
@@ -124,7 +160,7 @@ const Learn = () => {
           viewabilityConfig={viewConfigRef}
           onViewableItemsChanged={onViewRef.current}
         />
-      </View>
+      </View> */}
     </ScrollView>
   );
 };

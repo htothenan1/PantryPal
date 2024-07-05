@@ -304,4 +304,16 @@ export default StyleSheet.create({
     fontSize: 30,
     color: 'black',
   },
+  singleAddItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#f9f9f9',
+  },
+  singleAddItemIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 10,
+  },
 });
