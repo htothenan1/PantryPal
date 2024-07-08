@@ -17,7 +17,7 @@ const ArticleDetails = ({route}) => {
         {matchingArticle && (
           <View>
             <Text style={styles.paragraphContent}>{matchingArticle.intro}</Text>
-            {matchingArticle.paragraghs.map((paragraph, index) => (
+            {matchingArticle.paragraphs.map((paragraph, index) => (
               <View key={index}>
                 <Text style={styles.paragraphTitle}>{paragraph.paraTitle}</Text>
                 <Text style={styles.paragraphContent}>{paragraph.content}</Text>

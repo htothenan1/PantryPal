@@ -91,22 +91,6 @@ export default StyleSheet.create({
     color: 'white',
     fontFamily: 'Avenir-Book',
   },
-  fab: {
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 20,
-    bottom: 10,
-    backgroundColor: '#1b4965',
-    borderRadius: 28,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    shadowOffset: {width: 0, height: 2},
-  },
   emptyFab: {
     width: 56,
     height: 56,
@@ -114,46 +98,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#1b4965',
     borderRadius: 28,
-  },
-  chefFab: {
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 28,
-  },
-  leftFab: {
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: 20,
-    bottom: 10,
-    backgroundColor: '#1b4965',
-    borderRadius: 28,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    shadowOffset: {width: 0, height: 2},
-  },
-  centerFab: {
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: '50%',
-    marginLeft: -28,
-    bottom: 10,
-    backgroundColor: '#1b4965',
-    borderRadius: 28,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    shadowOffset: {width: 0, height: 2},
   },
   modalContent: {
     backgroundColor: 'white',
@@ -186,23 +130,10 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     paddingBottom: 40,
   },
-  emptyStateText: {
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-    lineHeight: 55,
-    color: '#666',
-  },
   scrollViewStyle: {
     marginHorizontal: 24,
     marginVertical: 10,
   },
-
-  tabsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: 0,
-  },
-
   tab: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -212,22 +143,18 @@ export default StyleSheet.create({
     backgroundColor: '#F2F2F2',
     marginRight: 8,
   },
-
   selectedTab: {
     backgroundColor: '#D8D8D8',
     borderRadius: 12,
   },
-
   tabText: {
     fontSize: 13,
     color: '#333',
     fontFamily: 'Avenir-Book',
   },
-
   selectedTabText: {
     color: '#333',
   },
-
   button: {
     padding: 10,
     borderRadius: 5,
@@ -247,7 +174,6 @@ export default StyleSheet.create({
     width: 55,
     height: 55,
     borderRadius: 25,
-    // borderWidth: 0.4,
   },
   userName: {
     marginLeft: 10,
@@ -286,7 +212,6 @@ export default StyleSheet.create({
     alignItems: 'center', // Center children vertically in the cross axis.
     marginBottom: 10, // Add some space between each item.
   },
-
   actionItemText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',

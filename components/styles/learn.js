@@ -22,7 +22,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
     fontSize: 18,
-    width: cardWidth, // match the width of the text to the image
+    width: cardWidth,
   },
   dashContainer: {
     height: 250,

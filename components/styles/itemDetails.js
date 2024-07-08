@@ -42,18 +42,4 @@ export default StyleSheet.create({
     fontSize: 20,
     marginVertical: 5,
   },
-  techniquesHeader: {
-    fontWeight: 'bold',
-    fontFamily: 'Avenir-Book',
-    paddingHorizontal: 30,
-    fontSize: 20,
-    marginTop: 20,
-  },
-  techniquesText: {
-    paddingHorizontal: 30,
-    fontFamily: 'Avenir-Book',
-    fontSize: 20,
-    marginVertical: 5,
-    color: 'black',
-  },
 });

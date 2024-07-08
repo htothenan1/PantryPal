@@ -61,10 +61,6 @@ export default StyleSheet.create({
   headerIcon: {
     marginLeft: 10,
   },
-  buttonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   logoutButton: {
     padding: 10,
     backgroundColor: '#1b4965',
@@ -124,35 +120,6 @@ export default StyleSheet.create({
     width: 40,
     height: 40,
     marginRight: 10,
-  },
-  itemTextContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  itemText: {
-    fontSize: 20,
-    fontFamily: 'Avenir-Book',
-  },
-  startButton: {
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    backgroundColor: '#1b4965',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    marginHorizontal: 50,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
   },
   toggleContainer: {
     flexDirection: 'row',

@@ -9,12 +9,12 @@ export default StyleSheet.create({
   screenWrapper: {
     marginBottom: 80,
   },
-  imageWrapper : {
-      alignItems: 'center',
+  imageWrapper: {
+    alignItems: 'center',
   },
   image: {
-     height: 80,
-     width: 80,
+    height: 80,
+    width: 80,
   },
   titleText: {
     textAlign: 'center',

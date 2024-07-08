@@ -17,7 +17,6 @@ import ArticleDetails from './components/ArticleDetails';
 import Learn from './components/Learn';
 import ModuleStartScreen from './components/ModuleStartScreen';
 import ModuleScreen from './components/ModuleScreen';
-import ModuleQuizScreen from './components/ModuleQuizScreen';
 import OnboardingStartScreen from './components/OnboardingStartScreen';
 import OnboardingScreen from './components/OnboardingScreen';
 import Pantry from './components/Pantry';
@@ -131,7 +130,6 @@ function ModuleStackScreen() {
         name="ModuleScreen"
         component={ModuleScreen}
       />
-      <ModuleStack.Screen name="ModuleQuiz" component={ModuleQuizScreen} />
     </ModuleStack.Navigator>
   );
 }
@@ -153,7 +151,6 @@ function OnboardingStackScreen() {
         name="OnboardingScreen"
         component={OnboardingScreen}
       />
-      <ModuleStack.Screen name="ModuleQuiz" component={ModuleQuizScreen} />
     </ModuleStack.Navigator>
   );
 }

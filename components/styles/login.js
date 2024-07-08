@@ -28,6 +28,8 @@ export default StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     marginTop: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
   },
   buttonContainer: {
     width: '80%',
@@ -54,5 +56,6 @@ export default StyleSheet.create({
   },
   registerHyperlink: {
     color: '#386641',
+    fontWeight: 'bold',
   },
 });

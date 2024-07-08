@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -30,11 +30,11 @@ const Login = () => {
     return unsubscribe;
   }, [navigation]);
 
-  const handleNavtoRegister = () => {
+  const handleNavtoRegister = useCallback(() => {
     navigation.navigate('Register');
-  };
+  }, [navigation]);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
@@ -64,7 +64,7 @@ const Login = () => {
 
         Alert.alert('Login Error', errorMessage);
       });
-  };
+  }, [email, password]);
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -78,6 +78,8 @@ const Login = () => {
           onChangeText={text => setEmail(text)}
           style={styles.input}
           secureTextEntry={false}
+          accessibilityLabel="Email Input"
+          accessibilityRole="text"
         />
         <TextInput
           placeholder="Password"
@@ -86,17 +88,27 @@ const Login = () => {
           onChangeText={text => setPassword(text)}
           style={styles.input}
           secureTextEntry
+          accessibilityLabel="Password Input"
+          accessibilityRole="text"
         />
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
+        <TouchableOpacity
+          onPress={handleLogin}
+          style={styles.button}
+          accessibilityLabel="Login Button"
+          accessibilityRole="button">
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.registerText}>
         Don't have an account yet?{' '}
-        <Text onPress={handleNavtoRegister} style={styles.registerHyperlink}>
+        <Text
+          onPress={handleNavtoRegister}
+          style={styles.registerHyperlink}
+          accessibilityLabel="Sign Up Link"
+          accessibilityRole="link">
           Sign up here!
         </Text>
       </Text>

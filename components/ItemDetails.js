@@ -9,22 +9,6 @@ const findIngredient = itemName => {
     ing => ing.name.toLowerCase() === itemName.toLowerCase(),
   );
 
-  if (!ingredient) {
-    for (let item of ingredients) {
-      if (
-        item.subItems &&
-        item.subItems.some(
-          subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
-        )
-      ) {
-        ingredient = item.subItems.find(
-          subItem => subItem.name.toLowerCase() === itemName.toLowerCase(),
-        );
-        break;
-      }
-    }
-  }
-
   return ingredient;
 };
 

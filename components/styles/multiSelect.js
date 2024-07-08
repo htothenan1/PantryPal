@@ -8,9 +8,6 @@ export default StyleSheet.create({
   scrollViewStyle: {
     marginVertical: 10,
   },
-  listContentContainer: {
-    paddingBottom: 75,
-  },
   tabsContainer: {
     flexDirection: 'row',
     paddingHorizontal: 12,
