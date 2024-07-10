@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Text, Image, ScrollView, TouchableOpacity, View} from 'react-native';
+import {API_URL} from '@env';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import styles from './styles/recipeDetails';
-
-const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const RecipeDetails = ({route}) => {
   const {recipe, selectedIngredients} = route.params;

@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
+import {API_URL} from '@env';
 import chefsHat from '../assets/chefs_hat.png';
 import styles from './styles/register';
 import {auth} from '../firebase';
@@ -19,7 +20,6 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
   const handleNavtoLogin = () => {
     navigation.navigate('Login');
@@ -31,7 +31,6 @@ const Register = () => {
         const userEmail = userCreds.user.email;
         console.log('Registered successfully with:', userEmail);
 
-        // API call to register the user in your MongoDB database
         return fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: {
@@ -50,7 +49,6 @@ const Register = () => {
         console.log('MongoDB User created:', userData);
       })
       .catch(error => {
-        // console.error(error);
         let errorMessage;
 
         switch (error.code) {

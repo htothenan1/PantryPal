@@ -1,7 +1,5 @@
 import {ingredients} from '../data/ingredients';
 
-const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-
 export const lvlToXp = lvl => {
   if (lvl === 1) {
     return 1000;
@@ -28,12 +26,19 @@ export const getBackgroundColor = daysRemaining => {
 };
 
 export const capitalizeWords = str => {
+  if (!str) {
+    return '';
+  }
   return str.replace(/\b\w/g, char => char.toUpperCase());
 };
 
 export const findIngredient = itemName => {
+  if (typeof itemName !== 'string') {
+    return null;
+  }
+
   let ingredient = ingredients.find(
-    ing => ing.name.toLowerCase() === itemName.toLowerCase(),
+    ing => ing.name && ing.name.toLowerCase() === itemName.toLowerCase(),
   );
 
   return ingredient;
@@ -49,4 +54,34 @@ export const findCompatibleUserItems = (item, ingredient, userItems) => {
         userItem.name.toLowerCase() === compatibleItemName.toLowerCase(),
     ),
   );
+};
+
+export const calculateDaysUntilExpiration = expDate => {
+  const currentDate = new Date();
+  const expirationDate = new Date(expDate);
+  const timeDiff = expirationDate.getTime() - currentDate.getTime();
+  return Math.ceil(timeDiff / (1000 * 3600 * 24));
+};
+
+export const sortItems = data =>
+  data.sort((a, b) => {
+    const dateA = new Date(a.exp_date);
+    const dateB = new Date(b.exp_date);
+    return dateA - dateB;
+  });
+
+export const calculateUserLevel = xp => {
+  if (xp < 1000) {
+    return 1;
+  }
+  if (xp >= 1000 && xp < 2000) {
+    return 2;
+  }
+  if (xp >= 2000 && xp < 3000) {
+    return 3;
+  }
+  if (xp >= 3000) {
+    return 4;
+  }
+  return 1;
 };

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
-import {SPOON_KEY} from '@env';
+import {SPOON_KEY, API_URL} from '@env';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import styles from './styles/recipesDash';
@@ -18,7 +18,6 @@ import styles from './styles/recipesDash';
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const {width} = Dimensions.get('window');
 const cardWidth = (width * 2) / 4;
-const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const RecipesDash = () => {
   const [items, setItems] = useState([]);

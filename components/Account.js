@@ -11,11 +11,12 @@ import {
 } from 'react-native';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
-import styles from './styles/account';
+import {API_URL} from '@env';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {icons} from './data/icons';
+import styles from './styles/account';
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
@@ -32,58 +33,6 @@ const Account = () => {
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
-
-  const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
-
-  const updateIconName = async selectedIconName => {
-    try {
-      const response = await fetch(`${API_URL}/users/icon`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          iconName: selectedIconName,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-    } catch (error) {
-      console.error('Error updating icon name:', error);
-    }
-  };
-
-  const updatePreferences = async (meats, seafoods, dairy) => {
-    try {
-      const response = await fetch(`${API_URL}/users/preferences`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          omitMeats: meats,
-          omitSeafoods: seafoods,
-          omitDairy: dairy,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-    } catch (error) {
-      console.error('Error updating preferences:', error);
-    }
-  };
 
   useEffect(() => {
     if (userData?.iconName) {
@@ -148,8 +97,57 @@ const Account = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
+  const updateIconName = async selectedIconName => {
+    try {
+      const response = await fetch(`${API_URL}/users/icon`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          iconName: selectedIconName,
+        }),
+      });
 
-  const navToPantry = articleObject => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating icon name:', error);
+    }
+  };
+
+  const updatePreferences = async (meats, seafoods, dairy) => {
+    try {
+      const response = await fetch(`${API_URL}/users/preferences`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          omitMeats: meats,
+          omitSeafoods: seafoods,
+          omitDairy: dairy,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating preferences:', error);
+    }
+  };
+
+  const navToPantry = () => {
     navigation.navigate('Pantry');
   };
 

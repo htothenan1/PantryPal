@@ -9,14 +9,15 @@ import {
   TouchableOpacity,
   Alert,
   Modal,
+  ScrollView,
 } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
+import {API_URL} from '@env';
 import {auth} from '../firebase';
 import styles from './styles/cameraPage';
 import {ingredients} from './data/ingredients';
-import {ScrollView} from 'react-native';
 
 const CameraPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,8 +31,6 @@ const CameraPage = () => {
   const device = useCameraDevice('back');
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
-
-  const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
   const capturePhoto = async () => {
     if (camera.current !== null) {

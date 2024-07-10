@@ -14,22 +14,27 @@ const CustomItem = require('./models/customItem');
 const PantryItem = require('./models/pantryItem');
 
 const OpenAI = require('openai');
-
 const storage = new Storage();
-
 const bucketName = 'thephotobucket';
-
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API,
 });
 
-function calculateUserLevel(xp) {
-  if (xp < 1000) return 1;
-  if (xp >= 1000 && xp < 2000) return 2;
-  if (xp >= 2000 && xp < 3000) return 3;
-  if (xp >= 3000) return 4;
+const calculateUserLevel = xp => {
+  if (xp < 1000) {
+    return 1;
+  }
+  if (xp >= 1000 && xp < 2000) {
+    return 2;
+  }
+  if (xp >= 2000 && xp < 3000) {
+    return 3;
+  }
+  if (xp >= 3000) {
+    return 4;
+  }
   return 1;
-}
+};
 
 function updateUserLevelAndCheckChange(user) {
   const oldLevel = user.level;
@@ -265,11 +270,7 @@ app.get('/customItems/storageTip', async (req, res) => {
 app.post('/pantryItems', async (req, res) => {
   try {
     const {items, userEmail} = req.body;
-
-    // Clear existing pantry items for the user
     await PantryItem.deleteMany({user: userEmail});
-
-    // Save new pantry items
     const pantryItems = items.map(item => ({itemName: item, user: userEmail}));
     await PantryItem.insertMany(pantryItems);
 
@@ -413,15 +414,14 @@ app.post('/items', async (req, res) => {
     if (user) {
       user.itemsCreated += itemsData.length;
       user.xp += 3 * itemsData.length;
-      // Check for level change and update the user accordingly
       const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
       await user.save();
-      return res.json({savedItems, levelChanged, newLevel, xp}); // Note the return statement here
+      return res.json({savedItems, levelChanged, newLevel, xp});
     }
 
-    return res.json(savedItems); // Also added return here for clarity
+    return res.json(savedItems);
   } catch (error) {
-    return res.status(400).send(error); // It's good practice to return after sending a response in catch block as well
+    return res.status(400).send(error);
   }
 });
 
@@ -488,12 +488,11 @@ app.put('/items/:id', async (req, res) => {
       // Find the user associated with the item and increase their XP
       const user = await User.findOne({email: updatedItem.user});
       if (user) {
-        user.xp += 2; // Gain 2 XP for updating expiration date
+        user.xp += 2;
         // Check for level change and update the user accordingly
         const {levelChanged, newLevel, xp} =
           updateUserLevelAndCheckChange(user);
         await user.save();
-        // Include level change information in the response
         res.json({item: updatedItem, levelChanged, newLevel, xp});
       } else {
         res.status(404).send('User not found');
@@ -520,7 +519,7 @@ app.delete('/items/deleteAll/:userEmail', async (req, res) => {
     }
 
     await Item.deleteMany({user: userEmail});
-    res.status(204).send(); // 204 No Content, indicates successful deletion without returning any content
+    res.status(204).send();
   } catch (error) {
     console.error('Server error:', error);
     res.status(500).send(error.message);

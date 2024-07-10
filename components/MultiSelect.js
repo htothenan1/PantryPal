@@ -10,10 +10,11 @@ import {
   Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
+import {API_URL} from '@env';
 import {auth} from '../firebase';
-import styles from './styles/multiSelect';
 import {ingredients} from './data/ingredients';
 import chefLogo from '../assets/chefs_hat.png';
+import styles from './styles/multiSelect';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState([]);
@@ -29,7 +30,6 @@ const MultiSelectScreen = ({route}) => {
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
-  const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
   const capitalizeWords = str => {
     if (!str) {

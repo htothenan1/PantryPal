@@ -6,12 +6,12 @@ import {
   ScrollView,
   StyleSheet,
   Animated,
-  Easing,
+  // Easing,
 } from 'react-native';
+import {API_URL} from '@env';
 import {pantryItems} from './data/itemNames';
 import {useNavigation} from '@react-navigation/core';
-import {auth} from '../firebase'; // Adjust the path as needed
-const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
+import {auth} from '../firebase';
 
 const Pantry = () => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -19,11 +19,12 @@ const Pantry = () => {
   const [animations, setAnimations] = useState(
     pantryItems.reduce((acc, item) => {
       acc[item] = {
-        size: new Animated.Value(100), // Single animated value for size
+        size: new Animated.Value(100),
       };
       return acc;
     }, {}),
   );
+
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
@@ -158,16 +159,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   selectedBubble: {
-    // backgroundColor: 'white',
     backgroundColor: '#1b4965',
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: 'black', // Add white border to unselected items
+    borderColor: 'black',
   },
   unselectedBubble: {
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderWidth: 1,
-    borderColor: 'black', // Add white border to unselected items
+    borderColor: 'black',
     borderRadius: 50,
   },
   bubbleText: {
@@ -178,9 +178,6 @@ const styles = StyleSheet.create({
   },
   selectedText: {
     color: 'white',
-  },
-  unselectedText: {
-    // color: 'white',
   },
   expandedBubble: {
     justifyContent: 'flex-start',

@@ -22,14 +22,20 @@ import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
 import {itemNames} from './data/itemNames';
-import {lvlToXp, getBackgroundColor} from './helpers/functions';
+import {
+  lvlToXp,
+  getBackgroundColor,
+  capitalizeWords,
+  calculateDaysUntilExpiration,
+  findIngredient,
+  sortItems,
+} from './helpers/functions';
+import {API_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/kitchen';
 import DatePicker from 'react-native-date-picker';
 import chefLogo from '../assets/chefs_hat.png';
-
-const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
 
 const Kitchen = ({route}) => {
   const [userData, setUserData] = useState(null);
@@ -60,18 +66,6 @@ const Kitchen = ({route}) => {
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
-  const filterItemsByCategory = () => {
-    if (currentCategory === 'all') {
-      setFilteredItems(items);
-    } else {
-      const filtered = items.filter(item => {
-        const ingredient = findIngredient(item.name);
-        return ingredient && ingredient.category === currentCategory;
-      });
-      setFilteredItems(filtered);
-    }
-  };
-
   useEffect(() => {
     if (input.trim() === '') {
       setFilteredItemNames([]);
@@ -82,23 +76,6 @@ const Kitchen = ({route}) => {
       setFilteredItemNames(filtered);
     }
   }, [input]);
-
-  const renderFoodItem = ({item}) => {
-    const ingredient = findIngredient(item);
-    const itemImage = ingredient ? ingredient.img : chefLogo;
-
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          setInput(item);
-          setFilteredItemNames([]);
-        }}
-        style={styles.singleAddItem}>
-        <Image source={itemImage} style={styles.singleAddItemIcon} />
-        <Text>{capitalizeWords(item)}</Text>
-      </TouchableOpacity>
-    );
-  };
 
   useEffect(() => {
     const categories = calculateAvailableCategories();
@@ -123,11 +100,7 @@ const Kitchen = ({route}) => {
 
         const data = await response.json();
 
-        const sortedItems = data.sort((a, b) => {
-          const dateA = new Date(a.exp_date);
-          const dateB = new Date(b.exp_date);
-          return dateA - dateB;
-        });
+        const sortedItems = sortItems(data);
 
         setItems(sortedItems);
       } catch (error) {
@@ -161,16 +134,88 @@ const Kitchen = ({route}) => {
     filterItemsByCategory();
   }, [items, currentCategory]);
 
-  const findIngredient = itemName => {
-    if (typeof itemName !== 'string') {
-      return null;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `${API_URL}/users/data?email=${userEmail}`,
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (userEmail) {
+      fetchUserData();
     }
+  }, []);
 
-    let ingredient = ingredients.find(
-      ing => ing.name && ing.name.toLowerCase() === itemName.toLowerCase(),
+  useEffect(() => {
+    if (userData?.iconName) {
+      const foundIcon = icons.find(
+        icon => icon.name === userData.iconName,
+      )?.img;
+      if (foundIcon) {
+        setSelectedIcon(foundIcon);
+      } else {
+        console.log('Icon not found:', userData.iconName);
+      }
+    }
+  }, [userData]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const unsubscribe = navigation.addListener('focus', () => {
+        if (route.params?.itemsAdded) {
+          fetchItems();
+
+          if (userEmail) {
+            fetchUserData();
+          }
+
+          navigation.setParams({itemsAdded: false});
+        }
+      });
+
+      return unsubscribe;
+    }, [navigation, route.params?.itemsAdded]),
+  );
+
+  const filterItemsByCategory = () => {
+    if (currentCategory === 'all') {
+      setFilteredItems(items);
+    } else {
+      const filtered = items.filter(item => {
+        const ingredient = findIngredient(item.name);
+        return ingredient && ingredient.category === currentCategory;
+      });
+      setFilteredItems(filtered);
+    }
+  };
+
+  const renderFoodItem = ({item}) => {
+    const ingredient = findIngredient(item);
+    const itemImage = ingredient ? ingredient.img : chefLogo;
+
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setInput(item);
+          setFilteredItemNames([]);
+        }}
+        style={styles.singleAddItem}>
+        <Image source={itemImage} style={styles.singleAddItemIcon} />
+        <Text>{capitalizeWords(item)}</Text>
+      </TouchableOpacity>
     );
-
-    return ingredient;
   };
 
   const deleteItem = async (itemId, method) => {
@@ -265,11 +310,7 @@ const Kitchen = ({route}) => {
 
       const data = await response.json();
 
-      const sortedItems = data.sort((a, b) => {
-        const dateA = new Date(a.exp_date);
-        const dateB = new Date(b.exp_date);
-        return dateA - dateB;
-      });
+      const sortedItems = sortItems(data);
 
       setItems(sortedItems);
     } catch (error) {
@@ -481,30 +522,6 @@ const Kitchen = ({route}) => {
     });
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `${API_URL}/users/data?email=${userEmail}`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (userEmail) {
-      fetchUserData();
-    }
-  }, []);
-
   const fetchUserData = async () => {
     setLoading(true);
     try {
@@ -519,51 +536,6 @@ const Kitchen = ({route}) => {
     } finally {
       setLoading(false);
     }
-  };
-
-  useFocusEffect(
-    React.useCallback(() => {
-      const unsubscribe = navigation.addListener('focus', () => {
-        if (route.params?.itemsAdded) {
-          fetchItems();
-
-          if (userEmail) {
-            fetchUserData();
-          }
-
-          navigation.setParams({itemsAdded: false});
-        }
-      });
-
-      return unsubscribe;
-    }, [navigation, route.params?.itemsAdded]),
-  );
-
-  useEffect(() => {
-    if (userData?.iconName) {
-      const foundIcon = icons.find(
-        icon => icon.name === userData.iconName,
-      )?.img;
-      if (foundIcon) {
-        setSelectedIcon(foundIcon);
-      } else {
-        console.log('Icon not found:', userData.iconName);
-      }
-    }
-  }, [userData]);
-
-  const calculateDaysUntilExpiration = expDate => {
-    const currentDate = new Date();
-    const expirationDate = new Date(expDate);
-    const timeDiff = expirationDate.getTime() - currentDate.getTime();
-    return Math.ceil(timeDiff / (1000 * 3600 * 24));
-  };
-
-  const capitalizeWords = str => {
-    if (!str) {
-      return '';
-    }
-    return str.replace(/\b\w/g, char => char.toUpperCase());
   };
 
   const renderItem = ({item}) => {
