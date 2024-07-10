@@ -164,7 +164,7 @@ const Account = () => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <View style={{marginTop: 250}}>
+        <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#495057" />
         </View>
       ) : (
@@ -188,7 +188,7 @@ const Account = () => {
 
           <View style={styles.preferencesContainer}>
             <Text style={styles.preferencesTitle}>Kitchen Preferences</Text>
-            <View style={{marginBottom: 10}}>
+            <View style={styles.togglesContainer}>
               <View style={styles.toggleContainer}>
                 <Text style={styles.toggleLabel}>Remove Meats:</Text>
                 <Switch
@@ -271,13 +271,9 @@ const Account = () => {
               ))}
           </View>
 
-          <View style={{marginTop: 50}}>
-            <TouchableOpacity
-              style={styles.logoutButton}
-              onPress={handleLogout}>
-              <Text style={styles.logoutButtonText}>Log Out</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutButtonText}>Log Out</Text>
+          </TouchableOpacity>
 
           <Modal
             visible={isIconPickerVisible}

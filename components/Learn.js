@@ -8,15 +8,14 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import styles from './styles/learn';
-import {useNavigation} from '@react-navigation/core';
 import {
   kitchenPrepModules,
   kitchenSkillsModules,
   beyondTheKitchenModules,
 } from './data/modules';
-import {latestArticlesObjects} from './data/modules';
 import {ingredientModules} from './data/modules';
+import {useNavigation} from '@react-navigation/core';
+import styles from './styles/learn';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
 const {width} = Dimensions.get('window');
@@ -34,21 +33,6 @@ const Learn = () => {
     }
   });
 
-  const renderItems = ({item}) => {
-    const title =
-      item.title.length > 15 ? `${item.title.slice(0, 30)}...` : item.title;
-
-    return (
-      <TouchableOpacity
-        onPress={() => navToArticleDetails(item)}
-        activeOpacity={1}
-        style={{width: cardWidth, marginRight: 20}}>
-        <Image source={item.image} style={styles.image} />
-        <Text style={styles.footerText}>{title}</Text>
-      </TouchableOpacity>
-    );
-  };
-
   const renderModuleItems = ({item}) => {
     const title =
       item.title.length > 15 ? `${item.title.slice(0, 40)}...` : item.title;
@@ -62,12 +46,6 @@ const Learn = () => {
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>
     );
-  };
-
-  const navToArticleDetails = articleObject => {
-    navigation.navigate('ArticleDetails', {
-      article: articleObject,
-    });
   };
 
   const navToModuleStack = moduleObject => {
@@ -145,22 +123,6 @@ const Learn = () => {
           onViewableItemsChanged={onViewRef.current}
         />
       </View>
-      {/* <Text style={styles.titleText}>Articles</Text> */}
-      {/* <View style={styles.dashContainer}>
-        <FlatList
-          data={latestArticlesObjects}
-          renderItem={renderItems}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={true}
-          pagingEnabled
-          ref={ref => {
-            flatListRef.current = ref;
-          }}
-          viewabilityConfig={viewConfigRef}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      </View> */}
     </ScrollView>
   );
 };

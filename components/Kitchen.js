@@ -541,7 +541,6 @@ const Kitchen = ({route}) => {
   const renderItem = ({item}) => {
     const daysRemaining = calculateDaysUntilExpiration(item.exp_date);
     const backgroundColor = getBackgroundColor(daysRemaining);
-
     const ingredient = findIngredient(item.name);
     const itemImage = ingredient ? ingredient.img : chefLogo;
 
@@ -588,24 +587,11 @@ const Kitchen = ({route}) => {
   return (
     <View style={styles.container}>
       {isItemsLoading ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Image
-            source={chefLogo}
-            style={{
-              height: 100,
-              width: 100,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          />
+        <View style={styles.loadingContainer}>
+          <Image source={chefLogo} style={styles.loadingScreenIcon} />
 
           <ActivityIndicator
-            style={{marginVertical: 10}}
+            style={styles.loadingScreenSpinner}
             size="large"
             color="#1b4965"
           />
@@ -619,14 +605,12 @@ const Kitchen = ({route}) => {
             {selectedIcon ? (
               <Image source={selectedIcon} style={styles.userIcon} />
             ) : (
-              <View style={{marginTop: 10}}>
-                <AntDesignIcon
-                  style={styles.userIcon}
-                  name="user"
-                  size={53}
-                  color="black"
-                />
-              </View>
+              <AntDesignIcon
+                style={styles.userIcon}
+                name="user"
+                size={53}
+                color="black"
+              />
             )}
             <View>
               <Text style={styles.userName}>{userData?.firstName}</Text>
@@ -636,9 +620,11 @@ const Kitchen = ({route}) => {
           <View style={styles.progressContainer}>
             <Text style={styles.progressTitle}>Your Progress</Text>
             {loading ? (
-              <View style={{height: 42}}>
-                <ActivityIndicator size="small" color="#495057" />
-              </View>
+              <ActivityIndicator
+                style={styles.progressLoadingSpinner}
+                size="small"
+                color="#495057"
+              />
             ) : (
               <>
                 <ProgressBar
@@ -680,12 +666,7 @@ const Kitchen = ({route}) => {
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{
-                  margin: 0,
-                  padding: 0,
-                  height: 50,
-                  paddingBottom: 0,
-                }}
+                contentContainerStyle={styles.categoriesContainer}
                 style={styles.scrollViewStyle}>
                 {availableCategories.map(category => (
                   <TouchableOpacity
@@ -722,21 +703,13 @@ const Kitchen = ({route}) => {
             />
           ) : (
             <ScrollView
-              style={{marginTop: 20, marginBottom: 80}}
-              contentContainerStyle={styles.emptyStateContainer}>
+              style={styles.emptyStateContainer}
+              contentContainerStyle={styles.emptyStateContentContainer}>
               <TouchableOpacity
                 onPress={() => navToOnboardingStack(onboardingModule)}
                 style={styles.actionItemContainer}>
                 <View>
-                  <Image
-                    source={chefLogo}
-                    style={{
-                      height: 56,
-                      width: 56,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  />
+                  <Image source={chefLogo} style={styles.emptyStateChefLogo} />
                 </View>
                 <Text style={styles.actionItemText}>How to use FlavrAi</Text>
               </TouchableOpacity>
@@ -746,7 +719,7 @@ const Kitchen = ({route}) => {
                 <View
                   style={styles.emptyFab}
                   onPress={() => setAddItemModalVisible(true)}>
-                  <Text style={{fontSize: 16, color: 'white'}}>+ 1</Text>
+                  <Text style={styles.plusOne}>+ 1</Text>
                 </View>
                 <Text style={styles.actionItemText}>Add Single Item</Text>
               </TouchableOpacity>
@@ -813,10 +786,10 @@ const Kitchen = ({route}) => {
           <Modal
             isVisible={isAddItemModalVisible}
             onBackdropPress={() => setAddItemModalVisible(false)}
-            style={{alignItems: 'left', padding: 100}}>
+            style={styles.singleAddItemContainer}>
             <View style={styles.modalContent}>
               <TouchableOpacity
-                style={{position: 'absolute', top: 10, right: 10}}
+                style={styles.cancelButton}
                 onPress={() => setAddItemModalVisible(false)}>
                 <AntDesignIcon name="close" size={24} color="black" />
               </TouchableOpacity>
@@ -834,12 +807,7 @@ const Kitchen = ({route}) => {
                   data={filteredItemNames}
                   keyExtractor={item => item}
                   renderItem={renderFoodItem}
-                  style={{
-                    maxHeight: 250,
-                    borderColor: '#ccc',
-                    borderWidth: 1,
-                    marginBottom: 10,
-                  }}
+                  style={styles.singleAddItemList}
                 />
               )}
 

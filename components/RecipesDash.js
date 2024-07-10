@@ -194,14 +194,6 @@ const RecipesDash = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerText}>
-        {/* <Text style={styles.titleText}>Recipes</Text> */}
-        {/* <TouchableOpacity
-          style={styles.headerIcon}
-          onPress={handleRefreshRecipes}>
-          <AntDesignIcon name="search1" size={20} color="black" />
-        </TouchableOpacity> */}
-      </View>
       <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
           <TouchableOpacity onPress={handleRefreshRecipes}>

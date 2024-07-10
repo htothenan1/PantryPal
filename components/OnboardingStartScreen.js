@@ -41,10 +41,6 @@ const OnboardingStartScreen = ({route, navigation}) => {
           to do, it will still take some effort!
         </Text>
       </ScrollView>
-      {/* <Text style={styles.introText}>
-        And on top of your already hectic life, it's hard to imagine finding the
-        time for any new efforts...
-      </Text> */}
 
       <View style={styles.startButton}>
         <TouchableOpacity style={styles.buttonContainer} onPress={startModule}>

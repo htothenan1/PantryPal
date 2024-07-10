@@ -5,6 +5,20 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingScreenIcon: {
+    height: 100,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingScreenSpinner: {
+    marginVertical: 10,
+  },
   itemsLoadingContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -123,13 +137,30 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 4,
   },
+  categoriesContainer: {
+    margin: 0,
+    padding: 0,
+    height: 50,
+    paddingBottom: 0,
+  },
   emptyStateContainer: {
+    marginTop: 20,
+    marginBottom: 80,
+  },
+  emptyStateContentContainer: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingHorizontal: 30,
     paddingBottom: 40,
   },
+  emptyStateChefLogo: {
+    height: 56,
+    width: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  plusOne: {fontSize: 16, color: 'white'},
   scrollViewStyle: {
     marginHorizontal: 24,
     marginVertical: 10,
@@ -207,17 +238,18 @@ export default StyleSheet.create({
     color: '#000',
     fontFamily: 'Avenir-Book',
   },
+  progressLoadingSpinner: {height: 42},
   actionItemContainer: {
-    flexDirection: 'row', // Align children horizontally.
-    alignItems: 'center', // Center children vertically in the cross axis.
-    marginBottom: 10, // Add some space between each item.
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   actionItemText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
     lineHeight: 55,
     color: '#666',
-    marginLeft: 10, // Add some space between the icon and the text.
+    marginLeft: 10,
   },
   saveText: {
     fontFamily: 'Avenir-Book',
@@ -229,11 +261,26 @@ export default StyleSheet.create({
     fontSize: 30,
     color: 'black',
   },
+  singleAddItemContainer: {
+    alignItems: 'left',
+    padding: 100,
+  },
+  cancelButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  },
   singleAddItem: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#f9f9f9',
+  },
+  singleAddItemList: {
+    maxHeight: 250,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 10,
   },
   singleAddItemIcon: {
     width: 40,

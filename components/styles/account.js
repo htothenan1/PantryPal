@@ -9,8 +9,9 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     marginTop: 50,
   },
+  loadingContainer: {marginTop: 250},
   contentContainer: {
-    paddingBottom: 120, // Adjust padding as needed
+    paddingBottom: 120,
   },
   accountInfoWrapper: {
     flexDirection: 'row',
@@ -66,6 +67,7 @@ export default StyleSheet.create({
     backgroundColor: '#1b4965',
     borderRadius: 10,
     marginBottom: 20,
+    marginTop: 50,
   },
   logoutButtonText: {
     color: 'white',
@@ -120,6 +122,9 @@ export default StyleSheet.create({
     width: 40,
     height: 40,
     marginRight: 10,
+  },
+  togglesContainer: {
+    marginBottom: 10,
   },
   toggleContainer: {
     flexDirection: 'row',
