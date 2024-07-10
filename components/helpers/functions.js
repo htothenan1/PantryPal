@@ -1,3 +1,7 @@
+import {ingredients} from '../data/ingredients';
+
+const API_URL = 'https://flavr-413021.ue.r.appspot.com/';
+
 export const lvlToXp = lvl => {
   if (lvl === 1) {
     return 1000;
@@ -21,4 +25,28 @@ export const getBackgroundColor = daysRemaining => {
   } else {
     return '#d90429';
   }
+};
+
+export const capitalizeWords = str => {
+  return str.replace(/\b\w/g, char => char.toUpperCase());
+};
+
+export const findIngredient = itemName => {
+  let ingredient = ingredients.find(
+    ing => ing.name.toLowerCase() === itemName.toLowerCase(),
+  );
+
+  return ingredient;
+};
+
+export const findCompatibleUserItems = (item, ingredient, userItems) => {
+  const compatibleIngredients =
+    item?.compatibles || ingredient?.compatibles || [];
+
+  return compatibleIngredients.filter(compatibleItemName =>
+    userItems.some(
+      userItem =>
+        userItem.name.toLowerCase() === compatibleItemName.toLowerCase(),
+    ),
+  );
 };

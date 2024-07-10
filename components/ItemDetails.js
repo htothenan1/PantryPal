@@ -2,19 +2,11 @@ import React from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
 import chefLogo from '../assets/chefs_hat.png';
 import styles from './styles/itemDetails';
-import {ingredients} from './data/ingredients';
-
-const findIngredient = itemName => {
-  let ingredient = ingredients.find(
-    ing => ing.name.toLowerCase() === itemName.toLowerCase(),
-  );
-
-  return ingredient;
-};
-
-function capitalizeWords(str) {
-  return str.replace(/\b\w/g, char => char.toUpperCase());
-}
+import {
+  capitalizeWords,
+  findIngredient,
+  findCompatibleUserItems,
+} from './helpers/functions';
 
 const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
@@ -26,19 +18,11 @@ const ItemDetails = ({route}) => {
     ? {uri: item.img}
     : chefLogo;
 
-  const findCompatibleUserItems = () => {
-    const compatibleIngredients =
-      item?.compatibles || ingredient?.compatibles || [];
-
-    return compatibleIngredients.filter(compatibleItemName =>
-      userItems.some(
-        userItem =>
-          userItem.name.toLowerCase() === compatibleItemName.toLowerCase(),
-      ),
-    );
-  };
-
-  const compatibleUserItems = findCompatibleUserItems();
+  const compatibleUserItems = findCompatibleUserItems(
+    item,
+    ingredient,
+    userItems,
+  );
 
   return (
     <ScrollView
