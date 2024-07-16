@@ -193,52 +193,6 @@ export default StyleSheet.create({
   disabledButton: {
     backgroundColor: '#ccc',
   },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 14,
-    paddingHorizontal: 25,
-    borderBottomWidth: 0.2,
-    marginTop: 50,
-  },
-  userIcon: {
-    width: 55,
-    height: 55,
-    borderRadius: 25,
-  },
-  userName: {
-    marginLeft: 10,
-    fontSize: 18,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-  },
-  levelText: {
-    marginLeft: 10,
-    fontSize: 18,
-    fontWeight: '800',
-    fontFamily: 'Avenir-Book',
-  },
-  progressContainer: {
-    paddingVertical: 11,
-    paddingHorizontal: 25,
-    borderBottomWidth: 0.2,
-  },
-  progressTitle: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 16,
-    color: '#000',
-  },
-  progressBar: {
-    alignSelf: 'stretch',
-    marginVertical: 5,
-  },
-  progressText: {
-    textAlign: 'left',
-    fontSize: 16,
-    color: '#000',
-    fontFamily: 'Avenir-Book',
-  },
-  progressLoadingSpinner: {height: 42},
   actionItemContainer: {
     flexDirection: 'row',
     alignItems: 'center',

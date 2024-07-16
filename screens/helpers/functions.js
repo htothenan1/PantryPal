@@ -85,3 +85,19 @@ export const calculateUserLevel = xp => {
   }
   return 1;
 };
+
+export const calculateAvailableCategories = items => {
+  let allCategories = [];
+  if (items.length > 0) {
+    allCategories.push('all');
+  }
+
+  items.forEach(item => {
+    const ingredient = findIngredient(item.name);
+    if (ingredient && !allCategories.includes(ingredient.category)) {
+      allCategories.push(ingredient.category);
+    }
+  });
+
+  return allCategories;
+};

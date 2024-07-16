@@ -12,7 +12,8 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-import ProgressBar from 'react-native-progress/Bar';
+import UserHeader from '../components/UserHeader';
+import UserProgressBar from '../components/UserProgressBar';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -23,12 +24,12 @@ import {ingredients} from './data/ingredients';
 import {icons} from './data/icons';
 import {itemNames} from './data/itemNames';
 import {
-  lvlToXp,
-  getBackgroundColor,
   capitalizeWords,
-  calculateDaysUntilExpiration,
   findIngredient,
   sortItems,
+  calculateAvailableCategories,
+  calculateDaysUntilExpiration,
+  getBackgroundColor,
 } from '../screens/helpers/functions';
 import {API_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,11 +50,7 @@ const Kitchen = ({route}) => {
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [isItemsLoading, setIsItemsLoading] = useState(false);
-  const [customOpen, setCustomOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [customSelectedDate, setCustomSelectedDate] = useState(
-    new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
-  );
   const [currentCategory, setCurrentCategory] = useState('all');
   const [filteredItems, setFilteredItems] = useState(items);
   const [availableCategories, setAvailableCategories] = useState(['all']);
@@ -63,8 +60,8 @@ const Kitchen = ({route}) => {
   const [filteredItemNames, setFilteredItemNames] = useState([]);
   const [isDeletingAllItems, setIsDeletingAllItems] = useState(false);
 
-  const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (input.trim() === '') {
@@ -78,7 +75,7 @@ const Kitchen = ({route}) => {
   }, [input]);
 
   useEffect(() => {
-    const categories = calculateAvailableCategories();
+    const categories = calculateAvailableCategories(items);
     setAvailableCategories(categories);
   }, [items]);
 
@@ -332,7 +329,7 @@ const Kitchen = ({route}) => {
       );
 
       let storageTip = 'Not available';
-      let expInt = calculateDaysUntilExpiration(customSelectedDate);
+      let expInt = 6;
 
       if (existingIngredient) {
         storageTip = existingIngredient.storage_tip;
@@ -388,7 +385,6 @@ const Kitchen = ({route}) => {
       setAddItemModalVisible(false);
       setNewItemName('');
       setInput('');
-      setCustomSelectedDate(new Date(Date.now() + 6 * 24 * 60 * 60 * 1000));
       fetchUserData();
       fetchItems();
     } catch (error) {
@@ -463,22 +459,6 @@ const Kitchen = ({route}) => {
     }
   };
 
-  const calculateAvailableCategories = () => {
-    let allCategories = [];
-    if (items.length > 0) {
-      allCategories.push('all');
-    }
-
-    items.forEach(item => {
-      const ingredient = findIngredient(item.name);
-      if (ingredient && !allCategories.includes(ingredient.category)) {
-        allCategories.push(ingredient.category);
-      }
-    });
-
-    return allCategories;
-  };
-
   const renderRightActions = item => {
     return (
       <View style={styles.rightSwipeContainer}>
@@ -523,7 +503,7 @@ const Kitchen = ({route}) => {
   };
 
   const fetchUserData = async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       const response = await fetch(`${API_URL}/users/data?email=${userEmail}`);
       if (!response.ok) {
@@ -534,11 +514,11 @@ const Kitchen = ({route}) => {
     } catch (error) {
       console.error('Error fetching user data:', error.message);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
-  const renderItem = ({item}) => {
+  const swipeItem = ({item}) => {
     const daysRemaining = calculateDaysUntilExpiration(item.exp_date);
     const backgroundColor = getBackgroundColor(daysRemaining);
     const ingredient = findIngredient(item.name);
@@ -599,53 +579,12 @@ const Kitchen = ({route}) => {
         </View>
       ) : (
         <>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Account')}
-            style={styles.headerContainer}>
-            {selectedIcon ? (
-              <Image source={selectedIcon} style={styles.userIcon} />
-            ) : (
-              <AntDesignIcon
-                style={styles.userIcon}
-                name="user"
-                size={53}
-                color="black"
-              />
-            )}
-            <View>
-              <Text style={styles.userName}>{userData?.firstName}</Text>
-              <Text style={styles.levelText}>Level {userData?.level}</Text>
-            </View>
-          </TouchableOpacity>
-          <View style={styles.progressContainer}>
-            <Text style={styles.progressTitle}>Your Progress</Text>
-            {loading ? (
-              <ActivityIndicator
-                style={styles.progressLoadingSpinner}
-                size="small"
-                color="#495057"
-              />
-            ) : (
-              <>
-                <ProgressBar
-                  progress={
-                    (userData?.xp % 1000) /
-                    (lvlToXp(userData?.level) / userData?.level)
-                  }
-                  width={null}
-                  height={10}
-                  borderRadius={5}
-                  color="#1b4965"
-                  unfilledColor="#E0E0E0"
-                  borderWidth={0}
-                  style={styles.progressBar}
-                />
-                <Text style={styles.progressText}>
-                  {userData?.xp}/{lvlToXp(userData?.level)} XP
-                </Text>
-              </>
-            )}
-          </View>
+          <UserHeader
+            selectedIcon={selectedIcon}
+            userData={userData}
+            navigation={navigation}
+          />
+          <UserProgressBar loading={loading} userData={userData} />
 
           <View style={styles.headerText}>
             <Text style={styles.titleText}>Your Items ({items.length})</Text>
@@ -699,7 +638,7 @@ const Kitchen = ({route}) => {
               style={styles.itemsList}
               data={filteredItems}
               keyExtractor={item => item._id}
-              renderItem={renderItem}
+              renderItem={swipeItem}
             />
           ) : (
             <ScrollView
@@ -750,22 +689,6 @@ const Kitchen = ({route}) => {
             }}
             onCancel={() => {
               setOpen(false);
-            }}
-          />
-
-          <DatePicker
-            mode="date"
-            modal
-            open={customOpen}
-            date={customSelectedDate}
-            minimumDate={new Date()}
-            maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-            onConfirm={date => {
-              setCustomOpen(false);
-              setCustomSelectedDate(date);
-            }}
-            onCancel={() => {
-              setCustomOpen(false);
             }}
           />
 
