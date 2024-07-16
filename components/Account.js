@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -53,109 +53,105 @@ const Account = () => {
     }
   }, [userData]);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `${API_URL}/users/data?email=${userEmail}`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setUserData(data);
+  useFocusEffect(
+    React.useCallback(() => {
+      if (userEmail) {
+        const fetchUserData = async () => {
+          try {
+            setLoading(true);
+            const response = await fetch(
+              `${API_URL}/users/data?email=${userEmail}`,
+            );
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            setUserData(data);
 
-        await fetchItemsData(userEmail);
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
-      } finally {
-        setLoading(false);
+            await fetchItemsData(userEmail);
+          } catch (error) {
+            console.error('Error fetching user data:', error.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+
+        const fetchItemsData = async emailString => {
+          try {
+            const response = await fetch(
+              `${API_URL}/items/useremail/${emailString}`,
+            );
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const res = await response.json();
+            setWastedItems(res.wastedItems);
+            setConsumedItems(res.consumedItems);
+          } catch (error) {
+            console.error('Error fetching items data:', error.message);
+          }
+        };
+
+        fetchUserData();
       }
-    };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []),
+  );
+  const updateIconName = async selectedIconName => {
+    try {
+      const response = await fetch(`${API_URL}/users/icon`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          iconName: selectedIconName,
+        }),
+      });
 
-    const fetchItemsData = async emailString => {
-      try {
-        const response = await fetch(
-          `${API_URL}/items/useremail/${emailString}`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const res = await response.json();
-        setWastedItems(res.wastedItems);
-        setConsumedItems(res.consumedItems);
-      } catch (error) {
-        console.error('Error fetching items data:', error.message);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    };
 
-    if (userEmail) {
-      fetchUserData();
+      const updatedUser = await response.json();
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating icon name:', error);
     }
-  }, [userEmail]);
+  };
 
-  const updateIconName = useCallback(
-    async selectedIconName => {
-      try {
-        const response = await fetch(`${API_URL}/users/icon`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: userEmail,
-            iconName: selectedIconName,
-          }),
-        });
+  const updatePreferences = async (meats, seafoods, dairy) => {
+    try {
+      const response = await fetch(`${API_URL}/users/preferences`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          omitMeats: meats,
+          omitSeafoods: seafoods,
+          omitDairy: dairy,
+        }),
+      });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const updatedUser = await response.json();
-        setUserData(updatedUser);
-      } catch (error) {
-        console.error('Error updating icon name:', error);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    },
-    [userEmail],
-  );
 
-  const updatePreferences = useCallback(
-    async (meats, seafoods, dairy) => {
-      try {
-        const response = await fetch(`${API_URL}/users/preferences`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: userEmail,
-            omitMeats: meats,
-            omitSeafoods: seafoods,
-            omitDairy: dairy,
-          }),
-        });
+      const updatedUser = await response.json();
+      setUserData(updatedUser);
+    } catch (error) {
+      console.error('Error updating preferences:', error);
+    }
+  };
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const updatedUser = await response.json();
-        setUserData(updatedUser);
-      } catch (error) {
-        console.error('Error updating preferences:', error);
-      }
-    },
-    [userEmail],
-  );
-
-  const navToPantry = useCallback(() => {
+  const navToPantry = () => {
     navigation.navigate('Pantry');
-  }, [navigation]);
+  };
 
-  const handleLogout = useCallback(() => {
+  const handleLogout = () => {
     signOut(auth)
       .then(() => {
         navigation.replace('Login');
@@ -163,7 +159,7 @@ const Account = () => {
       .catch(error => {
         console.log(error);
       });
-  }, [navigation]);
+  };
 
   return (
     <View style={styles.container}>
