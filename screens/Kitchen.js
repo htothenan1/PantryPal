@@ -29,7 +29,7 @@ import {
   calculateDaysUntilExpiration,
   findIngredient,
   sortItems,
-} from './helpers/functions';
+} from '../screens/helpers/functions';
 import {API_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';

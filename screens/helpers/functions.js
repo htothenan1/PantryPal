@@ -1,4 +1,4 @@
-import {ingredients} from '../data/ingredients';
+import {ingredients} from '../../screens/data/ingredients';
 
 export const lvlToXp = lvl => {
   if (lvl === 1) {

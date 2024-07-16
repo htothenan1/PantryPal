@@ -6,7 +6,7 @@ import {
   capitalizeWords,
   findIngredient,
   findCompatibleUserItems,
-} from './helpers/functions';
+} from '../screens/helpers/functions';
 
 const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
