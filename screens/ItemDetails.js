@@ -34,6 +34,8 @@ const ItemDetails = ({route}) => {
       </View>
       <Text style={styles.compatibleHeader}>Storage Tips:</Text>
       <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
+      <Text style={styles.compatibleHeader}>Health Facts:</Text>
+      <Text style={styles.storageTipText}>{item?.whyEat}</Text>
 
       {compatibleUserItems.length > 0 && (
         <View>

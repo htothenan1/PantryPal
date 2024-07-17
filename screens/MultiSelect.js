@@ -69,6 +69,7 @@ const MultiSelectScreen = ({route}) => {
 
         if (matchedItem) {
           item.storage_tip = matchedItem.storage_tip;
+          item.whyEat = matchedItem.whyEat;
           item.exp_int = matchedItem.exp_int;
           item.compatibles = matchedItem.compatibles;
           item.img = matchedItem.img;
@@ -142,6 +143,7 @@ const MultiSelectScreen = ({route}) => {
               name: item.name.toLowerCase(),
               exp_int: matchedItem?.exp_int || item.exp_int,
               storage_tip: matchedItem?.storage_tip || item.storage_tip,
+              whyEat: matchedItem?.whyEat || item.whyEat,
               img: matchedItem?.img || item.img,
               compatibles: matchedItem?.compatibles || item.compatibles,
               goodSourceOf: matchedItem?.goodSourceOf || item.goodSourceOf,
@@ -244,6 +246,7 @@ const MultiSelectScreen = ({route}) => {
             name: `${item.name}`,
             exp_int: parentItem.exp_int || expInt,
             storage_tip: parentItem.storage_tip,
+            whyEat: parentItem.whyEat,
             user: userEmail,
           };
         } else {
@@ -251,6 +254,7 @@ const MultiSelectScreen = ({route}) => {
             name: item.name,
             exp_int: expInt,
             storage_tip: item.storage_tip,
+            whyEat: item.whyEat,
             user: userEmail,
           };
         }

@@ -97,11 +97,13 @@ export const ingredients = [
     item_id: '987d40b6-711e-4ef9-bc0c-7949eef3ef54',
     name: 'apples',
     img: apples,
-    exp_int: 5,
+    exp_int: 10,
     category: 'fruits',
     goodsourceof: 'vitamin c, potassium, fiber',
     storage_tip:
-      'Keep in crisper drawer, away from other fruit. cook shriveled apples into pies and applesauce. use peels to make tea, or use in smoothies.',
+      'Keep in crisper drawer, away from other fruit. Cook shriveled apples into pies and applesauce. Use peels to make tea, or use in smoothies.',
+    whyEat:
+      'Apples are rich in essential nutrients, antioxidants, and dietary fiber, which support heart health, aid digestion, and help regulate blood sugar levels. They also provide vitamins that boost immunity and promote overall well-being.',
     compatibles: [
       'apricots',
       'butter',
@@ -141,6 +143,8 @@ export const ingredients = [
     goodsourceof: 'vitamins a and c, potassium, fiber',
     storage_tip:
       'Airtight container. Ripe apricots should yield slightly to gentle pressure and have a sweet aroma. Store apricots in a shallow container lined with a paper towel to absorb excess moisture.',
+    whyEat:
+      'Apricots are packed with vitamins A and C, antioxidants, and dietary fiber, which support eye health, boost the immune system, and aid in digestion. They also contain potassium, which helps maintain healthy blood pressure and proper muscle function.',
     compatibles: [
       'almonds',
       'apples',
@@ -163,11 +167,13 @@ export const ingredients = [
     item_id: '78181637-dca9-433d-b8bc-001a2caed64c',
     name: 'artichokes',
     img: artichokes,
-    exp_int: 10,
+    exp_int: 8,
     category: 'vegetables',
     goodsourceof: 'fiber, folate, vitamin k',
     storage_tip:
       'Keep in a crisper drawer, plastic bag, and leave unwashed. Artichokes are best when consumed soon after purchase. To prevent artichokes from drying out, wrap them loosely in a damp paper towel or cloth and place them in a plastic bag.',
+    whyEat:
+      'Artichokes are rich in fiber, antioxidants, and vitamins C and K, promoting digestive health, boosting the immune system, and supporting bone health. They also contain compounds that may improve liver function and help maintain healthy cholesterol levels.',
     compatibles: [
       'anchovies',
       'bay leaf',
@@ -201,11 +207,13 @@ export const ingredients = [
     item_id: 'aa0258b1-3d77-401a-98c3-84ed306fe617',
     name: 'arugula',
     img: arugula,
-    exp_int: 4,
+    exp_int: 6,
     category: 'vegetables',
     goodsourceof: 'calcium, potassium, folate, vitamins c, k, and a',
     storage_tip:
       'When you bring arugula home, remove any excess moisture by gently patting it dry with a clean paper towel. Place the arugula in a plastic bag or an airtight container lined with a paper towel. This will help absorb moisture and prevent the leaves from becoming soggy.',
+    whyEat:
+      'Arugula is a nutrient-dense leafy green that provides vitamins A, C, and K, supporting eye health, immune function, and bone strength. It also contains antioxidants and compounds that may help reduce inflammation and support heart health.',
     compatibles: [
       'cheese',
       'parmesan cheese',
@@ -225,11 +233,13 @@ export const ingredients = [
     item_id: 'b9530ad2-90dd-400b-ba46-a005951a0826',
     name: 'asparagus',
     img: asparagus,
-    exp_int: 10,
+    exp_int: 7,
     category: 'vegetables',
     goodsourceof: 'vitamin k, folate, thiamine, riboflavin',
     storage_tip:
       'Before storing, trim about 1-2 inches from the bottom ends of the stalks. This can also help the asparagus absorb water and stay fresh. place the trimmed asparagus upright in a container or glass with about an inch of water at the bottom.',
+    whyEat:
+      'Asparagus is rich in vitamins A, C, E, and K, as well as folate, supporting immune function, skin health, and proper cell division. It also contains antioxidants and dietary fiber, promoting digestive health and reducing inflammation.',
     compatibles: [
       'butter',
       'unsalted butter',
@@ -272,11 +282,13 @@ export const ingredients = [
     item_id: 'ab9288a3-dfed-45b5-ae06-614915238d4c',
     name: 'avocados',
     img: avocado,
-    exp_int: 3,
+    exp_int: 4,
     category: 'vegetables',
     goodsourceof: 'magnesium, potassium, vitamins c, e, and k',
     storage_tip:
       "Store on the counter until ripe, then refrigerate. If you've cut an avocado and have leftover halves, keep the pit in the unused half and wrap it tightly in plastic wrap or place it in an airtight container. This helps minimize exposure to air and slows down browning.",
+    whyEat:
+      'Avocados are nutrient-dense, providing healthy monounsaturated fats, vitamins K, E, C, and B-6, which support heart health, brain function, and immune system. They also contain fiber and potassium, promoting digestive health and maintaining healthy blood pressure levels.',
     compatibles: [
       'arugula',
       'bacon',
@@ -324,6 +336,8 @@ export const ingredients = [
     goodsourceof: 'vitamins a and k, potassium',
     storage_tip:
       'Always store in the crisper drawer. Before storing, make sure the baby carrots are dry. Excess moisture can lead to mold growth. Try to use them within a week of purchase to enjoy their crisp texture and natural sweetness.',
+    whyEat:
+      'Baby carrots are a convenient and nutritious snack, rich in beta-carotene, which supports eye health and boosts the immune system. They also provide dietary fiber, aiding digestion and promoting satiety.',
     compatibles: [
       'butter',
       'chervil',
@@ -356,11 +370,13 @@ export const ingredients = [
     item_id: 'b37977b1-6559-4f91-af09-5e26bd60c508',
     name: 'baby spinach',
     img: babyspinach,
-    exp_int: 5,
+    exp_int: 7,
     category: 'vegetables',
     goodsourceof: 'vitamin k and c, potassium',
     storage_tip:
       'Place a piece of paper towel inside the bag to absorb moisture. Try not to compress or pack the baby spinach too tightly when storing it.',
+    whyEat:
+      'Baby spinach is packed with vitamins A, C, and K, as well as folate and iron, supporting eye health, immune function, and blood health. It also contains antioxidants and fiber, promoting overall well-being and digestive health.',
     compatibles: [
       'anchovies',
       'bacon',
@@ -412,11 +428,13 @@ export const ingredients = [
     item_id: '1e1a9a8f-1d53-4231-b13a-abcf62eaf0bc',
     name: 'bacon',
     img: bacon,
-    exp_int: 3,
+    exp_int: 4,
     category: 'meats',
     goodsourceof: 'protein, b vitamins',
     storage_tip:
       "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
     compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
   },
   {
@@ -425,6 +443,8 @@ export const ingredients = [
     img: bagel,
     exp_int: 5,
     category: 'grains',
+    whyEat:
+      'Bagels provide quick energy and essential nutrients like iron and B vitamins. However, they are high in calories and refined carbs, so they should be eaten in moderation.',
     goodsourceof: 'refined carbs (depending on brand)',
     storage_tip:
       'Freeze bagels, and defrost before eating.  If you prefer toasting your bagels, you can slice them before freezing. This makes it easier to take out individual slices for toasting without needing to thaw the entire bagel.',
@@ -433,11 +453,13 @@ export const ingredients = [
     item_id: '1987cb15-1560-48f5-9928-a4f975c8387c',
     name: 'bananas',
     img: bananas,
-    exp_int: 4,
+    exp_int: 5,
     category: 'fruits',
     goodsourceof: 'potassium, vitamin c, folate',
     storage_tip:
       'If cut, sprinkle with lemon juice.  If your bananas are still in a bunch, consider separating them. This helps prevent them from ripening too quickly and becoming overripe.',
+    whyEat:
+      'Bananas are rich in potassium, vitamins B6 and C, and dietary fiber, supporting heart health, digestion, and energy levels. They also provide quick, natural energy and help maintain healthy blood pressure.',
     compatibles: [
       'armagnac',
       'blueberries',
@@ -474,10 +496,12 @@ export const ingredients = [
     item_id: 'b1ecd3d3-4547-4901-a219-0aade8a968d7',
     name: 'basil',
     img: basil,
-    exp_int: 5,
+    exp_int: 7,
     category: 'vegetables',
     storage_tip:
       'Before storing basil, trim the stems by about an inch and remove any leaves that will be submerged in water. Basil is best used fresh, as it can lose its vibrant color and flavor over time.',
+    whyEat:
+      'Basil is rich in vitamins A, K, and C, as well as antioxidants, supporting immune function, bone health, and reducing inflammation. It also contains essential oils that have antibacterial properties and may promote digestive health.',
     compatibles: [
       'bell peppers',
       'red bell peppers',
@@ -517,10 +541,12 @@ export const ingredients = [
     item_id: '53dc1abb-9323-4ca2-9ea7-c1ebfe03816a',
     name: 'beets',
     img: beets,
-    exp_int: 21,
+    exp_int: 14,
     category: 'vegetables',
     storage_tip:
       'Before storing, trim the beet greens, leaving about an inch of stem attached to the beet. This prevents moisture from escaping and helps the beets stay fresh. Place them in a perforated plastic bag or an airtight container.',
+    whyEat:
+      'Beets are rich in fiber, vitamins, and minerals, including folate, manganese, and vitamin C, supporting heart health, digestion, and immune function. They also contain nitrates, which can improve blood flow and lower blood pressure.',
     compatibles: [
       'apples',
       'basil',
@@ -571,6 +597,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Always keep the seeds and stems attached. Make sure the bell peppers are dry before storing them.',
+    whyEat:
+      'Bell peppers are rich in vitamins A and C, supporting immune health and vision. They also provide antioxidants and dietary fiber, promoting overall health and aiding digestion.',
     compatibles: [
       'basil',
       'cheese',
@@ -609,6 +637,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Always seperate the soggy or spoiled berries from the good ones. Blackberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
+    whyEat:
+      'Blackberries are packed with vitamins C and K, fiber, and antioxidants, supporting immune health, digestion, and reducing inflammation. They also contain manganese, which aids in bone health and metabolism.',
     compatibles: [
       'cinnamon',
       'cream',
@@ -628,10 +658,12 @@ export const ingredients = [
     item_id: 'f25398b7-f354-4b92-bf61-0a26e30c93eb',
     name: 'blueberries',
     img: blueberries,
-    exp_int: 5,
+    exp_int: 8,
     category: 'fruits',
     storage_tip:
       'Always seperate the soggy or spoiled berries from the good ones. Blueberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
+    whyEat:
+      'Blueberries are rich in vitamins C and K, fiber, and powerful antioxidants, supporting immune health, heart health, and cognitive function. They also help reduce inflammation and improve overall well-being.',
     compatibles: [
       'cinnamon',
       'cream',
@@ -658,10 +690,12 @@ export const ingredients = [
     item_id: '309513fd-397c-427a-9e90-ae0b7cc2c96b',
     name: 'bok choy',
     img: bokchoy,
-    exp_int: 7,
+    exp_int: 6,
     category: 'vegetables',
     storage_tip:
       "It's important to keep bok choy dry before storing it to prevent rot. Wash it only when you're ready to use it. Place bok choy in a produce bag or a loose plastic bag. Do not seal the bag entirely; allow some air circulation.",
+    whyEat:
+      'Bok choy is rich in vitamins A, C, and K, as well as calcium and antioxidants, supporting bone health, immune function, and reducing inflammation. It also provides fiber, promoting healthy digestion.',
     compatibles: ['ginger', 'rice', 'sesame oil', 'sesame seeds', 'soy sauce'],
   },
   {
@@ -672,6 +706,8 @@ export const ingredients = [
     category: 'grains',
     storage_tip:
       'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
     // subItems: [
     //   {
     //     name: 'white bread',
@@ -733,6 +769,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Make sure the broccoli is dry before storing it. Excess moisture can lead to mold growth. If the broccoli is damp, you can pat it dry with a paper towel before refrigerating.',
+    whyEat:
+      'Broccoli is rich in vitamins C, K, and A, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may help reduce inflammation and protect against certain cancers.',
     compatibles: [
       'butter',
       'unsalted butter',
@@ -754,6 +792,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store broccolini in the refrigerator in a plastic bag to keep it fresh.',
+    whyEat:
+      'Broccolini is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may help reduce inflammation and support heart health.',
     compatibles: [
       'almonds',
       'basil',
@@ -778,6 +818,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Keep broccoli rabe refrigerated in a plastic bag to maintain freshness.',
+    whyEat:
+      'Broccoli rabe is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may reduce inflammation and promote heart health.',
     compatibles: [
       'cheese',
       'parmesan cheese',
@@ -797,6 +839,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Don't wash until ready to consume.  Before storing, remove any outer leaves that are damaged or discolored. This helps prevent the spread of moisture and potential spoilage.",
+    whyEat:
+      'Brussels sprouts are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also contain compounds that may help reduce inflammation and protect against certain cancers.',
     compatibles: [
       'bacon',
       'butter',
@@ -823,10 +867,12 @@ export const ingredients = [
     item_id: '3f875f35-0bd6-428f-995c-e4bd33b5d235',
     name: 'butter',
     img: butter,
-    exp_int: 14,
+    exp_int: 20,
     category: 'dairy',
     storage_tip:
       'Keep a reserve batch in the freezer. Can be kept at room temp if being used soon. Otherwise, store in cooler parts of fridge. If you prefer to store butter outside of its original packaging, use an airtight container or a butter keeper.',
+    whyEat:
+      'Butter provides essential fatty acids and fat-soluble vitamins like A, D, E, and K, supporting overall health. However, it is high in saturated fats, so it should be consumed in moderation to maintain heart health.',
     // subItems: [
     //   {
     //     name: 'salted butter',
@@ -859,10 +905,12 @@ export const ingredients = [
     item_id: 'd0e4fb6c-f3c6-458e-814e-5d6ab747c158',
     name: 'cabbage',
     img: cabbage,
-    exp_int: 7,
+    exp_int: 6,
     category: 'vegetables',
     storage_tip:
       'Keep in crisper drawer, plastic bag, and leave unwashed. Before storing, remove any damaged or wilted outer leaves. This can help prevent moisture buildup and mold growth.',
+    whyEat:
+      'Cabbage is rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may reduce inflammation and promote heart health.',
     compatibles: [
       'apples',
       'apple cider',
@@ -901,6 +949,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Carrots can wilt if they lose too much moisture. To prevent this, wrap them in a damp paper towel before placing them in a plastic bag or an airtight container.',
+    whyEat:
+      'Carrots are rich in beta-carotene, which converts to vitamin A, supporting eye health and immune function. They also provide fiber, aiding digestion and promoting overall health.',
     compatibles: [
       'butter',
       'chervil',
@@ -936,6 +986,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'To prevent excess moisture, wrap the cauliflower head in a paper towel before placing it in a plastic bag or an airtight container. This helps absorb any moisture that might cause mold.',
+    whyEat:
+      'Cauliflower is rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may help reduce inflammation and protect against certain cancers.',
     compatibles: [
       'anchovies',
       'bread crumbs',
@@ -963,20 +1015,24 @@ export const ingredients = [
     item_id: '7f445794-e2ee-47ac-a2e6-ef112dbb1993',
     name: 'celery',
     img: celery,
-    exp_int: 10,
+    exp_int: 14,
     category: 'vegetables',
     storage_tip:
       'Celery loves moisture, so wrap the celery stalks in a damp paper towel or cloth before placing them in a plastic bag. This helps maintain the humidity and prevents the celery from drying out. Before storing, trim the bottom ends of the celery stalks.',
+    whyEat:
+      'Celery is low in calories and high in vitamins K and C, fiber, and antioxidants, supporting bone health, digestion, and reducing inflammation. It also provides hydration due to its high water content.',
     compatibles: ['butter', 'blue cheese', 'chicken stock', 'vegetable stock'],
   },
   {
     item_id: 'e0c238a7-5dab-4c34-bc09-07ff4abf1ecf',
     name: 'chard',
     img: chard,
-    exp_int: 7,
+    exp_int: 6,
     category: 'vegetables',
     storage_tip:
       'Store chard in a plastic bag in the refrigerator. Use within a week for best freshness.',
+    whyEat:
+      'Chard is rich in vitamins A, C, and K, as well as magnesium and fiber, supporting eye health, immune function, and bone health. It also contains antioxidants and compounds that may reduce inflammation and support heart health.',
     compatibles: [
       'butter',
       'unsalted butter',
@@ -992,10 +1048,12 @@ export const ingredients = [
     item_id: '58e37dc3-f21b-4316-8aa7-c812f3a9b7cb',
     name: 'cheese',
     img: cheese,
-    exp_int: 7,
+    exp_int: 10,
     category: 'dairy',
     storage_tip:
       'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
     compatibles: [
       'apples',
       'bread',
@@ -1091,10 +1149,12 @@ export const ingredients = [
     item_id: '2f7a58a7-fd20-499e-97b5-03bbb8115d0c',
     name: 'cherries',
     img: cherries,
-    exp_int: 4,
+    exp_int: 5,
     category: 'fruits',
     storage_tip:
       'Cherries are sensitive to heat, so store them in the refrigerator as soon as possible. Place them in the crisper drawer, where the temperature is slightly cooler and more humid. Avoid washing cherries before storing them.',
+    whyEat:
+      'Cherries are rich in vitamins C and A, fiber, and antioxidants, supporting immune health, eye health, and digestion. They also contain compounds that may reduce inflammation and improve sleep quality.',
     compatibles: [
       'almonds',
       'apricots',
@@ -1133,6 +1193,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store fresh chervil in the refrigerator. Place it in a plastic bag to maintain freshness.',
+    whyEat:
+      'Chervil is rich in vitamins A and C, supporting eye health and immune function. It also contains antioxidants and has mild anti-inflammatory properties.',
     compatibles: [
       'asparagus',
       'carrots',
@@ -1154,6 +1216,8 @@ export const ingredients = [
     img: chicken,
     exp_int: 2,
     category: 'meats',
+    whyEat:
+      'Chicken is a lean source of high-quality protein, essential for muscle growth and repair. It also provides important nutrients like B vitamins, which support energy metabolism, and selenium, which promotes immune function.',
     storage_tip:
       "For optimal quality, use chicken within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
     // subItems: [
@@ -1249,6 +1313,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Place the chives in a produce bag or a plastic bag with a piece of paper towel to absorb any excess moisture. Wait to wash chives until you're ready to use them. Keeping them dry prior to storage prevents premature rotting.",
+    whyEat:
+      'Chives are rich in vitamins A and C, supporting eye health and immune function. They also contain antioxidants and compounds that may aid digestion and reduce inflammation.',
     compatibles: [
       'cheese',
       'eggs',
@@ -1268,6 +1334,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Dampen a paper towel (not soaking wet) and wrap it around the base of the cilantro stems. Otherwise, you can treat cilantro the same way you would flowers, always keeping the roots submerged in water.',
+    whyEat:
+      'Cilantro is rich in vitamins A, C, and K, supporting immune health, eye health, and bone health. It also contains antioxidants and compounds that may aid digestion and detoxification.',
     compatibles: [
       'avocados',
       'chicken',
@@ -1299,6 +1367,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store fresh collard greens in a plastic bag in the refrigerator. They can also be blanched and frozen for longer storage.',
+    whyEat:
+      'Collard greens are rich in vitamins A, C, and K, as well as calcium and fiber, supporting bone health, immune function, and digestion. They also contain antioxidants and compounds that may help reduce inflammation and support heart health.',
     compatibles: ['bacon', 'onions', 'yellow onions', 'salt'],
   },
   {
@@ -1309,6 +1379,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'If still on the cob, keep separate from other ears in fridge. Corn is best kept cold to maintain its sweetness and texture. Store corn in the refrigerator as soon as possible after purchasing.',
+    whyEat:
+      'Corn is a good source of fiber, vitamins B and C, and antioxidants, supporting digestion, energy metabolism, and immune health. It also provides essential minerals like magnesium and potassium, promoting overall well-being.',
     compatibles: [
       'bacon',
       'basil',
@@ -1355,6 +1427,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Always separate the soggy or spoiled berries from the good ones. Cranberries are highly perishable and should be stored in the refrigerator as soon as possible. Place in shallow container lined with paper towels to absorb excess moisture.',
+    whyEat:
+      'Cranberries are rich in vitamins C and E, antioxidants, and fiber, supporting immune health, skin health, and digestion. They also contain compounds that may help prevent urinary tract infections and reduce inflammation.',
     compatibles: [
       'apples',
       'cinnamon',
@@ -1378,6 +1452,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Moisture can cause cucumbers to rot faster. Make sure the cucumbers are dry before storing them in the refrigerator. You can gently pat them dry with a paper towel if needed.',
+    whyEat:
+      'Cucumbers are low in calories and high in water content, promoting hydration and aiding in weight management. They also provide vitamins K and C, as well as antioxidants, supporting bone health and overall well-being.',
     compatibles: [
       'chile peppers',
       'cilantro',
@@ -1407,6 +1483,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Eggplants are sensitive to heat and should be refrigerated as soon as possible after purchase. Place them in the vegetable crisper drawer of your refrigerator. Moisture can cause eggplants to spoil quickly. Make sure the skin is dry before storing them.',
+    whyEat:
+      'Eggplants are rich in fiber, vitamins B1 and B6, and antioxidants, supporting digestive health, energy metabolism, and reducing inflammation. They also contain compounds that may promote heart health and protect against certain cancers.',
     compatibles: [
       'anchovies',
       'basil',
@@ -1447,6 +1525,8 @@ export const ingredients = [
     category: 'dairy',
     storage_tip:
       "Store eggs in the refrigerator as soon as you bring them home. Fill a bowl with water and gently place an egg in it. Fresh eggs sink and lie flat at the bottom. If an egg stands upright or floats, it's less fresh and should be used soon.",
+    whyEat:
+      'Eggs are a great source of high-quality protein, essential vitamins like B12, D, and A, and minerals such as iron and selenium, supporting muscle health, immune function, and overall well-being. They also contain choline, which is important for brain health.',
     compatibles: [
       'asparagus',
       'basil',
@@ -1469,6 +1549,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Keep endive in the refrigerator crisper drawer in a plastic bag. Store it away from fruits like apples and bananas, as they can cause it to turn brown.',
+    whyEat:
+      'Endive is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting eye health, immune function, bone health, and digestion. It also contains compounds that may promote liver health and reduce inflammation.',
     compatibles: [
       'apples',
       'butter',
@@ -1506,6 +1588,8 @@ export const ingredients = [
     exp_int: 2,
     category: 'seafoods',
     storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
     // subItems: [
     //   {
     //     name: 'salmon',
@@ -1573,6 +1657,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Keep garlic in a cool, dry, and well-ventilated area. Avoid storing it in areas with high humidity, as moisture can cause mold growth. Place garlic bulbs in a mesh bag or a basket to allow air circulation.',
+    whyEat:
+      'Garlic is rich in vitamins C and B6, manganese, and antioxidants, supporting immune health, reducing inflammation, and promoting heart health. It also contains compounds like allicin, which have antimicrobial properties and may help lower blood pressure.',
     compatibles: [
       'basil',
       'cheese',
@@ -1599,6 +1685,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Moisture can cause ginger to mold or become mushy. Store ginger in a dry condition and avoid washing it until you're ready to use it. For longer storage, keep unpeeled ginger in the refrigerator.",
+    whyEat:
+      'Ginger contains powerful antioxidants and anti-inflammatory compounds, supporting digestive health, reducing nausea, and alleviating muscle pain. It also helps boost the immune system and may lower blood sugar levels.',
     compatibles: [
       'apples',
       'basil',
@@ -1644,6 +1732,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       "Grapefruit are sensitive to ethylene gas, which is emitted by some fruits like apples and bananas. To prevent moisture loss and maintain the grapefruit's freshness, you can place it in a perforated plastic bag before refrigerating.",
+    whyEat:
+      'Grapefruit is rich in vitamins C and A, antioxidants, and fiber, supporting immune health, skin health, and digestion. It also contains compounds that may help lower cholesterol and promote weight loss.',
     compatibles: [
       'avocados',
       'campari',
@@ -1666,6 +1756,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Grapes are highly perishable and should be refrigerated as soon as possible after purchase. Place them in the vegetable crisper drawer of your refrigerator.',
+    whyEat:
+      'Grapes are rich in vitamins C and K, antioxidants, and fiber, supporting immune health, bone health, and digestion. They also contain compounds that may help reduce inflammation and promote heart health.',
     compatibles: [
       'cheese',
       'blue cheese',
@@ -1683,6 +1775,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Moisture can cause green beans to become mushy and spoil quickly. Make sure the green beans are dry before storing them in the refrigerator. You can gently pat them dry with a paper towel if needed.',
+    whyEat:
+      'Green beans are rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. They also provide essential minerals like iron and folate, promoting overall well-being.',
     compatibles: [
       'almonds',
       'bacon',
@@ -1725,6 +1819,8 @@ export const ingredients = [
     category: 'meats',
     storage_tip:
       "Ground beef is perishable and should be refrigerated as soon as possible after purchase. For optimal quality, use ground beef within 1-2 days of purchase. If you won't be using it within that time, consider freezing it to extend its shelf life.",
+    whyEat:
+      'Beef is a rich source of high-quality protein, iron, and B vitamins, supporting muscle growth, energy production, and overall health. However, it can be high in saturated fats, so it is best to choose lean cuts and consume in moderation.',
     compatibles: [
       'cloves',
       'coriander',
@@ -1754,6 +1850,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
+    whyEat:
+      'Kale is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting eye health, immune function, bone health, and digestion. It also contains compounds that may help reduce inflammation and protect against certain cancers.',
     compatibles: [
       'garlic',
       'olive oil',
@@ -1773,6 +1871,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'To store kiwis, keep them in the fridge when ripe to maintain freshness. Store unripe ones at room temperature until ready. Keep separate from ethylene-producing fruits like apples to prevent overripening.',
+    whyEat:
+      'Kiwis are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, digestion, and skin health. They also contain potassium and folate, promoting heart health and overall well-being.',
     compatibles: [
       'coconut',
       'honey',
@@ -1792,6 +1892,8 @@ export const ingredients = [
     category: 'meats',
     storage_tip:
       'Store fresh lamb in the refrigerator, wrapped in its original packaging, and use within a few days. For long-term storage, freeze lamb in vacuum-sealed or air-tight freezer bags, labeled with the date and cut type.',
+    whyEat:
+      'Lamb is a good source of high-quality protein, iron, and B vitamins, supporting muscle growth, energy production, and overall health. It also provides essential minerals like zinc and selenium, promoting immune function and antioxidant protection.',
     compatibles: [
       'basil',
       'bay leaf',
@@ -1850,6 +1952,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Store unwashed leeks in the refrigerator's crisper drawer, wrapped loosely in a plastic bag to allow for air circulation. Before use, trim off any wilted parts and thoroughly wash to remove dirt trapped between layers.",
+    whyEat:
+      'Leeks are rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting eye health, immune function, bone health, and digestion. They also contain compounds that may help reduce inflammation and support heart health.',
     compatibles: [
       'butter',
       'unsalted butter',
@@ -1882,6 +1986,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place lemons in a perforated plastic bag or an airtight container in the refrigerator.',
+    whyEat:
+      'Lemons are rich in vitamin C, antioxidants, and fiber, supporting immune health, skin health, and digestion. They also contain compounds that may aid in detoxification and improve heart health.',
     compatibles: [
       'basil',
       'blackberries',
@@ -1917,6 +2023,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Moisture can cause lettuce to become wilted and slimy. Make sure the lettuce leaves are dry before storing them. You can gently pat them dry with a paper towel if needed.',
+    whyEat:
+      'Lettuce is low in calories and provides vitamins A, C, and K, as well as fiber, supporting eye health, immune function, bone health, and digestion. It also offers hydration due to its high water content.',
     compatibles: [
       'oil',
       'olive oil',
@@ -1934,6 +2042,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place limes in a perforated plastic bag or an airtight container in the refrigerator.',
+    whyEat:
+      'Limes are rich in vitamin C, antioxidants, and fiber, supporting immune health, skin health, and digestion. They also contain compounds that may aid in detoxification and improve heart health.',
     compatibles: [
       'avocados',
       'caramel',
@@ -1954,6 +2064,8 @@ export const ingredients = [
     category: 'seafoods',
     storage_tip:
       "Live lobsters should be cooked the day they're purchased and stored in a breathable container, like a cardboard box, in the refrigerator until preparation. Cooked lobster should be refrigerated in airtight containers and consumed within 2 days.",
+    whyEat:
+      'Lobster is a good source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin B12, zinc, and selenium, supporting muscle health, brain function, and immune health. It is also low in fat and promotes heart health when consumed in moderation.',
     // subItems: [
     //   {
     //     name: 'whole lobster',
@@ -2043,6 +2155,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'If your mangos are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
+    whyEat:
+      'Mangos are rich in vitamins A, C, and E, as well as fiber and antioxidants, supporting immune health, skin health, and digestion. They also contain compounds that may help reduce inflammation and promote heart health.',
     compatibles: [
       'bananas',
       'chile peppers',
@@ -2082,6 +2196,8 @@ export const ingredients = [
     category: 'dairy',
     storage_tip:
       'As soon as you bring milk home from the store, place it in the refrigerator. Store milk in its original container to maintain its freshness. The packaging is designed to protect milk from light and air exposure.',
+    whyEat:
+      'Milk is a rich source of high-quality protein, calcium, and vitamins D and B12, supporting bone health, muscle growth, and overall nutrition. It also provides essential nutrients that promote heart health and immune function.',
     // subItems: [
     //   {
     //     name: 'whole milk',
@@ -2143,6 +2259,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Keep them in the original packaging or transfer them to a breathable container, like a paper bag. Avoid washing mushrooms until you're ready to use them.",
+    whyEat:
+      'Mushrooms are rich in vitamins B and D, selenium, and antioxidants, supporting energy metabolism, immune function, and overall health. They also contain compounds that may help reduce inflammation and boost brain health.',
     // subItems: [
     //   {
     //     name: 'white button mushrooms',
@@ -2232,6 +2350,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'If your nectarines are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
+    whyEat:
+      'Nectarines are rich in vitamins A and C, fiber, and antioxidants, supporting immune health, skin health, and digestion. They also provide potassium, which helps maintain healthy blood pressure and overall heart health.',
     compatibles: [
       'almonds',
       'blueberries',
@@ -2254,6 +2374,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store okra in a paper bag in the refrigerator. Use it within a few days for best freshness.',
+    whyEat:
+      'Okra is rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may help regulate blood sugar levels and reduce inflammation.',
     compatibles: [
       'bell peppers',
       'chile peppers',
@@ -2274,6 +2396,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Keep olives in their original brine or store them in an airtight container in the refrigerator.',
+    whyEat:
+      'Olives are rich in healthy monounsaturated fats, vitamin E, and antioxidants, supporting heart health, skin health, and reducing inflammation. They also provide essential minerals like iron and copper, promoting overall well-being.',
     compatibles: [
       'almonds',
       'anchovies',
@@ -2307,6 +2431,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Keep onions away from potatoes, as they release moisture and gases that can cause onions to spoil more quickly. Avoid storing onions in plastic bags.',
+    whyEat:
+      'Onions are rich in vitamins C and B6, fiber, and antioxidants, supporting immune health, digestion, and reducing inflammation. They also contain compounds that may help regulate blood sugar levels and promote heart health.',
     // subItems: [
     //   {
     //     name: 'yellow onions',
@@ -2398,6 +2524,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Place them in the vegetable crisper drawer, where the temperature is slightly cooler and more humid. To prevent moisture loss, place oranges in a perforated plastic bag or an airtight container in the refrigerator.',
+    whyEat:
+      'Oranges are rich in vitamin C, fiber, and antioxidants, supporting immune health, skin health, and digestion. They also provide potassium, which helps maintain healthy blood pressure and overall heart health.',
     compatibles: [
       'almonds',
       'anise seeds',
@@ -2440,6 +2568,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store fresh parsley stems in a glass of water, covered loosely with a plastic bag, in the refrigerator. Change the water every few days and trim stems as needed to keep the parsley fresh.',
+    whyEat:
+      'Parsley is rich in vitamins A, C, and K, as well as antioxidants, supporting eye health, immune function, and bone health. It also contains compounds that may help reduce inflammation and promote heart health.',
     compatibles: [
       'basil',
       'carrots',
@@ -2473,6 +2603,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store parsnips in the refrigerator crisper drawer. They can last up to a month when properly stored.',
+    whyEat:
+      'Parsnips are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also provide folate, which is important for cell growth and overall well-being.',
     compatibles: [
       'apples',
       'butter',
@@ -2495,95 +2627,97 @@ export const ingredients = [
       'thyme',
     ],
   },
-  {
-    item_id: 'b1250db6-bn11-4216-b4sc-2881aa2d8cf2',
-    name: 'pasta',
-    img: pasta,
-    exp_int: 10,
-    category: 'grains',
-    storage_tip: 'Store in a cool, dry place. Keep away from moisture.',
-    // subItems: [
-    //   {
-    //     name: 'spaghetti',
-    //     item_id: '92c4495f-4a07-4371-8c0d-049f78d7341c',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'penne',
-    //     item_id: '650d0957-2f6c-4f71-96a6-54d5f63e6e84',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'fettuccine',
-    //     item_id: 'e019b048-8b1c-41a2-9a6b-9c73e26e63d3',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'rigatoni',
-    //     item_id: '39e3a746-8676-40ea-bd59-7bb5ea699a3f',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'farfalle',
-    //     item_id: 'cad5e76f-200b-4c24-804c-9ad905bb6f42',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'linguine',
-    //     item_id: 'f2485e79-7749-4df1-84a3-0e17f499d05c',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'orzo',
-    //     item_id: '847e5781-6bcb-48bb-b1d0-0ec3f7c77db0',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'angel hair',
-    //     item_id: '98e1edea-e1ec-4a1e-b85d-cf20aa06db13',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'rotini',
-    //     item_id: 'a9cf7b80-93ea-4423-9b2e-4cb5ff5c38d6',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'ziti',
-    //     item_id: '63eb5fe6-21b5-4cf2-85ab-17f0906b3b7c',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'cavatappi',
-    //     item_id: 'c3b6e8a0-fa82-49ed-9ff7-1dece5d529f1',
-    //     img: pasta,
-    //   },
-    //   {
-    //     name: 'gemelli',
-    //     item_id: 'ee943b9d-0c09-41f6-819a-03f7f85ed90b',
-    //     img: pasta,
-    //   },
-    // ],
-    compatibles: [
-      'butter',
-      'cheese',
-      'mozzarella cheese',
-      'parmesan cheese',
-      'pecorino cheese',
-      'ricotta cheese',
-      'cream',
-      'bacon',
-      'ham',
-      'pancetta',
-      'prosciutto',
-      'garlic',
-      'mushrooms',
-      'olive oil',
-      'parsley',
-      'tomatoes',
-      'truffles',
-    ],
-  },
+  // {
+  //   item_id: 'b1250db6-bn11-4216-b4sc-2881aa2d8cf2',
+  //   name: 'pasta',
+  //   img: pasta,
+  //   exp_int: 10,
+  //   category: 'grains',
+  //   storage_tip: 'Store in a cool, dry place. Keep away from moisture.',
+  //   whyEat:
+  //     'Collard greens are rich in vitamins A, C, and K, as well as calcium and fiber, supporting bone health, immune function, and digestion. They also contain antioxidants and compounds that may help reduce inflammation and support heart health.',
+  // subItems: [
+  //   {
+  //     name: 'spaghetti',
+  //     item_id: '92c4495f-4a07-4371-8c0d-049f78d7341c',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'penne',
+  //     item_id: '650d0957-2f6c-4f71-96a6-54d5f63e6e84',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'fettuccine',
+  //     item_id: 'e019b048-8b1c-41a2-9a6b-9c73e26e63d3',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'rigatoni',
+  //     item_id: '39e3a746-8676-40ea-bd59-7bb5ea699a3f',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'farfalle',
+  //     item_id: 'cad5e76f-200b-4c24-804c-9ad905bb6f42',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'linguine',
+  //     item_id: 'f2485e79-7749-4df1-84a3-0e17f499d05c',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'orzo',
+  //     item_id: '847e5781-6bcb-48bb-b1d0-0ec3f7c77db0',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'angel hair',
+  //     item_id: '98e1edea-e1ec-4a1e-b85d-cf20aa06db13',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'rotini',
+  //     item_id: 'a9cf7b80-93ea-4423-9b2e-4cb5ff5c38d6',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'ziti',
+  //     item_id: '63eb5fe6-21b5-4cf2-85ab-17f0906b3b7c',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'cavatappi',
+  //     item_id: 'c3b6e8a0-fa82-49ed-9ff7-1dece5d529f1',
+  //     img: pasta,
+  //   },
+  //   {
+  //     name: 'gemelli',
+  //     item_id: 'ee943b9d-0c09-41f6-819a-03f7f85ed90b',
+  //     img: pasta,
+  //   },
+  // ],
+  //   compatibles: [
+  //     'butter',
+  //     'cheese',
+  //     'mozzarella cheese',
+  //     'parmesan cheese',
+  //     'pecorino cheese',
+  //     'ricotta cheese',
+  //     'cream',
+  //     'bacon',
+  //     'ham',
+  //     'pancetta',
+  //     'prosciutto',
+  //     'garlic',
+  //     'mushrooms',
+  //     'olive oil',
+  //     'parsley',
+  //     'tomatoes',
+  //     'truffles',
+  //   ],
+  // },
   {
     item_id: 'f9920a7f-a282-40c4-9230-627ffc24dd2a',
     name: 'peaches',
@@ -2592,6 +2726,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'If your peaches are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days.',
+    whyEat:
+      'Peaches are rich in vitamins A and C, fiber, and antioxidants, supporting immune health, skin health, and digestion. They also provide potassium, which helps maintain healthy blood pressure and overall heart health.',
     compatibles: [
       'allspice',
       'almonds',
@@ -2638,6 +2774,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       "Pears are often picked when slightly under ripe. Place them at room temperature to ripen. Check their firmness near the stem daily. Once they yield slightly to gentle pressure, they're ripe and ready to eat.",
+    whyEat:
+      'Pears are rich in dietary fiber, vitamins C and K, and antioxidants, supporting digestion, immune health, and bone health. They also provide hydration and essential minerals like potassium, promoting overall well-being.',
     compatibles: [
       'allspice',
       'almonds',
@@ -2708,6 +2846,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "Store fresh peas in their pods in a breathable bag in the refrigerator's crisper drawer. Once shelled, keep the peas in an airtight container in the refrigerator and consume within 3-5 days.",
+    whyEat:
+      'Peas are rich in vitamins A, C, and K, as well as protein, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also provide essential minerals like iron and folate, promoting overall well-being.',
     compatibles: [
       'bacon',
       'basil',
@@ -2753,6 +2893,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Store whole pineapples at room temperature until ripe, then transfer to the refrigerator to prolong freshness. Once cut, store pineapple pieces in an airtight container in the refrigerator and consume within 2-3 days.',
+    whyEat:
+      'Pineapples are rich in vitamin C, manganese, and antioxidants, supporting immune health, bone health, and reducing inflammation. They also contain bromelain, an enzyme that aids digestion and may help reduce swelling.',
     compatibles: [
       'bananas',
       'brandy',
@@ -2793,6 +2935,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'If your plums are not fully ripe when you buy them, leave them at room temperature to ripen. They will continue to ripen and become sweeter over a few days. Plums can bruise easily, so handle them gently to avoid damaging the skin.',
+    whyEat:
+      'Plums are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also provide potassium, which helps maintain healthy blood pressure and overall heart health.',
     compatibles: [
       'allspice',
       'brandy',
@@ -2825,6 +2969,8 @@ export const ingredients = [
     img: pork,
     exp_int: 2,
     category: 'meats',
+    whyEat:
+      'Pork is a good source of high-quality protein, B vitamins, and essential minerals like zinc and selenium, supporting muscle growth, energy production, and immune function. However, it can be high in saturated fats, so it is best to choose lean cuts and consume in moderation.',
     storage_tip:
       'Store fresh pork cuts in the coldest part of the refrigerator, wrapped in their original packaging, and use within 3-5 days. For longer storage, freeze pork in airtight containers or vacuum-sealed bags, and thaw in the refrigerator before cooking.',
     // subItems: [
@@ -2907,6 +3053,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Avoid storing potatoes near onions, as onions release gases that can cause potatoes to spoil more quickly.',
+    whyEat:
+      'Potatoes are rich in vitamins C and B6, potassium, and fiber, supporting immune health, energy metabolism, and digestion. They also provide antioxidants and complex carbohydrates, offering sustained energy and overall well-being.',
     compatibles: [
       'bacon',
       'bay leaf',
@@ -2959,6 +3107,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'If your radishes come with their leafy greens attached, remove the greens before storing. The greens can draw moisture and nutrients from the radishes, causing them to wilt and become soft.',
+    whyEat:
+      'Radishes are rich in vitamins C and B6, fiber, and antioxidants, supporting immune health, digestion, and reducing inflammation. They also provide essential minerals like potassium and magnesium, promoting overall well-being.',
     compatibles: [
       'butter',
       'chives',
@@ -2981,6 +3131,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Remove soggy or spoiled berries before storing. Transfer raspberries to a shallow container or a paper towel-lined plate. This helps prevent crushing and allows for proper air circulation.',
+    whyEat:
+      'Raspberries are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also contain compounds that may help reduce inflammation and promote heart health.',
     compatibles: [
       'almonds',
       'blackberries',
@@ -3019,6 +3171,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store fresh rosemary sprigs in a damp paper towel, rolled up inside a plastic bag, in the refrigerator. For longer storage, freeze rosemary sprigs in airtight containers or bags, using them directly from the freezer as needed.',
+    whyEat:
+      'Rosemary is rich in antioxidants, vitamins A and C, and essential minerals, supporting immune health, skin health, and overall well-being. It also contains compounds that may improve digestion and boost cognitive function.',
     compatibles: [
       'beans',
       'fava beans',
@@ -3069,6 +3223,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store it in the vegetable crisper drawer of your refrigerator to maintain its freshness.  Moisture can cause kale to become wilted and slimy. Make sure the kale leaves are dry before storing them.',
+    whyEat:
+      'Salad greens are low in calories and rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting eye health, immune function, bone health, and digestion. They also provide hydration and essential nutrients, promoting overall well-being.',
     compatibles: [
       'oil',
       'olive oil',
@@ -3086,16 +3242,20 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Cool, dimly lit, and dry. Place scallions in a glass or jar with enough water to cover the roots. Cover the top loosely with a plastic bag or plastic wrap to create a mini greenhouse effect. Change the water every few days.',
+    whyEat:
+      'Scallions are rich in vitamins A, C, and K, as well as antioxidants, supporting eye health, immune function, and bone health. They also contain fiber and compounds that may aid digestion and reduce inflammation.',
     compatibles: ['butter', 'cream', 'olive oil', 'parsley', 'thyme'],
   },
   {
     item_id: 'b9eb7bce-f0b9-42a1-9186-9a5d1310c23d',
     name: 'shallots',
     img: shallots,
-    exp_int: 30,
+    exp_int: 20,
     category: 'vegetables',
     storage_tip:
       'Store shallots in a cool, dry, and well-ventilated place. They can be kept in a pantry or cupboard, away from direct sunlight.',
+    whyEat:
+      'Shallots are rich in vitamins A, C, and B6, as well as antioxidants and fiber, supporting immune health, digestion, and reducing inflammation. They also provide essential minerals like potassium and manganese, promoting overall well-being.',
     compatibles: [
       'butter',
       'garlic',
@@ -3114,6 +3274,8 @@ export const ingredients = [
     category: 'seafoods',
     storage_tip:
       "Fresh raw shrimp should be used within 1-2 days of purchase. If you won't be using them within that time, consider freezing them to extend their shelf life.",
+    whyEat:
+      'Shrimp is a great source of high-quality protein, vitamins B12 and D, and minerals like selenium and iodine, supporting muscle health, immune function, and thyroid health. It is also low in fat and contains omega-3 fatty acids, promoting heart health.',
     compatibles: [
       'arugula',
       'avocados',
@@ -3173,6 +3335,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store spinach in the refrigerator in a plastic bag to keep it fresh. Avoid washing before storage to prevent wilting.',
+    whyEat:
+      'Spinach is rich in vitamins A, C, and K, as well as iron, calcium, and antioxidants, supporting eye health, immune function, bone health, and overall well-being. It also contains fiber, promoting healthy digestion.',
     compatibles: [
       'anchovies',
       'bacon',
@@ -3227,6 +3391,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store squash in a cool, dry place away from direct sunlight. Some varieties may require refrigeration.',
+    whyEat:
+      'Squash is rich in vitamins A, C, and B6, as well as fiber and antioxidants, supporting eye health, immune function, and digestion. It also provides essential minerals like potassium and magnesium, promoting overall well-being.',
     compatibles: [
       'allspice',
       'bay leaf',
@@ -3272,6 +3438,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       'Store strawberries unwashed and remove any damaged or moldy ones.  Strawberries are delicate fruits that can bruise easily. Handle them gently when washing, moving, or storing to prevent damage.',
+    whyEat:
+      'Strawberries are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, skin health, and digestion. They also contain compounds that may help reduce inflammation and promote heart health.',
     compatibles: [
       'almonds',
       'bananas',
@@ -3311,6 +3479,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store fresh thyme wrapped in a slightly damp paper towel, inside a plastic bag, in the refrigerator. For longer storage, freeze thyme sprigs in airtight containers or bags.',
+    whyEat:
+      'Thyme is rich in vitamins A and C, antioxidants, and essential oils, supporting immune health, skin health, and overall well-being. It also has antimicrobial properties and may aid in digestion.',
     compatibles: [
       'bay leaf',
       'beans',
@@ -3346,6 +3516,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       "After opened, keep submerged in water in an airtight container. Change water daily.  If you have extra tofu that you won't use within a week, you can freeze it. Simply drain, cut into cubes, and freeze in airtight container.",
+    whyEat:
+      'Tofu is a good source of high-quality plant-based protein, iron, and calcium, supporting muscle health, bone strength, and overall nutrition. It also contains isoflavones, which may promote heart health and reduce inflammation.',
     compatibles: ['sesame oil', 'sesame seeds'],
   },
   {
@@ -3356,6 +3528,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'If your tomatoes are not fully ripe, you can leave them at room temperature to ripen. Once they are ripe, you can transfer them to the refrigerator to slow down further ripening.',
+    whyEat:
+      'Tomatoes are rich in vitamins C and K, potassium, and antioxidants like lycopene, supporting immune health, heart health, and reducing inflammation. They also promote skin health and overall well-being.',
     compatibles: [
       'arugula',
       'basil',
@@ -3407,6 +3581,8 @@ export const ingredients = [
     category: 'meats',
     storage_tip:
       "Airtight container, inside fridge. Cooked turkey should be consumed within 3-4 days of cooking. If you won't use it within that time, consider freezing it.",
+    whyEat:
+      'Turkey is a lean source of high-quality protein, vitamins B6 and B12, and essential minerals like selenium and zinc, supporting muscle growth, energy production, and immune function. It is also low in fat, promoting heart health when consumed as part of a balanced diet.',
     // subItems: [
     //   {
     //     name: 'turkey breast',
@@ -3476,6 +3652,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store turnip roots and greens separately. The greens release moisture and can cause the roots to become wilted. Wrap the greens in a damp paper towel and store them in a separate bag or container.',
+    whyEat:
+      'Turnips are rich in vitamins C and K, fiber, and antioxidants, supporting immune health, bone health, and digestion. They also provide essential minerals like potassium and calcium, promoting overall well-being.',
     compatibles: [
       'butter',
       'unsalted butter',
@@ -3493,6 +3671,8 @@ export const ingredients = [
     category: 'fruits',
     storage_tip:
       "Once you've cut into the watermelon, store the cut pieces in the refrigerator. Use an airtight container or cover them with plastic wrap to prevent them from drying out and absorbing odors.",
+    whyEat:
+      'Watermelon is rich in vitamins A and C, antioxidants, and hydration, supporting immune health, skin health, and overall well-being. It also contains compounds like lycopene and citrulline, which may help reduce inflammation and support heart health.',
     compatibles: [
       'cheese',
       'feta cheese',
@@ -3516,6 +3696,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Store yams in a cool, dark place, preferably in a pantry or cellar, away from direct sunlight.',
+    whyEat:
+      'Yams are rich in vitamins C and B6, fiber, and potassium, supporting immune health, energy metabolism, and heart health. They also provide antioxidants and complex carbohydrates, promoting sustained energy and overall well-being.',
     compatibles: [
       'allspice',
       'apples',
@@ -3559,6 +3741,8 @@ export const ingredients = [
     category: 'dairy',
     storage_tip:
       "Store towards back of fridge. Ensure the container's lid is tightly sealed after each use. This helps prevent moisture and contaminants from entering the yogurt container.",
+    whyEat:
+      'Yogurt is a good source of high-quality protein, calcium, and probiotics, supporting muscle health, bone strength, and digestion. It also provides vitamins B12 and D, promoting immune function and overall well-being.',
     compatibles: [
       'chickpeas',
       'cucumbers',
@@ -3580,6 +3764,8 @@ export const ingredients = [
     category: 'vegetables',
     storage_tip:
       'Moisture can cause zucchini to mold and spoil. Make sure the zucchini are dry before storing them in the refrigerator. You can pat them dry with a paper towel if needed.',
+    whyEat:
+      'Zucchini is rich in vitamins A, C, and B6, as well as fiber and antioxidants, supporting eye health, immune function, and digestion. It is also low in calories and provides hydration, promoting overall well-being.',
     compatibles: [
       'basil',
       'bell peppers',

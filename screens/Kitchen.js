@@ -329,11 +329,13 @@ const Kitchen = ({route}) => {
       );
 
       let storageTip = 'Not available';
+      let whyEat = 'Not available';
       let expInt = 6;
 
       if (existingIngredient) {
         storageTip = existingIngredient.storage_tip;
         expInt = existingIngredient.exp_int;
+        whyEat = existingIngredient.whyEat;
       } else {
         const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
           method: 'POST',
@@ -355,6 +357,7 @@ const Kitchen = ({route}) => {
         name: itemName,
         exp_int: expInt,
         storage_tip: storageTip,
+        whyEat: whyEat,
         user: userEmail,
       };
 
@@ -575,7 +578,7 @@ const Kitchen = ({route}) => {
             size="large"
             color="#1b4965"
           />
-          <Text style={styles.loadingText}>Loading Your Items...</Text>
+          <Text style={styles.loadingText}>Taking Stock...</Text>
         </View>
       ) : (
         <>

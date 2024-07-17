@@ -402,6 +402,7 @@ app.post('/items', async (req, res) => {
       const newItem = new Item({
         name: itemData.name,
         storage_tip: itemData.storage_tip,
+        whyEat: itemData.whyEat,
         exp_date: expDate,
         user: itemData.user,
         dateTime: new Date(),
