@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import {
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
 import {API_URL} from '@env';
+import {UserContext} from '../contexts/UserContext';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
@@ -19,8 +20,8 @@ import {icons} from './data/icons';
 import styles from './styles/account';
 
 const Account = () => {
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const {userData, setUserData, fetchUserData, loading} =
+    useContext(UserContext);
   const [wastedItems, setWastedItems] = useState([]);
   const [consumedItems, setConsumedItems] = useState([]);
   const [isIconPickerVisible, setIconPickerVisible] = useState(false);
@@ -56,47 +57,27 @@ const Account = () => {
   useFocusEffect(
     React.useCallback(() => {
       if (userEmail) {
-        const fetchUserData = async () => {
-          try {
-            setLoading(true);
-            const response = await fetch(
-              `${API_URL}/users/data?email=${userEmail}`,
-            );
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            setUserData(data);
-
-            await fetchItemsData(userEmail);
-          } catch (error) {
-            console.error('Error fetching user data:', error.message);
-          } finally {
-            setLoading(false);
-          }
-        };
-
-        const fetchItemsData = async emailString => {
-          try {
-            const response = await fetch(
-              `${API_URL}/items/useremail/${emailString}`,
-            );
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const res = await response.json();
-            setWastedItems(res.wastedItems);
-            setConsumedItems(res.consumedItems);
-          } catch (error) {
-            console.error('Error fetching items data:', error.message);
-          }
-        };
-
-        fetchUserData();
+        fetchUserData(userEmail);
+        fetchItemsData(userEmail);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []),
+    }, [userEmail]),
   );
+
+  const fetchItemsData = async emailString => {
+    try {
+      const response = await fetch(`${API_URL}/items/useremail/${emailString}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const res = await response.json();
+      setWastedItems(res.wastedItems);
+      setConsumedItems(res.consumedItems);
+    } catch (error) {
+      console.error('Error fetching items data:', error.message);
+    }
+  };
+
   const updateIconName = async selectedIconName => {
     try {
       const response = await fetch(`${API_URL}/users/icon`, {

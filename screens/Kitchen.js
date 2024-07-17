@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   ScrollView,
@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import UserHeader from '../components/UserHeader';
 import UserProgressBar from '../components/UserProgressBar';
+import {UserContext} from '../contexts/UserContext';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -39,8 +40,7 @@ import DatePicker from 'react-native-date-picker';
 import chefLogo from '../assets/chefs_hat.png';
 
 const Kitchen = ({route}) => {
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const {userData, fetchUserData, loading} = useContext(UserContext);
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
@@ -132,26 +132,26 @@ const Kitchen = ({route}) => {
   }, [items, currentCategory]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `${API_URL}/users/data?email=${userEmail}`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    // const fetchUserData = async () => {
+    //   setLoading(true);
+    //   try {
+    //     const response = await fetch(
+    //       `${API_URL}/users/data?email=${userEmail}`,
+    //     );
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! Status: ${response.status}`);
+    //     }
+    //     const data = await response.json();
+    //     setUserData(data);
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error.message);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
     if (userEmail) {
-      fetchUserData();
+      fetchUserData(userEmail);
     }
   }, []);
 
@@ -175,7 +175,7 @@ const Kitchen = ({route}) => {
           fetchItems();
 
           if (userEmail) {
-            fetchUserData();
+            fetchUserData(userEmail);
           }
 
           navigation.setParams({itemsAdded: false});
@@ -243,7 +243,7 @@ const Kitchen = ({route}) => {
       setItems(currentItems =>
         currentItems.filter(item => item._id !== itemId),
       );
-      fetchUserData();
+      fetchUserData(userEmail);
     } catch (error) {
       console.error('Error deleting item:', error.message);
     } finally {
@@ -388,7 +388,7 @@ const Kitchen = ({route}) => {
       setAddItemModalVisible(false);
       setNewItemName('');
       setInput('');
-      fetchUserData();
+      fetchUserData(userEmail);
       fetchItems();
     } catch (error) {
       console.error('Error adding custom item:', error);
@@ -427,7 +427,7 @@ const Kitchen = ({route}) => {
         );
       }
       fetchItems();
-      fetchUserData();
+      fetchUserData(userEmail);
       setSelectedDate(new Date());
       const swipeable = swipeableRefs.get(item._id);
       if (swipeable) {
@@ -505,22 +505,6 @@ const Kitchen = ({route}) => {
     });
   };
 
-  const fetchUserData = async () => {
-    // setLoading(true);
-    try {
-      const response = await fetch(`${API_URL}/users/data?email=${userEmail}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setUserData(data);
-    } catch (error) {
-      console.error('Error fetching user data:', error.message);
-    } finally {
-      // setLoading(false);
-    }
-  };
-
   const swipeItem = ({item}) => {
     const daysRemaining = calculateDaysUntilExpiration(item.exp_date);
     const backgroundColor = getBackgroundColor(daysRemaining);
@@ -569,7 +553,7 @@ const Kitchen = ({route}) => {
 
   return (
     <View style={styles.container}>
-      {isItemsLoading ? (
+      {isItemsLoading && loading ? (
         <View style={styles.loadingContainer}>
           <Image source={chefLogo} style={styles.loadingScreenIcon} />
 

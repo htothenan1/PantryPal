@@ -21,6 +21,7 @@ import OnboardingStartScreen from './screens/OnboardingStartScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import Pantry from './screens/Pantry';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {UserProvider} from './contexts/UserContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -291,26 +292,28 @@ function MyTabsScreen() {
 export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Register"
-            component={Register}
-          />
+      <UserProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="Login"
+              component={Login}
+            />
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="Register"
+              component={Register}
+            />
 
-          <Stack.Screen
-            component={MyTabsScreen}
-            name="My Tabs"
-            options={{headerShown: false}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen
+              component={MyTabsScreen}
+              name="My Tabs"
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserProvider>
     </GestureHandlerRootView>
   );
 }
