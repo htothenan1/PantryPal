@@ -27,7 +27,6 @@ import {itemNames} from './data/itemNames';
 import {
   capitalizeWords,
   findIngredient,
-  sortItems,
   calculateAvailableCategories,
   calculateDaysUntilExpiration,
   getBackgroundColor,
@@ -40,9 +39,9 @@ import DatePicker from 'react-native-date-picker';
 import chefLogo from '../assets/chefs_hat.png';
 
 const Kitchen = ({route}) => {
-  const {userData, fetchUserData, loading} = useContext(UserContext);
+  const {userData, items, setItems, fetchItems, fetchUserData, loading} =
+    useContext(UserContext);
   const [selectedIcon, setSelectedIcon] = useState(null);
-  const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -82,32 +81,7 @@ const Kitchen = ({route}) => {
   useEffect(() => {
     setIsItemsLoading(true);
 
-    const fetchFirstItems = async () => {
-      try {
-        if (!userEmail) {
-          console.error('User email is not available');
-          setIsItemsLoading(false);
-          return;
-        }
-
-        const response = await fetch(`${API_URL}/items?email=${userEmail}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        const sortedItems = sortItems(data);
-
-        setItems(sortedItems);
-      } catch (error) {
-        console.error('Error fetching items in useEffect:', error.message);
-      } finally {
-        setIsItemsLoading(false);
-      }
-    };
-
-    fetchFirstItems();
+    fetchItems(userEmail);
   }, []);
 
   useEffect(() => {
@@ -132,24 +106,6 @@ const Kitchen = ({route}) => {
   }, [items, currentCategory]);
 
   useEffect(() => {
-    // const fetchUserData = async () => {
-    //   setLoading(true);
-    //   try {
-    //     const response = await fetch(
-    //       `${API_URL}/users/data?email=${userEmail}`,
-    //     );
-    //     if (!response.ok) {
-    //       throw new Error(`HTTP error! Status: ${response.status}`);
-    //     }
-    //     const data = await response.json();
-    //     setUserData(data);
-    //   } catch (error) {
-    //     console.error('Error fetching user data:', error.message);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-
     if (userEmail) {
       fetchUserData(userEmail);
     }
@@ -172,7 +128,7 @@ const Kitchen = ({route}) => {
     React.useCallback(() => {
       const unsubscribe = navigation.addListener('focus', () => {
         if (route.params?.itemsAdded) {
-          fetchItems();
+          fetchItems(userEmail);
 
           if (userEmail) {
             fetchUserData(userEmail);
@@ -292,30 +248,30 @@ const Kitchen = ({route}) => {
     }
   };
 
-  const fetchItems = async () => {
-    try {
-      if (!userEmail) {
-        console.error('User email is not available');
-        setIsItemsLoading(false);
-        return;
-      }
+  // const fetchItems = async () => {
+  //   try {
+  //     if (!userEmail) {
+  //       console.error('User email is not available');
+  //       setIsItemsLoading(false);
+  //       return;
+  //     }
 
-      const response = await fetch(`${API_URL}/items?email=${userEmail}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+  //     const response = await fetch(`${API_URL}/items?email=${userEmail}`);
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      const sortedItems = sortItems(data);
+  //     const sortedItems = sortItems(data);
 
-      setItems(sortedItems);
-    } catch (error) {
-      console.error('Error fetching items:', error.message);
-    } finally {
-      setIsItemsLoading(false);
-    }
-  };
+  //     setItems(sortedItems);
+  //   } catch (error) {
+  //     console.error('Error fetching items:', error.message);
+  //   } finally {
+  //     setIsItemsLoading(false);
+  //   }
+  // };
 
   async function addCustomItem(itemName) {
     setIsLoading(true);
@@ -389,7 +345,7 @@ const Kitchen = ({route}) => {
       setNewItemName('');
       setInput('');
       fetchUserData(userEmail);
-      fetchItems();
+      fetchItems(userEmail);
     } catch (error) {
       console.error('Error adding custom item:', error);
     } finally {
@@ -426,7 +382,7 @@ const Kitchen = ({route}) => {
           `You've reached level ${data.newLevel}!`,
         );
       }
-      fetchItems();
+      fetchItems(userEmail);
       fetchUserData(userEmail);
       setSelectedDate(new Date());
       const swipeable = swipeableRefs.get(item._id);
@@ -615,11 +571,7 @@ const Kitchen = ({route}) => {
             ) : null}
           </View>
 
-          {isItemsLoading ? (
-            <View style={styles.itemsLoadingContainer}>
-              <ActivityIndicator size="large" color="#495057" />
-            </View>
-          ) : items.length > 0 ? (
+          {items.length > 0 ? (
             <FlatList
               windowSize={10}
               style={styles.itemsList}

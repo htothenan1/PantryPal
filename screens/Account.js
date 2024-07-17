@@ -12,6 +12,7 @@ import {
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
 import {API_URL} from '@env';
+import {capitalizeWords} from './helpers/functions';
 import {UserContext} from '../contexts/UserContext';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
@@ -227,7 +228,7 @@ const Account = () => {
             {showConsumedItems &&
               consumedItems.slice(0, 5).map(item => (
                 <Text key={item._id} style={styles.item}>
-                  {item.name} ({item.frequency})
+                  {capitalizeWords(item.name)} ({item.frequency})
                 </Text>
               ))}
           </View>
@@ -247,7 +248,7 @@ const Account = () => {
             {showWastedItems &&
               wastedItems.slice(0, 5).map(item => (
                 <Text key={item._id} style={styles.item}>
-                  {item.name} ({item.frequency})
+                  {capitalizeWords(item.name)} ({item.frequency})
                 </Text>
               ))}
           </View>

@@ -1,15 +1,15 @@
 import React, {createContext, useState, useEffect} from 'react';
-import {sortItems} from '../screens/helpers/functions';
 import {auth} from '../firebase';
+import {sortItems} from '../screens/helpers/functions';
 import {API_URL} from '@env';
 
 export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
   const [userData, setUserData] = useState(null);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isItemsLoading, setIsItemsLoading] = useState(true);
-  const [items, setItems] = useState(true);
+  const [itemsLoading, setIsItemsLoading] = useState(true);
 
   const fetchUserData = async userEmail => {
     try {
@@ -55,6 +55,7 @@ export const UserProvider = ({children}) => {
     const userEmail = auth.currentUser?.email;
     if (userEmail) {
       fetchUserData(userEmail);
+      fetchItems(userEmail);
     }
   }, []);
 
@@ -62,13 +63,13 @@ export const UserProvider = ({children}) => {
     <UserContext.Provider
       value={{
         userData,
-        items,
         setUserData,
-        setIsItemsLoading,
         fetchUserData,
+        items,
+        setItems,
         fetchItems,
         loading,
-        isItemsLoading,
+        itemsLoading,
       }}>
       {children}
     </UserContext.Provider>
