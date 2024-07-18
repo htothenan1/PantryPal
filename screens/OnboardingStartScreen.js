@@ -20,7 +20,7 @@ const OnboardingStartScreen = ({route, navigation}) => {
         <View style={styles.imageWrapper}>
           <Image source={chefLogo} style={styles.image} />
         </View>
-        <Text style={styles.titleText}>Welcome to FlavrAi!</Text>
+        <Text style={styles.titleText}>Welcome to FlavrPro!</Text>
         <Text style={styles.introText}>
           The purpose of this app is to help you manage and consume your foods
           more efficiently, in a fun and intuitive way.

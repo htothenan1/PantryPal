@@ -564,7 +564,7 @@ const Kitchen = ({route}) => {
                 <View>
                   <Image source={chefLogo} style={styles.emptyStateChefLogo} />
                 </View>
-                <Text style={styles.actionItemText}>How to use FlavrAi</Text>
+                <Text style={styles.actionItemText}>How to use FlavrPro</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.actionItemContainer}
