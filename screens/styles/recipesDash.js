@@ -7,7 +7,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 50,
+    marginTop: 75,
   },
   recipesLoadingContainer: {
     height: 250,
@@ -22,8 +22,9 @@ export default StyleSheet.create({
   headerText: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginVertical: 20,
+    paddingLeft: 28,
   },
   selectedItemStyle: {
     backgroundColor: '#1b4965',
@@ -42,13 +43,20 @@ export default StyleSheet.create({
     paddingHorizontal: 25,
     paddingVertical: 14,
     backgroundColor: '#f8f9fa',
+    flexDirection: 'row', // Added to align items in a row
+    alignItems: 'center', // Center items vertically
   },
   itemTextContainer: {
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   itemText: {
     fontSize: 20,
+    fontFamily: 'Avenir-Book',
+  },
+  itemExpInt: {
+    fontSize: 14,
     fontFamily: 'Avenir-Book',
   },
   image: {
@@ -101,5 +109,23 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
+  },
+  disabledButton: {
+    backgroundColor: '#ccc',
+  },
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    marginHorizontal: 8,
+  },
+  saveText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 14,
+    color: 'black',
+  },
+  itemImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
   },
 });

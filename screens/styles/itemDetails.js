@@ -15,13 +15,13 @@ export default StyleSheet.create({
   background: {
     width: 110,
     height: 110,
-    marginHorizontal: 10,
+    marginLeft: 16,
+    marginRight: 4,
   },
   headerText: {
     flex: 1,
     textAlign: 'left',
     fontSize: 26,
-    // fontWeight: 'bold',
     marginVertical: 10,
     fontFamily: 'Avenir-Book',
   },

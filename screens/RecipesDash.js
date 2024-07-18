@@ -7,13 +7,18 @@ import {
   Image,
   ActivityIndicator,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {UserContext} from '../contexts/UserContext';
 import {capitalizeWords} from './helpers/functions';
 import {SPOON_KEY} from '@env';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {IconToolsKitchen2} from '@tabler/icons-react-native';
 import {auth} from '../firebase';
+import {ingredients} from './data/ingredients'; // Import ingredients data
+import chefLogo from '../assets/chefs_hat.png';
+
 import styles from './styles/recipesDash';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
@@ -64,15 +69,26 @@ const RecipesDash = () => {
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item.name);
 
+    // Find the corresponding ingredient to get the image
+    const ingredient = ingredients.find(
+      ing => ing.name.toLowerCase() === item.name.toLowerCase(),
+    );
+    const itemImage = ingredient ? ingredient.img : chefLogo;
+
     return (
       <TouchableOpacity
         onPress={() => handleLongPress(item.name)}
         style={[styles.item, isSelected && styles.selectedItemStyle]}>
+        <Image source={itemImage} style={styles.itemImage} />
         <View style={styles.itemTextContainer}>
           <Text
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {capitalizeWords(item.name)}
           </Text>
+          {/* <Text
+            style={[styles.itemExpInt, isSelected && styles.selectedItemText]}>
+            Default Exp: {item.exp_int ? `${item.exp_int} days` : 'N/A'}
+          </Text> */}
         </View>
       </TouchableOpacity>
     );
@@ -148,18 +164,15 @@ const RecipesDash = () => {
     <View style={styles.container}>
       <View style={styles.recipesContainer}>
         {!fetchedRecipes && !isRecipesLoading && (
-          <TouchableOpacity onPress={handleRefreshRecipes}>
-            <View style={styles.fetchRecipesContainer}>
-              <AntDesignIcon name="search1" size={30} color="black" />
-              <Text style={styles.fetchRecipesText}>
-                Get Recipes Based On Your Items!
-              </Text>
-              <Text style={styles.fetchRecipesSubText}>
-                Choose one or more items and tap the search icon to find
-                recipes!
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <View style={styles.fetchRecipesContainer}>
+            <IconToolsKitchen2 color={'black'} size={40} />
+            <Text style={styles.fetchRecipesText}>
+              Get Recipes Based On Your Items!
+            </Text>
+            <Text style={styles.fetchRecipesSubText}>
+              Select one or more items to get started!
+            </Text>
+          </View>
         )}
 
         {isRecipesLoading ? (
@@ -193,11 +206,26 @@ const RecipesDash = () => {
       </View>
       <View style={styles.headerText}>
         <Text style={styles.titleText}>Your Items ({items.length})</Text>
-        <TouchableOpacity
-          style={styles.headerIcon}
-          onPress={handleRefreshRecipes}>
-          <AntDesignIcon name="search1" size={20} color="black" />
-        </TouchableOpacity>
+        <Pressable
+          disabled={selectedItems.length === 0}
+          onPress={handleRefreshRecipes}
+          style={({pressed}) => [
+            styles.button,
+            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#76c893'},
+            selectedItems.length === 0 && styles.disabledButton,
+          ]}>
+          <Text style={styles.saveText}>Get Recipes</Text>
+        </Pressable>
+        <Pressable
+          disabled={selectedItems.length === 0}
+          onPress={() => setSelectedItems([])}
+          style={({pressed}) => [
+            styles.button,
+            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#f4978e'},
+            selectedItems.length === 0 && styles.disabledButton,
+          ]}>
+          <Text style={styles.saveText}>Clear</Text>
+        </Pressable>
       </View>
 
       <FlatList
