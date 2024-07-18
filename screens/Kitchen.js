@@ -248,31 +248,6 @@ const Kitchen = ({route}) => {
     }
   };
 
-  // const fetchItems = async () => {
-  //   try {
-  //     if (!userEmail) {
-  //       console.error('User email is not available');
-  //       setIsItemsLoading(false);
-  //       return;
-  //     }
-
-  //     const response = await fetch(`${API_URL}/items?email=${userEmail}`);
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-
-  //     const sortedItems = sortItems(data);
-
-  //     setItems(sortedItems);
-  //   } catch (error) {
-  //     console.error('Error fetching items:', error.message);
-  //   } finally {
-  //     setIsItemsLoading(false);
-  //   }
-  // };
-
   async function addCustomItem(itemName) {
     setIsLoading(true);
     try {

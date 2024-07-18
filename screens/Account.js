@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
   TouchableOpacity,
   ScrollView,
   Modal,
@@ -21,8 +20,7 @@ import {icons} from './data/icons';
 import styles from './styles/account';
 
 const Account = () => {
-  const {userData, setUserData, fetchUserData, loading} =
-    useContext(UserContext);
+  const {userData, setUserData, fetchUserData} = useContext(UserContext);
   const [wastedItems, setWastedItems] = useState([]);
   const [consumedItems, setConsumedItems] = useState([]);
   const [isIconPickerVisible, setIconPickerVisible] = useState(false);
@@ -145,149 +143,143 @@ const Account = () => {
 
   return (
     <View style={styles.container}>
-      {loading ? (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#495057" />
-        </View>
-      ) : (
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.accountInfoWrapper}>
-            <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
-              {selectedIcon ? (
-                <Image source={selectedIcon} style={styles.accountImage} />
-              ) : (
-                <View style={styles.accountImageDefault}>
-                  <AntDesignIcon name="user" size={50} color="black" />
-                </View>
-              )}
-            </TouchableOpacity>
-
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>{userData?.firstName}</Text>
-              <Text style={styles.levelText}>Level {userData?.level}</Text>
-            </View>
-          </View>
-
-          <View style={styles.preferencesContainer}>
-            <Text style={styles.preferencesTitle}>Kitchen Preferences</Text>
-            <View style={styles.togglesContainer}>
-              <View style={styles.toggleContainer}>
-                <Text style={styles.toggleLabel}>Remove Meats:</Text>
-                <Switch
-                  value={omitMeats}
-                  onValueChange={value => {
-                    setOmitMeats(value);
-                    updatePreferences(value, omitSeafoods, omitDairy);
-                  }}
-                  trackColor={{false: '#767577', true: '#1b4965'}}
-                />
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.accountInfoWrapper}>
+          <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
+            {selectedIcon ? (
+              <Image source={selectedIcon} style={styles.accountImage} />
+            ) : (
+              <View style={styles.accountImageDefault}>
+                <AntDesignIcon name="user" size={50} color="black" />
               </View>
-
-              <View style={styles.toggleContainer}>
-                <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
-                <Switch
-                  value={omitSeafoods}
-                  onValueChange={value => {
-                    setOmitSeafoods(value);
-                    updatePreferences(omitMeats, value, omitDairy);
-                  }}
-                  trackColor={{false: '#767577', true: '#1b4965'}}
-                />
-              </View>
-
-              <View style={styles.toggleContainer}>
-                <Text style={styles.toggleLabel}>Remove Dairy:</Text>
-                <Switch
-                  value={omitDairy}
-                  onValueChange={value => {
-                    setOmitDairy(value);
-                    updatePreferences(omitMeats, omitSeafoods, value);
-                  }}
-                  trackColor={{false: '#767577', true: '#1b4965'}}
-                />
-              </View>
-            </View>
-
-            <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
-              <Text style={styles.pantryButtonText}>Go To Pantry</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.itemsList}>
-            <TouchableOpacity
-              onPress={() => setShowConsumedItems(!showConsumedItems)}
-              style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Consumed Items</Text>
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name={showConsumedItems ? 'caretup' : 'caretdown'}
-                size={20}
-                color="green"
-              />
-            </TouchableOpacity>
-            {showConsumedItems &&
-              consumedItems.slice(0, 5).map(item => (
-                <Text key={item._id} style={styles.item}>
-                  {capitalizeWords(item.name)} ({item.frequency})
-                </Text>
-              ))}
-          </View>
-
-          <View style={styles.itemsList}>
-            <TouchableOpacity
-              onPress={() => setShowWastedItems(!showWastedItems)}
-              style={styles.headerContainer}>
-              <Text style={styles.headerText}>Top 5 Wasted Items</Text>
-              <AntDesignIcon
-                style={styles.headerIcon}
-                name={showWastedItems ? 'caretup' : 'caretdown'}
-                size={20}
-                color="red"
-              />
-            </TouchableOpacity>
-            {showWastedItems &&
-              wastedItems.slice(0, 5).map(item => (
-                <Text key={item._id} style={styles.item}>
-                  {capitalizeWords(item.name)} ({item.frequency})
-                </Text>
-              ))}
-          </View>
-
-          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-            <Text style={styles.logoutButtonText}>Log Out</Text>
+            )}
           </TouchableOpacity>
 
-          <Modal
-            visible={isIconPickerVisible}
-            transparent={true}
-            animationType="slide"
-            onRequestClose={() => setIconPickerVisible(false)}>
-            <TouchableOpacity
-              style={styles.modalOverlay}
-              onPress={() => setIconPickerVisible(false)}
-              activeOpacity={1}>
-              <View style={styles.modalContent}>
-                <Text style={styles.modalTitleText}>Choose your Icon</Text>
-                <ScrollView>
-                  {icons.map((icon, index) => (
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() => {
-                        setSelectedIcon(icon.img);
-                        updateIconName(icon.name);
-                        setIconPickerVisible(false);
-                      }}
-                      style={styles.modalItemButton}>
-                      <Image source={icon.img} style={styles.modalItemImage} />
-                      <Text>{icon.name}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </ScrollView>
-              </View>
-            </TouchableOpacity>
-          </Modal>
-        </ScrollView>
-      )}
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleText}>{userData?.firstName}</Text>
+            <Text style={styles.levelText}>Level {userData?.level}</Text>
+          </View>
+        </View>
+
+        <View style={styles.preferencesContainer}>
+          <Text style={styles.preferencesTitle}>Kitchen Preferences</Text>
+          <View style={styles.togglesContainer}>
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Meats:</Text>
+              <Switch
+                value={omitMeats}
+                onValueChange={value => {
+                  setOmitMeats(value);
+                  updatePreferences(value, omitSeafoods, omitDairy);
+                }}
+                trackColor={{false: '#767577', true: '#1b4965'}}
+              />
+            </View>
+
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
+              <Switch
+                value={omitSeafoods}
+                onValueChange={value => {
+                  setOmitSeafoods(value);
+                  updatePreferences(omitMeats, value, omitDairy);
+                }}
+                trackColor={{false: '#767577', true: '#1b4965'}}
+              />
+            </View>
+
+            <View style={styles.toggleContainer}>
+              <Text style={styles.toggleLabel}>Remove Dairy:</Text>
+              <Switch
+                value={omitDairy}
+                onValueChange={value => {
+                  setOmitDairy(value);
+                  updatePreferences(omitMeats, omitSeafoods, value);
+                }}
+                trackColor={{false: '#767577', true: '#1b4965'}}
+              />
+            </View>
+          </View>
+
+          <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
+            <Text style={styles.pantryButtonText}>Go To Pantry</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.itemsList}>
+          <TouchableOpacity
+            onPress={() => setShowConsumedItems(!showConsumedItems)}
+            style={styles.headerContainer}>
+            <Text style={styles.headerText}>Top 5 Consumed Items</Text>
+            <AntDesignIcon
+              style={styles.headerIcon}
+              name={showConsumedItems ? 'caretup' : 'caretdown'}
+              size={20}
+              color="green"
+            />
+          </TouchableOpacity>
+          {showConsumedItems &&
+            consumedItems.slice(0, 5).map(item => (
+              <Text key={item._id} style={styles.item}>
+                {capitalizeWords(item.name)} ({item.frequency})
+              </Text>
+            ))}
+        </View>
+
+        <View style={styles.itemsList}>
+          <TouchableOpacity
+            onPress={() => setShowWastedItems(!showWastedItems)}
+            style={styles.headerContainer}>
+            <Text style={styles.headerText}>Top 5 Wasted Items</Text>
+            <AntDesignIcon
+              style={styles.headerIcon}
+              name={showWastedItems ? 'caretup' : 'caretdown'}
+              size={20}
+              color="red"
+            />
+          </TouchableOpacity>
+          {showWastedItems &&
+            wastedItems.slice(0, 5).map(item => (
+              <Text key={item._id} style={styles.item}>
+                {capitalizeWords(item.name)} ({item.frequency})
+              </Text>
+            ))}
+        </View>
+
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Text style={styles.logoutButtonText}>Log Out</Text>
+        </TouchableOpacity>
+
+        <Modal
+          visible={isIconPickerVisible}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={() => setIconPickerVisible(false)}>
+          <TouchableOpacity
+            style={styles.modalOverlay}
+            onPress={() => setIconPickerVisible(false)}
+            activeOpacity={1}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitleText}>Choose your Icon</Text>
+              <ScrollView>
+                {icons.map((icon, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      setSelectedIcon(icon.img);
+                      updateIconName(icon.name);
+                      setIconPickerVisible(false);
+                    }}
+                    style={styles.modalItemButton}>
+                    <Image source={icon.img} style={styles.modalItemImage} />
+                    <Text>{icon.name}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      </ScrollView>
     </View>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,9 +12,7 @@ import MultiSelectScreen from './screens/MultiSelect';
 import ItemDetails from './screens/ItemDetails';
 import RecipeDetails from './screens/RecipeDetails';
 import Account from './screens/Account';
-import CameraPage from './screens/CameraPage';
 import RecipesDash from './screens/RecipesDash';
-import ArticleDetails from './screens/ArticleDetails';
 import Learn from './screens/Learn';
 import ModuleStartScreen from './screens/ModuleStartScreen';
 import ModuleScreen from './screens/ModuleScreen';
@@ -25,43 +24,22 @@ import {UserProvider} from './contexts/UserContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
 const DashStack = createNativeStackNavigator();
-
 const ModuleStack = createNativeStackNavigator();
 
-function LogoTitle() {
-  // return <AntDesignIcon name="home" size={30} color="black" />;
-  return null;
-}
+const dashIcon = () => {
+  return <IconFridge size={20} color="black" />;
+};
+const recipesIcon = () => {
+  return <IconToolsKitchen2 color={'black'} size={20} />;
+};
+const accountIcon = () => {
+  return <AntDesignIcon name="user" size={20} color="black" />;
+};
 
-function CameraTitle() {
-  // return <AntDesignIcon name="camerao" size={30} color="black" />;
-  return null;
-}
-
-function MultiSelectTitle() {
-  // return <AntDesignIcon name="menuunfold" size={30} color="black" />;
-  return null;
-}
-
-function AccountTitle() {
-  // return <AntDesignIcon name="user" size={30} color="black" />;
-  return null;
-}
-
-function RecipesDashTitle() {
-  // return <AntDesignIcon name="search1" size={30} color="black" />;
-  return null;
-}
-function LearnTitle() {
-  // return <AntDesignIcon name="bulb1" size={30} color="black" />;
-  return null;
-}
-// function PantryTitle() {
-//   // return <AntDesignIcon name="bulb1" size={30} color="black" />;
-//   return null;
-// }
+const learnIcon = () => {
+  return <AntDesignIcon name="bulb1" size={20} color="black" />;
+};
 
 function DashStackScreen() {
   return (
@@ -69,7 +47,6 @@ function DashStackScreen() {
       <DashStack.Screen
         options={{
           headerShown: false,
-          headerTitle: props => <LogoTitle {...props} />,
         }}
         name="Kitchen"
         component={Kitchen}
@@ -77,36 +54,22 @@ function DashStackScreen() {
       <DashStack.Screen
         options={{
           headerShown: true,
-          headerTitle: props => <MultiSelectTitle {...props} />,
         }}
         name="MultiSelect"
         component={MultiSelectScreen}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="ItemDetails"
         component={ItemDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="RecipeDetails"
         component={RecipeDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: 'Article Details'}}
-        name="ArticleDetails"
-        component={ArticleDetails}
-      />
-      <DashStack.Screen
-        options={{
-          headerShown: true,
-          headerTitle: props => <CameraTitle {...props} />,
-        }}
-        name="CameraPage"
-        component={CameraPage}
-      />
-      <DashStack.Screen
-        options={{headerShown: false, headerTitle: 'Module'}}
+        options={{headerShown: false}}
         name="OnboardingStack"
         component={OnboardingStackScreen}
       />
@@ -164,16 +127,10 @@ function LearnStackScreen() {
         component={Learn}
         options={{
           headerShown: false,
-          headerTitle: props => <LearnTitle {...props} />,
         }}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
-        name="ArticleDetails"
-        component={ArticleDetails}
-      />
-      <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="ModuleStack"
         component={ModuleStackScreen}
       />
@@ -186,18 +143,17 @@ function AccountStackScreen() {
       <DashStack.Screen
         options={{
           headerShown: false,
-          headerTitle: props => <AccountTitle {...props} />,
         }}
         name="MyAccount"
         component={Account}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="RecipeDetails"
         component={RecipeDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="Pantry"
         component={Pantry}
       />
@@ -211,34 +167,18 @@ function RecipesDashStackScreen() {
       <DashStack.Screen
         options={{
           headerShown: false,
-          headerTitle: props => <RecipesDashTitle {...props} />,
         }}
         name="RecipesDash"
         component={RecipesDash}
       />
       <DashStack.Screen
-        options={{headerShown: true, headerTitle: ''}}
+        options={{headerShown: true}}
         name="RecipeDetails"
         component={RecipeDetails}
       />
     </DashStack.Navigator>
   );
 }
-
-const dashIcon = () => {
-  return <IconFridge size={20} color="black" />;
-};
-const recipesIcon = () => {
-  // return <AntDesignIcon name="search1" size={20} color="black" />;
-  return <IconToolsKitchen2 color={'black'} size={20} />;
-};
-const accountIcon = () => {
-  return <AntDesignIcon name="user" size={20} color="black" />;
-};
-
-const learnIcon = () => {
-  return <AntDesignIcon name="bulb1" size={20} color="black" />;
-};
 
 function MyTabsScreen() {
   return (
@@ -270,7 +210,6 @@ function MyTabsScreen() {
         component={LearnStackScreen}
         options={{
           headerShown: false,
-          headerTitle: props => <LearnTitle {...props} />,
           tabBarLabel: 'Learn',
           tabBarIcon: () => learnIcon(),
         }}
@@ -279,7 +218,6 @@ function MyTabsScreen() {
         name="Account"
         options={{
           headerShown: false,
-          headerTitle: props => <AccountTitle {...props} />,
           tabBarLabel: 'Account',
           tabBarIcon: () => accountIcon(),
         }}
@@ -291,7 +229,7 @@ function MyTabsScreen() {
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
+    <GestureHandlerRootView style={styles.gestureHandler}>
       <UserProvider>
         <NavigationContainer>
           <Stack.Navigator>
@@ -317,3 +255,9 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  gestureHandler: {
+    flex: 1,
+  },
+});
