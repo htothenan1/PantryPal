@@ -9,13 +9,13 @@ export default StyleSheet.create({
   screenWrapper: {
     marginBottom: 80,
   },
-  imageWrapper : {
+  imageWrapper: {
     alignItems: 'center',
   },
   titleText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 24,
+    fontSize: 22,
     marginTop: 10,
   },
   image: {
@@ -31,12 +31,12 @@ export default StyleSheet.create({
   overviewTitle: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 22,
+    fontSize: 20,
   },
   introText: {
     textAlign: 'left',
     fontFamily: 'Avenir-Book',
-    fontSize: 20,
+    fontSize: 18,
     marginHorizontal: 20,
     marginVertical: 10,
   },

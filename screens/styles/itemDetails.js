@@ -26,7 +26,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
   },
   storageTipText: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: 'Avenir-Book',
     paddingHorizontal: 30,
   },
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   compatibleItem: {
     paddingHorizontal: 30,
     fontFamily: 'Avenir-Book',
-    fontSize: 16,
+    fontSize: 17,
     marginVertical: 5,
   },
 });

@@ -123,6 +123,9 @@ export default StyleSheet.create({
     fontSize: 14,
     color: 'black',
   },
+  whiteText: {
+    color: 'white',
+  },
   itemImage: {
     width: 40,
     height: 40,

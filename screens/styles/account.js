@@ -32,12 +32,6 @@ export default StyleSheet.create({
     marginLeft: 8,
     flex: 1,
   },
-  modalTitleText: {
-    textAlign: 'center',
-    fontSize: 20,
-    paddingVertical: 10,
-    backgroundColor: '#e5e5e5',
-  },
   titleText: {
     textAlign: 'left',
     fontSize: 20,
@@ -106,12 +100,20 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
+  modalTitleText: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingVertical: 10,
+    backgroundColor: '#e5e5e5',
+    marginBottom: 10,
+  },
   modalContent: {
     height: height * 0.5,
     backgroundColor: 'white',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     padding: 20,
+    marginTop: 20,
   },
   modalItemButton: {
     flexDirection: 'row',
@@ -119,9 +121,13 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   modalItemImage: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     marginRight: 10,
+  },
+  modalItemText: {
+    fontSize: 18,
+    fontFamily: 'Avenir-Book',
   },
   togglesContainer: {
     marginBottom: 10,

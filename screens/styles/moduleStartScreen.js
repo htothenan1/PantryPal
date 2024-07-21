@@ -11,7 +11,7 @@ export default StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 24,
+    fontSize: 22,
     marginTop: 10,
   },
   image: {
@@ -29,39 +29,39 @@ export default StyleSheet.create({
   overviewTitle: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 22,
+    fontSize: 20,
   },
   introText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 20,
-    marginHorizontal: 12,
+    fontSize: 18,
+    paddingHorizontal: 12,
   },
   bulletText: {
     marginLeft: 20,
     fontFamily: 'Avenir-Book',
-    fontSize: 18,
+    fontSize: 17,
   },
   startButton: {
     position: 'absolute',
-    bottom: 20, // Set the bottom margin
+    bottom: 20,
     left: 0,
-    right: 0, // Ensures the View spans the full width
-    justifyContent: 'center', // This will center the button horizontally
-    alignItems: 'center', // Centers the button in the added View
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonContainer: {
     backgroundColor: '#1b4965',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 10, // Adjust for more or less rounded corners
-    marginHorizontal: 50, // Adds some margin on the sides
+    borderRadius: 10,
+    marginHorizontal: 50,
   },
 
   buttonText: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Avenir-Book', // or any preferred font
+    fontFamily: 'Avenir-Book',
   },
 });

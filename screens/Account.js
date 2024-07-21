@@ -159,15 +159,15 @@ const Account = () => {
       {
         name: 'Consumed',
         count: consumedFrequency,
-        color: 'green',
-        legendFontColor: '#7F7F7F',
+        color: '#228B22',
+        legendFontColor: '#228B22',
         legendFontSize: 15,
       },
       {
         name: 'Wasted',
         count: wastedFrequency,
-        color: 'red',
-        legendFontColor: '#7F7F7F',
+        color: '#B22222',
+        legendFontColor: '#B22222',
         legendFontSize: 15,
       },
     ];
@@ -290,7 +290,7 @@ const Account = () => {
               style={styles.headerIcon}
               name={showConsumedItems ? 'caretup' : 'caretdown'}
               size={20}
-              color="green"
+              color="#228B22"
             />
           </TouchableOpacity>
           {showConsumedItems &&
@@ -310,7 +310,7 @@ const Account = () => {
               style={styles.headerIcon}
               name={showWastedItems ? 'caretup' : 'caretdown'}
               size={20}
-              color="red"
+              color="#B22222"
             />
           </TouchableOpacity>
           {showWastedItems &&
@@ -335,7 +335,7 @@ const Account = () => {
             onPress={() => setIconPickerVisible(false)}
             activeOpacity={1}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitleText}>Choose your Icon</Text>
+              <Text style={styles.modalTitleText}>Choose your FlavrPro</Text>
               <ScrollView>
                 {icons.map((icon, index) => (
                   <TouchableOpacity
@@ -347,7 +347,7 @@ const Account = () => {
                     }}
                     style={styles.modalItemButton}>
                     <Image source={icon.img} style={styles.modalItemImage} />
-                    <Text>{icon.name}</Text>
+                    <Text style={styles.modalItemText}>{icon.name}</Text>
                   </TouchableOpacity>
                 ))}
               </ScrollView>

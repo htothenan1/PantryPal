@@ -17,13 +17,13 @@ export default StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 24,
+    fontSize: 20,
     marginTop: 10,
   },
   contentText: {
     // textAlign: 'center',
     fontFamily: 'Avenir-Book',
-    fontSize: 20,
+    fontSize: 18,
     marginTop: 10,
     marginHorizontal: 16,
   },
@@ -39,8 +39,8 @@ export default StyleSheet.create({
     backgroundColor: '#1b4965',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 10, // Adjust for more or less rounded corners
-    marginHorizontal: 50, // Adds some margin on the sides
+    borderRadius: 10,
+    marginHorizontal: 50,
   },
   buttonText: {
     color: 'white',

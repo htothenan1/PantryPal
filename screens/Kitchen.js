@@ -404,12 +404,12 @@ const Kitchen = ({route}) => {
         <TouchableOpacity
           onPress={() => handleWaste(item)}
           style={styles.swipeButton}>
-          <AntDesignIcon name="dislike2" size={25} color="red" />
+          <AntDesignIcon name="dislike2" size={25} color="#B22222" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleConsume(item)}
           style={styles.swipeButton}>
-          <AntDesignIcon name="like2" size={25} color="green" />
+          <AntDesignIcon name="like2" size={25} color="#228B22" />
         </TouchableOpacity>
       </View>
     );

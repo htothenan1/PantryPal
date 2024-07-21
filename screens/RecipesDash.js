@@ -211,20 +211,32 @@ const RecipesDash = () => {
           onPress={handleRefreshRecipes}
           style={({pressed}) => [
             styles.button,
-            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#76c893'},
+            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#228B22'},
             selectedItems.length === 0 && styles.disabledButton,
           ]}>
-          <Text style={styles.saveText}>Get Recipes</Text>
+          <Text
+            style={[
+              styles.saveText,
+              selectedItems.length > 0 && styles.whiteText,
+            ]}>
+            Get Recipes
+          </Text>
         </Pressable>
         <Pressable
           disabled={selectedItems.length === 0}
           onPress={() => setSelectedItems([])}
           style={({pressed}) => [
             styles.button,
-            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#f4978e'},
+            {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#B22222'},
             selectedItems.length === 0 && styles.disabledButton,
           ]}>
-          <Text style={styles.saveText}>Clear</Text>
+          <Text
+            style={[
+              styles.saveText,
+              selectedItems.length > 0 && styles.whiteText,
+            ]}>
+            Clear
+          </Text>
         </Pressable>
       </View>
 
