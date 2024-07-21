@@ -16,7 +16,6 @@ import blackberries from '../../assets/blackberries.png';
 import blueberries from '../../assets/blueberries.png';
 import bokchoy from '../../assets/bokchoy.png';
 import broccoli from '../../assets/broccoli.png';
-import bread from '../../assets/bread.png';
 import rabe from '../../assets/rabe.png';
 import broccolini from '../../assets/broccolini.png';
 import brusselssprouts from '../../assets/brusselssprouts.png';
@@ -39,7 +38,6 @@ import cucumbers from '../../assets/cucumbers.png';
 import eggplant from '../../assets/eggplant.png';
 import eggs from '../../assets/eggs.png';
 import endive from '../../assets/endive.png';
-import fish from '../../assets/fish.png';
 import garlic from '../../assets/garlic.png';
 import ginger from '../../assets/ginger.png';
 import grapefruit from '../../assets/grapefruit.png';
@@ -64,7 +62,6 @@ import onions from '../../assets/onions.png';
 import oranges from '../../assets/oranges.png';
 import parsley from '../../assets/parsley.png';
 import parsnips from '../../assets/parsnips.png';
-import pasta from '../../assets/pasta.png';
 import peaches from '../../assets/peaches.png';
 import pears from '../../assets/pears.png';
 import peas from '../../assets/peas.png';
@@ -91,6 +88,41 @@ import watermelon from '../../assets/watermelon.png';
 import yams from '../../assets/yams.png';
 import yogurt from '../../assets/yogurt.png';
 import zucchini from '../../assets/zucchini.png';
+import ciabatta from '../../assets/ciabatta_bread.png';
+import pita from '../../assets/pita_bread.png';
+import white from '../../assets/white_bread.png';
+import wholewheat from '../../assets/wholewheat_bread.png';
+import baguette from '../../assets/baguette.png';
+import multigrain from '../../assets/multigrain.png';
+import rye from '../../assets/rye.png';
+import sourdough from '../../assets/sourdough.png';
+import focaccia from '../../assets/focaccia.png';
+import brioche from '../../assets/brioche.png';
+import cheddar from '../../assets/cheddar.png';
+import gouda from '../../assets/gouda.png';
+import gruyere from '../../assets/gruyere.png';
+import mozzarella from '../../assets/mozzarella.png';
+import parmesan from '../../assets/parmesan.png';
+import provolone from '../../assets/provolone.png';
+import cod from '../../assets/cod.png';
+import salmon from '../../assets/salmon.png';
+import trout from '../../assets/trout.png';
+import tuna from '../../assets/tuna.png';
+import bass from '../../assets/bass.png';
+import catfish from '../../assets/catfish.png';
+import crab from '../../assets/crab.png';
+import halibut from '../../assets/halibut.png';
+import mackerel from '../../assets/mackerel.png';
+import mussels from '../../assets/mussels.png';
+import oysters from '../../assets/oysters.png';
+import squid from '../../assets/squid.png';
+import swordfish from '../../assets/swordfish.png';
+import beef from '../../assets/beef.png';
+import beefribeye from '../../assets/beefribeye.png';
+import beefribs from '../../assets/beefribs.png';
+import beefshortribs from '../../assets/beefshortribs.png';
+import brisket from '../../assets/brisket.png';
+import filetmignon from '../../assets/filetmignon.png';
 
 export const ingredients = [
   {
@@ -438,6 +470,84 @@ export const ingredients = [
     compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
   },
   {
+    item_id: '2e129a82-1d23-4f31-bf3f-abcf62eff0fc',
+    name: 'beef',
+    img: beef,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
+    item_id: '2eg29ag2-1j2j-4f3w-bf5f-fbcf62jff0fc',
+    name: 'beef rib eye',
+    img: beefribeye,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
+    item_id: 'hy12hayy-1dyy-4fyy-bfyy-abhfyyehf0hc',
+    name: 'beef ribs',
+    img: beefribs,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
+    item_id: 'ce1cca8c-1dc3-4fc1-bfcf-accf62cffcfc',
+    name: 'beef short ribs',
+    img: beefshortribs,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
+    item_id: 'te129tt2-1dt3-4t31-bt3t-abtf62tff0tc',
+    name: 'brisket',
+    img: brisket,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
+    item_id: 'ue12ua8u-1du3-4fu1-bu3f-abuf62euf0fc',
+    name: 'filet mignon',
+    img: filetmignon,
+    exp_int: 4,
+    category: 'meats',
+    goodsourceof: 'protein, b vitamins',
+    storage_tip:
+      "If unopened, the original packaging will protect the bacon well. Once opened, or if you've removed some slices, wrap the remaining bacon tightly in plastic wrap or aluminum foil. Consider dividing the bacon into smaller portions before freezing.",
+    whyEat:
+      'Bacon, while flavorful and a good source of protein, should be consumed in moderation due to its high levels of saturated fats, sodium, and potential preservatives. It can provide some essential nutrients like B vitamins and selenium but is best enjoyed occasionally as part of a balanced diet.',
+    compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
+  },
+  {
     item_id: 'f889beec-f422-4f35-88b7-cb0a7598d589',
     name: 'bagels',
     img: bagel,
@@ -699,67 +809,114 @@ export const ingredients = [
     compatibles: ['ginger', 'rice', 'sesame oil', 'sesame seeds', 'soy sauce'],
   },
   {
-    item_id: '22ea545b-3049-4148-9416-529dfeaa4b77',
-    name: 'bread',
-    img: bread,
+    item_id: '22eao45b-30l9-4148-9d16-529dfeda4b77',
+    name: 'white bread',
+    img: white,
     exp_int: 5,
     category: 'grains',
     storage_tip:
       'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
     whyEat:
       'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
-    // subItems: [
-    //   {
-    //     name: 'white bread',
-    //     item_id: 'ba069cdb-8461-44e1-997a-49ed5be694c9',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'whole wheat bread',
-    //     item_id: '3736c31f-4e95-4f7f-8044-ec8dc9f943c9',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'multigrain bread',
-    //     item_id: '74754bf3-0f27-4438-a3a2-dd27dc88f5e7',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'rye bread',
-    //     item_id: 'b067198f-8694-4160-bf3f-822ca1cc9022',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'sourdough bread',
-    //     item_id: '0a3b9008-daff-447f-a21d-51796f14ae97',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'pita bread',
-    //     item_id: '39eb6553-0699-4950-80c9-44b9a736e465',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'focaccia bread',
-    //     item_id: '8d2f92c3-4fe3-40eb-9cd8-a10589ae78dd',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'ciabatta bread',
-    //     item_id: '3dac41e3-08d5-4453-bc01-c6b4a2bea43b',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'baguette',
-    //     item_id: '5ad44d13-0704-4eda-ad29-6cceb40c05bc',
-    //     img: bread,
-    //   },
-    //   {
-    //     name: 'brioche',
-    //     item_id: 'dadfaf40-b4d9-4151-84f1-b8df3d1ef39d',
-    //     img: bread,
-    //   },
-    // ],
+  },
+  {
+    item_id: '2237545b-30h9-4148-941f-529ddeaa4j77',
+    name: 'whole wheat bread',
+    img: wholewheat,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22ea5w5b-3149-4148-9416-529dfhaa4b77',
+    name: 'multigrain bread',
+    img: multigrain,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22ja545b-3s49-4a48-9416-5293feaatb77',
+    name: 'rye bread',
+    img: rye,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22ea5n5b-3049-4l48-94s6-529df4aa4b77',
+    name: 'sourdough bread',
+    img: sourdough,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22sa545b-3049-4s48-9416-529dfsaa4s77',
+    name: 'pita bread',
+    img: pita,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22eay45b-30y9-414y-94y6-529dyeaa4b77',
+    name: 'focaccia bread',
+    img: focaccia,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22eaq45b-304q-414q-94q6-529dqeaa4b77',
+    name: 'ciabatta bread',
+    img: ciabatta,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22ea575b-3049-4748-9417-529dfe7a4b77',
+    name: 'baguette',
+    img: baguette,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
+  },
+  {
+    item_id: '22ev545b-30v9-4148-94v6-529dfeva4b77',
+    name: 'brioche bread',
+    img: brioche,
+    exp_int: 5,
+    category: 'grains',
+    storage_tip:
+      'Store bread in a cool and dry place, away from direct sunlight and humidity. A pantry or bread box is a good option. Can be frozen, and defrosted before eating. Keep stale bread for breadcrumbs.',
+    whyEat:
+      'Bread provides quick energy and essential nutrients like fiber and B vitamins, especially when made from whole grains. Refined bread can spike blood sugar, so choose whole grain options and consume in moderation.',
   },
   {
     item_id: '6b5b4719-0167-4b8f-a9f6-9317433c8cc7',
@@ -1045,8 +1202,152 @@ export const ingredients = [
     ],
   },
   {
-    item_id: '58e37dc3-f21b-4316-8aa7-c812f3a9b7cb',
-    name: 'cheese',
+    item_id: '58b3hdbh-fvhb-43v6-8av7-c81gh3a9b7cb',
+    name: 'cheddar cheese',
+    img: cheddar,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: '58s37ds3-f2sb-43s6-8as7-c8s2f3a9s7cb',
+    name: 'gouda cheese',
+    img: gouda,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: '58r37dr3-f2rb-43r6-8ar7-c81rf3a9brcb',
+    name: 'gruyere cheese',
+    img: gruyere,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: '5fe37fc3-f2fb-43f6-8af7-c812f3afb7cf',
+    name: 'mozzarella cheese',
+    img: mozzarella,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: '58en7dcn-f2nb-43n6-8an7-c81nf3a9n7cb',
+    name: 'parmesan cheese',
+    img: parmesan,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: 'q8e3qdcq-f2qb-4q16-8qa7-c81qf3a9q7cb',
+    name: 'provolone cheese',
+    img: provolone,
+    exp_int: 10,
+    category: 'dairy',
+    storage_tip:
+      'Store cheese in its original packaging or rewrap it in wax paper or parchment paper. Avoid using plastic wrap directly on the cheese, as it can trap moisture and affect the flavor. Keep different cheeses separate to prevent their flavors from mingling.',
+    whyEat:
+      'Cheese is a good source of protein, calcium, and vitamins A and B12, supporting muscle health, bone strength, and overall nutrition. However, it can be high in saturated fat and sodium, so it should be consumed in moderation.',
+    compatibles: [
+      'apples',
+      'bread',
+      'celery',
+      'cherries',
+      'ham',
+      'dates',
+      'figs',
+      'grapes',
+      'nuts',
+      'hazelnuts',
+      'pears',
+    ],
+  },
+  {
+    item_id: '58e3bdcb-f2bb-43b6-8ab7-c8b2f3b9b7cb',
+    name: 'swiss cheese',
     img: cheese,
     exp_int: 10,
     category: 'dairy',
@@ -1067,83 +1368,6 @@ export const ingredients = [
       'hazelnuts',
       'pears',
     ],
-    // subItems: [
-    //   {
-    //     name: 'cheddar',
-    //     item_id: '57c9b51e-f66b-4d89-ae66-4b49e3e663f5',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'mozzarella',
-    //     item_id: '74dc314b-e799-4b78-a2f8-c93771d363cf',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'parmesan',
-    //     item_id: '9dc8b394-a748-4a51-b4d5-381eba6e1d04',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'american',
-    //     item_id: 'eb20f60c-1383-4218-9caa-5402c691ef20',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'swiss',
-    //     item_id: 'e4c797b6-70c4-4247-9c2f-5f244ad0334c',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'provolone',
-    //     item_id: '72171e9b-ea42-4fb1-a884-55a16acfc4d8',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'monterey jack',
-    //     item_id: '065bd018-5977-416b-9abc-68dee4ccb169',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'blue cheese',
-    //     item_id: '42f2231c-d0e8-475b-8596-c684b262788d',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'gouda',
-    //     item_id: '575ddf8e-8b63-428a-8783-78e657f91d32',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'brie',
-    //     item_id: '7ee755f3-b299-4620-ab37-ccd637c9d4ff',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'feta',
-    //     item_id: 'e497af74-3cca-4fd5-97f5-a8b750d35741',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'ricotta',
-    //     item_id: '05fda1c0-ed5c-4678-bc5e-06e09e465ac7',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'colby',
-    //     item_id: '6a8cc560-7761-4084-a823-705c885c74e3',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'pepper jack',
-    //     item_id: '4c45d93c-dfcb-4e2e-824b-eac214b62ec4',
-    //     img: cheese,
-    //   },
-    //   {
-    //     name: 'gruyère',
-    //     item_id: 'bd31043c-337e-439e-a3d4-056b4210688d',
-    //     img: cheese,
-    //   },
-    // ],
   },
   {
     item_id: '2f7a58a7-fd20-499e-97b5-03bbb8115d0c',
@@ -1582,73 +1806,191 @@ export const ingredients = [
     ],
   },
   {
-    item_id: 'e2c6a1d4-dfae-4f8d-a80a-9e136e3b4eb3',
-    name: 'fish',
-    img: fish,
+    item_id: '12c6a2d1-df1e-418d-a81a-9e13613b4e13',
+    name: 'cod',
+    img: cod,
     exp_int: 2,
     category: 'seafoods',
     storage_tip: 'Keep fish refrigerated and use within the recommended time.',
     whyEat:
       'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
-    // subItems: [
-    //   {
-    //     name: 'salmon',
-    //     item_id: '9832c35e-3de2-45dd-931b-4a13b289a6ea',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'tuna',
-    //     item_id: 'd2b5e0c0-45e0-4fbf-b10c-8f7110a3a585',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'cod',
-    //     item_id: '1f4a39ca-7f9b-46aa-8aa3-e29e8ee3e02f',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'trout',
-    //     item_id: '9e0d882e-4773-4785-bddc-7bf798490789',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'bass',
-    //     item_id: '4a10e71b-e27e-4d64-9d1b-488e1d6c9cbf',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'mahi-mahi',
-    //     item_id: 'd8e7dfae-02e7-4f5c-b1dd-aceb8dfb7e0b',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'swordfish',
-    //     item_id: 'f98f13dd-3d18-4a45-899a-41564f09c7f0',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'halibut',
-    //     item_id: '1c5b422b-7ad1-40eb-bc3e-72c3468544b8',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'snapper',
-    //     item_id: 'e0c5c7f2-8c14-416d-a98e-87c46271ffcc',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'mackerel',
-    //     item_id: '157d16e3-8ab9-4ff4-8bf2-aa6da06da7c6',
-    //     img: fish,
-    //   },
-    //   {
-    //     name: 'flounder',
-    //     item_id: 'fbb5ef6e-1f01-4d16-bc8b-c5a19c2733d9',
-    //     img: fish,
-    //   },
-    // ],
     compatibles: ['fennel', 'lemons', 'lemon juice'],
   },
+  // {
+  //   item_id: '22c6a2d4-d2a2-4f2d-a82a-9e126e3b42b2',
+  //   name: 'mahi-mahi',
+  //   img: mahimahi,
+  //   exp_int: 2,
+  //   category: 'seafoods',
+  //   storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+  //   whyEat:
+  //     'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+  //   compatibles: ['fennel', 'lemons', 'lemon juice'],
+  // },
+  {
+    item_id: 'w2c6awd4-dfwe-4fwd-a8wa-9e1w6e3bwebw',
+    name: 'salmon',
+    img: salmon,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'ebc6a1b4-dbab-4fbd-a8ba-9e1b6e3bbebb',
+    name: 'trout',
+    img: trout,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'h5c6a5h5-df5e-4f5d-a85a-9e1h5e3bh5b5',
+    name: 'bass',
+    img: bass,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'n2c6n1hn-dfne-4fnd-a8na-9e1n6e3bnebn',
+    name: 'catfish',
+    img: catfish,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: '1gc61gh1-df1e-41hg-a8ga-9egh6egbhegh',
+    name: 'crab',
+    img: crab,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'h5c6a5h4-d5he-4f5d-a85a-9e1h5e3bh5bh',
+    name: 'halibut',
+    img: halibut,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'b2c6abhb-dfhb-4bhb-a8ba-9ebh6e3bhefh',
+    name: 'mackerel',
+    img: mackerel,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'hgc6aghg-dfhe-4shs-a8sa-9e1h6s3bhebh',
+    name: 'mussels',
+    img: mussels,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'h2v6a1v4-dfve-4jhj-a8ja-9e1hje3bhjbh',
+    name: 'oysters',
+    img: oysters,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'hxc6axhx-dfxe-4fxd-a8xa-9e1x6e3bxebx',
+    name: 'squid',
+    img: squid,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'hmc6amhm-dfme-4fmd-a8ma-9e1hme3bhebh',
+    name: 'swordfish',
+    img: swordfish,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  {
+    item_id: 'hmb6abbm-dbbe-4fmd-a8ma-9e1hme3bhebh',
+    name: 'tuna',
+    img: tuna,
+    exp_int: 2,
+    category: 'seafoods',
+    storage_tip: 'Keep fish refrigerated and use within the recommended time.',
+    whyEat:
+      'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
+    compatibles: ['fennel', 'lemons', 'lemon juice'],
+  },
+  // subItems:
+  //   {
+  //     name: 'bass',
+  //     item_id: '4a10e71b-e27e-4d64-9d1b-488e1d6c9cbf',
+  //     img: fish,
+  //   },
+  //   {
+  //     name: 'swordfish',
+  //     item_id: 'f98f13dd-3d18-4a45-899a-41564f09c7f0',
+  //     img: fish,
+  //   },
+  //   {
+  //     name: 'halibut',
+  //     item_id: '1c5b422b-7ad1-40eb-bc3e-72c3468544b8',
+  //     img: fish,
+  //   },
+  //   {
+  //     name: 'snapper',
+  //     item_id: 'e0c5c7f2-8c14-416d-a98e-87c46271ffcc',
+  //     img: fish,
+  //   },
+  //   {
+  //     name: 'mackerel',
+  //     item_id: '157d16e3-8ab9-4ff4-8bf2-aa6da06da7c6',
+  //     img: fish,
+  //   },
+  //   {
+  //     name: 'flounder',
+  //     item_id: 'fbb5ef6e-1f01-4d16-bc8b-c5a19c2733d9',
+  //     img: fish,
+  //   },
+  // ],
   {
     item_id: 'cba633d0-fc26-438c-9ab4-8d2ab73adcaa',
     name: 'garlic',
