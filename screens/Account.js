@@ -17,7 +17,11 @@ import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {icons} from './data/icons';
+import {PieChart} from 'react-native-chart-kit';
+import {Dimensions} from 'react-native';
 import styles from './styles/account';
+
+const screenWidth = Dimensions.get('window').width;
 
 const Account = () => {
   const {userData, setUserData, fetchUserData} = useContext(UserContext);
@@ -141,6 +145,36 @@ const Account = () => {
       });
   };
 
+  const prepareChartData = (consumedItems, wastedItems) => {
+    const consumedFrequency = consumedItems.reduce(
+      (total, item) => total + item.frequency,
+      0,
+    );
+    const wastedFrequency = wastedItems.reduce(
+      (total, item) => total + item.frequency,
+      0,
+    );
+
+    return [
+      {
+        name: 'Consumed',
+        count: consumedFrequency,
+        color: 'green',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 15,
+      },
+      {
+        name: 'Wasted',
+        count: wastedFrequency,
+        color: 'red',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 15,
+      },
+    ];
+  };
+
+  const chartData = prepareChartData(consumedItems, wastedItems);
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -206,6 +240,47 @@ const Account = () => {
           </TouchableOpacity>
         </View>
 
+        <View style={styles.chartContainer}>
+          <Text style={styles.chartTitle}>Consumed vs Wasted</Text>
+          <PieChart
+            data={chartData}
+            width={screenWidth}
+            height={220}
+            chartConfig={{
+              backgroundColor: '#1cc910',
+              backgroundGradientFrom: '#eff3ff',
+              backgroundGradientTo: '#efefef',
+              decimalPlaces: 2,
+              color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+              propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#ffa726',
+              },
+            }}
+            accessor={'count'}
+            paddingLeft="50"
+            backgroundColor={'transparent'}
+            hasLegend={false}
+          />
+
+          <View style={styles.legendContainer}>
+            {chartData.map((entry, index) => (
+              <View key={index} style={styles.legendItem}>
+                <View
+                  style={[styles.legendColor, {backgroundColor: entry.color}]}
+                />
+                <Text style={styles.legendLabel}>
+                  {entry.name} ({entry.count})
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
         <View style={styles.itemsList}>
           <TouchableOpacity
             onPress={() => setShowConsumedItems(!showConsumedItems)}

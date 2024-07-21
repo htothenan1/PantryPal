@@ -148,4 +148,39 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  chartContainer: {
+    marginVertical: 8,
+    borderRadius: 16,
+    padding: 16,
+    backgroundColor: 'white',
+    // alignItems: 'center', // Center horizontally
+    // justifyContent: 'center', // Center vertically if needed
+  },
+
+  chartTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 16,
+    fontFamily: 'Avenir-Book',
+  },
+  legendContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center', // Center the legend
+    marginTop: 16,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 10, // Add space between legend items
+  },
+  legendColor: {
+    width: 16,
+    height: 16,
+    marginRight: 8,
+  },
+  legendLabel: {
+    fontSize: 15,
+    color: '#7F7F7F',
+  },
 });
