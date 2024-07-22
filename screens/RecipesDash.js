@@ -13,10 +13,9 @@ import {useNavigation} from '@react-navigation/core';
 import {UserContext} from '../contexts/UserContext';
 import {capitalizeWords} from './helpers/functions';
 import {SPOON_KEY} from '@env';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {IconToolsKitchen2} from '@tabler/icons-react-native';
 import {auth} from '../firebase';
-import {ingredients} from './data/ingredients'; // Import ingredients data
+import {ingredients} from './data/ingredients';
 import chefLogo from '../assets/chefs_hat.png';
 
 import styles from './styles/recipesDash';
@@ -105,10 +104,10 @@ const RecipesDash = () => {
 
     if (currentItems && currentItems.length > 0) {
       const queryString = currentItems.map(item => item.name).join(',+');
-      const randomInt = Math.floor(Math.random() * 10) + 1;
+      // const randomInt = Math.floor(Math.random() * 10) + 1;
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&offset=${randomInt}&number=25`,
+          `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&number=25`,
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
