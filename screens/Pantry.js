@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {API_URL} from '@env';
 import {pantryItems} from './data/itemNames';
+import {capitalizeWords} from './helpers/functions';
 import {useNavigation} from '@react-navigation/core';
 import {auth} from '../firebase';
 import styles from './styles/pantry';
@@ -114,7 +115,7 @@ const Pantry = () => {
                     isSelected ? styles.selectedText : styles.unselectedText,
                     isExpanded ? styles.expandedText : null,
                   ]}>
-                  {item}
+                  {capitalizeWords(item)}
                 </Text>
                 {isExpanded && (
                   <Text style={styles.expandedInfoText}>

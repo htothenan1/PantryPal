@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
@@ -17,6 +18,8 @@ import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {icons} from './data/icons';
+import chefLogo from '../assets/chefs_hat.png';
+import {ingredients} from './data/ingredients'; // Import ingredients data
 import {PieChart} from 'react-native-chart-kit';
 import {Dimensions} from 'react-native';
 import styles from './styles/account';
@@ -63,7 +66,6 @@ const Account = () => {
         fetchUserData(userEmail);
         fetchItemsData(userEmail);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userEmail]),
   );
 
@@ -177,6 +179,13 @@ const Account = () => {
 
   const availableIcons = icons.filter(icon => icon.level <= userData?.level);
 
+  const getIconForItem = itemName => {
+    const ingredient = ingredients.find(
+      ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
+    );
+    return ingredient ? ingredient.img : null;
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -192,9 +201,15 @@ const Account = () => {
                 </TouchableOpacity>
               </>
             ) : (
-              <View style={styles.accountImageDefault}>
-                <AntDesignIcon name="user" size={50} color="black" />
-              </View>
+              <>
+                <Image source={chefLogo} style={styles.accountImage} />
+
+                <TouchableOpacity
+                  style={styles.chooseFlavrButton}
+                  onPress={() => setIconPickerVisible(true)}>
+                  <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
+                </TouchableOpacity>
+              </>
             )}
           </View>
           <View style={styles.titleContainer}>
@@ -247,7 +262,7 @@ const Account = () => {
             <Text style={styles.pantryButtonText}>Your Pantry</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.pantryButton}
+            style={styles.favoriteRecipesButton}
             onPress={() => navigation.navigate('FavoriteRecipes')}>
             <Text style={styles.pantryButtonText}>Favorite Recipes</Text>
           </TouchableOpacity>
@@ -308,9 +323,15 @@ const Account = () => {
           </TouchableOpacity>
           {showConsumedItems &&
             consumedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {capitalizeWords(item.name)} ({item.frequency})
-              </Text>
+              <View key={item._id} style={styles.itemContainer}>
+                <Image
+                  source={getIconForItem(item.name)}
+                  style={styles.itemIcon}
+                />
+                <Text style={styles.itemText}>
+                  {capitalizeWords(item.name)} ({item.frequency})
+                </Text>
+              </View>
             ))}
         </View>
 
@@ -328,9 +349,15 @@ const Account = () => {
           </TouchableOpacity>
           {showWastedItems &&
             wastedItems.slice(0, 5).map(item => (
-              <Text key={item._id} style={styles.item}>
-                {capitalizeWords(item.name)} ({item.frequency})
-              </Text>
+              <View key={item._id} style={styles.itemContainer}>
+                <Image
+                  source={getIconForItem(item.name)}
+                  style={styles.itemIcon}
+                />
+                <Text style={styles.itemText}>
+                  {capitalizeWords(item.name)} ({item.frequency})
+                </Text>
+              </View>
             ))}
         </View>
 

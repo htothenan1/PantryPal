@@ -3187,7 +3187,7 @@ export const ingredients = [
   },
   {
     item_id: '2eg29ag2-1j2j-4f3w-bf5f-fbcf62jff0fc',
-    name: 'beef rib eye',
+    name: 'beef ribeye',
     img: beefribeye,
     exp_int: 4,
     category: 'meats',
@@ -3814,6 +3814,30 @@ export const ingredients = [
   //     img: turkey,
   //   },
   // ],
+  {
+    item_id: '1nf4fn1a-cn1n-40n4-92na-295nf01bna7n',
+    name: 'turkey',
+    img: turkey,
+    exp_int: 2,
+    category: 'meats',
+    storage_tip:
+      "Airtight container, inside fridge. Cooked turkey should be consumed within 3-4 days of cooking. If you won't use it within that time, consider freezing it.",
+    whyEat:
+      'Turkey is a lean source of high-quality protein, vitamins B6 and B12, and essential minerals like selenium and zinc, supporting muscle growth, energy production, and immune function. It is also low in fat, promoting heart health when consumed as part of a balanced diet.',
+    compatibles: [
+      'chestnuts',
+      'cranberries',
+      'garlic',
+      'mushrooms',
+      'oil',
+      'onions',
+      'pepper',
+      'black pepper',
+      'potatoes',
+      'sage',
+      'salt',
+    ],
+  },
   {
     item_id: '14f4f51a-c31a-4074-921a-2954f01b0a72',
     name: 'turkey breast',

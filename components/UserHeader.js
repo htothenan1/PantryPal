@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Image, View, Text} from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import styles from './styles/userHeader.js';
+import chefLogo from '../assets/chefs_hat.png';
 
 const UserHeader = ({selectedIcon, userData, navigation}) => {
   return (
@@ -11,12 +12,7 @@ const UserHeader = ({selectedIcon, userData, navigation}) => {
       {selectedIcon ? (
         <Image source={selectedIcon} style={styles.userIcon} />
       ) : (
-        <AntDesignIcon
-          style={styles.userIcon}
-          name="user"
-          size={53}
-          color="black"
-        />
+        <Image style={styles.userIcon} source={chefLogo} />
       )}
       <View>
         <Text style={styles.userName}>{userData?.firstName}</Text>

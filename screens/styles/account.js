@@ -20,12 +20,15 @@ export default StyleSheet.create({
     marginTop: 30,
   },
   accountImage: {
-    width: 100,
-    height: 100,
-    resizeMode: 'stretch',
+    width: 80,
+    height: 80,
+    // resizeMode: 'stretch',
+    marginLeft: 10,
   },
   accountImageDefault: {
-    marginTop: 10,
+    width: 80,
+    height: 80,
+    // resizeMode: 'stretch',
   },
   titleContainer: {
     justifyContent: 'center',
@@ -86,6 +89,13 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: '#1b4965',
     borderRadius: 10,
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  favoriteRecipesButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
     marginVertical: 20,
   },
   pantryButtonText: {
@@ -105,9 +115,8 @@ export default StyleSheet.create({
   },
   item: {
     textAlign: 'left',
-    fontSize: 16,
+    // fontSize: 16,
     fontFamily: 'Avenir-Book',
-    marginVertical: 4,
   },
   modalOverlay: {
     flex: 1,
@@ -174,6 +183,21 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     // alignItems: 'center', // Center horizontally
     // justifyContent: 'center', // Center vertically if needed
+  },
+
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 4,
+  },
+  itemIcon: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
+  },
+  itemText: {
+    fontSize: 16,
+    color: '#333',
   },
 
   chartTitle: {
