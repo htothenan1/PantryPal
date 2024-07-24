@@ -32,9 +32,22 @@ export default StyleSheet.create({
     marginLeft: 8,
     flex: 1,
   },
+  chooseFlavrButton: {
+    // marginTop: 10,
+    padding: 5,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    width: 100,
+  },
+  chooseFlavrButtonText: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+  },
   titleText: {
     textAlign: 'left',
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
   },

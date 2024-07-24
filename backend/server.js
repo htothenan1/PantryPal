@@ -357,20 +357,43 @@ app.post('/generateStorageTip', async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'user',
           content: `Best storage tips for ${item}, limit response to two sentences. Make sure you are interpreting the item as a common grocery item, if possible.`,
         },
       ],
-      model: 'gpt-3.5-turbo',
     });
 
     const tip = completion.choices[0].message.content;
     res.json({storageTip: tip});
   } catch (error) {
-    console.error(error);
+    console.error('Error generating storage tip:', error);
     res.status(500).send('Error generating storage tip');
+  }
+});
+
+// Return OpenAI health facts
+app.post('/generateHealthFacts', async (req, res) => {
+  const {item} = req.body;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'user',
+          content: `Best health facts for ${item}. Limit response to two sentences. Make sure you are interpreting the item as a common grocery item, if possible.`,
+        },
+      ],
+    });
+
+    const fact = completion.choices[0].message.content;
+    res.json({healthFact: fact});
+  } catch (error) {
+    console.error('Error generating health facts:', error);
+    res.status(500).send('Error generating health facts');
   }
 });
 

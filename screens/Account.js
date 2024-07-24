@@ -175,20 +175,28 @@ const Account = () => {
 
   const chartData = prepareChartData(consumedItems, wastedItems);
 
+  const availableIcons = icons.filter(icon => icon.level <= userData?.level);
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.accountInfoWrapper}>
-          <TouchableOpacity onPress={() => setIconPickerVisible(true)}>
+          <View>
             {selectedIcon ? (
-              <Image source={selectedIcon} style={styles.accountImage} />
+              <>
+                <Image source={selectedIcon} style={styles.accountImage} />
+                <TouchableOpacity
+                  style={styles.chooseFlavrButton}
+                  onPress={() => setIconPickerVisible(true)}>
+                  <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
+                </TouchableOpacity>
+              </>
             ) : (
               <View style={styles.accountImageDefault}>
                 <AntDesignIcon name="user" size={50} color="black" />
               </View>
             )}
-          </TouchableOpacity>
-
+          </View>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>{userData?.firstName}</Text>
             <Text style={styles.levelText}>Level {userData?.level}</Text>
@@ -236,7 +244,12 @@ const Account = () => {
           </View>
 
           <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
-            <Text style={styles.pantryButtonText}>Go To Pantry</Text>
+            <Text style={styles.pantryButtonText}>Your Pantry</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.pantryButton}
+            onPress={() => navigation.navigate('FavoriteRecipes')}>
+            <Text style={styles.pantryButtonText}>Favorite Recipes</Text>
           </TouchableOpacity>
         </View>
 
@@ -335,9 +348,9 @@ const Account = () => {
             onPress={() => setIconPickerVisible(false)}
             activeOpacity={1}>
             <View style={styles.modalContent}>
-              <Text style={styles.modalTitleText}>Choose your FlavrPro</Text>
+              <Text style={styles.modalTitleText}>Your Available Flavrs</Text>
               <ScrollView>
-                {icons.map((icon, index) => (
+                {availableIcons.map((icon, index) => (
                   <TouchableOpacity
                     key={index}
                     onPress={() => {
@@ -347,7 +360,12 @@ const Account = () => {
                     }}
                     style={styles.modalItemButton}>
                     <Image source={icon.img} style={styles.modalItemImage} />
-                    <Text style={styles.modalItemText}>{icon.name}</Text>
+                    <View style={styles.modalItemTextContainer}>
+                      <Text style={styles.modalItemText}>{icon.name}</Text>
+                      <Text style={styles.modalItemLevel}>
+                        Level {icon.level}
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                 ))}
               </ScrollView>

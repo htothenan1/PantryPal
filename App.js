@@ -19,6 +19,7 @@ import ModuleScreen from './screens/ModuleScreen';
 import OnboardingStartScreen from './screens/OnboardingStartScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import Pantry from './screens/Pantry';
+import FavoriteRecipes from './screens/FavoriteRecipes';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {UserProvider} from './contexts/UserContext';
 
@@ -156,6 +157,11 @@ function AccountStackScreen() {
         options={{headerShown: true}}
         name="Pantry"
         component={Pantry}
+      />
+      <DashStack.Screen
+        options={{headerShown: true}}
+        name="FavoriteRecipes"
+        component={FavoriteRecipes}
       />
     </DashStack.Navigator>
   );

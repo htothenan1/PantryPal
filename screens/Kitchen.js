@@ -282,6 +282,23 @@ const Kitchen = ({route}) => {
           const tipData = await tipResponse.json();
           storageTip = tipData.storageTip;
         }
+        const healthFactResponse = await fetch(
+          `${API_URL}/generateHealthFacts`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({item: itemName}),
+          },
+        );
+
+        if (!healthFactResponse.ok) {
+          console.error(`HTTP error! Status: ${healthFactResponse.status}`);
+        } else {
+          const healthFactData = await healthFactResponse.json();
+          whyEat = healthFactData.healthFact;
+        }
       }
 
       const newItem = {
