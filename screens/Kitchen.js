@@ -80,7 +80,6 @@ const Kitchen = ({route}) => {
 
   useEffect(() => {
     setIsItemsLoading(true);
-
     fetchItems(userEmail);
   }, []);
 
