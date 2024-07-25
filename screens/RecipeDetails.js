@@ -3,6 +3,9 @@ import {Text, Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import {API_URL} from '@env';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import RenderHtml from 'react-native-render-html';
+import {useWindowDimensions} from 'react-native';
+
 import styles from './styles/recipeDetails';
 
 const RecipeDetails = ({route}) => {
@@ -10,6 +13,7 @@ const RecipeDetails = ({route}) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const userEmail = auth.currentUser?.email;
+  const {width} = useWindowDimensions();
 
   useEffect(() => {
     checkIfFavorited();
@@ -83,41 +87,56 @@ const RecipeDetails = ({route}) => {
     recipe.analyzedInstructions[0].steps &&
     recipe.analyzedInstructions[0].steps.length > 0;
 
+  const tagsStyles = {
+    a: {
+      color: 'blue',
+      textDecorationLine: 'none',
+    },
+  };
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       <Image source={{uri: recipe.image}} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.titleText}>{recipe.title}</Text>
-        <TouchableOpacity
-          onPress={toggleFavoriteRecipe}
-          style={styles.favoriteButton}>
-          <AntDesignIcon
-            name={isFavorited ? 'heart' : 'hearto'}
-            size={24}
-            color={isFavorited ? 'red' : 'black'}
-          />
-          <Text style={styles.favoriteText}>
-            {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+        <View style={{paddingHorizontal: 2}}>
+          <Text style={styles.titleText}>{recipe.title}</Text>
+          <TouchableOpacity
+            onPress={toggleFavoriteRecipe}
+            style={styles.favoriteButton}>
+            <AntDesignIcon
+              name={isFavorited ? 'heart' : 'hearto'}
+              size={24}
+              color={isFavorited ? 'red' : 'black'}
+            />
+            <Text style={styles.favoriteText}>
+              {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Text>
+          </TouchableOpacity>
+          <Text style={styles.servingsText}>{recipe.servings} Servings</Text>
+          <Text style={styles.servingsText}>
+            Ready in {recipe.readyInMinutes} minutes
           </Text>
-        </TouchableOpacity>
-        <Text style={styles.servingsText}>Servings: {recipe.servings}</Text>
+        </View>
 
-        <Text style={styles.ingredientsTitleText}>Ingredients:</Text>
-        {recipe.extendedIngredients.map((ingredient, index) => (
-          <Text key={index} style={styles.ingredientsText}>
-            {highlightMatchingWords(
-              ingredient.original,
-              selectedIngredients
-                ? selectedIngredients.map(i => i.toLowerCase())
-                : [],
-            )}
-          </Text>
-        ))}
+        <View style={styles.ingredientsContainer}>
+          <Text style={styles.ingredientsTitleText}>Ingredients</Text>
+          {recipe.extendedIngredients.map((ingredient, index) => (
+            <Text key={index} style={styles.ingredientsText}>
+              {'\u2023 '}
+              {highlightMatchingWords(
+                ingredient.original,
+                selectedIngredients
+                  ? selectedIngredients.map(i => i.toLowerCase())
+                  : [],
+              )}
+            </Text>
+          ))}
+        </View>
         {hasInstructions ? (
-          <>
-            <Text style={styles.instructionsTitleText}>Instructions:</Text>
+          <View style={styles.instructionsContainer}>
+            <Text style={styles.instructionsTitleText}>Instructions</Text>
             {recipe.analyzedInstructions[0].steps.map((step, index) => (
               <Text key={index} style={styles.instructionsText}>
                 {index + 1}.{' '}
@@ -129,12 +148,26 @@ const RecipeDetails = ({route}) => {
                 )}
               </Text>
             ))}
-          </>
+          </View>
         ) : (
           <Text style={styles.instructionsText}>
             No instructions available.
           </Text>
         )}
+
+        <View style={styles.ingredientsContainer}>
+          <Text style={styles.ingredientsTitleText}>Summary</Text>
+          <RenderHtml
+            baseStyle={{
+              fontSize: 15,
+              lineHeight: 20,
+              fontFamily: 'Avenir-Book',
+            }}
+            contentWidth={width}
+            source={{html: recipe.summary}}
+            tagsStyles={tagsStyles}
+          />
+        </View>
       </View>
     </ScrollView>
   );

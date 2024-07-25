@@ -35,7 +35,6 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     paddingHorizontal: 30,
     fontSize: 18,
-    marginTop: 12,
   },
   compatibleItemContainer: {
     flexDirection: 'row',
@@ -51,5 +50,29 @@ export default StyleSheet.create({
   compatibleItem: {
     fontFamily: 'Avenir-Book',
     fontSize: 17,
+  },
+  storageTipContainer: {
+    // borderWidth: 0.2,
+    borderRadius: 10,
+    marginVertical: 5,
+    marginHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: '#EDF2F4',
+  },
+  healthFactsContainer: {
+    // borderWidth: 0.1,
+    borderRadius: 10,
+    marginVertical: 5,
+    marginHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#EDF2F4',
+  },
+  bestPairsContainer: {
+    // borderWidth: 0.2,
+    borderRadius: 10,
+    marginVertical: 5,
+    marginHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: '#FFF3E0',
   },
 });

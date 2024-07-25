@@ -152,7 +152,7 @@ const RecipesDash = () => {
       <TouchableOpacity
         onPress={() => handleSelectRecipe(item.id)}
         activeOpacity={1}
-        style={{width: cardWidth, marginRight: 20}}>
+        style={{width: cardWidth, borderRadius: 20, marginHorizontal: 2}}>
         <Image source={{uri: item.image}} style={styles.image} />
         <Text style={styles.footerText}>{title}</Text>
       </TouchableOpacity>

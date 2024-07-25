@@ -40,14 +40,18 @@ const ItemDetails = ({route}) => {
         <Image source={itemImage} style={styles.background} />
         <Text style={styles.headerText}>{capitalizeWords(item?.name)}</Text>
       </View>
-      <Text style={styles.compatibleHeader}>Storage Tips:</Text>
-      <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
-      <Text style={styles.compatibleHeader}>Health Facts:</Text>
-      <Text style={styles.storageTipText}>{item?.whyEat}</Text>
+      <View style={styles.storageTipContainer}>
+        <Text style={styles.compatibleHeader}>Storage Tips</Text>
+        <Text style={styles.storageTipText}>{item?.storage_tip}</Text>
+      </View>
+      <View style={styles.healthFactsContainer}>
+        <Text style={styles.compatibleHeader}>Health Facts</Text>
+        <Text style={styles.storageTipText}>{item?.whyEat}</Text>
+      </View>
 
       {compatibleUserItems.length > 0 && (
-        <View>
-          <Text style={styles.compatibleHeader}>Your Best Pairings:</Text>
+        <View style={styles.bestPairsContainer}>
+          <Text style={styles.compatibleHeader}>Your Best Pairings</Text>
           {compatibleUserItems.map((compatibleItem, index) => (
             <View key={index} style={styles.compatibleItemContainer}>
               <Image

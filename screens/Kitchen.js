@@ -609,7 +609,7 @@ const Kitchen = ({route}) => {
             open={open}
             date={selectedDate}
             minimumDate={new Date()}
-            maximumDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
+            maximumDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)}
             onConfirm={date => {
               setOpen(false);
               setSelectedDate(date);

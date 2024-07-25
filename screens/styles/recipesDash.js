@@ -62,8 +62,8 @@ export default StyleSheet.create({
   image: {
     width: cardWidth,
     height: 200,
-    resizeMode: 'cover',
-    marginRight: 50,
+    // resizeMode: 'cover',
+    // marginRight: 50,
   },
   titleText: {
     textAlign: 'center',

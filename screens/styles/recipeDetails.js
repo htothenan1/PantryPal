@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   contentContainer: {
     paddingBottom: 50,
@@ -11,9 +12,9 @@ export default StyleSheet.create({
     padding: 20,
   },
   titleText: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: 'Avenir-Book',
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   redText: {
     color: 'red',
@@ -21,7 +22,9 @@ export default StyleSheet.create({
   image: {
     height: 200,
     width: '100%',
-    marginBottom: 10,
+    // marginBottom: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   favoriteButton: {
     flexDirection: 'row',
@@ -39,25 +42,43 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     marginBottom: 10,
   },
+  ingredientsContainer: {
+    borderRadius: 10,
+    marginVertical: 5,
+    // marginHorizontal: 10,
+    padding: 15,
+    backgroundColor: '#EDF2F4',
+  },
   ingredientsTitleText: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Avenir-Book',
-    marginBottom: 10,
+    marginBottom: 5,
     fontWeight: 'bold',
   },
   ingredientsText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 18,
-    marginBottom: 5,
+    fontSize: 16,
+    marginVertical: 1,
+  },
+  instructionsContainer: {
+    borderRadius: 10,
+    marginVertical: 5,
+    padding: 15,
+    backgroundColor: '#EDF2F4',
   },
   instructionsTitleText: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Avenir-Book',
-    marginBottom: 10,
+    marginBottom: 5,
     fontWeight: 'bold',
   },
   instructionsText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 18,
+    fontSize: 16,
+    marginVertical: 1,
+  },
+  summaryText: {
+    marginVertical: 10,
+    fontSize: 40,
   },
 });
