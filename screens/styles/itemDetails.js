@@ -37,10 +37,19 @@ export default StyleSheet.create({
     fontSize: 18,
     marginTop: 12,
   },
-  compatibleItem: {
+  compatibleItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 30,
+    marginVertical: 5,
+  },
+  compatibleItemIcon: {
+    width: 40,
+    height: 40,
+    marginRight: 5,
+  },
+  compatibleItem: {
     fontFamily: 'Avenir-Book',
     fontSize: 17,
-    marginVertical: 5,
   },
 });

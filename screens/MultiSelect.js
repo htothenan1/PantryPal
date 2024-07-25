@@ -331,7 +331,7 @@ const MultiSelectScreen = ({route}) => {
           </Text>
           <Text
             style={(styles.itemExpInt, isSelected && styles.selectedItemText)}>
-            Default Exp: {itemExpInt}
+            Use-By: {itemExpInt}
           </Text>
         </TouchableOpacity>
         {isExpanded && item.subItems && (
@@ -388,10 +388,16 @@ const MultiSelectScreen = ({route}) => {
               onPress={() => addItems(selectedItems)}
               style={({pressed}) => [
                 styles.button,
-                {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#76c893'},
+                {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#228B22'},
                 selectedItems.length === 0 && styles.disabledButton,
               ]}>
-              <Text style={styles.saveText}>Save</Text>
+              <Text
+                style={[
+                  styles.saveText,
+                  selectedItems.length !== 0 && styles.whiteText,
+                ]}>
+                Save
+              </Text>
             </Pressable>
           </View>
         )}

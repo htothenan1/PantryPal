@@ -7,6 +7,7 @@ import {
   findIngredient,
   findCompatibleUserItems,
 } from '../screens/helpers/functions';
+import {ingredients} from './data/ingredients';
 
 const ItemDetails = ({route}) => {
   const item = route.params?.item || null;
@@ -23,6 +24,13 @@ const ItemDetails = ({route}) => {
     ingredient,
     userItems,
   );
+
+  const getIconForItem = itemName => {
+    const ingredient = ingredients.find(
+      ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
+    );
+    return ingredient ? ingredient.img : chefLogo;
+  };
 
   return (
     <ScrollView
@@ -41,9 +49,15 @@ const ItemDetails = ({route}) => {
         <View>
           <Text style={styles.compatibleHeader}>Your Best Pairings:</Text>
           {compatibleUserItems.map((compatibleItem, index) => (
-            <Text key={index} style={styles.compatibleItem}>
-              {capitalizeWords(compatibleItem)}
-            </Text>
+            <View key={index} style={styles.compatibleItemContainer}>
+              <Image
+                source={getIconForItem(compatibleItem)}
+                style={styles.compatibleItemIcon}
+              />
+              <Text style={styles.compatibleItem}>
+                {capitalizeWords(compatibleItem)}
+              </Text>
+            </View>
           ))}
         </View>
       )}

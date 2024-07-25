@@ -113,4 +113,7 @@ export default StyleSheet.create({
     fontSize: 14,
     color: 'black',
   },
+  whiteText: {
+    color: 'white',
+  },
 });
