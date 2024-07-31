@@ -449,6 +449,32 @@ app.post('/items', async (req, res) => {
   }
 });
 
+// Update user's max score
+app.put('/users/maxScore', async (req, res) => {
+  const {email, maxScore} = req.body;
+
+  if (!email || maxScore === undefined) {
+    return res.status(400).send('Email and maxScore are required');
+  }
+
+  try {
+    const user = await User.findOneAndUpdate(
+      {email: email},
+      {maxScore: maxScore},
+      {new: true},
+    );
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Error updating max score:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 app.put('/users/preferences', async (req, res) => {
   const {email, omitMeats, omitSeafoods, omitDairy} = req.body;
 

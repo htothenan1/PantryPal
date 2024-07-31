@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   email: {type: String, required: true, maxlength: 30},
   firstName: {type: String, required: true, maxLength: 30},
   itemsCreated: {type: Number, default: 0},
-  iconName: {type: String, default: ''}, // New field for storing icon name
+  iconName: {type: String, default: ''},
   itemsDeleted: {
     total: {type: Number, default: 0},
     byUndo: {type: Number, default: 0},
@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   xp: {type: Number, default: 0},
   level: {type: Number, default: 1},
+  maxScore: {type: Number, default: 0}, // New field for max score
   achievements: [
     {
       achievementId: {type: mongoose.Schema.Types.ObjectId, ref: 'Achievement'},

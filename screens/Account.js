@@ -266,6 +266,11 @@ const Account = () => {
             onPress={() => navigation.navigate('FavoriteRecipes')}>
             <Text style={styles.pantryButtonText}>Favorite Recipes</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.favoriteRecipesButton}
+            onPress={() => navigation.navigate('SortingGame')}>
+            <Text style={styles.pantryButtonText}>Sorting Game</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.chartContainer}>
