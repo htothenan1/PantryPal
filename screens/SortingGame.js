@@ -7,9 +7,10 @@ import {
   Animated,
   PanResponder,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {IconLeaf, IconLeafOff} from '@tabler/icons-react-native';
-
+import greenbin from '../assets/greenbin.png';
 import {auth} from '../firebase'; // Update this path based on your actual file structure
 import {API_URL} from '@env'; // Ensure you have this set up in your environment
 
@@ -208,13 +209,14 @@ const SortingGame = () => {
   }, [userEmail]);
 
   const getItemSpeed = score => {
-    if (score >= 35) return 1000;
-    if (score >= 30) return 1500;
+    if (score >= 50) return 1000;
+    if (score >= 35) return 1250;
+    if (score >= 30) return 1750;
     if (score >= 25) return 2000;
-    if (score >= 20) return 2500;
-    if (score >= 15) return 3000;
-    if (score >= 10) return 3500;
-    return 3700;
+    if (score >= 20) return 2250;
+    if (score >= 15) return 2500;
+    if (score >= 10) return 2750;
+    return 3000;
   };
 
   useEffect(() => {
@@ -423,7 +425,15 @@ const SortingGame = () => {
         <TouchableOpacity
           onPress={() => handleBinPress('trash')}
           style={[styles.binSection, {backgroundColor: '#B22222'}]}>
-          {/* <AntDesignIcon name="delete" size={50} color="white" /> */}
+          {/* <Image
+            source={greenbin}
+            style={{
+              height: 150,
+              width: 150,
+              position: 'absolute',
+              bottom: 85,
+            }}
+          /> */}
           <IconLeafOff size={50} color="white" />
           <Text style={styles.binLabel}>{bins[1].label}</Text>
         </TouchableOpacity>
@@ -452,6 +462,15 @@ const SortingGame = () => {
         <TouchableOpacity
           onPress={() => handleBinPress('compost')}
           style={[styles.binSection, {backgroundColor: '#228B22'}]}>
+          {/* <Image
+            source={greenbin}
+            style={{
+              height: 150,
+              width: 150,
+              position: 'absolute',
+              bottom: 85,
+            }}
+          /> */}
           <IconLeaf size={50} color="white" />
           <Text style={styles.binLabel}>{bins[0].label}</Text>
         </TouchableOpacity>
