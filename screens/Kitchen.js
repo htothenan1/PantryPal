@@ -254,6 +254,7 @@ const Kitchen = ({route}) => {
         throw new Error('Item name is required');
       }
 
+      // Ensure itemName is defined
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
       );
@@ -267,6 +268,7 @@ const Kitchen = ({route}) => {
         expInt = existingIngredient.exp_int;
         whyEat = existingIngredient.whyEat;
       } else {
+        // Handle undefined itemName appropriately
         const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
           method: 'POST',
           headers: {
@@ -446,7 +448,7 @@ const Kitchen = ({route}) => {
   };
 
   const navToItemDetails = itemObject => {
-    navigation.navigate('ItemDetails', {
+    navigation.navigate('Item Details', {
       item: itemObject,
       userItems: items,
     });

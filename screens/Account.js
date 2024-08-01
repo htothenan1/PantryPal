@@ -134,7 +134,7 @@ const Account = () => {
   };
 
   const navToPantry = () => {
-    navigation.navigate('Pantry');
+    navigation.navigate('Pantry Items');
   };
 
   const handleLogout = () => {
@@ -219,7 +219,7 @@ const Account = () => {
         </View>
 
         <View style={styles.preferencesContainer}>
-          <Text style={styles.preferencesTitle}>Kitchen Preferences</Text>
+          <Text style={styles.preferencesTitle}>Kitchen Dashboard</Text>
           <View style={styles.togglesContainer}>
             <View style={styles.toggleContainer}>
               <Text style={styles.toggleLabel}>Remove Meats:</Text>
@@ -259,17 +259,17 @@ const Account = () => {
           </View>
 
           <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
-            <Text style={styles.pantryButtonText}>Your Pantry</Text>
+            <Text style={styles.pantryButtonText}>Pantry Items</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
-            onPress={() => navigation.navigate('FavoriteRecipes')}>
+            onPress={() => navigation.navigate('Favorite Recipes')}>
             <Text style={styles.pantryButtonText}>Favorite Recipes</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.favoriteRecipesButton}
-            onPress={() => navigation.navigate('SortingGame')}>
-            <Text style={styles.pantryButtonText}>Sorting Game</Text>
+            style={styles.compostGameButton}
+            onPress={() => navigation.navigate('Compost Game')}>
+            <Text style={styles.compostGameText}>Compost Game</Text>
           </TouchableOpacity>
         </View>
 

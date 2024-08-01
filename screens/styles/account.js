@@ -36,7 +36,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   chooseFlavrButton: {
-    // marginTop: 10,
     padding: 5,
     backgroundColor: '#1b4965',
     borderRadius: 10,
@@ -89,14 +88,25 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: '#1b4965',
     borderRadius: 10,
-    marginTop: 20,
-    marginBottom: 10,
+    marginVertical: 15,
   },
   favoriteRecipesButton: {
     padding: 10,
     backgroundColor: '#1b4965',
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 15,
+  },
+  compostGameButton: {
+    padding: 10,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    marginVertical: 15,
+  },
+  compostGameText: {
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
   },
   pantryButtonText: {
     color: 'white',
@@ -175,6 +185,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
     marginBottom: 10,
+    textAlign: 'center',
   },
   chartContainer: {
     marginVertical: 8,

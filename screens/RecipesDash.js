@@ -135,7 +135,7 @@ const RecipesDash = () => {
       }
 
       const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {
+      navigation.navigate('Recipe Details', {
         recipe,
         selectedIngredients: selectedItems,
       });

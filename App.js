@@ -62,14 +62,14 @@ function DashStackScreen() {
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="ItemDetails"
+        name="Item Details"
         component={ItemDetails}
       />
-      <DashStack.Screen
+      {/* <DashStack.Screen
         options={{headerShown: true}}
-        name="RecipeDetails"
+        name="Recipe Details"
         component={RecipeDetails}
-      />
+      /> */}
       <DashStack.Screen
         options={{headerShown: false}}
         name="OnboardingStack"
@@ -146,27 +146,27 @@ function AccountStackScreen() {
         options={{
           headerShown: false,
         }}
-        name="MyAccount"
+        name="Account"
         component={Account}
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="RecipeDetails"
+        name="Recipe Details"
         component={RecipeDetails}
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="Pantry"
+        name="Pantry Items"
         component={Pantry}
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="FavoriteRecipes"
+        name="Favorite Recipes"
         component={FavoriteRecipes}
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="SortingGame"
+        name="Compost Game"
         component={SortingGame}
       />
     </DashStack.Navigator>
@@ -180,12 +180,12 @@ function RecipesDashStackScreen() {
         options={{
           headerShown: false,
         }}
-        name="RecipesDash"
+        name="Recipes"
         component={RecipesDash}
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="RecipeDetails"
+        name="Recipe Details"
         component={RecipeDetails}
       />
     </DashStack.Navigator>
@@ -209,7 +209,7 @@ function MyTabsScreen() {
         }}
       />
       <Tab.Screen
-        name="Recipes"
+        name="Recipes Home"
         component={RecipesDashStackScreen}
         options={{
           headerShown: false,
@@ -227,7 +227,7 @@ function MyTabsScreen() {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="User Account"
         options={{
           headerShown: false,
           tabBarLabel: 'Account',

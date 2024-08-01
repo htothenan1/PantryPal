@@ -8,7 +8,8 @@ import {
   PanResponder,
   TouchableOpacity,
 } from 'react-native';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {IconLeaf, IconLeafOff} from '@tabler/icons-react-native';
+
 import {auth} from '../firebase'; // Update this path based on your actual file structure
 import {API_URL} from '@env'; // Ensure you have this set up in your environment
 
@@ -112,6 +113,8 @@ const SortingGame = () => {
   const [points, setPoints] = useState(0);
   const [maxScore, setMaxScore] = useState(0);
   const [flashColor, setFlashColor] = useState(null);
+  const [gameEnded, setGameEnded] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const userEmail = auth.currentUser?.email;
 
@@ -149,36 +152,37 @@ const SortingGame = () => {
     if (score >= 20) return 2500;
     if (score >= 15) return 3000;
     if (score >= 10) return 3500;
-    if (score >= 5) return 4000;
-    return 5000;
+    return 3700;
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomItem = items[Math.floor(Math.random() * items.length)];
-      const newItem = {
-        ...randomItem,
-        id: Math.random().toString(),
-        x: new Animated.Value(width / 2 - 35), // Center horizontally
-        y: new Animated.Value(0),
-      };
-      setFallingItems(prevItems => [...prevItems, newItem]);
+    if (gameStarted && !gameEnded) {
+      const interval = setInterval(() => {
+        const randomItem = items[Math.floor(Math.random() * items.length)];
+        const newItem = {
+          ...randomItem,
+          id: Math.random().toString(),
+          x: new Animated.Value(width / 2 - 35), // Center horizontally
+          y: new Animated.Value(0),
+        };
+        setFallingItems(prevItems => [...prevItems, newItem]);
 
-      const itemSpeed = getItemSpeed(points);
+        const itemSpeed = getItemSpeed(points);
 
-      Animated.timing(newItem.y, {
-        toValue: height,
-        duration: itemSpeed,
-        useNativeDriver: false,
-      }).start(() => {
-        setFallingItems(prevItems =>
-          prevItems.filter(item => item.id !== newItem.id),
-        );
-      });
-    }, 2000);
+        Animated.timing(newItem.y, {
+          toValue: height,
+          duration: itemSpeed,
+          useNativeDriver: false,
+        }).start(() => {
+          setFallingItems(prevItems =>
+            prevItems.filter(item => item.id !== newItem.id),
+          );
+        });
+      }, 2000);
 
-    return () => clearInterval(interval);
-  }, [points]);
+      return () => clearInterval(interval);
+    }
+  }, [points, gameEnded, gameStarted]);
 
   const createPanResponder = item =>
     PanResponder.create({
@@ -201,6 +205,7 @@ const SortingGame = () => {
               setFlashColor('lightgreen');
             } else {
               setFlashColor('lightcoral');
+              setGameEnded(true);
             }
           } else {
             toX = width - 200; // Reduced the distance to drift less
@@ -209,6 +214,7 @@ const SortingGame = () => {
               setFlashColor('lightgreen');
             } else {
               setFlashColor('lightcoral');
+              setGameEnded(true);
             }
           }
 
@@ -246,31 +252,9 @@ const SortingGame = () => {
 
     const lastItem = fallingItems[fallingItems.length - 1];
 
-    if (binType === 'compost') {
+    if (binType === 'trash') {
       Animated.spring(lastItem.x, {
         toValue: 0,
-        useNativeDriver: false,
-      }).start(() => {
-        Animated.timing(lastItem.y, {
-          toValue: height,
-          duration: 500, // Faster falling speed once past midpoint
-          useNativeDriver: false,
-        }).start(() => {
-          setFallingItems(prevItems =>
-            prevItems.filter(item => item.id !== lastItem.id),
-          );
-          if (lastItem.type === 'compost') {
-            setPoints(points + 1);
-            setFlashColor('lightgreen');
-          } else {
-            setFlashColor('lightcoral');
-          }
-          setTimeout(() => setFlashColor(null), 300);
-        });
-      });
-    } else if (binType === 'trash') {
-      Animated.spring(lastItem.x, {
-        toValue: width - 80, // Reduced the distance to drift less
         useNativeDriver: false,
       }).start(() => {
         Animated.timing(lastItem.y, {
@@ -286,11 +270,48 @@ const SortingGame = () => {
             setFlashColor('lightgreen');
           } else {
             setFlashColor('lightcoral');
+            setGameEnded(true);
+          }
+          setTimeout(() => setFlashColor(null), 300);
+        });
+      });
+    } else if (binType === 'compost') {
+      Animated.spring(lastItem.x, {
+        toValue: width - 80, // Reduced the distance to drift less
+        useNativeDriver: false,
+      }).start(() => {
+        Animated.timing(lastItem.y, {
+          toValue: height,
+          duration: 500, // Faster falling speed once past midpoint
+          useNativeDriver: false,
+        }).start(() => {
+          setFallingItems(prevItems =>
+            prevItems.filter(item => item.id !== lastItem.id),
+          );
+          if (lastItem.type === 'compost') {
+            setPoints(points + 1);
+            setFlashColor('lightgreen');
+          } else {
+            setFlashColor('lightcoral');
+            setGameEnded(true);
           }
           setTimeout(() => setFlashColor(null), 300);
         });
       });
     }
+  };
+
+  const handleStart = () => {
+    setPoints(0);
+    setGameEnded(false);
+    setFallingItems([]);
+    setGameStarted(true);
+  };
+
+  const handleRestart = () => {
+    setPoints(0);
+    setGameEnded(false);
+    setFallingItems([]);
   };
 
   useEffect(() => {
@@ -338,10 +359,11 @@ const SortingGame = () => {
       <View style={styles.midpointLine} />
       <View style={styles.binsContainer}>
         <TouchableOpacity
-          onPress={() => handleBinPress('compost')}
-          style={[styles.binSection, {backgroundColor: 'green'}]}>
-          <AntDesignIcon name="delete" size={50} color="white" />
-          <Text style={styles.binLabel}>{bins[0].label}</Text>
+          onPress={() => handleBinPress('trash')}
+          style={[styles.binSection, {backgroundColor: '#B22222'}]}>
+          {/* <AntDesignIcon name="delete" size={50} color="white" /> */}
+          <IconLeafOff size={50} color="white" />
+          <Text style={styles.binLabel}>{bins[1].label}</Text>
         </TouchableOpacity>
         <View
           style={[
@@ -350,12 +372,26 @@ const SortingGame = () => {
           ]}>
           <Text style={styles.maxScoreText}>Max Score: {maxScore}</Text>
           <Text style={styles.pointsText}>Points: {points}</Text>
+          {!gameStarted && (
+            <TouchableOpacity
+              onPress={handleStart}
+              style={styles.restartButton}>
+              <Text style={styles.restartButtonText}>Start</Text>
+            </TouchableOpacity>
+          )}
+          {gameEnded && gameStarted && (
+            <TouchableOpacity
+              onPress={handleRestart}
+              style={styles.restartButton}>
+              <Text style={styles.restartButtonText}>Restart</Text>
+            </TouchableOpacity>
+          )}
         </View>
         <TouchableOpacity
-          onPress={() => handleBinPress('trash')}
-          style={[styles.binSection, {backgroundColor: 'red'}]}>
-          <AntDesignIcon name="delete" size={50} color="white" />
-          <Text style={styles.binLabel}>{bins[1].label}</Text>
+          onPress={() => handleBinPress('compost')}
+          style={[styles.binSection, {backgroundColor: '#228B22'}]}>
+          <IconLeaf size={50} color="white" />
+          <Text style={styles.binLabel}>{bins[0].label}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -377,12 +413,10 @@ const styles = StyleSheet.create({
   pointsText: {
     fontFamily: 'Avenir-Book',
     fontSize: 18, // Reduced font size
-    fontWeight: 'bold',
   },
   maxScoreText: {
     fontFamily: 'Avenir-Book',
     fontSize: 18, // Reduced font size
-    fontWeight: 'bold',
   },
   binsContainer: {
     flexDirection: 'row',
@@ -406,7 +440,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   binLabel: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#fff',
     marginTop: 8,
   },
@@ -429,9 +463,18 @@ const styles = StyleSheet.create({
     top: lineHeight,
     width: '100%',
     height: 1,
-    // borderWidth: 1,
-    // borderStyle: 'dotted',
     borderColor: 'black',
+  },
+  restartButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+  },
+  restartButtonText: {
+    color: '#fff',
+    fontFamily: 'Avenir-Book',
+    fontSize: 16,
   },
 });
 

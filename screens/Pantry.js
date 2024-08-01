@@ -62,7 +62,7 @@ const Pantry = () => {
         },
         body: JSON.stringify({items: selectedItems, userEmail}),
       });
-      navigation.navigate('MyAccount');
+      navigation.navigate('Account');
     } catch (error) {
       console.error('Error saving pantry items:', error);
     }
@@ -80,7 +80,7 @@ const Pantry = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Your Pantry</Text>
+      {/* <Text style={styles.headerText}>Pantry Items</Text> */}
       <ScrollView contentContainerStyle={styles.bubbleContainer}>
         {pantryItems.map((item, index) => {
           const isSelected = selectedItems.includes(item);

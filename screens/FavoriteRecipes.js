@@ -39,7 +39,7 @@ const FavoriteRecipes = () => {
       }
 
       const recipe = await response.json();
-      navigation.navigate('RecipeDetails', {recipe});
+      navigation.navigate('Recipe Details', {recipe});
     } catch (error) {
       console.error('Error fetching recipe information:', error.message);
     }
