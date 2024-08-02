@@ -41,7 +41,7 @@ export default StyleSheet.create({
   item: {
     borderWidth: 0.2,
     paddingHorizontal: 25,
-    paddingVertical: 14,
+    paddingVertical: 10,
     backgroundColor: '#f8f9fa',
     flexDirection: 'row', // Added to align items in a row
     alignItems: 'center', // Center items vertically
@@ -52,7 +52,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   itemText: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Avenir-Book',
   },
   itemExpInt: {

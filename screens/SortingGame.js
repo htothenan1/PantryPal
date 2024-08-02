@@ -7,10 +7,9 @@ import {
   Animated,
   PanResponder,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import {IconLeaf, IconLeafOff} from '@tabler/icons-react-native';
-import greenbin from '../assets/greenbin.png';
+import {items} from './data/emojis';
 import {auth} from '../firebase'; // Update this path based on your actual file structure
 import {API_URL} from '@env'; // Ensure you have this set up in your environment
 
@@ -21,154 +20,6 @@ const lineHeight = midpoint / 3;
 const bins = [
   {type: 'compost', label: 'Compost', color: 'green'},
   {type: 'trash', label: 'Not Compost', color: 'red'},
-];
-
-const items = [
-  // Compost Emojis (Food)
-  {id: 1, type: 'compost', emoji: '🍇'},
-  {id: 2, type: 'compost', emoji: '🍈'},
-  {id: 3, type: 'compost', emoji: '🍉'},
-  {id: 4, type: 'compost', emoji: '🍊'},
-  {id: 5, type: 'compost', emoji: '🍋'},
-  {id: 6, type: 'compost', emoji: '🍌'},
-  {id: 7, type: 'compost', emoji: '🍍'},
-  {id: 8, type: 'compost', emoji: '🍎'},
-  {id: 9, type: 'compost', emoji: '🍏'},
-  {id: 10, type: 'compost', emoji: '🍐'},
-  {id: 11, type: 'compost', emoji: '🍑'},
-  {id: 12, type: 'compost', emoji: '🍒'},
-  {id: 13, type: 'compost', emoji: '🍓'},
-  {id: 14, type: 'compost', emoji: '🫐'},
-  {id: 15, type: 'compost', emoji: '🥝'},
-  {id: 16, type: 'compost', emoji: '🍅'},
-  {id: 17, type: 'compost', emoji: '🫒'},
-  {id: 18, type: 'compost', emoji: '🥥'},
-  {id: 19, type: 'compost', emoji: '🥑'},
-  {id: 20, type: 'compost', emoji: '🍆'},
-  {id: 21, type: 'compost', emoji: '🥔'},
-  {id: 22, type: 'compost', emoji: '🥕'},
-  {id: 23, type: 'compost', emoji: '🌽'},
-  {id: 24, type: 'compost', emoji: '🌶️'},
-  {id: 25, type: 'compost', emoji: '🫑'},
-  {id: 26, type: 'compost', emoji: '🥒'},
-  {id: 27, type: 'compost', emoji: '🥬'},
-  {id: 28, type: 'compost', emoji: '🥦'},
-  {id: 29, type: 'compost', emoji: '🧄'},
-  {id: 30, type: 'compost', emoji: '🧅'},
-  {id: 31, type: 'compost', emoji: '🍄'},
-  {id: 32, type: 'compost', emoji: '🥜'},
-  {id: 33, type: 'compost', emoji: '🌰'},
-  {id: 34, type: 'compost', emoji: '🍞'},
-  {id: 35, type: 'compost', emoji: '🥐'},
-  {id: 36, type: 'compost', emoji: '🥖'},
-  {id: 37, type: 'compost', emoji: '🥨'},
-  {id: 38, type: 'compost', emoji: '🥯'},
-  {id: 39, type: 'compost', emoji: '🫓'},
-  {id: 40, type: 'compost', emoji: '🧇'},
-
-  // Compost Emojis (Non-Food)
-  {id: 41, type: 'compost', emoji: '🍂'},
-  {id: 42, type: 'compost', emoji: '🍁'},
-  {id: 43, type: 'compost', emoji: '🍃'},
-  {id: 44, type: 'compost', emoji: '🌿'},
-  {id: 45, type: 'compost', emoji: '🌱'},
-  {id: 46, type: 'compost', emoji: '🪴'},
-  {id: 47, type: 'compost', emoji: '🌾'},
-  {id: 48, type: 'compost', emoji: '🌺'},
-  {id: 49, type: 'compost', emoji: '🌸'},
-  {id: 50, type: 'compost', emoji: '🌼'},
-  {id: 51, type: 'compost', emoji: '🌻'},
-  {id: 52, type: 'compost', emoji: '💐'},
-  {id: 53, type: 'compost', emoji: '🍀'},
-  {id: 54, type: 'compost', emoji: '🌷'},
-  {id: 55, type: 'compost', emoji: '🌹'},
-  {id: 56, type: 'compost', emoji: '🥀'},
-  {id: 57, type: 'compost', emoji: '🌺'},
-  {id: 58, type: 'compost', emoji: '🌵'},
-  {id: 59, type: 'compost', emoji: '🌴'},
-  {id: 60, type: 'compost', emoji: '🍄'},
-  {id: 61, type: 'compost', emoji: '🪵'},
-  //   {id: 62, type: 'compost', emoji: '🪶'},
-  //   {id: 63, type: 'compost', emoji: '🌙'},
-  //   {id: 64, type: 'compost', emoji: '☀️'},
-  //   {id: 65, type: 'compost', emoji: '☘️'},
-  //   {id: 66, type: 'compost', emoji: '🪺'},
-  //   {id: 67, type: 'compost', emoji: '🪹'},
-  {id: 68, type: 'compost', emoji: '🍂'},
-  {id: 69, type: 'compost', emoji: '🍁'},
-  {id: 70, type: 'compost', emoji: '🍃'},
-
-  // Non-Compostable Emojis
-  {id: 71, type: 'trash', emoji: '💻'},
-  {id: 72, type: 'trash', emoji: '📱'},
-  {id: 73, type: 'trash', emoji: '🖥️'},
-  {id: 74, type: 'trash', emoji: '📺'},
-  {id: 75, type: 'trash', emoji: '📷'},
-  {id: 76, type: 'trash', emoji: '🎥'},
-  {id: 77, type: 'trash', emoji: '🕹️'},
-  {id: 78, type: 'trash', emoji: '🎮'},
-  {id: 79, type: 'trash', emoji: '🎧'},
-  {id: 80, type: 'trash', emoji: '💡'},
-  {id: 81, type: 'trash', emoji: '🔌'},
-  {id: 82, type: 'trash', emoji: '🔋'},
-  {id: 83, type: 'trash', emoji: '🧯'},
-  {id: 84, type: 'trash', emoji: '🛠️'},
-  {id: 85, type: 'trash', emoji: '🧰'},
-  {id: 86, type: 'trash', emoji: '🪛'},
-  {id: 87, type: 'trash', emoji: '🛒'},
-  {id: 88, type: 'trash', emoji: '🔑'},
-  {id: 89, type: 'trash', emoji: '🗝️'},
-  {id: 90, type: 'trash', emoji: '🔓'},
-  {id: 91, type: 'trash', emoji: '🔒'},
-  {id: 92, type: 'trash', emoji: '🚪'},
-  {id: 93, type: 'trash', emoji: '🏠'},
-  {id: 94, type: 'trash', emoji: '🛏️'},
-  {id: 95, type: 'trash', emoji: '🛋️'},
-  {id: 96, type: 'trash', emoji: '🚽'},
-  {id: 97, type: 'trash', emoji: '🚿'},
-  {id: 98, type: 'trash', emoji: '🛁'},
-  {id: 99, type: 'trash', emoji: '🪣'},
-  {id: 100, type: 'trash', emoji: '🧼'},
-  {id: 101, type: 'trash', emoji: '🧽'},
-  {id: 102, type: 'trash', emoji: '🧹'},
-  {id: 103, type: 'trash', emoji: '🧺'},
-  {id: 104, type: 'trash', emoji: '🧻'},
-  {id: 105, type: 'trash', emoji: '🪠'},
-  {id: 106, type: 'trash', emoji: '🧯'},
-  {id: 107, type: 'trash', emoji: '🗑️'},
-  //   {id: 108, type: 'trash', emoji: '🚬'},
-  {id: 109, type: 'trash', emoji: '🪑'},
-  {id: 110, type: 'trash', emoji: '🛍️'},
-  {id: 111, type: 'trash', emoji: '🪟'},
-  {id: 112, type: 'trash', emoji: '🪟'},
-  {id: 113, type: 'trash', emoji: '🛏️'},
-  //   {id: 114, type: 'trash', emoji: '🚬'},
-  {id: 115, type: 'trash', emoji: '🗑️'},
-  //   {id: 116, type: 'trash', emoji: '💉'},
-  {id: 117, type: 'trash', emoji: '🧬'},
-  {id: 118, type: 'trash', emoji: '🔬'},
-  {id: 119, type: 'trash', emoji: '🔭'},
-  {id: 120, type: 'trash', emoji: '📡'},
-  {id: 121, type: 'trash', emoji: '📽️'},
-  {id: 122, type: 'trash', emoji: '🎬'},
-  {id: 123, type: 'trash', emoji: '📀'},
-  {id: 124, type: 'trash', emoji: '📼'},
-  {id: 125, type: 'trash', emoji: '📷'},
-  {id: 126, type: 'trash', emoji: '📹'},
-  {id: 127, type: 'trash', emoji: '💾'},
-  //   {id: 128, type: 'trash', emoji: '📟'},
-  {id: 129, type: 'trash', emoji: '📞'},
-  {id: 130, type: 'trash', emoji: '📠'},
-  {id: 131, type: 'trash', emoji: '📺'},
-  {id: 132, type: 'trash', emoji: '🎥'},
-  {id: 133, type: 'trash', emoji: '📡'},
-  {id: 134, type: 'trash', emoji: '💿'},
-  {id: 135, type: 'trash', emoji: '🕹️'},
-  {id: 136, type: 'trash', emoji: '📀'},
-  {id: 137, type: 'trash', emoji: '🎙️'},
-  //   {id: 138, type: 'trash', emoji: '🎚️'},
-  //   {id: 139, type: 'trash', emoji: '🎛️'},
-  {id: 140, type: 'trash', emoji: '📻'},
 ];
 
 const SortingGame = () => {
@@ -209,14 +60,16 @@ const SortingGame = () => {
   }, [userEmail]);
 
   const getItemSpeed = score => {
-    if (score >= 50) return 1000;
-    if (score >= 35) return 1250;
-    if (score >= 30) return 1750;
-    if (score >= 25) return 2000;
-    if (score >= 20) return 2250;
-    if (score >= 15) return 2500;
-    if (score >= 10) return 2750;
-    return 3000;
+    if (score >= 50) return 900;
+    if (score >= 45) return 1200;
+    if (score >= 40) return 1300;
+    if (score >= 35) return 1400;
+    if (score >= 30) return 1500;
+    if (score >= 25) return 1600;
+    if (score >= 20) return 2000;
+    if (score >= 15) return 2200;
+    if (score >= 10) return 2400;
+    return 2500;
   };
 
   useEffect(() => {
@@ -234,7 +87,7 @@ const SortingGame = () => {
         const itemSpeed = getItemSpeed(points);
 
         Animated.timing(newItem.y, {
-          toValue: height,
+          toValue: height - 50,
           duration: itemSpeed,
           useNativeDriver: false,
         }).start(() => {
@@ -242,7 +95,7 @@ const SortingGame = () => {
             prevItems.filter(item => item.id !== newItem.id),
           );
         });
-      }, 2000);
+      }, 1750);
 
       return () => clearInterval(interval);
     }
@@ -261,9 +114,9 @@ const SortingGame = () => {
         const binWidth = width / 2;
 
         if (gestureState.moveY > midpoint) {
-          let toX = width / 3;
+          let toX = width / 5 - 20; // Center the item in the middle of the left bin
           if (gestureState.moveX < binWidth) {
-            toX = 0;
+            toX = width / 5 - 20; // Center the item in the middle of the left bin
             if (item.type === 'compost') {
               setPoints(points + 1);
               setFlashColor('lightgreen');
@@ -272,7 +125,7 @@ const SortingGame = () => {
               setGameEnded(true);
             }
           } else {
-            toX = width - 200; // Reduced the distance to drift less
+            toX = (3 * width) / 4; // Center the item in the middle of the right bin
             if (item.type === 'trash') {
               setPoints(points + 1);
               setFlashColor('lightgreen');
@@ -294,7 +147,7 @@ const SortingGame = () => {
               setFallingItems(prevItems =>
                 prevItems.filter(fallingItem => fallingItem.id !== item.id),
               );
-              setTimeout(() => setFlashColor(null), 300);
+              setTimeout(() => setFlashColor(null), 1);
             });
           });
         } else {
@@ -318,7 +171,7 @@ const SortingGame = () => {
 
     if (binType === 'trash') {
       Animated.spring(lastItem.x, {
-        toValue: 0,
+        toValue: width / 5 - 50, // Center the item in the middle of the left bin
         useNativeDriver: false,
       }).start(() => {
         Animated.timing(lastItem.y, {
@@ -341,7 +194,7 @@ const SortingGame = () => {
       });
     } else if (binType === 'compost') {
       Animated.spring(lastItem.x, {
-        toValue: width - 80, // Reduced the distance to drift less
+        toValue: (3 * width) / 4, // Center the item in the middle of the right bin
         useNativeDriver: false,
       }).start(() => {
         Animated.timing(lastItem.y, {
@@ -425,15 +278,6 @@ const SortingGame = () => {
         <TouchableOpacity
           onPress={() => handleBinPress('trash')}
           style={[styles.binSection, {backgroundColor: '#B22222'}]}>
-          {/* <Image
-            source={greenbin}
-            style={{
-              height: 150,
-              width: 150,
-              position: 'absolute',
-              bottom: 85,
-            }}
-          /> */}
           <IconLeafOff size={50} color="white" />
           <Text style={styles.binLabel}>{bins[1].label}</Text>
         </TouchableOpacity>
@@ -462,15 +306,6 @@ const SortingGame = () => {
         <TouchableOpacity
           onPress={() => handleBinPress('compost')}
           style={[styles.binSection, {backgroundColor: '#228B22'}]}>
-          {/* <Image
-            source={greenbin}
-            style={{
-              height: 150,
-              width: 150,
-              position: 'absolute',
-              bottom: 85,
-            }}
-          /> */}
           <IconLeaf size={50} color="white" />
           <Text style={styles.binLabel}>{bins[0].label}</Text>
         </TouchableOpacity>
@@ -493,18 +328,18 @@ const styles = StyleSheet.create({
   },
   pointsText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 18, // Reduced font size
+    fontSize: 18,
   },
   maxScoreText: {
     fontFamily: 'Avenir-Book',
-    fontSize: 18, // Reduced font size
+    fontSize: 18,
   },
   binsContainer: {
     flexDirection: 'row',
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    justifyContent: 'space-between', // Ensures bins are on the far left and right
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   middleSection: {

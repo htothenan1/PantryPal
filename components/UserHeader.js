@@ -1,13 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, Image, View, Text} from 'react-native';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import styles from './styles/userHeader.js';
 import chefLogo from '../assets/chefs_hat.png';
 
 const UserHeader = ({selectedIcon, userData, navigation}) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Account')}
+      onPress={() => navigation.navigate('User Account')}
       style={styles.headerContainer}>
       {selectedIcon ? (
         <Image source={selectedIcon} style={styles.userIcon} />

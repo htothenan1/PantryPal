@@ -59,7 +59,7 @@ export default StyleSheet.create({
   item: {
     borderWidth: 0.2,
     paddingHorizontal: 25,
-    paddingVertical: 14,
+    paddingVertical: 12,
     backgroundColor: '#f8f9fa',
     flexDirection: 'row',
     alignItems: 'center',
@@ -67,15 +67,14 @@ export default StyleSheet.create({
   itemTextContainer: {
     flex: 1,
     justifyContent: 'center',
-    marginLeft: 10,
-    height: 50,
+    marginLeft: 12,
   },
   itemText: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Avenir-Book',
   },
   remainingDaysText: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'Avenir-Book',
   },
   itemImage: {
