@@ -63,6 +63,7 @@ export default StyleSheet.create({
     backgroundColor: '#f8f9fa',
     flexDirection: 'row',
     alignItems: 'center',
+    height: 70,
   },
   itemTextContainer: {
     flex: 1,
