@@ -12,7 +12,11 @@ const ConsumedItem = require('./models/consumedItem');
 const FavoritedRecipe = require('./models/favoritedRecipe');
 const CustomItem = require('./models/customItem');
 const PantryItem = require('./models/pantryItem');
+const ImportedRecipe = require('./models/importedRecipe');
 
+const cheerio = require('cheerio');
+const axios = require('axios');
+const tinyduration = require('tinyduration');
 const OpenAI = require('openai');
 const storage = new Storage();
 const bucketName = 'thephotobucket';
@@ -98,6 +102,22 @@ app.get('/items', async (req, res) => {
     res.json(items);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+// Endpoint to get all imported recipes for a specific user
+app.get('/importedRecipes', async (req, res) => {
+  try {
+    const userEmail = req.query.email;
+    if (!userEmail) {
+      return res.status(400).send('Email parameter is required');
+    }
+
+    const importedRecipes = await ImportedRecipe.find({user: userEmail});
+
+    res.status(200).json(importedRecipes);
+  } catch (error) {
+    res.status(500).send('Server error: ' + error.message);
   }
 });
 
@@ -266,6 +286,25 @@ app.get('/customItems/storageTip', async (req, res) => {
   }
 });
 
+app.post('/saveRecipe', async (req, res) => {
+  const {recipe, userEmail} = req.body;
+
+  console.log('Request body:', req.body); // Log the request body
+
+  try {
+    const newRecipe = new ImportedRecipe({...recipe, user: userEmail});
+    await newRecipe.save();
+    res.status(201).json(newRecipe);
+  } catch (error) {
+    console.error('Error saving recipe:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error saving recipe',
+      error: error.message,
+    });
+  }
+});
+
 // Save pantry items for a user
 app.post('/pantryItems', async (req, res) => {
   try {
@@ -349,6 +388,92 @@ app.post('/analyzeImage', upload.single('image'), async (req, res) => {
   });
 
   blobStream.end(req.file.buffer);
+});
+
+async function findLDJSON(url) {
+  let req = await axios.get(url);
+  let html = req.data;
+  let $ = cheerio.load(html);
+  let ldjson = $("script[type='application/ld+json']");
+  if (ldjson.length === 0) return;
+  let content = JSON.parse(ldjson[0].children[0].data);
+  if (Array.isArray(content)) return content[0];
+  else {
+    if (content['@graph'] && Array.isArray(content['@graph'])) {
+      for (let t of content['@graph']) {
+        if (t['@type'] === 'Recipe') return t;
+      }
+    }
+  }
+  return;
+}
+
+function findRecipe(ldjson) {
+  if (ldjson['@type'].indexOf('Recipe') === -1) return;
+  let result = {};
+  result.name = ldjson['name'];
+  result.description = ldjson['description'];
+  result.totalTime = durationToStr(ldjson['totalTime']);
+  result.ingredients = ldjson['recipeIngredient'];
+  result.instructions = parseInstructions(ldjson['recipeInstructions']);
+  result.yield = ldjson['recipeYield'][0];
+  return result;
+}
+
+function parseInstructions(instructions) {
+  let result = [];
+  for (let instruction of instructions) {
+    if (typeof instruction === 'string') result.push(instruction);
+    else {
+      if (instruction['@type'] === 'HowToStep') result.push(instruction.text);
+    }
+  }
+  return result;
+}
+
+function durationToStr(d) {
+  if (!d) return '';
+  let parsed = tinyduration.parse(d);
+  let result = [];
+  if (parsed.hours) {
+    result.push(`${parsed.hours} hours`);
+  }
+  if (parsed.minutes) {
+    result.push(`${parsed.minutes} minutes`);
+  }
+  if (parsed.seconds) {
+    result.push(`${parsed.seconds} seconds`);
+  }
+  let formatter = new Intl.ListFormat('en', {
+    style: 'long',
+    type: 'conjunction',
+  });
+  return formatter.format(result);
+}
+
+app.post('/parseRecipe', async (req, res) => {
+  const {url} = req.body;
+  try {
+    let ldjson = await findLDJSON(url);
+    if (!ldjson) {
+      return res
+        .status(400)
+        .json({success: false, message: 'LD+JSON not found.'});
+    }
+    let recipe = findRecipe(ldjson);
+    if (!recipe) {
+      return res
+        .status(400)
+        .json({success: false, message: 'Recipe not found.'});
+    }
+    res.json({success: true, recipe});
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred.',
+      error: error.message,
+    });
+  }
 });
 
 // Return OpenAI storage tips

@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		7815494FAE7373EF20C41600 /* libPods-PantryPal-PantryPalTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F86B0BACCE065B0A81878591 /* libPods-PantryPal-PantryPalTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9FC0588344A946CE412035A0 /* libPods-PantryPal-PantryPalTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FADCFC9AEA1708E8CFA7E1 /* libPods-PantryPal-PantryPalTests.a */; };
-		ACAA17AD64AA41FF9564FCBF /* libPods-PantryPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C949FC016D3C1A39294D383C /* libPods-PantryPal.a */; };
+		EA832EFFEC13D110FF309876 /* libPods-PantryPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C915473469CB761F3889109 /* libPods-PantryPal.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,16 +36,16 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PantryPal/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PantryPal/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PantryPal/main.m; sourceTree = "<group>"; };
-		4CB56EE8F42643180CC6F143 /* Pods-PantryPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal.release.xcconfig"; path = "Target Support Files/Pods-PantryPal/Pods-PantryPal.release.xcconfig"; sourceTree = "<group>"; };
+		6C915473469CB761F3889109 /* libPods-PantryPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PantryPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EF5CF50715B46229A678443 /* Quicksand.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Quicksand.ttf; path = ../assets/fonts/Quicksand.ttf; sourceTree = "<group>"; };
+		7089087B65F9ABD03F88EE01 /* Pods-PantryPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal.debug.xcconfig"; path = "Target Support Files/Pods-PantryPal/Pods-PantryPal.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PantryPal/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83FADCFC9AEA1708E8CFA7E1 /* libPods-PantryPal-PantryPalTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PantryPal-PantryPalTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8794F428B7FDAB8599998C70 /* Pods-PantryPal-PantryPalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal-PantryPalTests.release.xcconfig"; path = "Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E1B4D072B257908001BE70B /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		C949FC016D3C1A39294D383C /* libPods-PantryPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PantryPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0C50E0DD02216A1C2F21CBE /* Pods-PantryPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal.debug.xcconfig"; path = "Target Support Files/Pods-PantryPal/Pods-PantryPal.debug.xcconfig"; sourceTree = "<group>"; };
-		D923B4E3C69712B06A697895 /* Pods-PantryPal-PantryPalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal-PantryPalTests.debug.xcconfig"; path = "Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD6DDC79BB1584636E0B7EFC /* Pods-PantryPal-PantryPalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal-PantryPalTests.release.xcconfig"; path = "Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests.release.xcconfig"; sourceTree = "<group>"; };
+		DAA178882BF190DA9FA52F38 /* Pods-PantryPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal.release.xcconfig"; path = "Target Support Files/Pods-PantryPal/Pods-PantryPal.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F86B0BACCE065B0A81878591 /* libPods-PantryPal-PantryPalTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PantryPal-PantryPalTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF8485B10A0C08CE2691BF6C /* Pods-PantryPal-PantryPalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PantryPal-PantryPalTests.debug.xcconfig"; path = "Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC0588344A946CE412035A0 /* libPods-PantryPal-PantryPalTests.a in Frameworks */,
+				7815494FAE7373EF20C41600 /* libPods-PantryPal-PantryPalTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACAA17AD64AA41FF9564FCBF /* libPods-PantryPal.a in Frameworks */,
+				EA832EFFEC13D110FF309876 /* libPods-PantryPal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C949FC016D3C1A39294D383C /* libPods-PantryPal.a */,
-				83FADCFC9AEA1708E8CFA7E1 /* libPods-PantryPal-PantryPalTests.a */,
+				6C915473469CB761F3889109 /* libPods-PantryPal.a */,
+				F86B0BACCE065B0A81878591 /* libPods-PantryPal-PantryPalTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,10 +160,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D0C50E0DD02216A1C2F21CBE /* Pods-PantryPal.debug.xcconfig */,
-				4CB56EE8F42643180CC6F143 /* Pods-PantryPal.release.xcconfig */,
-				D923B4E3C69712B06A697895 /* Pods-PantryPal-PantryPalTests.debug.xcconfig */,
-				8794F428B7FDAB8599998C70 /* Pods-PantryPal-PantryPalTests.release.xcconfig */,
+				7089087B65F9ABD03F88EE01 /* Pods-PantryPal.debug.xcconfig */,
+				DAA178882BF190DA9FA52F38 /* Pods-PantryPal.release.xcconfig */,
+				FF8485B10A0C08CE2691BF6C /* Pods-PantryPal-PantryPalTests.debug.xcconfig */,
+				BD6DDC79BB1584636E0B7EFC /* Pods-PantryPal-PantryPalTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -175,12 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PantryPalTests" */;
 			buildPhases = (
-				11FC7DEC6EA6F96D262D16AF /* [CP] Check Pods Manifest.lock */,
+				E930CD93CA1E659BCDE56855 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				669BBC951CE7AE58A787611E /* [CP] Embed Pods Frameworks */,
-				AC175F0BFFB96BFDF5A0B1F4 /* [CP] Copy Pods Resources */,
+				A6A6404E71C7CF5EE250D35F /* [CP] Embed Pods Frameworks */,
+				7DA90A317877CCE50DB2EF35 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,14 +196,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PantryPal" */;
 			buildPhases = (
-				7A7677395D4B620A9B7531A2 /* [CP] Check Pods Manifest.lock */,
+				0DD034AC3EBD0C45EB443F08 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				612F45F4D3718E1F3263FA73 /* [CP] Embed Pods Frameworks */,
-				74C5CFF315EEC18AA49B0582 /* [CP] Copy Pods Resources */,
+				9B4394366491F611A50AAB23 /* [CP] Embed Pods Frameworks */,
+				26840ACEA5828647100C86D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,80 +286,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		11FC7DEC6EA6F96D262D16AF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PantryPal-PantryPalTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		612F45F4D3718E1F3263FA73 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		669BBC951CE7AE58A787611E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74C5CFF315EEC18AA49B0582 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A7677395D4B620A9B7531A2 /* [CP] Check Pods Manifest.lock */ = {
+		0DD034AC3EBD0C45EB443F08 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -381,7 +308,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC175F0BFFB96BFDF5A0B1F4 /* [CP] Copy Pods Resources */ = {
+		26840ACEA5828647100C86D4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DA90A317877CCE50DB2EF35 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -396,6 +340,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B4394366491F611A50AAB23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal/Pods-PantryPal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6A6404E71C7CF5EE250D35F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PantryPal-PantryPalTests/Pods-PantryPal-PantryPalTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E930CD93CA1E659BCDE56855 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PantryPal-PantryPalTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -450,7 +450,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D923B4E3C69712B06A697895 /* Pods-PantryPal-PantryPalTests.debug.xcconfig */;
+			baseConfigurationReference = FF8485B10A0C08CE2691BF6C /* Pods-PantryPal-PantryPalTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -477,7 +477,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8794F428B7FDAB8599998C70 /* Pods-PantryPal-PantryPalTests.release.xcconfig */;
+			baseConfigurationReference = BD6DDC79BB1584636E0B7EFC /* Pods-PantryPal-PantryPalTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -501,7 +501,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0C50E0DD02216A1C2F21CBE /* Pods-PantryPal.debug.xcconfig */;
+			baseConfigurationReference = 7089087B65F9ABD03F88EE01 /* Pods-PantryPal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -529,7 +529,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CB56EE8F42643180CC6F143 /* Pods-PantryPal.release.xcconfig */;
+			baseConfigurationReference = DAA178882BF190DA9FA52F38 /* Pods-PantryPal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -263,8 +263,13 @@ const Account = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
-            onPress={() => navigation.navigate('Favorite Recipes')}>
-            <Text style={styles.pantryButtonText}>Favorite Recipes</Text>
+            onPress={() => navigation.navigate('Your Recipes')}>
+            <Text style={styles.pantryButtonText}>Your Recipes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.favoriteRecipesButton}
+            onPress={() => navigation.navigate('Import Recipes')}>
+            <Text style={styles.pantryButtonText}>Import Recipes</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.compostGameButton}

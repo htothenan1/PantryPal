@@ -19,10 +19,12 @@ import ModuleScreen from './screens/ModuleScreen';
 import OnboardingStartScreen from './screens/OnboardingStartScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import Pantry from './screens/Pantry';
-import FavoriteRecipes from './screens/FavoriteRecipes';
+import YourRecipes from './screens/YourRecipes';
 import SortingGame from './screens/SortingGame';
+import ImportedRecipeDetails from './screens/ImportedRecipeDetails';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {UserProvider} from './contexts/UserContext';
+import ImportRecipes from './screens/ImportRecipes';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -161,13 +163,23 @@ function AccountStackScreen() {
       />
       <DashStack.Screen
         options={{headerShown: true}}
-        name="Favorite Recipes"
-        component={FavoriteRecipes}
+        name="Your Recipes"
+        component={YourRecipes}
+      />
+      <DashStack.Screen
+        options={{headerShown: true}}
+        name="Import Recipes"
+        component={ImportRecipes}
       />
       <DashStack.Screen
         options={{headerShown: true}}
         name="Compost Game"
         component={SortingGame}
+      />
+      <DashStack.Screen
+        options={{headerShown: true}}
+        name="Imported Recipe Details"
+        component={ImportedRecipeDetails}
       />
     </DashStack.Navigator>
   );
