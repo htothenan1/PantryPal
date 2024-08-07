@@ -8,6 +8,8 @@ export const UserContext = createContext();
 export const UserProvider = ({children}) => {
   const [userData, setUserData] = useState(null);
   const [items, setItems] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [importedRecipes, setImportedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [itemsLoading, setIsItemsLoading] = useState(true);
 
@@ -44,10 +46,40 @@ export const UserProvider = ({children}) => {
       const sortedItems = sortItems(data);
 
       setItems(sortedItems);
+
+      setItems(data);
     } catch (error) {
       console.error('Error fetching items:', error.message);
     } finally {
       setIsItemsLoading(false);
+    }
+  };
+
+  const fetchFavoriteRecipes = async userEmail => {
+    try {
+      const response = await fetch(`${API_URL}/favorites/user/${userEmail}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch favorite recipes');
+      }
+      const data = await response.json();
+      setFavoriteRecipes(data);
+    } catch (error) {
+      console.error('Error fetching favorite recipes:', error.message);
+    }
+  };
+
+  const fetchImportedRecipes = async userEmail => {
+    try {
+      const response = await fetch(
+        `${API_URL}/importedRecipes?email=${userEmail}`,
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch imported recipes');
+      }
+      const data = await response.json();
+      setImportedRecipes(data);
+    } catch (error) {
+      console.error('Error fetching imported recipes:', error.message);
     }
   };
 
@@ -56,6 +88,8 @@ export const UserProvider = ({children}) => {
     if (userEmail) {
       fetchUserData(userEmail);
       fetchItems(userEmail);
+      fetchFavoriteRecipes(userEmail);
+      fetchImportedRecipes(userEmail);
     }
   }, []);
 
@@ -68,6 +102,12 @@ export const UserProvider = ({children}) => {
         items,
         setItems,
         fetchItems,
+        favoriteRecipes,
+        setFavoriteRecipes,
+        fetchFavoriteRecipes,
+        importedRecipes,
+        setImportedRecipes,
+        fetchImportedRecipes,
         loading,
         itemsLoading,
       }}>

@@ -58,6 +58,7 @@ export default StyleSheet.create({
   },
   item: {
     borderWidth: 0.2,
+    borderColor: '#ddd',
     paddingHorizontal: 25,
     paddingVertical: 12,
     backgroundColor: '#f8f9fa',

@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingVertical: 20,
     backgroundColor: '#fff',
   },
   tabContainer: {
@@ -39,5 +39,17 @@ export default StyleSheet.create({
   },
   recipeName: {
     fontSize: 18,
+    marginLeft: 20,
+  },
+  rightSwipeContainer: {
+    flexDirection: 'row',
+    width: 60,
+    justifyContent: 'space-between',
+  },
+  swipeButton: {
+    width: 60,
+    backgroundColor: '#dee2e6',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

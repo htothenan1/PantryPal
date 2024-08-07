@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {Text, Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import {API_URL} from '@env';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import RenderHtml from 'react-native-render-html';
 import {useWindowDimensions} from 'react-native';
-
+import {UserContext} from '../contexts/UserContext';
 import styles from './styles/recipeDetails';
 
 const RecipeDetails = ({route}) => {
   const {recipe, selectedIngredients} = route.params;
   const [isFavorited, setIsFavorited] = useState(false);
+  const {setFavoriteRecipes} = useContext(UserContext);
 
   const userEmail = auth.currentUser?.email;
   const {width} = useWindowDimensions();
@@ -75,7 +76,17 @@ const RecipeDetails = ({route}) => {
         );
       }
 
-      setIsFavorited(!isFavorited);
+      const updatedIsFavorited = !isFavorited;
+      setIsFavorited(updatedIsFavorited);
+
+      if (updatedIsFavorited) {
+        setFavoriteRecipes(prev => [
+          ...prev,
+          {recipeId: recipe.id, recipeName: recipe.title},
+        ]);
+      } else {
+        setFavoriteRecipes(prev => prev.filter(r => r.recipeId !== recipe.id));
+      }
     } catch (error) {
       console.error('Error toggling favorite recipe:', error.message);
     }

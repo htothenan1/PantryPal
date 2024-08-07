@@ -764,6 +764,27 @@ app.delete('/items/:id', async (req, res) => {
   }
 });
 
+// Endpoint to delete an imported recipe
+app.delete('/importedRecipes/:recipeId', async (req, res) => {
+  try {
+    const {recipeId} = req.params;
+    const userEmail = req.query.email;
+
+    const importedRecipe = await ImportedRecipe.findOneAndDelete({
+      _id: recipeId,
+      user: userEmail,
+    });
+
+    if (!importedRecipe) {
+      return res.status(404).send('Imported recipe not found');
+    }
+
+    res.status(200).json({message: 'Imported recipe deleted successfully'});
+  } catch (error) {
+    res.status(500).send('Server error: ' + error.message);
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
