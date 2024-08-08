@@ -18,6 +18,7 @@ const RecipeDetails = ({route}) => {
 
   useEffect(() => {
     checkIfFavorited();
+    console.log(recipe);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -105,6 +106,19 @@ const RecipeDetails = ({route}) => {
     },
   };
 
+  const removeDuplicateIngredients = ingredients => {
+    const seen = new Set();
+    return ingredients.filter(ingredient => {
+      const duplicate = seen.has(ingredient.id);
+      seen.add(ingredient.id);
+      return !duplicate;
+    });
+  };
+
+  const filteredIngredients = removeDuplicateIngredients(
+    recipe.extendedIngredients,
+  );
+
   return (
     <ScrollView
       style={styles.container}
@@ -133,7 +147,7 @@ const RecipeDetails = ({route}) => {
 
         <View style={styles.ingredientsContainer}>
           <Text style={styles.ingredientsTitleText}>Ingredients</Text>
-          {recipe.extendedIngredients.map((ingredient, index) => (
+          {filteredIngredients.map((ingredient, index) => (
             <Text key={index} style={styles.ingredientsText}>
               {'\u2023 '}
               {highlightMatchingWords(
