@@ -6,6 +6,7 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import RenderHtml from 'react-native-render-html';
 import {useWindowDimensions} from 'react-native';
 import {UserContext} from '../contexts/UserContext';
+import pluralize from 'pluralize';
 import styles from './styles/recipeDetails';
 
 const RecipeDetails = ({route}) => {
@@ -27,9 +28,20 @@ const RecipeDetails = ({route}) => {
       return text;
     }
 
-    const regex = new RegExp(`\\b(${keywords.join('|')})(s?)\\b`, 'gi');
+    const keywordVariations = keywords.flatMap(keyword => [
+      keyword,
+      pluralize.singular(keyword),
+      pluralize.plural(keyword),
+    ]);
+
+    const uniqueKeywordVariations = [...new Set(keywordVariations)];
+
+    const regex = new RegExp(
+      `\\b(${uniqueKeywordVariations.join('|')})\\b`,
+      'gi',
+    );
     return text.split(regex).map((part, index) => {
-      if (keywords.includes(part.toLowerCase())) {
+      if (uniqueKeywordVariations.includes(part.toLowerCase())) {
         return (
           <Text key={index} style={styles.redText}>
             {part}

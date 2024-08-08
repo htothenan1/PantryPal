@@ -8,6 +8,7 @@ export const UserContext = createContext();
 export const UserProvider = ({children}) => {
   const [userData, setUserData] = useState(null);
   const [items, setItems] = useState([]);
+  const [pantryItems, setPantryItems] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [importedRecipes, setImportedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,16 +43,33 @@ export const UserProvider = ({children}) => {
       }
 
       const data = await response.json();
-
       const sortedItems = sortItems(data);
 
       setItems(sortedItems);
-
       setItems(data);
     } catch (error) {
       console.error('Error fetching items:', error.message);
     } finally {
       setIsItemsLoading(false);
+    }
+  };
+
+  const fetchPantryItems = async userEmail => {
+    try {
+      if (!userEmail) {
+        console.error('User email is not available');
+        return;
+      }
+
+      const response = await fetch(`${API_URL}/pantryItems?email=${userEmail}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setPantryItems(data);
+    } catch (error) {
+      console.error('Error fetching pantry items:', error.message);
     }
   };
 
@@ -88,6 +106,7 @@ export const UserProvider = ({children}) => {
     if (userEmail) {
       fetchUserData(userEmail);
       fetchItems(userEmail);
+      fetchPantryItems(userEmail);
       fetchFavoriteRecipes(userEmail);
       fetchImportedRecipes(userEmail);
     }
@@ -102,6 +121,9 @@ export const UserProvider = ({children}) => {
         items,
         setItems,
         fetchItems,
+        pantryItems,
+        setPantryItems,
+        fetchPantryItems,
         favoriteRecipes,
         setFavoriteRecipes,
         fetchFavoriteRecipes,

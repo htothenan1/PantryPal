@@ -7,13 +7,12 @@ import {
   ActivityIndicator,
   ScrollView,
   Alert,
-  Image,
   StyleSheet,
 } from 'react-native';
 import {auth} from '../firebase';
 import {API_URL} from '@env';
 import {UserContext} from '../contexts/UserContext';
-import chefLogo from '../assets/chefs_hat.png';
+import pluralize from 'pluralize';
 
 const ImportRecipes = () => {
   const [url, setUrl] = useState('');
@@ -21,7 +20,67 @@ const ImportRecipes = () => {
   const [recipe, setRecipe] = useState(null);
 
   const userEmail = auth.currentUser?.email;
-  const {setImportedRecipes} = useContext(UserContext);
+  const {items, pantryItems, setImportedRecipes} = useContext(UserContext);
+
+  const highlightUserItems = (text, userItems) => {
+    if (!userItems || typeof text !== 'string') {
+      return text;
+    }
+
+    const keywordVariations = userItems.flatMap(item => [
+      item,
+      pluralize.singular(item),
+      pluralize.plural(item),
+    ]);
+
+    const uniqueKeywordVariations = [...new Set(keywordVariations)];
+
+    const regex = new RegExp(
+      `\\b(${uniqueKeywordVariations.join('|')})\\b`,
+      'gi',
+    );
+    return text.split(regex).map((part, index) => {
+      if (uniqueKeywordVariations.includes(part.toLowerCase())) {
+        return (
+          <Text key={index} style={styles.redText}>
+            {part}
+          </Text>
+        );
+      } else {
+        return part;
+      }
+    });
+  };
+
+  const highlightPantryItems = (text, pantryItems) => {
+    if (!pantryItems || typeof text !== 'string') {
+      return text;
+    }
+
+    const keywordVariations = pantryItems.flatMap(item => [
+      item,
+      pluralize.singular(item),
+      pluralize.plural(item),
+    ]);
+
+    const uniqueKeywordVariations = [...new Set(keywordVariations)];
+
+    const regex = new RegExp(
+      `\\b(${uniqueKeywordVariations.join('|')})\\b`,
+      'gi',
+    );
+    return text.split(regex).map((part, index) => {
+      if (uniqueKeywordVariations.includes(part.toLowerCase())) {
+        return (
+          <Text key={index} style={styles.blueText}>
+            {part}
+          </Text>
+        );
+      } else {
+        return part;
+      }
+    });
+  };
 
   const handleParseUrl = async () => {
     setLoading(true);
@@ -96,6 +155,7 @@ const ImportRecipes = () => {
         value={url}
         onChangeText={setUrl}
         placeholder="https://www.example.com/recipe"
+        placeholderTextColor={'gray'}
       />
       <Button title="Parse URL" onPress={handleParseUrl} />
       {loading && <ActivityIndicator size="large" color="#0000ff" />}
@@ -103,7 +163,6 @@ const ImportRecipes = () => {
         <ScrollView
           style={styles.recipeContainer}
           contentContainerStyle={styles.contentContainer}>
-          {/* <Image source={chefLogo} style={styles.image} /> */}
           <View style={styles.textContainer}>
             <View style={{paddingHorizontal: 2}}>
               <Text style={styles.title}>{recipe.name}</Text>
@@ -119,7 +178,13 @@ const ImportRecipes = () => {
               {recipe.ingredients.map((ingredient, index) => (
                 <Text key={index} style={styles.ingredientsText}>
                   {'\u2023 '}
-                  {ingredient}
+                  {highlightPantryItems(
+                    highlightUserItems(
+                      ingredient,
+                      items.map(item => item.name.toLowerCase()),
+                    ),
+                    pantryItems.map(item => item.itemName.toLowerCase()),
+                  )}
                 </Text>
               ))}
             </View>
@@ -171,12 +236,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Avenir-Book',
   },
-  image: {
-    height: 200,
-    width: '100%',
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-  },
   ingredientsContainer: {
     borderRadius: 10,
     marginVertical: 5,
@@ -210,6 +269,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 16,
     marginVertical: 1,
+  },
+  redText: {
+    color: 'red',
+  },
+  blueText: {
+    color: 'blue',
   },
 });
 
