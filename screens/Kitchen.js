@@ -56,11 +56,45 @@ const Kitchen = ({route}) => {
   const [deletingItemId, setDeletingItemId] = useState(null);
   const [updatingItemId, setUpdatingItemId] = useState(null);
   const [input, setInput] = useState('');
+  const [boxInput, setBoxInput] = useState('');
   const [filteredItemNames, setFilteredItemNames] = useState([]);
   const [isDeletingAllItems, setIsDeletingAllItems] = useState(false);
+  const [isBoxItemsLoading, setIsBoxItemsLoading] = useState(false);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
+
+  const foodBoxes = [
+    {
+      id: 'AAAAA',
+      foodBoxItems: [
+        'apples',
+        'cherries',
+        'grapes',
+        'lemons',
+        'strawberries',
+        'arugula',
+        'avocados',
+        'basil',
+        'broccoli',
+        'garlic',
+        'mushrooms',
+        'tomatoes',
+        'zucchini',
+        'ground beef',
+        'chicken thighs',
+        'ham',
+        'ground turkey',
+        'butter',
+        'parmesan cheese',
+        'cheddar cheese',
+        'eggs',
+        'milk',
+        'bagels',
+        'multigrain bread',
+      ],
+    },
+  ];
 
   useEffect(() => {
     if (input.trim() === '') {
@@ -254,7 +288,6 @@ const Kitchen = ({route}) => {
         throw new Error('Item name is required');
       }
 
-      // Ensure itemName is defined
       const existingIngredient = ingredients.find(
         ingredient => ingredient.name.toLowerCase() === itemName.toLowerCase(),
       );
@@ -268,7 +301,6 @@ const Kitchen = ({route}) => {
         expInt = existingIngredient.exp_int;
         whyEat = existingIngredient.whyEat;
       } else {
-        // Handle undefined itemName appropriately
         const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
           method: 'POST',
           headers: {
@@ -283,6 +315,7 @@ const Kitchen = ({route}) => {
           const tipData = await tipResponse.json();
           storageTip = tipData.storageTip;
         }
+
         const healthFactResponse = await fetch(
           `${API_URL}/generateHealthFacts`,
           {
@@ -345,6 +378,75 @@ const Kitchen = ({route}) => {
       setIsLoading(false);
     }
   }
+
+  const addFoodBoxItems = async boxInput => {
+    setIsBoxItemsLoading(true);
+    const matchingBox = foodBoxes.find(
+      box => box.id === boxInput.toUpperCase(),
+    );
+    if (matchingBox) {
+      const matchedItems = matchingBox.foodBoxItems.map(itemName => {
+        const matchedIngredient = ingredients.find(
+          ingredient =>
+            ingredient.name.toLowerCase() === itemName.toLowerCase(),
+        );
+        if (matchedIngredient) {
+          return {
+            name: itemName, // retain the original name as in the food box
+            exp_int: matchedIngredient.exp_int,
+            storage_tip: matchedIngredient.storage_tip,
+            whyEat: matchedIngredient.whyEat,
+            user: userEmail,
+          };
+        } else {
+          console.error(`Ingredient not found for ${itemName}`);
+          return {
+            name: itemName,
+            exp_int: 6, // default expiration interval
+            storage_tip: 'Not available',
+            whyEat: 'Not available',
+            user: userEmail,
+          };
+        }
+      });
+
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${API_URL}/items`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            items: matchedItems,
+            userEmail: userEmail,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const savedItems = await response.json();
+        setItems(currentItems => [
+          ...currentItems,
+          ...(Array.isArray(savedItems) ? savedItems : [savedItems]),
+        ]);
+        fetchUserData(userEmail);
+        fetchItems(userEmail);
+        setBoxInput('');
+        setIsBoxItemsLoading(false);
+      } catch (error) {
+        console.error('Error adding items:', error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      Alert.alert('No matching food box found.');
+      setIsBoxItemsLoading(false);
+      setBoxInput('');
+    }
+  };
 
   const updateExpDate = async (item, newDate) => {
     setUpdatingItemId(item._id);
@@ -414,11 +516,11 @@ const Kitchen = ({route}) => {
   const renderRightActions = item => {
     return (
       <View style={styles.rightSwipeContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => handleUndo(item)}
           style={styles.swipeButton}>
           <AntDesignIcon name="delete" size={20} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => handleWaste(item)}
           style={styles.swipeButton}>
@@ -520,7 +622,37 @@ const Kitchen = ({route}) => {
             userData={userData}
             navigation={navigation}
           />
-          <UserProgressBar loading={loading} userData={userData} />
+          {/* <UserProgressBar loading={loading} userData={userData} /> */}
+          <View style={styles.selectedWrapper}>
+            <TextInput
+              style={styles.boxInput}
+              placeholder="Enter Food Box ID"
+              placeholderTextColor={'black'}
+              value={boxInput.toUpperCase()}
+              onChangeText={setBoxInput}
+              maxLength={5}
+            />
+            <Pressable
+              disabled={boxInput.length < 5}
+              onPress={() => addFoodBoxItems(boxInput)}
+              style={({pressed}) => [
+                styles.boxButton,
+                {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#228B22'},
+                boxInput.length < 5 && styles.disabledButton,
+              ]}>
+              <Text
+                style={[
+                  styles.saveText,
+                  boxInput.length === 5 && styles.whiteText,
+                ]}>
+                {isBoxItemsLoading ? (
+                  <ActivityIndicator size="small" color="#495057" />
+                ) : (
+                  'Log Food Box Items'
+                )}
+              </Text>
+            </Pressable>
+          </View>
 
           <View style={styles.headerText}>
             <Text style={styles.titleText}>Your Items ({items.length})</Text>

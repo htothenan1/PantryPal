@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
   rightSwipeContainer: {
     flexDirection: 'row',
-    width: 180,
+    width: 120,
     justifyContent: 'space-between',
   },
   swipeButton: {
@@ -52,6 +52,37 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     padding: 10,
+  },
+  boxInput: {
+    height: 50,
+    width: 170,
+    marginLeft: 24,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+  },
+  boxDisabledButton: {
+    backgroundColor: '#ccc',
+  },
+  boxButton: {
+    padding: 10,
+    borderRadius: 5,
+    marginRight: 24,
+  },
+  boxSaveText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 14,
+    color: 'black',
+  },
+  whiteText: {
+    color: 'white',
+  },
+  selectedWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
   itemsList: {
     marginBottom: 75,

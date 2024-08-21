@@ -2278,7 +2278,7 @@ export const ingredients = [
   },
   {
     item_id: '7g5378b7-f7g4-47g2-b76g-072ge30793eb',
-    name: 'canteloupes',
+    name: 'cantaloupes',
     img: canteloupes,
     exp_int: 6,
     category: 'fruits',

@@ -19,7 +19,6 @@ const RecipeDetails = ({route}) => {
 
   useEffect(() => {
     checkIfFavorited();
-    console.log(recipe);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
