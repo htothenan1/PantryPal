@@ -276,4 +276,16 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 10,
   },
+  badReviewContainer: {
+    alignItems: 'left',
+    padding: 100,
+    marginTop: 150,
+  },
+  reviewOptions: {
+    marginVertical: 2,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    width: '90%',
+  },
 });

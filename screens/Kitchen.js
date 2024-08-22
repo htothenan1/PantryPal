@@ -47,6 +47,7 @@ const Kitchen = ({route}) => {
   const [open, setOpen] = useState(false);
   const swipeableRefs = useRef(new Map()).current;
   const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
+  const [isBadReviewModalVisible, setBadReviewModalVisible] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [isItemsLoading, setIsItemsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +61,7 @@ const Kitchen = ({route}) => {
   const [filteredItemNames, setFilteredItemNames] = useState([]);
   const [isDeletingAllItems, setIsDeletingAllItems] = useState(false);
   const [isBoxItemsLoading, setIsBoxItemsLoading] = useState(false);
+  const [currentItemToDelete, setCurrentItemToDelete] = useState(null);
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -498,12 +500,27 @@ const Kitchen = ({route}) => {
       swipeable.close();
     }
   };
-  const handleWaste = data => {
-    deleteItem(data._id, 'waste');
-    const swipeable = swipeableRefs.get(data._id);
-    if (swipeable) {
-      swipeable.close();
+
+  // const handleWaste = data => {
+  //   // deleteItem(data._id, 'waste');
+  //   console.log('trigger module');
+  //   setBadReviewModalVisible(true);
+  //   const swipeable = swipeableRefs.get(data._id);
+  //   if (swipeable) {
+  //     swipeable.close();
+  //   }
+  // };
+
+  const handleWaste = item => {
+    setCurrentItemToDelete(item);
+    setBadReviewModalVisible(true);
+  };
+
+  const handleBadReviewOption = () => {
+    if (currentItemToDelete) {
+      deleteItem(currentItemToDelete._id, 'waste');
     }
+    setBadReviewModalVisible(false);
   };
   const handleConsume = data => {
     deleteItem(data._id, 'consume');
@@ -769,6 +786,45 @@ const Kitchen = ({route}) => {
               <Text style={styles.fabButtonText}>Add Multiple Items</Text>
             </TouchableOpacity>
           </View>
+
+          <Modal
+            isVisible={isBadReviewModalVisible}
+            onBackdropPress={() => setBadReviewModalVisible(false)}
+            style={styles.badReviewContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalHeader}>Why thumbs down?</Text>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Against Dietary Restrictions</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Cultural/Personal Preference</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Poor Quality or Freshness</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Lack of Familiarity</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Storage Issues (it spoiled!)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.reviewOptions}
+                onPress={handleBadReviewOption}>
+                <Text>Other</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
 
           <Modal
             isVisible={isAddItemModalVisible}
