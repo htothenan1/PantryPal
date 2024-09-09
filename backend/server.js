@@ -13,6 +13,7 @@ const FavoritedRecipe = require('./models/favoritedRecipe');
 const CustomItem = require('./models/customItem');
 const PantryItem = require('./models/pantryItem');
 const ImportedRecipe = require('./models/importedRecipe');
+const FoodBox = require('./models/foodBox');
 
 const cheerio = require('cheerio');
 const axios = require('axios');
@@ -283,6 +284,50 @@ app.get('/customItems/storageTip', async (req, res) => {
   } catch (error) {
     console.error('Failed to fetch custom item:', error);
     res.status(500).send('Error fetching custom item');
+  }
+});
+
+// Fetch food box by code
+app.get('/foodBox/:code', async (req, res) => {
+  const {code} = req.params;
+
+  try {
+    const foodBox = await FoodBox.findOne({code: code.toUpperCase()});
+
+    if (!foodBox) {
+      return res.status(404).json({message: 'Food Box not found'});
+    }
+
+    res.status(200).json(foodBox);
+  } catch (error) {
+    console.error('Error fetching food box:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching food box',
+      error: error.message,
+    });
+  }
+});
+
+// Save the food box
+app.post('/foodBox', async (req, res) => {
+  const {code, items} = req.body;
+
+  try {
+    const newFoodBox = new FoodBox({
+      code,
+      items,
+    });
+
+    await newFoodBox.save();
+    res.status(201).json(newFoodBox);
+  } catch (error) {
+    console.error('Error saving food box:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error saving food box',
+      error: error.message,
+    });
   }
 });
 

@@ -201,6 +201,11 @@ const MultiSelectScreen = ({route}) => {
       'dairy',
       'grains',
       'seafoods',
+      'legumes',
+      'nuts and seeds',
+      'canned goods',
+      'spices and herbs',
+      'oils',
       'consumed',
     ].filter(
       category =>

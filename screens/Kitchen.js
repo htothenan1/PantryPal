@@ -13,7 +13,7 @@ import {
   Alert,
 } from 'react-native';
 import UserHeader from '../components/UserHeader';
-import UserProgressBar from '../components/UserProgressBar';
+// import UserProgressBar from '../components/UserProgressBar';
 import {UserContext} from '../contexts/UserContext';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -87,6 +87,35 @@ const Kitchen = ({route}) => {
         'chicken thighs',
         'ham',
         'ground turkey',
+        'butter',
+        'parmesan cheese',
+        'cheddar cheese',
+        'eggs',
+        'milk',
+        'bagels',
+        'multigrain bread',
+      ],
+    },
+    {
+      id: 'BBBBB',
+      foodBoxItems: [
+        'apples',
+        'cherries',
+        'grapes',
+        'lemons',
+        'strawberries',
+        'arugula',
+        'avocados',
+        'basil',
+        'broccoli',
+        'garlic',
+        'cucumbers',
+        'mushrooms',
+        'tomatoes',
+        'zucchini',
+        'ground beef',
+        'blackberries',
+        'ham',
         'butter',
         'parmesan cheese',
         'cheddar cheese',
@@ -176,6 +205,28 @@ const Kitchen = ({route}) => {
       return unsubscribe;
     }, [navigation, route.params?.itemsAdded]),
   );
+
+  const fetchFoodBoxByCode = async boxCode => {
+    try {
+      setIsBoxItemsLoading(true);
+      const response = await fetch(
+        `${API_URL}/foodBox/${boxCode.toUpperCase()}`,
+      );
+
+      if (response.ok) {
+        const foodBox = await response.json();
+        return foodBox;
+      } else {
+        throw new Error('Food box not found');
+      }
+    } catch (error) {
+      console.error('Error fetching food box:', error.message);
+      Alert.alert('Error', 'Food box not found');
+      return null;
+    } finally {
+      setIsBoxItemsLoading(false);
+    }
+  };
 
   const filterItemsByCategory = () => {
     if (currentCategory === 'all') {
@@ -383,11 +434,10 @@ const Kitchen = ({route}) => {
 
   const addFoodBoxItems = async boxInput => {
     setIsBoxItemsLoading(true);
-    const matchingBox = foodBoxes.find(
-      box => box.id === boxInput.toUpperCase(),
-    );
-    if (matchingBox) {
-      const matchedItems = matchingBox.foodBoxItems.map(itemName => {
+    const foodBox = await fetchFoodBoxByCode(boxInput);
+
+    if (foodBox) {
+      const matchedItems = foodBox.items.map(itemName => {
         const matchedIngredient = ingredients.find(
           ingredient =>
             ingredient.name.toLowerCase() === itemName.toLowerCase(),
@@ -401,7 +451,6 @@ const Kitchen = ({route}) => {
             user: userEmail,
           };
         } else {
-          console.error(`Ingredient not found for ${itemName}`);
           return {
             name: itemName,
             exp_int: 6, // default expiration interval
@@ -437,15 +486,13 @@ const Kitchen = ({route}) => {
         fetchUserData(userEmail);
         fetchItems(userEmail);
         setBoxInput('');
-        setIsBoxItemsLoading(false);
       } catch (error) {
         console.error('Error adding items:', error.message);
       } finally {
         setIsLoading(false);
+        setIsBoxItemsLoading(false);
       }
     } else {
-      Alert.alert('No matching food box found.');
-      setIsBoxItemsLoading(false);
       setBoxInput('');
     }
   };
@@ -733,7 +780,7 @@ const Kitchen = ({route}) => {
                 </View>
                 <Text style={styles.actionItemText}>How to use FlavrPro</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={styles.actionItemContainer}
                 onPress={() => setAddItemModalVisible(true)}>
                 <View
@@ -742,7 +789,7 @@ const Kitchen = ({route}) => {
                   <Text style={styles.plusOne}>+ 1</Text>
                 </View>
                 <Text style={styles.actionItemText}>Add Single Item</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 onPress={() => navToMultiSelect()}
                 style={styles.actionItemContainer}>

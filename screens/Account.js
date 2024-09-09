@@ -258,9 +258,9 @@ const Account = () => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
+          {/* <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
             <Text style={styles.pantryButtonText}>Pantry Items</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
             onPress={() => navigation.navigate('Your Recipes')}>
