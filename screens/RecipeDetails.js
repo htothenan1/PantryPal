@@ -18,6 +18,7 @@ const RecipeDetails = ({route}) => {
   const {width} = useWindowDimensions();
 
   useEffect(() => {
+    console.log(recipe);
     checkIfFavorited();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

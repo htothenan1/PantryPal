@@ -11,7 +11,7 @@ import styles from './styles/favoriteRecipes';
 const YourRecipes = () => {
   const {
     favoriteRecipes,
-    setFavoriteRecipes,
+    // setFavoriteRecipes,
     fetchFavoriteRecipes,
     importedRecipes,
     setImportedRecipes,
@@ -71,6 +71,7 @@ const YourRecipes = () => {
   const swipeableRecipeItem = ({item, isImported}) => {
     return (
       <Swipeable
+        key={item._id}
         ref={ref => swipeableRefs.set(item._id, ref)}
         renderRightActions={() =>
           renderRightActions(
@@ -165,7 +166,7 @@ const YourRecipes = () => {
               styles.tabText,
               showFavorites ? styles.activeTabText : styles.inactiveTabText,
             ]}>
-            Favorite Recipes
+            Favorited Recipes
           </Text>
         </TouchableOpacity>
         <TouchableOpacity

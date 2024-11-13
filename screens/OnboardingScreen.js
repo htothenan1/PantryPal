@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import chefLogo from '../assets/chefs_hat.png';
+import chefLogo from '../assets/foodbankicon.png';
 import styles from './styles/onboardingScreen';
 import {auth} from '../firebase';
 

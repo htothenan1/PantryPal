@@ -51,8 +51,10 @@ export default StyleSheet.create({
   registerText: {
     fontSize: 16,
     fontFamily: 'Avenir-Book',
+    marginBottom: 5,
   },
   registerHyperlink: {
     color: '#386641',
+    fontWeight: 'bold',
   },
 });

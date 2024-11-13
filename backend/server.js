@@ -14,6 +14,8 @@ const CustomItem = require('./models/customItem');
 const PantryItem = require('./models/pantryItem');
 const ImportedRecipe = require('./models/importedRecipe');
 const FoodBox = require('./models/foodBox');
+const CustomFoodBox = require('./models/customFoodBox');
+const SignUp = require('./models/signUp');
 
 const cheerio = require('cheerio');
 const axios = require('axios');
@@ -106,6 +108,16 @@ app.get('/items', async (req, res) => {
   }
 });
 
+// Route to get all custom food box templates
+app.get('/customFoodBoxes', async (req, res) => {
+  try {
+    const customFoodBoxes = await CustomFoodBox.find();
+    res.status(200).json(customFoodBoxes);
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching custom food boxes'});
+  }
+});
+
 // Endpoint to get all imported recipes for a specific user
 app.get('/importedRecipes', async (req, res) => {
   try {
@@ -166,9 +178,9 @@ app.get('/items/useremail/:userEmail', async (req, res) => {
     }
 
     const wastedItems = await WastedItem.find({user: userEmail}).sort({
-      frequency: -1,
-      name: 1,
+      dateCreated: -1,
     });
+
     const consumedItems = await ConsumedItem.find({user: userEmail}).sort({
       frequency: -1,
       name: 1,
@@ -287,25 +299,135 @@ app.get('/customItems/storageTip', async (req, res) => {
   }
 });
 
-// Fetch food box by code
-app.get('/foodBox/:code', async (req, res) => {
-  const {code} = req.params;
-
+// Get all food box codes sorted by dateCreated in descending order
+app.get('/foodBoxes', async (req, res) => {
   try {
+    // Fetch all food boxes sorted by dateCreated in descending order
+    const foodBoxes = await FoodBox.find({}, 'code dateCreated').sort({
+      dateCreated: -1,
+    });
+
+    if (!foodBoxes.length) {
+      return res.status(404).json({message: 'No food boxes found'});
+    }
+
+    // Return the list of food box codes sorted by dateCreated
+    res.status(200).json(foodBoxes);
+  } catch (error) {
+    console.error('Error fetching food boxes:', error.message);
+    res.status(500).json({message: 'Error fetching food boxes'});
+  }
+});
+
+app.get('/foodBox/:code', async (req, res) => {
+  try {
+    const {code} = req.params;
+
+    // Search for the food box by code, ensuring the code is uppercase
     const foodBox = await FoodBox.findOne({code: code.toUpperCase()});
 
+    if (!foodBox) {
+      // If food box is not found, return a 404 response
+      return res.status(404).json({message: 'Food box not found'});
+    }
+
+    // Return the found food box
+    res.status(200).json(foodBox);
+  } catch (error) {
+    // Log and return any errors
+    console.error('Error fetching food box:', error.message);
+    res.status(500).json({message: 'Error fetching food box'});
+  }
+});
+
+// Route to get consumed and wasted items by foodBoxId
+app.get('/foodBox/:code/feedback', async (req, res) => {
+  try {
+    const {code} = req.params;
+
+    // Fetch all consumed items with the matching foodBoxId
+    const consumedItems = await ConsumedItem.find({foodBoxId: code}).select(
+      'name dateCreated reason',
+    );
+
+    // Fetch all wasted items with the matching foodBoxId
+    const wastedItems = await WastedItem.find({foodBoxId: code}).select(
+      'name dateCreated reason',
+    );
+
+    if (!consumedItems.length && !wastedItems.length) {
+      return res.status(404).send('No items found for this food box');
+    }
+
+    res.status(200).json({
+      consumedItems,
+      wastedItems,
+    });
+  } catch (error) {
+    res.status(500).send('Error fetching items: ' + error.message);
+  }
+});
+
+// Route to handle email sign-ups
+app.post('/signup', async (req, res) => {
+  const {email} = req.body;
+
+  if (!email) {
+    return res.status(400).json({message: 'Email is required'});
+  }
+
+  try {
+    // Create and save a new SignUp document
+    const newSignUp = new SignUp({email});
+    await newSignUp.save();
+
+    res.status(201).json({message: 'Email saved successfully'});
+  } catch (error) {
+    console.error('Error saving email:', error);
+    res.status(500).json({message: 'Error saving email'});
+  }
+});
+
+// Route to save a new custom food box template
+app.post('/customFoodBox', async (req, res) => {
+  const {name, items} = req.body;
+
+  try {
+    const newCustomFoodBox = new CustomFoodBox({
+      name,
+      items,
+    });
+
+    await newCustomFoodBox.save();
+    res.status(201).json(newCustomFoodBox);
+  } catch (error) {
+    console.error('Error saving custom food box:', error);
+    res.status(500).json({message: 'Error saving custom food box'});
+  }
+});
+
+app.post('/logFoodBox', async (req, res) => {
+  const {code, userEmail} = req.body;
+
+  try {
+    const user = await User.findOne({email: userEmail});
+    if (!user) {
+      return res.status(404).json({message: 'User not found'});
+    }
+
+    const foodBox = await FoodBox.findOne({code: code.toUpperCase()});
     if (!foodBox) {
       return res.status(404).json({message: 'Food Box not found'});
     }
 
-    res.status(200).json(foodBox);
+    // Add log entry with user email and date
+    foodBox.logs.push({user: user.email, date: new Date()});
+
+    await foodBox.save();
+    res.status(200).json({message: 'Food box logged successfully', foodBox});
   } catch (error) {
-    console.error('Error fetching food box:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching food box',
-      error: error.message,
-    });
+    console.error('Error logging food box:', error.message);
+    res.status(500).json({message: 'Error logging food box'});
   }
 });
 
@@ -586,8 +708,8 @@ app.post('/users', async (req, res) => {
 app.post('/items', async (req, res) => {
   try {
     const {items: itemsData, userEmail} = req.body;
-
     const savedItems = [];
+
     for (const itemData of itemsData) {
       const expDate = new Date();
       expDate.setDate(expDate.getDate() + itemData.exp_int);
@@ -599,6 +721,8 @@ app.post('/items', async (req, res) => {
         exp_date: expDate,
         user: itemData.user,
         dateTime: new Date(),
+        isFoodBoxItem: itemData.isFoodBoxItem || false,
+        foodBoxId: itemData.foodBoxId || null, // Add foodBoxId if it exists
       });
       const savedItem = await newItem.save();
       savedItems.push(savedItem);
@@ -747,59 +871,120 @@ app.delete('/items/deleteAll/:userEmail', async (req, res) => {
 });
 
 // Delete one item by id
+// app.delete('/items/:id', async (req, res) => {
+//   try {
+//     const deletionMethod = req.query.method;
+//     const deletedItem = await Item.findById(req.params.id);
+//     if (!deletedItem) {
+//       return res.status(404).send('Item not found');
+//     }
+
+//     if (deletionMethod === 'consume' || deletionMethod === 'waste') {
+//       const ItemModel =
+//         deletionMethod === 'consume' ? ConsumedItem : WastedItem;
+//       const existingItem = await ItemModel.findOne({
+//         name: deletedItem.name,
+//         user: deletedItem.user,
+//       });
+
+//       if (existingItem) {
+//         existingItem.frequency += 1;
+//         await existingItem.save();
+//       } else {
+//         await ItemModel.create({
+//           name: deletedItem.name,
+//           user: deletedItem.user,
+//           frequency: 1,
+//         });
+//       }
+//     }
+
+//     await Item.findByIdAndDelete(req.params.id);
+
+//     const user = await User.findOne({email: deletedItem.user});
+//     if (user) {
+//       user.itemsDeleted.total += 1;
+//       let xpGain = 0; // Initialize XP gain variable
+
+//       if (deletionMethod === 'undo') {
+//         user.itemsDeleted.byUndo += 1;
+//       }
+//       if (deletionMethod === 'consume') {
+//         user.itemsDeleted.byConsume += 1;
+//         xpGain += 2; // Gain 2 XP for consume method
+//       }
+//       if (deletionMethod === 'waste') {
+//         user.itemsDeleted.byWaste += 1;
+//         xpGain += 1; // Gain 1 XP for waste method
+//       }
+
+//       user.xp += xpGain;
+//       // Check for level change and update the user accordingly
+//       const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
+//       await user.save();
+
+//       // If the request expects a JSON response
+//       res.json({message: 'Item deleted', levelChanged, newLevel, xp});
+//     } else {
+//       res.status(404).send('User not found');
+//     }
+//   } catch (error) {
+//     res.status(400).send('Bad request: ' + error.message);
+//   }
+// });
+
 app.delete('/items/:id', async (req, res) => {
   try {
-    const deletionMethod = req.query.method;
-    const deletedItem = await Item.findById(req.params.id);
+    const {method} = req.query;
+    const {reason} = req.body; // Extract the reason from request body
+    const itemId = req.params.id;
+
+    // Find the item to be deleted
+    const deletedItem = await Item.findById(itemId);
     if (!deletedItem) {
       return res.status(404).send('Item not found');
     }
 
-    if (deletionMethod === 'consume' || deletionMethod === 'waste') {
-      const ItemModel =
-        deletionMethod === 'consume' ? ConsumedItem : WastedItem;
-      const existingItem = await ItemModel.findOne({
-        name: deletedItem.name,
-        user: deletedItem.user,
-      });
+    const foodBoxId = deletedItem.isFoodBoxItem ? deletedItem.foodBoxId : null;
 
-      if (existingItem) {
-        existingItem.frequency += 1;
-        await existingItem.save();
-      } else {
-        await ItemModel.create({
-          name: deletedItem.name,
+    // Log the deletion in the food box if applicable
+    if (deletedItem.isFoodBoxItem && deletedItem.foodBoxId) {
+      const foodBox = await FoodBox.findOne({code: deletedItem.foodBoxId});
+      if (foodBox) {
+        foodBox.logs.push({
           user: deletedItem.user,
-          frequency: 1,
+          item: deletedItem.name,
+          action: method === 'consume' ? 'thumbs up' : 'thumbs down',
+          date: new Date(),
         });
+        await foodBox.save();
       }
     }
 
-    await Item.findByIdAndDelete(req.params.id);
+    // Process deletion as consumed or wasted
+    if (method === 'consume' || method === 'waste') {
+      const ItemModel = method === 'consume' ? ConsumedItem : WastedItem;
 
+      await ItemModel.create({
+        name: deletedItem.name,
+        user: deletedItem.user,
+        foodBoxId: foodBoxId,
+        reason: reason, // Save the reason passed from the frontend
+      });
+    }
+
+    // Delete the item from the database
+    await Item.findByIdAndDelete(itemId);
+
+    // Update user's statistics
     const user = await User.findOne({email: deletedItem.user});
     if (user) {
       user.itemsDeleted.total += 1;
-      let xpGain = 0; // Initialize XP gain variable
-
-      if (deletionMethod === 'undo') {
-        user.itemsDeleted.byUndo += 1;
-      }
-      if (deletionMethod === 'consume') {
-        user.itemsDeleted.byConsume += 1;
-        xpGain += 2; // Gain 2 XP for consume method
-      }
-      if (deletionMethod === 'waste') {
-        user.itemsDeleted.byWaste += 1;
-        xpGain += 1; // Gain 1 XP for waste method
-      }
-
+      const xpGain = method === 'consume' ? 2 : 1;
       user.xp += xpGain;
-      // Check for level change and update the user accordingly
       const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
       await user.save();
 
-      // If the request expects a JSON response
       res.json({message: 'Item deleted', levelChanged, newLevel, xp});
     } else {
       res.status(404).send('User not found');

@@ -25,6 +25,8 @@ import ImportedRecipeDetails from './screens/ImportedRecipeDetails';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {UserProvider} from './contexts/UserContext';
 import ImportRecipes from './screens/ImportRecipes';
+import FoodBankSearch from './screens/FoodBankSearch';
+import FoodBankDetails from './screens/FoodBankDetails';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -181,6 +183,16 @@ function AccountStackScreen() {
         name="Imported Recipe Details"
         component={ImportedRecipeDetails}
       />
+      <DashStack.Screen
+        options={{headerShown: true}}
+        name="Food Bank Search"
+        component={FoodBankSearch}
+      />
+      <DashStack.Screen
+        options={{headerShown: true}}
+        name="Food Bank Details"
+        component={FoodBankDetails}
+      />
     </DashStack.Navigator>
   );
 }
@@ -267,7 +279,16 @@ export default function App() {
               name="Register"
               component={Register}
             />
-
+            <Stack.Screen
+              options={{headerShown: true}}
+              name="Food Bank Search"
+              component={FoodBankSearch}
+            />
+            <DashStack.Screen
+              options={{headerShown: true}}
+              name="Food Bank Details"
+              component={FoodBankDetails}
+            />
             <Stack.Screen
               component={MyTabsScreen}
               name="My Tabs"

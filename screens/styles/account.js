@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
-const {height} = Dimensions.get('window'); // Get the screen height
+const {height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -22,13 +22,11 @@ export default StyleSheet.create({
   accountImage: {
     width: 80,
     height: 80,
-    // resizeMode: 'stretch',
     marginLeft: 10,
   },
   accountImageDefault: {
     width: 80,
     height: 80,
-    // resizeMode: 'stretch',
   },
   titleContainer: {
     justifyContent: 'center',
@@ -80,7 +78,7 @@ export default StyleSheet.create({
   },
   logoutButtonText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
@@ -104,13 +102,13 @@ export default StyleSheet.create({
   },
   compostGameText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
   pantryButtonText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
@@ -125,7 +123,6 @@ export default StyleSheet.create({
   },
   item: {
     textAlign: 'left',
-    // fontSize: 16,
     fontFamily: 'Avenir-Book',
   },
   modalOverlay: {
@@ -192,8 +189,6 @@ export default StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     backgroundColor: 'white',
-    // alignItems: 'center', // Center horizontally
-    // justifyContent: 'center', // Center vertically if needed
   },
 
   itemContainer: {
@@ -209,8 +204,20 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 16,
     color: '#333',
+    fontFamily: 'Avenir-Book',
   },
-
+  dateText: {
+    fontSize: 14,
+    color: '#666',
+    fontFamily: 'Avenir-Book',
+  },
+  reasonText: {
+    fontSize: 14,
+    color: '#666',
+    fontStyle: 'italic',
+    marginTop: 4,
+    fontFamily: 'Avenir-Book',
+  },
   chartTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -220,13 +227,13 @@ export default StyleSheet.create({
   },
   legendContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', // Center the legend
+    justifyContent: 'center',
     marginTop: 16,
   },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 10, // Add space between legend items
+    marginHorizontal: 10,
   },
   legendColor: {
     width: 16,
@@ -236,5 +243,15 @@ export default StyleSheet.create({
   legendLabel: {
     fontSize: 15,
     color: '#7F7F7F',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  paginationText: {
+    fontSize: 14,
+    color: '#1b4965',
+    fontFamily: 'Avenir-Book',
   },
 });

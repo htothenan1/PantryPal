@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
 import chefLogo from '../assets/chefs_hat.png';
+import foodbankicon from '../assets/foodbankicon.png';
 import styles from './styles/itemDetails';
 import {
   capitalizeWords,
@@ -17,7 +18,7 @@ const ItemDetails = ({route}) => {
     ? ingredient.img
     : item?.img
     ? {uri: item.img}
-    : chefLogo;
+    : foodbankicon;
 
   const compatibleUserItems = findCompatibleUserItems(
     item,

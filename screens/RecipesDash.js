@@ -17,6 +17,7 @@ import {IconToolsKitchen2} from '@tabler/icons-react-native';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import chefLogo from '../assets/chefs_hat.png';
+import foodbankicon from '../assets/foodbankicon.png';
 
 import styles from './styles/recipesDash';
 
@@ -70,8 +71,12 @@ const RecipesDash = () => {
 
     // Find the corresponding ingredient to get the image
     const ingredient = ingredients.find(
-      ing => ing.name.toLowerCase() === item.name.toLowerCase(),
+      ing =>
+        ing.name &&
+        item.name &&
+        ing.name.toLowerCase() === item.name.toLowerCase(),
     );
+
     const itemImage = ingredient ? ingredient.img : chefLogo;
 
     return (
@@ -113,6 +118,7 @@ const RecipesDash = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const resItems = await response.json();
+        // console.log(resItems);
         setFetchedRecipes(resItems);
         setIsRecipesLoading(false);
       } catch (error) {
@@ -182,7 +188,7 @@ const RecipesDash = () => {
           <FlatList
             data={fetchedRecipes}
             renderItem={renderItems}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item, index) => item.id.toString()}
             horizontal
             showsHorizontalScrollIndicator={true}
             pagingEnabled

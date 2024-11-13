@@ -17,14 +17,17 @@ import {UserContext} from '../contexts/UserContext';
 import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {onboardingModule} from './data/modules';
 import {icons} from './data/icons';
 import chefLogo from '../assets/chefs_hat.png';
+import foodbankicon from '../assets/foodbankicon.png';
 import {ingredients} from './data/ingredients'; // Import ingredients data
 import {PieChart} from 'react-native-chart-kit';
 import {Dimensions} from 'react-native';
 import styles from './styles/account';
 
 const screenWidth = Dimensions.get('window').width;
+const ITEMS_PER_PAGE = 5; // Define items per page
 
 const Account = () => {
   const {userData, setUserData, fetchUserData} = useContext(UserContext);
@@ -37,6 +40,14 @@ const Account = () => {
   const [omitDairy, setOmitDairy] = useState(false);
   const [showConsumedItems, setShowConsumedItems] = useState(false);
   const [showWastedItems, setShowWastedItems] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0); // Track current page
+  const totalPages = Math.ceil(wastedItems.length / ITEMS_PER_PAGE); // Calculate total pages
+
+  const getPageItems = () => {
+    const startIdx = currentPage * ITEMS_PER_PAGE;
+    const endIdx = startIdx + ITEMS_PER_PAGE;
+    return wastedItems.slice(startIdx, endIdx);
+  };
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
@@ -105,6 +116,13 @@ const Account = () => {
     } catch (error) {
       console.error('Error updating icon name:', error);
     }
+  };
+
+  const navToOnboardingStack = module => {
+    navigation.navigate('OnboardingStack', {
+      screen: 'OnboardingStartScreen',
+      params: {module: module[0]},
+    });
   };
 
   const updatePreferences = async (meats, seafoods, dairy) => {
@@ -193,34 +211,34 @@ const Account = () => {
           <View>
             {selectedIcon ? (
               <>
-                <Image source={selectedIcon} style={styles.accountImage} />
-                <TouchableOpacity
+                <Image source={foodbankicon} style={styles.accountImage} />
+                {/* <TouchableOpacity
                   style={styles.chooseFlavrButton}
                   onPress={() => setIconPickerVisible(true)}>
                   <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </>
             ) : (
               <>
-                <Image source={chefLogo} style={styles.accountImage} />
+                <Image source={foodbankicon} style={styles.accountImage} />
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={styles.chooseFlavrButton}
                   onPress={() => setIconPickerVisible(true)}>
                   <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </>
             )}
           </View>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>{userData?.firstName}</Text>
-            <Text style={styles.levelText}>Level {userData?.level}</Text>
+            <Text style={styles.levelText}>{userData?.email}</Text>
           </View>
         </View>
 
         <View style={styles.preferencesContainer}>
           <Text style={styles.preferencesTitle}>Kitchen Dashboard</Text>
-          <View style={styles.togglesContainer}>
+          {/* <View style={styles.togglesContainer}>
             <View style={styles.toggleContainer}>
               <Text style={styles.toggleLabel}>Remove Meats:</Text>
               <Switch
@@ -256,100 +274,40 @@ const Account = () => {
                 trackColor={{false: '#767577', true: '#1b4965'}}
               />
             </View>
-          </View>
+          </View> */}
 
-          {/* <TouchableOpacity style={styles.pantryButton} onPress={navToPantry}>
-            <Text style={styles.pantryButtonText}>Pantry Items</Text>
-          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
             onPress={() => navigation.navigate('Your Recipes')}>
-            <Text style={styles.pantryButtonText}>Your Recipes</Text>
+            <Text style={styles.pantryButtonText}>Saved Recipes</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
             onPress={() => navigation.navigate('Import Recipes')}>
-            <Text style={styles.pantryButtonText}>Import Recipes</Text>
+            <Text style={styles.pantryButtonText}>Recipe Importer</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.compostGameButton}
             onPress={() => navigation.navigate('Compost Game')}>
             <Text style={styles.compostGameText}>Compost Game</Text>
           </TouchableOpacity>
-        </View>
-
-        <View style={styles.chartContainer}>
-          <Text style={styles.chartTitle}>Consumed vs Wasted</Text>
-          <PieChart
-            data={chartData}
-            width={screenWidth}
-            height={220}
-            chartConfig={{
-              backgroundColor: '#1cc910',
-              backgroundGradientFrom: '#eff3ff',
-              backgroundGradientTo: '#efefef',
-              decimalPlaces: 2,
-              color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-              style: {
-                borderRadius: 16,
-              },
-              propsForDots: {
-                r: '6',
-                strokeWidth: '2',
-                stroke: '#ffa726',
-              },
-            }}
-            accessor={'count'}
-            paddingLeft="50"
-            backgroundColor={'transparent'}
-            hasLegend={false}
-          />
-
-          <View style={styles.legendContainer}>
-            {chartData.map((entry, index) => (
-              <View key={index} style={styles.legendItem}>
-                <View
-                  style={[styles.legendColor, {backgroundColor: entry.color}]}
-                />
-                <Text style={styles.legendLabel}>
-                  {entry.name} ({entry.count})
-                </Text>
-              </View>
-            ))}
-          </View>
-        </View>
-        <View style={styles.itemsList}>
           <TouchableOpacity
-            onPress={() => setShowConsumedItems(!showConsumedItems)}
-            style={styles.headerContainer}>
-            <Text style={styles.headerText}>Top 5 Consumed Items</Text>
-            <AntDesignIcon
-              style={styles.headerIcon}
-              name={showConsumedItems ? 'caretup' : 'caretdown'}
-              size={20}
-              color="#228B22"
-            />
+            style={styles.compostGameButton}
+            onPress={() => navToOnboardingStack(onboardingModule)}>
+            <Text style={styles.compostGameText}>How to use FeedLink</Text>
           </TouchableOpacity>
-          {showConsumedItems &&
-            consumedItems.slice(0, 5).map(item => (
-              <View key={item._id} style={styles.itemContainer}>
-                <Image
-                  source={getIconForItem(item.name)}
-                  style={styles.itemIcon}
-                />
-                <Text style={styles.itemText}>
-                  {capitalizeWords(item.name)} ({item.frequency})
-                </Text>
-              </View>
-            ))}
+          {/* <TouchableOpacity
+            style={styles.compostGameButton}
+            onPress={() => navigation.navigate('Food Bank Search')}>
+            <Text style={styles.compostGameText}>Find a Food Pantry</Text>
+          </TouchableOpacity> */}
         </View>
 
         <View style={styles.itemsList}>
           <TouchableOpacity
             onPress={() => setShowWastedItems(!showWastedItems)}
             style={styles.headerContainer}>
-            <Text style={styles.headerText}>Top 5 Wasted Items</Text>
+            <Text style={styles.headerText}>Waste History</Text>
             <AntDesignIcon
               style={styles.headerIcon}
               name={showWastedItems ? 'caretup' : 'caretdown'}
@@ -357,16 +315,43 @@ const Account = () => {
               color="#B22222"
             />
           </TouchableOpacity>
+
+          {showWastedItems && (
+            <View style={styles.paginationContainer}>
+              {currentPage > 0 && (
+                <TouchableOpacity
+                  onPress={() => setCurrentPage(currentPage - 1)}>
+                  <Text style={styles.paginationText}>Previous Page</Text>
+                </TouchableOpacity>
+              )}
+              {currentPage < totalPages - 1 && (
+                <TouchableOpacity
+                  onPress={() => setCurrentPage(currentPage + 1)}>
+                  <Text style={styles.paginationText}>Next Page</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
           {showWastedItems &&
-            wastedItems.slice(0, 5).map(item => (
+            getPageItems().map(item => (
               <View key={item._id} style={styles.itemContainer}>
                 <Image
                   source={getIconForItem(item.name)}
                   style={styles.itemIcon}
                 />
-                <Text style={styles.itemText}>
-                  {capitalizeWords(item.name)} ({item.frequency})
-                </Text>
+                <View>
+                  <Text style={styles.itemText}>
+                    {capitalizeWords(item.name)} on{' '}
+                    {new Date(item.dateCreated).toLocaleDateString('en-US', {
+                      month: 'numeric',
+                      day: 'numeric',
+                    })}
+                  </Text>
+
+                  <Text style={styles.reasonText}>
+                    {item.reason || 'No reason specified'}
+                  </Text>
+                </View>
               </View>
             ))}
         </View>
@@ -374,41 +359,6 @@ const Account = () => {
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.logoutButtonText}>Log Out</Text>
         </TouchableOpacity>
-
-        <Modal
-          visible={isIconPickerVisible}
-          transparent={true}
-          animationType="slide"
-          onRequestClose={() => setIconPickerVisible(false)}>
-          <TouchableOpacity
-            style={styles.modalOverlay}
-            onPress={() => setIconPickerVisible(false)}
-            activeOpacity={1}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitleText}>Your Available Flavrs</Text>
-              <ScrollView>
-                {availableIcons.map((icon, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      setSelectedIcon(icon.img);
-                      updateIconName(icon.name);
-                      setIconPickerVisible(false);
-                    }}
-                    style={styles.modalItemButton}>
-                    <Image source={icon.img} style={styles.modalItemImage} />
-                    <View style={styles.modalItemTextContainer}>
-                      <Text style={styles.modalItemText}>{icon.name}</Text>
-                      <Text style={styles.modalItemLevel}>
-                        Level {icon.level}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-            </View>
-          </TouchableOpacity>
-        </Modal>
       </ScrollView>
     </View>
   );

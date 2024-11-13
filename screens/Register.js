@@ -11,6 +11,7 @@ import {
 import {useNavigation} from '@react-navigation/core';
 import {API_URL} from '@env';
 import chefsHat from '../assets/chefs_hat.png';
+import foodbankicon from '../assets/foodbankicon.png';
 import styles from './styles/register';
 import {auth} from '../firebase';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
@@ -76,8 +77,8 @@ const Register = () => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
-        <Image source={chefsHat} style={styles.smileLogo} />
-        <Text style={styles.titleText}>Sign up for an account!</Text>
+        <Image source={foodbankicon} style={styles.smileLogo} />
+        <Text style={styles.titleText}>Sign up for FeedLink!</Text>
         <TextInput
           placeholder="First Name"
           placeholderTextColor={'black'}
@@ -111,6 +112,16 @@ const Register = () => {
         Already have an account?{' '}
         <Text onPress={handleNavtoLogin} style={styles.registerHyperlink}>
           Log in here!
+        </Text>
+      </Text>
+      <Text style={styles.registerText}>
+        Need emergency food?{' '}
+        <Text
+          onPress={() => navigation.navigate('Food Bank Search')}
+          style={styles.registerHyperlink}
+          accessibilityLabel="Food Bank Search"
+          accessibilityRole="link">
+          Find a food bank here!
         </Text>
       </Text>
     </KeyboardAvoidingView>

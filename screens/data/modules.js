@@ -864,38 +864,48 @@ export const onboardingModule = [
       'By consistently practicing the 3 Core Actions in our app, you will help yourself maintain an efficient kitchen.',
     content: [
       {
-        contentTitle: 'The effort is worth it!',
+        contentTitle: 'The FeedLink Cycle',
         contentImage: chefLogo,
         contentText: [
-          'Managing your kitchen efficiently is a difficult task. It takes a specific combination of skills and knowledge, along with consistent effort.',
-          'By practicing the 3 Core Actions on a regular basis, you stand a much better chance of overcoming the many challenges that come with kitchen management.',
-          'FlavrPro makes it easy to maintain awareness of your food inventory, set informed goals, find the right recipes, and sharpen your kitchen skills!',
+          'Managing your kitchen is difficult. Being efficient takes a combination of skills, along with consistent effort.',
+          'By practicing the FeedLink Cycle on a regular basis, you stand a better chance of overcoming the challenges that come with kitchen management.',
+          'FeedLink makes it easy to stay aware of your grocery items, set informed goals, find relevant recipes, and sharpen your kitchen skills.',
         ],
       },
       {
         contentTitle: 'Logging Your Items',
         contentImage: chefLogo,
         contentText: [
-          'In order to benefit fully from FlavrPro, you should log your foods when you purchase them, and mark how they were consumed. This will only take seconds.',
-          'By logging an item, you give yourself an opportunity to make good decisions. Specifically, when and how you would like to eat it by.',
+          'Adding and tracking your grocery items builds kitchen awareness and unlocks relevant educational content.',
+          'By logging an item, you give yourself an opportunity to make good decisions about that item.',
+          'When the item is finished, quickly mark if a majority of that item was consumed. If not, state the reason why.',
         ],
       },
       {
         contentTitle: 'Setting SMART goals',
         contentImage: chefLogo,
         contentText: [
-          'SMART = Specific, Measurable, Achievable, Relevant, and Time-bound. Extremely effective if applied to setting use-by dates for food consumption.',
-          'FlavrPro helps users set SMART goals for their items by providing curated data and default dates for over 100 of the most common items purchased.',
-          'We view SMART goal setting as a crucial skill that, with practice and refinement, can dramatically improve your overall kitchen efficiency.',
+          'SMART = Specific, Measurable, Achievable, Relevant, and Time-bound. Effective if goal-setting in the kitchen.',
+          'For each item, set an relevant use-by date. This is less about expiration, and more estimating when the itme should logicaly be consumed by.',
+          'With practice and repetition, you will improve your ability to assess the condition of your grocery items, and set educated goals.',
         ],
       },
       {
-        contentTitle: 'Learning Kitchen Skills',
+        contentTitle: 'Learning Continuously',
         contentImage: chefLogo,
         contentText: [
-          'In addition to logging your foods and setting SMART goals, you are encouraged to continue your kitchen journey by visiting the Learn tab.',
-          'Here, you will find bite-sized educational modules, where you can gain the skills needed to become an efficient home chef.',
-          'Current module topics include: Kitchen Prep, Food Knowledge, Cooking Skills, and Beyond Your Kitchen.',
+          'Storage tips, health facts, and best flavor pairings for over 300 common grocery items.',
+          'Gain the skills and knowledge necessary to become an efficient home chef. Learn about the impact of your food choices.',
+          'Current topics include: Kitchen Prep, Food Knowledge, Cooking Skills, and Beyond Your Kitchen.',
+        ],
+      },
+      {
+        contentTitle: 'Finding and Managing Recipes',
+        contentImage: chefLogo,
+        contentText: [
+          'The most difficult part of cooking is figuring out what ingredients are on hand, and what exact meal should be cooked.',
+          'Feedlink allows you to search over 5000 relevant recipes based on logged items, and save your favorites.',
+          'In addition, you can import and save your favorite recipes from outside the app. Slash the amount of time it takes to find the "one".',
         ],
       },
     ],

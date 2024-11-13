@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -14,6 +14,15 @@ import {API_URL} from '@env';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import chefLogo from '../assets/chefs_hat.png';
+import foodbankicon from '../assets/foodbankicon.png';
+import {
+  IconToolsKitchen2,
+  IconFridge,
+  IconHourglassEmpty,
+  IconCalendarClock,
+  IconShoppingCart,
+  IconChefHat,
+} from '@tabler/icons-react-native';
 import styles from './styles/multiSelect';
 
 const MultiSelectScreen = ({route}) => {
@@ -30,6 +39,7 @@ const MultiSelectScreen = ({route}) => {
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
+  const flatListRef = useRef(null); // Reference for FlatList
 
   const capitalizeWords = str => {
     if (!str) {
@@ -206,7 +216,6 @@ const MultiSelectScreen = ({route}) => {
       'canned goods',
       'spices and herbs',
       'oils',
-      'consumed',
     ].filter(
       category =>
         itemsByCategory.some(item => item.category === category) ||
@@ -292,7 +301,7 @@ const MultiSelectScreen = ({route}) => {
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item);
     const isExpanded = expandedItems.includes(item);
-    const itemImage = item.img ? item.img : chefLogo;
+    const itemImage = item.img ? item.img : foodbankicon;
     const itemExpInt = item.exp_int ? `${item.exp_int} days` : 'N/A';
 
     const renderSubItem = (subItem, parentItemId) => (
@@ -354,7 +363,10 @@ const MultiSelectScreen = ({route}) => {
       <TouchableOpacity
         key={category}
         style={[styles.tab, isSelected && styles.selectedTab]}
-        onPress={() => setCurrentCategory(category)}>
+        onPress={() => {
+          setCurrentCategory(category);
+          flatListRef.current.scrollToOffset({animated: true, offset: 0}); // Scroll to top
+        }}>
         <Text style={[styles.tabText, isSelected && styles.selectedTabText]}>
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </Text>
@@ -373,6 +385,7 @@ const MultiSelectScreen = ({route}) => {
           {availableCategories.map(renderTab)}
         </ScrollView>
         <FlatList
+          ref={flatListRef} // Set reference here
           contentContainerStyle={{paddingBottom: 120}}
           data={items}
           renderItem={renderItem}

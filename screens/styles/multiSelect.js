@@ -16,7 +16,7 @@ export default StyleSheet.create({
   tab: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
     backgroundColor: '#F2F2F2',
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     borderRadius: 12,
   },
   tabText: {
-    fontSize: 13,
+    fontSize: 16,
     color: '#333',
     fontFamily: 'Avenir-Book',
   },

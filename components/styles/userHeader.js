@@ -16,9 +16,10 @@ export default StyleSheet.create({
   },
   userName: {
     marginLeft: 10,
-    fontSize: 18,
+    fontSize: 30,
     fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
+    marginTop: 8,
+    // fontWeight: 'bold',
   },
   levelText: {
     marginLeft: 10,
