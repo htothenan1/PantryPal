@@ -28,6 +28,12 @@ import compostArt from '../../assets/composting.png';
 import knifeArt from '../../assets/knife_art.png';
 import foodInsecureArt from '../../assets/food_insecure.png';
 import resourcesArt from '../../assets/resources.png';
+import swipeLeft from '../../assets/swipeLeft.png';
+import swipeRight from '../../assets/swipeRight.png';
+import learnMore from '../../assets/learnMore.png';
+import foodBankIcon from '../../assets/foodbankicon.png';
+import getRecipes from '../../assets/getRecipes.png';
+import feedlinkCycle from '../../assets/feedlinkCycle.png';
 
 export const latestArticlesObjects = [
   {
@@ -865,47 +871,47 @@ export const onboardingModule = [
     content: [
       {
         contentTitle: 'The FeedLink Cycle',
-        contentImage: chefLogo,
+        contentImage: feedlinkCycle,
         contentText: [
-          'Managing your kitchen is difficult. Being efficient takes a combination of skills, along with consistent effort.',
-          'By practicing the FeedLink Cycle on a regular basis, you stand a better chance of overcoming the challenges that come with kitchen management.',
-          'FeedLink makes it easy to stay aware of your grocery items, set informed goals, find relevant recipes, and sharpen your kitchen skills.',
+          'Managing your kitchen is difficult. Reducing food waste takes a specific set of skills, along with consistent effort.',
+          'By practicing the FeedLink Cycle on a regular basis, you can overcome the challenges that come with kitchen management.',
+          'FeedLink makes it easy to stay aware of your foods, set informed goals, find relevant recipes, and sharpen your kitchen skills.',
         ],
       },
       {
         contentTitle: 'Logging Your Items',
-        contentImage: chefLogo,
+        contentImage: swipeLeft,
         contentText: [
-          'Adding and tracking your grocery items builds kitchen awareness and unlocks relevant educational content.',
-          'By logging an item, you give yourself an opportunity to make good decisions about that item.',
-          'When the item is finished, quickly mark if a majority of that item was consumed. If not, state the reason why.',
+          'Adding and tracking your grocery items builds awareness and unlocks curated content.',
+          // 'By logging an item, you give yourself an opportunity to make good decisions for that item.',
+          'When an item is finished, swipe left and mark if a majority of that item was consumed.',
         ],
       },
       {
         contentTitle: 'Setting SMART goals',
-        contentImage: chefLogo,
+        contentImage: swipeRight,
         contentText: [
-          'SMART = Specific, Measurable, Achievable, Relevant, and Time-bound. Effective if goal-setting in the kitchen.',
-          'For each item, set an relevant use-by date. This is less about expiration, and more estimating when the itme should logicaly be consumed by.',
-          'With practice and repetition, you will improve your ability to assess the condition of your grocery items, and set educated goals.',
+          'Specific, Measurable, Achievable, Relevant, and Time-bound. Highly effective if setting goals in the kitchen.',
+          'For each item, set a relevant use-by date. Make an agreement with yourself as to when you should eat the item by.',
+          // 'Over time, you will improve your ability to assess the condition of your grocery items, and set better goals.',
         ],
       },
       {
         contentTitle: 'Learning Continuously',
-        contentImage: chefLogo,
+        contentImage: learnMore,
         contentText: [
           'Storage tips, health facts, and best flavor pairings for over 300 common grocery items.',
           'Gain the skills and knowledge necessary to become an efficient home chef. Learn about the impact of your food choices.',
-          'Current topics include: Kitchen Prep, Food Knowledge, Cooking Skills, and Beyond Your Kitchen.',
+          // 'Current topics include: Kitchen Prep, Food Knowledge, Cooking Skills, and Beyond Your Kitchen.',
         ],
       },
       {
-        contentTitle: 'Finding and Managing Recipes',
-        contentImage: chefLogo,
+        contentTitle: 'Finding Recipes',
+        contentImage: getRecipes,
         contentText: [
-          'The most difficult part of cooking is figuring out what ingredients are on hand, and what exact meal should be cooked.',
-          'Feedlink allows you to search over 5000 relevant recipes based on logged items, and save your favorites.',
-          'In addition, you can import and save your favorite recipes from outside the app. Slash the amount of time it takes to find the "one".',
+          'One of the most annoying parts of cooking is figuring out what exact meal should be cooked each night.',
+          'Feedlink allows you to search over 5000 relevant recipes based on logged items, or import your favorites.',
+          // 'In addition, you can import and save your favorite recipes from outside the app. Slash the amount of time to find the "one".',
         ],
       },
     ],

@@ -33,15 +33,11 @@ const OnboardingStartScreen = ({route, navigation}) => {
           <Text style={styles.bulletText}>• Set SMART Kitchen Goals</Text>
           <Text style={styles.bulletText}>• Learn Continuously</Text>
         </View>
-        {/* <Text style={styles.introText}>
-          While we aim to make these actions as easy and rewarding as possible
-          to do, it will still take some effort!
-        </Text> */}
       </ScrollView>
 
       <View style={styles.startButton}>
         <TouchableOpacity style={styles.buttonContainer} onPress={startModule}>
-          <Text style={styles.buttonText}>Begin Tutorial</Text>
+          <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
     </View>

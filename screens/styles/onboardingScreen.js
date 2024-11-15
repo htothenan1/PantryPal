@@ -12,9 +12,17 @@ export default StyleSheet.create({
   imageWrapper: {
     alignItems: 'center',
   },
+  lowerImageWrapper: {
+    alignItems: 'center',
+  },
   image: {
     height: 80,
     width: 80,
+  },
+  lowerImage: {
+    resizeMode: 'contain',
+    width: 400,
+    height: 400,
   },
   titleText: {
     textAlign: 'center',

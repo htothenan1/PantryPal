@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import chefLogo from '../assets/foodbankicon.png';
+import swipeLeft from '../assets/swipeLeft.png';
 import styles from './styles/onboardingScreen';
 import {auth} from '../firebase';
 
@@ -32,9 +33,9 @@ const OnboardingScreen = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.screenWrapper}>
-        <View style={styles.imageWrapper}>
+        {/* <View style={styles.imageWrapper}>
           <Image source={chefLogo} style={styles.image} />
-        </View>
+        </View> */}
 
         <Text style={styles.titleText}>{currentContent.contentTitle}</Text>
         {currentContent.contentText.map((text, index) => (
@@ -42,6 +43,12 @@ const OnboardingScreen = ({route, navigation}) => {
             {text}
           </Text>
         ))}
+        <View style={styles.lowerImageWrapper}>
+          <Image
+            source={currentContent.contentImage}
+            style={styles.lowerImage}
+          />
+        </View>
       </ScrollView>
       <View style={styles.startButton}>
         <TouchableOpacity
