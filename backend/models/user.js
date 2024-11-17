@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  uid: {type: String, required: true, unique: true}, // Firebase UID
   email: {type: String, required: true, maxlength: 30},
   firstName: {type: String, required: true, maxLength: 30},
   itemsCreated: {type: Number, default: 0},

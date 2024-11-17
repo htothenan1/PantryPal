@@ -26,52 +26,51 @@ const Register = () => {
     navigation.navigate('Login');
   };
 
-  const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCreds => {
-        const userEmail = userCreds.user.email;
-        console.log('Registered successfully with:', userEmail);
+  const handleSignUp = async () => {
+    try {
+      // Create the user in Firebase
+      const userCreds = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      const userEmail = userCreds.user.email;
+      const userId = userCreds.user.uid;
 
-        return fetch(`${API_URL}/users`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({email: userEmail, firstName: name}),
-        });
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to register user in the database.');
-        }
-        return response.json();
-      })
-      .then(userData => {
-        console.log('MongoDB User created:', userData);
-      })
-      .catch(error => {
-        let errorMessage;
+      console.log('Registered successfully with:', userEmail);
 
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            errorMessage =
-              'The email address is already in use by another account.';
-            break;
-          case 'auth/invalid-email':
-            errorMessage = 'The email address is badly formatted.';
-            break;
-          case 'auth/weak-password':
-            errorMessage =
-              'The password is too weak. Please enter a stronger password.';
-            break;
-          default:
-            errorMessage =
-              error.message ||
-              'An unknown error occurred. Please try again later.';
-        }
-
-        Alert.alert('Registration Error', errorMessage);
+      // Save the new user to the backend
+      const registerResponse = await fetch(`${API_URL}/users`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: userEmail,
+          firstName: name,
+          uid: userId,
+        }),
       });
+
+      if (!registerResponse.ok) {
+        throw new Error('Failed to register user in the database.');
+      }
+
+      console.log('User registered in backend.');
+
+      // Fetch user data from the backend
+      const fetchResponse = await fetch(`${API_URL}/users/data?uid=${userId}`);
+      if (!fetchResponse.ok) {
+        throw new Error(`Failed to fetch user data: ${fetchResponse.status}`);
+      }
+
+      const userData = await fetchResponse.json();
+      console.log('Fetched user data:', userData);
+
+      // Navigate to the next screen and pass user data (optional)
+      navigation.replace('My Tabs', {userData});
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+      Alert.alert('Registration Error', error.message || 'Please try again.');
+    }
   };
 
   return (
@@ -114,7 +113,7 @@ const Register = () => {
           Log in here!
         </Text>
       </Text>
-      <Text style={styles.registerText}>
+      {/* <Text style={styles.registerText}>
         Need emergency food?{' '}
         <Text
           onPress={() => navigation.navigate('Food Bank Search')}
@@ -123,7 +122,7 @@ const Register = () => {
           accessibilityRole="link">
           Find a food bank here!
         </Text>
-      </Text>
+      </Text> */}
     </KeyboardAvoidingView>
   );
 };

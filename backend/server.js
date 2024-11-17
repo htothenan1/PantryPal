@@ -93,6 +93,31 @@ async function veggiesTest(imageUrl, mode) {
 
 //ROUTES
 
+// Fetch all users and their statistics
+app.get('/admin/users', async (req, res) => {
+  try {
+    const users = await User.find(
+      {},
+      'email firstName itemsCreated itemsDeleted xp level maxScore achievements omitMeats omitSeafoods omitDairy',
+    );
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching user data', error});
+  }
+});
+
+// Fetch all signups
+app.get('/admin/signups', async (req, res) => {
+  try {
+    const signups = await SignUp.find({}, 'email dateCreated').sort({
+      dateCreated: -1,
+    });
+    res.status(200).json(signups);
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching signups', error});
+  }
+});
+
 // Get all items
 app.get('/items', async (req, res) => {
   try {
@@ -152,19 +177,19 @@ app.get('/pantryItems', async (req, res) => {
 // Fetch user data by email
 app.get('/users/data', async (req, res) => {
   try {
-    const userEmail = req.query.email;
-    if (!userEmail) {
-      return res.status(400).send('Email query parameter is required');
-    }
+    const {email, uid} = req.query;
 
-    const user = await User.findOne({email: userEmail});
+    // Prioritize search by UID
+    const user = uid ? await User.findOne({uid}) : await User.findOne({email});
+
     if (!user) {
-      return res.status(404).send('User not found');
+      return res.status(404).json({message: 'User not found'});
     }
 
     res.json(user);
   } catch (error) {
-    res.status(500).send(error);
+    console.error('Error fetching user data:', error.message);
+    res.status(500).json({message: 'Internal server error'});
   }
 });
 
@@ -689,18 +714,28 @@ app.post('/generateHealthFacts', async (req, res) => {
   }
 });
 
-// create a new user
 app.post('/users', async (req, res) => {
   try {
-    const {email, firstName} = req.body;
+    const {email, firstName, uid} = req.body;
+
+    // Check if the UID already exists
+    const existingUser = await User.findOne({uid});
+    if (existingUser) {
+      return res.status(400).json({message: 'User already exists.'});
+    }
+
+    // Create a new user
     const newUser = new User({
-      email: email,
-      firstName: firstName,
+      uid,
+      email,
+      firstName,
     });
+
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
-    res.status(400).send(error);
+    console.error('Error creating user:', error.message);
+    res.status(500).json({message: 'Internal server error.'});
   }
 });
 
@@ -846,6 +881,50 @@ app.put('/items/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+app.delete('/consumedItems', async (req, res) => {
+  try {
+    // Delete all consumed items
+    await ConsumedItem.deleteMany({});
+    res.status(200).json({message: 'All consumed items have been deleted.'});
+  } catch (error) {
+    console.error('Error deleting consumed items:', error);
+    res.status(500).json({message: 'Failed to delete consumed items.'});
+  }
+});
+
+app.delete('/users/:uid', async (req, res) => {
+  try {
+    const uid = req.params.uid;
+
+    // Find the user by Firebase UID
+    const user = await User.findOne({uid});
+    if (!user) {
+      return res.status(404).json({message: 'User not found'});
+    }
+
+    // Delete associated data
+    await Promise.all([
+      Item.deleteMany({user: user.email}),
+      WastedItem.deleteMany({user: user.email}),
+      ConsumedItem.deleteMany({user: user.email}),
+      FavoritedRecipe.deleteMany({user: user.email}),
+      CustomItem.deleteMany({user: user.email}),
+      PantryItem.deleteMany({user: user.email}),
+      ImportedRecipe.deleteMany({user: user.email}),
+    ]);
+
+    // Delete the user document
+    await User.deleteOne({uid});
+
+    res.status(200).json({message: 'Account deleted successfully'});
+  } catch (error) {
+    console.error('Error deleting user account:', error.message);
+    res
+      .status(500)
+      .json({message: 'Failed to delete account', error: error.message});
   }
 });
 

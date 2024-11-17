@@ -103,7 +103,7 @@ const Login = () => {
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
       </View>
-      {/* <Text style={styles.registerText}>
+      <Text style={styles.registerText}>
         Don't have an account yet?{' '}
         <Text
           onPress={handleNavtoRegister}
@@ -112,7 +112,7 @@ const Login = () => {
           accessibilityRole="link">
           Sign up here!
         </Text>
-      </Text> */}
+      </Text>
       {/* <Text style={styles.registerText}>
         Need food?{' '}
         <Text

@@ -69,33 +69,20 @@ export default StyleSheet.create({
   headerIcon: {
     marginLeft: 10,
   },
-  logoutButton: {
-    padding: 10,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-    marginBottom: 20,
-    marginTop: 50,
-  },
-  logoutButtonText: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
-  },
   pantryButton: {
-    padding: 10,
+    padding: 14,
     backgroundColor: '#1b4965',
     borderRadius: 10,
     marginVertical: 15,
   },
   favoriteRecipesButton: {
-    padding: 10,
+    padding: 14,
     backgroundColor: '#1b4965',
     borderRadius: 10,
     marginVertical: 15,
   },
   compostGameButton: {
-    padding: 10,
+    padding: 14,
     backgroundColor: '#1b4965',
     borderRadius: 10,
     marginVertical: 15,
@@ -252,6 +239,32 @@ export default StyleSheet.create({
   paginationText: {
     fontSize: 14,
     color: '#1b4965',
+    fontFamily: 'Avenir-Book',
+  },
+  logoutButton: {
+    padding: 14,
+    backgroundColor: '#1b4965',
+    borderRadius: 10,
+    marginBottom: 20,
+    marginTop: 50,
+  },
+  logoutButtonText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    fontFamily: 'Avenir-Book',
+  },
+  deleteAccountButton: {
+    marginTop: 10,
+    backgroundColor: '#B22222', // Red color for warning
+    padding: 14,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  deleteAccountButtonText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
     fontFamily: 'Avenir-Book',
   },
 });

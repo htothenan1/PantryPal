@@ -8,6 +8,7 @@ import {
   Modal,
   Image,
   Switch,
+  Alert,
 } from 'react-native';
 import {auth} from '../firebase';
 import {signOut} from 'firebase/auth';
@@ -123,6 +124,105 @@ const Account = () => {
       screen: 'OnboardingStartScreen',
       params: {module: module[0]},
     });
+  };
+
+  const deleteAllConsumedItems = async () => {
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete all consumed items? This action cannot be undone.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const response = await fetch(`${API_URL}/consumedItems`, {
+                method: 'DELETE',
+              });
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+
+              Alert.alert('Success', 'All consumed items have been deleted.');
+              setConsumedItems([]); // Clear the local state
+            } catch (error) {
+              console.error('Error deleting consumed items:', error.message);
+              Alert.alert(
+                'Error',
+                'Failed to delete consumed items. Please try again.',
+              );
+            }
+          },
+        },
+      ],
+    );
+  };
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Confirm Account Deletion',
+      'Are you sure you want to permanently delete your account? This action cannot be undone.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const authUser = auth.currentUser; // Firebase authenticated user
+              if (!authUser) {
+                throw new Error('No authenticated user found.');
+              }
+
+              const userId = authUser.uid; // Firebase UID
+
+              // Delete user from Firebase
+              await authUser.delete();
+
+              // Delete user from MongoDB
+              const response = await fetch(`${API_URL}/users/${userId}`, {
+                method: 'DELETE',
+              });
+
+              if (!response.ok) {
+                throw new Error('Failed to delete user from MongoDB.');
+              }
+
+              console.log(
+                'User successfully deleted from Firebase and MongoDB',
+              );
+
+              // Log out the user
+              await signOut(auth);
+
+              // Navigate to login screen
+              navigation.replace('Login');
+            } catch (error) {
+              if (error.code === 'auth/requires-recent-login') {
+                Alert.alert(
+                  'Reauthentication Required',
+                  'Please log in again to delete your account.',
+                );
+              } else {
+                console.error('Error deleting account:', error);
+                Alert.alert(
+                  'Error',
+                  'Failed to delete your account. Please try again.',
+                );
+              }
+            }
+          },
+        },
+      ],
+    );
   };
 
   const updatePreferences = async (meats, seafoods, dairy) => {
@@ -358,6 +458,18 @@ const Account = () => {
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.logoutButtonText}>Log Out</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.deleteAccountButton}
+          onPress={handleDeleteAccount}>
+          <Text style={styles.deleteAccountButtonText}>Delete Account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.deleteAccountButton}
+          onPress={deleteAllConsumedItems}>
+          <Text style={styles.deleteAccountButtonText}>
+            Delete All Consumed Items
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
