@@ -145,90 +145,83 @@ const Account = () => {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.accountInfoWrapper}>
-          <View>
-            <Image source={foodbankicon} style={styles.accountImage} />
-          </View>
+          <Image source={foodbankicon} style={styles.accountImage} />
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>{userData?.firstName}</Text>
-            <Text style={styles.levelText}>{userData?.email}</Text>
+            <Text style={styles.emailText}>{userData?.email}</Text>
           </View>
         </View>
 
         <View style={styles.preferencesContainer}>
           <TouchableOpacity
-            style={styles.favoriteRecipesButton}
+            style={styles.button}
             onPress={() => navigation.navigate('Your Recipes')}>
-            <Text style={styles.pantryButtonText}>Saved Recipes</Text>
+            <Text style={styles.buttonText}>Saved Recipes</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.favoriteRecipesButton}
+            style={styles.button}
             onPress={() => navigation.navigate('Import Recipes')}>
-            <Text style={styles.pantryButtonText}>Recipe Importer</Text>
+            <Text style={styles.buttonText}>Recipe Importer</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.compostGameButton}
+            style={styles.button}
             onPress={() => navigation.navigate('Compost Game')}>
-            <Text style={styles.compostGameText}>Compost Game</Text>
+            <Text style={styles.buttonText}>Compost Game</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.compostGameButton}
+            style={styles.button}
             onPress={() => navToOnboardingStack(onboardingModule)}>
-            <Text style={styles.compostGameText}>How to use FeedLink</Text>
+            <Text style={styles.buttonText}>How to use FeedLink</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.itemsList}>
-          <TouchableOpacity
-            onPress={() => setShowWastedItems(!showWastedItems)}
-            style={styles.headerContainer}>
-            <Text style={styles.headerText}>Waste History</Text>
-            <AntDesignIcon
-              style={styles.headerIcon}
-              name={showWastedItems ? 'caretup' : 'caretdown'}
-              size={20}
-              color="#B22222"
-            />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setShowWastedItems(!showWastedItems)}
+          style={styles.headerContainer}>
+          <Text style={styles.headerText}>Waste History</Text>
+          <AntDesignIcon
+            name={showWastedItems ? 'caretup' : 'caretdown'}
+            size={20}
+            color="#B22222"
+          />
+        </TouchableOpacity>
 
-          {showWastedItems && (
-            <View style={styles.paginationContainer}>
-              {currentPage > 0 && (
-                <TouchableOpacity
-                  onPress={() => setCurrentPage(currentPage - 1)}>
-                  <Text style={styles.paginationText}>Previous Page</Text>
-                </TouchableOpacity>
-              )}
-              {currentPage < totalPages - 1 && (
-                <TouchableOpacity
-                  onPress={() => setCurrentPage(currentPage + 1)}>
-                  <Text style={styles.paginationText}>Next Page</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          )}
-          {showWastedItems &&
-            getPageItems().map(item => (
-              <View key={item._id} style={styles.itemContainer}>
-                <Image
-                  source={getIconForItem(item.name)}
-                  style={styles.itemIcon}
-                />
-                <View>
-                  <Text style={styles.itemText}>
-                    {capitalizeWords(item.name)} on{' '}
-                    {new Date(item.dateCreated).toLocaleDateString('en-US', {
-                      month: 'numeric',
-                      day: 'numeric',
-                    })}
-                  </Text>
+        {showWastedItems && (
+          <View style={styles.paginationContainer}>
+            {currentPage > 0 && (
+              <TouchableOpacity onPress={() => setCurrentPage(currentPage - 1)}>
+                <Text style={styles.paginationText}>Previous Page</Text>
+              </TouchableOpacity>
+            )}
+            {currentPage < totalPages - 1 && (
+              <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
+                <Text style={styles.paginationText}>Next Page</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+        {showWastedItems &&
+          getPageItems().map(item => (
+            <View key={item._id} style={styles.itemContainer}>
+              <Image
+                source={getIconForItem(item.name)}
+                style={styles.itemIcon}
+              />
+              <View>
+                <Text style={styles.itemText}>
+                  {capitalizeWords(item.name)} on{' '}
+                  {new Date(item.dateCreated).toLocaleDateString('en-US', {
+                    month: 'numeric',
+                    day: 'numeric',
+                  })}
+                </Text>
 
-                  <Text style={styles.reasonText}>
-                    {item.reason || 'No reason specified'}
-                  </Text>
-                </View>
+                <Text style={styles.reasonText}>
+                  {item.reason || 'No reason specified'}
+                </Text>
               </View>
-            ))}
-        </View>
+            </View>
+          ))}
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.logoutButtonText}>Log Out</Text>

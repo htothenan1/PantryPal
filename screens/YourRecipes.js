@@ -6,12 +6,11 @@ import {API_URL, SPOON_KEY} from '@env';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {UserContext} from '../contexts/UserContext';
-import styles from './styles/favoriteRecipes';
+import styles from './styles/yourRecipes';
 
 const YourRecipes = () => {
   const {
     favoriteRecipes,
-    // setFavoriteRecipes,
     fetchFavoriteRecipes,
     importedRecipes,
     setImportedRecipes,
@@ -98,36 +97,6 @@ const YourRecipes = () => {
       </Swipeable>
     );
   };
-
-  // const handleDeleteFavorite = async (recipeId, recipeName) => {
-  //   const swipeableRef = swipeableRefs.get(recipeId);
-  //   if (swipeableRef) {
-  //     swipeableRef.close();
-  //   }
-
-  //   try {
-  //     const response = await fetch(`${API_URL}/favorites`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         recipeId,
-  //         user: userEmail,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Failed to delete favorite recipe');
-  //     }
-
-  //     setFavoriteRecipes(prev =>
-  //       prev.filter(recipe => recipe.recipeId !== recipeId),
-  //     );
-  //   } catch (error) {
-  //     console.error('Error deleting favorite recipe:', error.message);
-  //   }
-  // };
 
   const handleDeleteImported = async recipeId => {
     const swipeableRef = swipeableRefs.get(recipeId);

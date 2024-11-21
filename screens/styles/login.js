@@ -11,7 +11,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     width: 100,
     height: 100,
-    // marginBottom: 10,
   },
   titleText: {
     fontSize: 28,
@@ -58,17 +57,5 @@ export default StyleSheet.create({
   registerHyperlink: {
     color: '#386641',
     fontWeight: 'bold',
-  },
-  compostGameButton: {
-    padding: 10,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-    marginVertical: 15,
-  },
-  compostGameText: {
-    color: 'white',
-    fontSize: 14,
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
   },
 });

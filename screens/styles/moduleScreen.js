@@ -21,7 +21,6 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   contentText: {
-    // textAlign: 'center',
     fontFamily: 'Avenir-Book',
     fontSize: 18,
     marginTop: 10,
@@ -46,6 +45,6 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Avenir-Book', // or any preferred font
+    fontFamily: 'Avenir-Book',
   },
 });

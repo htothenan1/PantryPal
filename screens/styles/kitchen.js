@@ -20,11 +20,6 @@ export default StyleSheet.create({
   loadingScreenSpinner: {
     marginVertical: 10,
   },
-  itemsLoadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   headerText: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -46,14 +41,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  input: {
-    height: 50,
-    width: 150,
-    margin: 12,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-  },
   boxInput: {
     height: 50,
     width: 170,
@@ -63,9 +50,6 @@ export default StyleSheet.create({
     borderRadius: 5,
     padding: 10,
   },
-  boxDisabledButton: {
-    backgroundColor: '#ccc',
-  },
   boxButton: {
     paddingHorizontal: 10,
     paddingVertical: 12,
@@ -73,11 +57,6 @@ export default StyleSheet.create({
     marginRight: 24,
     marginTop: 20,
     width: 145,
-  },
-  boxSaveText: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 14,
-    color: 'black',
   },
   whiteText: {
     color: 'white',
@@ -125,8 +104,6 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    // paddingHorizontal: 10,
-    // paddingBottom: 8,
     backgroundColor: 'white',
   },
   fabButton: {
@@ -135,8 +112,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#1b4965',
-    // borderRadius: 8,
-    // marginHorizontal: 2,
   },
   fabButtonText: {
     fontSize: 18,
@@ -151,7 +126,6 @@ export default StyleSheet.create({
     backgroundColor: '#1b4965',
     borderRadius: 28,
   },
-
   titleText: {
     fontSize: 20,
     fontFamily: 'Avenir-Book',
@@ -182,7 +156,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  plusOne: {fontSize: 16, color: 'white'},
   scrollViewStyle: {
     marginHorizontal: 24,
     marginVertical: 10,
@@ -207,10 +180,6 @@ export default StyleSheet.create({
   },
   selectedTabText: {
     color: '#333',
-  },
-  button: {
-    padding: 10,
-    borderRadius: 5,
   },
   disabledButton: {
     backgroundColor: '#ccc',
@@ -237,36 +206,8 @@ export default StyleSheet.create({
     fontSize: 30,
     color: 'black',
   },
-  singleAddItemContainer: {
-    alignItems: 'left',
-    padding: 100,
-  },
-  cancelButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-  singleAddItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#f9f9f9',
-  },
-  singleAddItemList: {
-    maxHeight: 250,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 10,
-  },
-  singleAddItemIcon: {
-    width: 40,
-    height: 40,
-    resizeMode: 'contain',
-    marginRight: 10,
-  },
   modalContent: {
     backgroundColor: 'white',
-    // marginHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,
@@ -282,11 +223,6 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 24,
     marginLeft: 10,
-  },
-  badReviewContainer: {
-    alignItems: 'left',
-    padding: 100,
-    marginTop: 80,
   },
   reviewOptions: {
     marginVertical: 4,

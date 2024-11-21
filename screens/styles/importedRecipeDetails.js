@@ -74,8 +74,4 @@ export default StyleSheet.create({
     fontSize: 16,
     marginVertical: 1,
   },
-  summaryText: {
-    marginVertical: 10,
-    fontSize: 40,
-  },
 });

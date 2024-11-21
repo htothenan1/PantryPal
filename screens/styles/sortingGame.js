@@ -9,13 +9,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f0f0',
   },
-  pointsContainer: {
-    position: 'absolute',
-    top: 50,
-    width: '100%',
-    alignItems: 'center',
-    zIndex: 1,
-  },
   pointsText: {
     fontFamily: 'Avenir-Book',
     fontSize: 18,
@@ -49,10 +42,6 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#fff',
     marginTop: 8,
-  },
-  emptySpace: {
-    width: width / 2.5,
-    height: 100,
   },
   item: {
     position: 'absolute',

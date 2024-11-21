@@ -40,11 +40,6 @@ const FoodBankDetails = ({route}) => {
         <Text style={styles.label}>Languages:</Text>
         <Text style={styles.detail}>{foodBank.languages}</Text>
 
-        {/* <Text style={styles.label}>Served Zips:</Text>
-        <Text style={styles.detail}>
-          {foodBank.served_zip_codes.join(', ')}
-        </Text> */}
-
         <Text style={styles.label}>Eligibility:</Text>
         <Text style={styles.detail}>{foodBank.eligibility_requirements}</Text>
 

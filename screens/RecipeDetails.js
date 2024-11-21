@@ -14,7 +14,6 @@ const RecipeDetails = ({route}) => {
   const userEmail = auth.currentUser?.email;
 
   useEffect(() => {
-    console.log(recipe);
     checkIfFavorited();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

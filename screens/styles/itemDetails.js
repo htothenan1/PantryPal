@@ -52,7 +52,6 @@ export default StyleSheet.create({
     fontSize: 17,
   },
   storageTipContainer: {
-    // borderWidth: 0.2,
     borderRadius: 10,
     marginVertical: 5,
     marginHorizontal: 20,
@@ -60,7 +59,6 @@ export default StyleSheet.create({
     backgroundColor: '#EDF2F4',
   },
   healthFactsContainer: {
-    // borderWidth: 0.1,
     borderRadius: 10,
     marginVertical: 5,
     marginHorizontal: 20,
@@ -68,7 +66,6 @@ export default StyleSheet.create({
     backgroundColor: '#EDF2F4',
   },
   bestPairsContainer: {
-    // borderWidth: 0.2,
     borderRadius: 10,
     marginVertical: 5,
     marginHorizontal: 20,

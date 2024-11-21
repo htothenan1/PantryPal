@@ -12,9 +12,7 @@ const ImportedRecipeDetails = ({route}) => {
       contentContainerStyle={styles.contentContainer}>
       <Image source={chefLogo} style={styles.image} />
       <View style={styles.textContainer}>
-        <View style={{paddingHorizontal: 2}}>
-          <Text style={styles.titleText}>{recipe.name}</Text>
-        </View>
+        <Text style={styles.titleText}>{recipe.name}</Text>
 
         <View style={styles.ingredientsContainer}>
           <Text style={styles.ingredientsTitleText}>Description</Text>

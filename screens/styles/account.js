@@ -1,6 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
-
-const {height} = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -9,7 +7,6 @@ export default StyleSheet.create({
     paddingHorizontal: 30,
     marginTop: 45,
   },
-  loadingContainer: {marginTop: 250},
   contentContainer: {
     paddingBottom: 120,
   },
@@ -24,26 +21,10 @@ export default StyleSheet.create({
     height: 80,
     marginLeft: 10,
   },
-  accountImageDefault: {
-    width: 80,
-    height: 80,
-  },
   titleContainer: {
     justifyContent: 'center',
     marginLeft: 8,
     flex: 1,
-  },
-  chooseFlavrButton: {
-    padding: 5,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-    width: 100,
-  },
-  chooseFlavrButtonText: {
-    color: 'white',
-    fontSize: 12,
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
   },
   titleText: {
     textAlign: 'left',
@@ -51,7 +32,7 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
   },
-  levelText: {
+  emailText: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: 'Avenir-Book',
@@ -69,31 +50,13 @@ export default StyleSheet.create({
   headerIcon: {
     marginLeft: 10,
   },
-  pantryButton: {
+  button: {
     padding: 14,
     backgroundColor: '#1b4965',
     borderRadius: 10,
     marginVertical: 15,
   },
-  favoriteRecipesButton: {
-    padding: 14,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-    marginVertical: 15,
-  },
-  compostGameButton: {
-    padding: 14,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-    marginVertical: 15,
-  },
-  compostGameText: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-    fontFamily: 'Avenir-Book',
-  },
-  pantryButtonText: {
+  buttonText: {
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
@@ -105,79 +68,12 @@ export default StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: 'bold',
   },
-  itemsList: {
-    marginTop: 10,
-  },
-  item: {
-    textAlign: 'left',
-    fontFamily: 'Avenir-Book',
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  modalTitleText: {
-    textAlign: 'center',
-    fontSize: 20,
-    paddingVertical: 10,
-    backgroundColor: '#e5e5e5',
-    marginBottom: 10,
-  },
-  modalContent: {
-    height: height * 0.5,
-    backgroundColor: 'white',
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    padding: 20,
-    marginTop: 20,
-  },
-  modalItemButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  modalItemImage: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-  },
-  modalItemText: {
-    fontSize: 18,
-    fontFamily: 'Avenir-Book',
-  },
-  togglesContainer: {
-    marginBottom: 10,
-  },
-  toggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  toggleLabel: {
-    fontSize: 16,
-    fontFamily: 'Avenir-Book',
-  },
   preferencesContainer: {
     marginTop: 20,
     padding: 20,
     backgroundColor: '#f7f7f7',
     borderRadius: 10,
   },
-  preferencesTitle: {
-    fontSize: 18,
-    fontFamily: 'Avenir-Book',
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  chartContainer: {
-    marginVertical: 8,
-    borderRadius: 16,
-    padding: 16,
-    backgroundColor: 'white',
-  },
-
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -205,32 +101,6 @@ export default StyleSheet.create({
     marginTop: 4,
     fontFamily: 'Avenir-Book',
   },
-  chartTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 16,
-    fontFamily: 'Avenir-Book',
-  },
-  legendContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 16,
-  },
-  legendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  legendColor: {
-    width: 16,
-    height: 16,
-    marginRight: 8,
-  },
-  legendLabel: {
-    fontSize: 15,
-    color: '#7F7F7F',
-  },
   paginationContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -256,7 +126,7 @@ export default StyleSheet.create({
   },
   deleteAccountButton: {
     marginTop: 10,
-    backgroundColor: '#B22222', // Red color for warning
+    backgroundColor: '#B22222',
     padding: 14,
     borderRadius: 8,
     alignItems: 'center',
