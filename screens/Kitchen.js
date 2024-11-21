@@ -13,7 +13,6 @@ import {
   Alert,
 } from 'react-native';
 import UserHeader from '../components/UserHeader';
-// import UserProgressBar from '../components/UserProgressBar';
 import {UserContext} from '../contexts/UserContext';
 import {Swipeable} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/core';
@@ -22,12 +21,8 @@ import Modal from 'react-native-modal';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
-import {icons} from './data/icons';
-import {itemNames} from './data/itemNames';
 import {
-  IconToolsKitchen2,
   IconFridge,
-  IconHourglassEmpty,
   IconCalendarClock,
   IconShoppingCart,
   IconChefHat,
@@ -41,102 +36,56 @@ import {
   getBackgroundColor,
 } from '../screens/helpers/functions';
 import {API_URL} from '@env';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onboardingModule} from './data/modules';
 import styles from './styles/kitchen';
 import DatePicker from 'react-native-date-picker';
-import chefLogo from '../assets/chefs_hat.png';
 import foodbankicon from '../assets/foodbankicon.png';
 
 const Kitchen = ({route}) => {
   const {userData, items, setItems, fetchItems, fetchUserData, loading} =
     useContext(UserContext);
-  const [selectedIcon, setSelectedIcon] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const swipeableRefs = useRef(new Map()).current;
-  const [isAddItemModalVisible, setAddItemModalVisible] = useState(false);
   const [isBadReviewModalVisible, setBadReviewModalVisible] = useState(false);
-  const [newItemName, setNewItemName] = useState('');
   const [isItemsLoading, setIsItemsLoading] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [currentCategory, setCurrentCategory] = useState('all');
   const [filteredItems, setFilteredItems] = useState(items);
   const [availableCategories, setAvailableCategories] = useState(['all']);
   const [deletingItemId, setDeletingItemId] = useState(null);
   const [updatingItemId, setUpdatingItemId] = useState(null);
-  const [input, setInput] = useState('');
   const [boxInput, setBoxInput] = useState('');
-  const [filteredItemNames, setFilteredItemNames] = useState([]);
   const [isDeletingAllItems, setIsDeletingAllItems] = useState(false);
   const [isBoxItemsLoading, setIsBoxItemsLoading] = useState(false);
   const [currentItemToDelete, setCurrentItemToDelete] = useState(null);
-  const [isSwiping, setIsSwiping] = useState(false);
 
+  const swipeableRefs = useRef(new Map()).current;
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (input.trim() === '') {
-      setFilteredItemNames([]);
-    } else {
-      const filtered = itemNames.filter(item =>
-        item.startsWith(input.toLowerCase()),
-      );
-      setFilteredItemNames(filtered);
+    if (userEmail) {
+      const fetchData = async () => {
+        try {
+          setIsItemsLoading(true);
+          await fetchUserData(userEmail);
+          await fetchItems(userEmail);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        } finally {
+          setIsItemsLoading(false);
+        }
+      };
+
+      fetchData();
     }
-  }, [input]);
+  }, [userEmail]);
 
   useEffect(() => {
     const categories = calculateAvailableCategories(items);
     setAvailableCategories(categories);
-  }, [items]);
-
-  useEffect(() => {
-    setIsItemsLoading(true);
-    fetchItems(userEmail);
-  }, []);
-
-  // useEffect(() => {
-  //   const checkOnboarding = async () => {
-  //     const hasCompletedOnboarding = await AsyncStorage.getItem(
-  //       `hasCompletedOnboarding-${userEmail}`,
-  //     );
-
-  //     if (!hasCompletedOnboarding) {
-  //       navigation.navigate('OnboardingStack', {
-  //         screen: 'OnboardingStartScreen',
-  //         params: {module: onboardingModule[0]},
-  //       });
-  //     }
-  //   };
-
-  //   checkOnboarding();
-  // }, []);
-
-  useEffect(() => {
     filterItemsByCategory();
   }, [items, currentCategory]);
-
-  useEffect(() => {
-    if (userEmail) {
-      fetchUserData(userEmail);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (userData?.iconName) {
-      const foundIcon = icons.find(
-        icon => icon.name === userData.iconName,
-      )?.img;
-      if (foundIcon) {
-        setSelectedIcon(foundIcon);
-      } else {
-        console.log('Icon not found:', userData.iconName);
-      }
-    }
-  }, [userData]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -190,28 +139,10 @@ const Kitchen = ({route}) => {
     }
   };
 
-  // const renderFoodItem = ({item}) => {
-  //   const ingredient = findIngredient(item);
-  //   const itemImage = ingredient ? ingredient.img : chefLogo;
-
-  //   return (
-  //     <TouchableOpacity
-  //       onPress={() => {
-  //         setInput(item);
-  //         setFilteredItemNames([]);
-  //       }}
-  //       style={styles.singleAddItem}>
-  //       <Image source={itemImage} style={styles.singleAddItemIcon} />
-  //       <Text>{capitalizeWords(item)}</Text>
-  //     </TouchableOpacity>
-  //   );
-  // };
-
   const deleteItem = async (itemId, method, reason) => {
     setDeletingItemId(itemId);
 
     try {
-      // Fetch the item to check if it's a food box item
       const itemResponse = await fetch(`${API_URL}/items/${itemId}`);
       if (!itemResponse.ok) {
         throw new Error('Item not found');
@@ -220,15 +151,13 @@ const Kitchen = ({route}) => {
       const itemData = await itemResponse.json();
       const isFoodBoxItem = itemData.isFoodBoxItem;
 
-      // Prepare payload for the delete request
       const deletePayload = {
-        method, // either 'consume' or 'waste'
-        isFoodBoxItem, // Check if it's part of a food box
-        foodBoxId: isFoodBoxItem ? itemData.foodBoxId : null, // Store the food box ID if applicable
+        method,
+        isFoodBoxItem,
+        foodBoxId: isFoodBoxItem ? itemData.foodBoxId : null,
         reason,
       };
 
-      // Send the delete request with the necessary details
       const response = await fetch(
         `${API_URL}/items/${itemId}?method=${method}`,
         {
@@ -236,7 +165,7 @@ const Kitchen = ({route}) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(deletePayload), // Include the payload in the body
+          body: JSON.stringify(deletePayload),
         },
       );
 
@@ -247,20 +176,10 @@ const Kitchen = ({route}) => {
         );
       }
 
-      const data = await response.json();
-      if (data.levelChanged) {
-        Alert.alert(
-          'Congratulations!',
-          `You've reached level ${data.newLevel}!`,
-        );
-      }
-
-      // Update the state to remove the deleted item from the list
       setItems(currentItems =>
         currentItems.filter(item => item._id !== itemId),
       );
 
-      // Fetch updated user data
       fetchUserData(userEmail);
     } catch (error) {
       console.error('Error deleting item:', error.message);
@@ -310,127 +229,9 @@ const Kitchen = ({route}) => {
     }
   };
 
-  async function addCustomItem(itemName) {
-    setIsLoading(true);
-    try {
-      if (!itemName) {
-        throw new Error('Item name is required');
-      }
-
-      const existingIngredient = ingredients.find(
-        ingredient => ingredient.name === itemName.toLowerCase(),
-      );
-
-      let storageTip = 'Not available';
-      let whyEat = 'Not available';
-      let expInt = 6;
-
-      if (existingIngredient) {
-        storageTip = existingIngredient.storage_tip;
-        expInt = existingIngredient.exp_int;
-        whyEat = existingIngredient.whyEat;
-      } else {
-        const tipResponse = await fetch(`${API_URL}/generateStorageTip`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({item: itemName}),
-        });
-
-        if (!tipResponse.ok) {
-          console.error(`HTTP error! Status: ${tipResponse.status}`);
-        } else {
-          const tipData = await tipResponse.json();
-          storageTip = tipData.storageTip;
-        }
-
-        const healthFactResponse = await fetch(
-          `${API_URL}/generateHealthFacts`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({item: itemName}),
-          },
-        );
-
-        if (!healthFactResponse.ok) {
-          console.error(`HTTP error! Status: ${healthFactResponse.status}`);
-        } else {
-          const healthFactData = await healthFactResponse.json();
-          whyEat = healthFactData.healthFact;
-        }
-      }
-
-      const newItem = {
-        name: itemName,
-        exp_int: expInt,
-        storage_tip: storageTip,
-        whyEat: whyEat,
-        user: userEmail,
-      };
-
-      const response = await fetch(`${API_URL}/items`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          items: [newItem],
-          userEmail: userEmail,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorBody = await response.text();
-        throw new Error(
-          `HTTP error! Status: ${response.status}, Body: ${errorBody}`,
-        );
-      }
-
-      const savedItems = await response.json();
-      setItems(currentItems => [
-        ...currentItems,
-        ...(Array.isArray(savedItems) ? savedItems : [savedItems]),
-      ]);
-
-      setAddItemModalVisible(false);
-      setNewItemName('');
-      setInput('');
-      fetchUserData(userEmail);
-      fetchItems(userEmail);
-    } catch (error) {
-      console.error('Error adding custom item:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  const logFoodBoxEntry = async (boxCode, userEmail) => {
-    try {
-      const response = await fetch(`${API_URL}/logFoodBox`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({code: boxCode, userEmail: userEmail}),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error logging food box entry');
-      }
-
-      console.log('Food box logged successfully');
-    } catch (error) {
-      console.error('Error logging food box entry:', error.message);
-    }
-  };
-
-  const addFoodBoxItems = async boxInput => {
+  const addFoodBoxItems = async boxItems => {
     setIsBoxItemsLoading(true);
-    const foodBox = await fetchFoodBoxByCode(boxInput);
+    const foodBox = await fetchFoodBoxByCode(boxItems);
 
     if (foodBox) {
       const matchedItems = foodBox.items.map(itemName => {
@@ -443,8 +244,8 @@ const Kitchen = ({route}) => {
           storage_tip: matchedIngredient?.storage_tip || 'Not available',
           whyEat: matchedIngredient?.whyEat || 'Not available',
           user: userEmail,
-          isFoodBoxItem: true, // Mark as food box item
-          foodBoxId: foodBox.code, // Add foodBoxId
+          isFoodBoxItem: true,
+          foodBoxId: foodBox.code,
         };
       });
 
@@ -467,12 +268,9 @@ const Kitchen = ({route}) => {
         fetchUserData(userEmail);
         fetchItems(userEmail);
         setBoxInput('');
-
-        // Handle response
       } catch (error) {
         console.error('Error adding items:', error.message);
       } finally {
-        setIsLoading(false);
         setIsBoxItemsLoading(false);
       }
     }
@@ -500,13 +298,6 @@ const Kitchen = ({route}) => {
         );
       }
 
-      const data = await response.json();
-      if (data.levelChanged) {
-        Alert.alert(
-          'Congratulations!',
-          `You've reached level ${data.newLevel}!`,
-        );
-      }
       fetchItems(userEmail);
       fetchUserData(userEmail);
       setSelectedDate(new Date());
@@ -521,24 +312,6 @@ const Kitchen = ({route}) => {
     }
   };
 
-  const handleUndo = data => {
-    deleteItem(data._id, 'undo', 'none');
-    const swipeable = swipeableRefs.get(data._id);
-    if (swipeable) {
-      swipeable.close();
-    }
-  };
-
-  // const handleWaste = data => {
-  //   // deleteItem(data._id, 'waste');
-  //   console.log('trigger module');
-  //   setBadReviewModalVisible(true);
-  //   const swipeable = swipeableRefs.get(data._id);
-  //   if (swipeable) {
-  //     swipeable.close();
-  //   }
-  // };
-
   const handleWaste = item => {
     setCurrentItemToDelete(item);
     setBadReviewModalVisible(true);
@@ -546,7 +319,7 @@ const Kitchen = ({route}) => {
 
   const handleBadReviewOption = reason => {
     if (currentItemToDelete) {
-      deleteItem(currentItemToDelete._id, 'waste', reason); // Pass the reason
+      deleteItem(currentItemToDelete._id, 'waste', reason);
     }
     setBadReviewModalVisible(false);
   };
@@ -562,11 +335,6 @@ const Kitchen = ({route}) => {
   const renderRightActions = item => {
     return (
       <View style={styles.rightSwipeContainer}>
-        {/* <TouchableOpacity
-          onPress={() => handleUndo(item)}
-          style={styles.swipeButton}>
-          <AntDesignIcon name="delete" size={20} color="black" />
-        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => handleWaste(item)}
           style={styles.swipeButton}>
@@ -663,12 +431,7 @@ const Kitchen = ({route}) => {
         </View>
       ) : (
         <>
-          <UserHeader
-            selectedIcon={selectedIcon}
-            userData={userData}
-            navigation={navigation}
-          />
-          {/* <UserProgressBar loading={loading} userData={userData} /> */}
+          <UserHeader userData={userData} navigation={navigation} />
           <View style={styles.selectedWrapper}>
             <TextInput
               style={styles.boxInput}
@@ -701,7 +464,7 @@ const Kitchen = ({route}) => {
           </View>
 
           <View style={styles.headerText}>
-            <Text style={styles.titleText}>Your Items ({items.length})</Text>
+            <Text style={styles.titleText}>Your Food ({items.length})</Text>
             {items.length > 0 ? (
               isDeletingAllItems ? (
                 <ActivityIndicator size="small" color="#495057" />
@@ -751,10 +514,6 @@ const Kitchen = ({route}) => {
                 item._id ? item._id : index.toString()
               }
               renderItem={swipeItem}
-              // initialNumToRender={10}
-              // windowSize={5}
-              // maxToRenderPerBatch={10}
-              // removeClippedSubviews={true}
             />
           ) : (
             <ScrollView
@@ -771,23 +530,13 @@ const Kitchen = ({route}) => {
                 </View>
                 <Text style={styles.actionItemText}>How to use FeedLink</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity
-                style={styles.actionItemContainer}
-                onPress={() => setAddItemModalVisible(true)}>
-                <View
-                  style={styles.emptyFab}
-                  onPress={() => setAddItemModalVisible(true)}>
-                  <Text style={styles.plusOne}>+ 1</Text>
-                </View>
-                <Text style={styles.actionItemText}>Add Single Item</Text>
-              </TouchableOpacity> */}
               <TouchableOpacity
                 onPress={() => navToMultiSelect()}
                 style={styles.actionItemContainer}>
                 <View style={styles.emptyFab}>
                   <AntDesignIcon name="plus" size={20} color="white" />
                 </View>
-                <Text style={styles.actionItemText}>Add Grocery Items</Text>
+                <Text style={styles.actionItemText}>Add Food Items</Text>
               </TouchableOpacity>
             </ScrollView>
           )}
@@ -812,16 +561,10 @@ const Kitchen = ({route}) => {
           />
 
           <View style={styles.fabContainer}>
-            {/* <TouchableOpacity
-              style={styles.fabButton}
-              onPress={() => setAddItemModalVisible(true)}>
-              <Text style={styles.fabButtonText}>Add Single Item</Text>
-            </TouchableOpacity> */}
-
             <TouchableOpacity
               style={styles.fabButton}
               onPress={() => navToMultiSelect()}>
-              <Text style={styles.fabButtonText}>Add Grocery Items</Text>
+              <Text style={styles.fabButtonText}>Add Food Items</Text>
             </TouchableOpacity>
           </View>
 
@@ -855,11 +598,6 @@ const Kitchen = ({route}) => {
                   <Text style={styles.optionText}>Overpurchased Item</Text>
                 </View>
               </TouchableOpacity>
-              {/* <TouchableOpacity
-                style={styles.reviewOptions}
-                onPress={() => handleBadReviewOption('poor quality or taste')}>
-                <Text>Poor quality or taste</Text>
-              </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.reviewOptions}
                 onPress={() => handleBadReviewOption('not enough cooking')}>
@@ -880,67 +618,8 @@ const Kitchen = ({route}) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              {/* <TouchableOpacity
-                style={styles.reviewOptions}
-                onPress={() => handleBadReviewOption('bad storage technique')}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <IconShoppingCart color={'black'} size={24} />
-                  <Text style={styles.optionText}>Bad Storage Technique</Text>
-                </View>
-              </TouchableOpacity> */}
             </View>
           </Modal>
-
-          {/* <Modal
-            isVisible={isAddItemModalVisible}
-            onBackdropPress={() => setAddItemModalVisible(false)}
-            style={styles.singleAddItemContainer}>
-            <View style={styles.modalContent}>
-              <TouchableOpacity
-                style={styles.cancelButton}
-                onPress={() => setAddItemModalVisible(false)}>
-                <AntDesignIcon name="close" size={24} color="black" />
-              </TouchableOpacity>
-              <Text style={styles.modalHeader}>Add Single Item</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Search Item Name"
-                placeholderTextColor={'black'}
-                value={capitalizeWords(input)}
-                onChangeText={setInput}
-              />
-
-              {filteredItemNames.length > 0 && (
-                <FlatList
-                  data={filteredItemNames}
-                  keyExtractor={item => item._id}
-                  renderItem={renderFoodItem}
-                  style={styles.singleAddItemList}
-                />
-              )}
-
-              {isLoading ? (
-                <View style={styles.confirmButtonContainer}>
-                  <ActivityIndicator size="large" color="#495057" />
-                </View>
-              ) : (
-                <Pressable
-                  disabled={!input}
-                  onPress={() => addCustomItem(input)}
-                  style={({pressed}) => [
-                    styles.button,
-                    {
-                      backgroundColor: pressed
-                        ? 'rgba(0, 0, 255, 0.5)'
-                        : '#76c893',
-                    },
-                    !newItemName && styles.disabledButton,
-                  ]}>
-                  <Text style={styles.saveText}>Save</Text>
-                </Pressable>
-              )}
-            </View>
-          </Modal> */}
         </>
       )}
     </View>

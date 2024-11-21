@@ -4,22 +4,19 @@ export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 14,
+    paddingBottom: 14,
     paddingHorizontal: 25,
-    borderBottomWidth: 0.2,
-    marginTop: 50,
+    borderBottomWidth: 0.5,
+    marginTop: 10,
   },
   userIcon: {
     width: 55,
     height: 55,
-    borderRadius: 25,
   },
   userName: {
-    marginLeft: 10,
-    fontSize: 30,
+    marginLeft: 12,
+    fontSize: 26,
     fontFamily: 'Avenir-Book',
-    marginTop: 8,
-    // fontWeight: 'bold',
   },
   levelText: {
     marginLeft: 10,

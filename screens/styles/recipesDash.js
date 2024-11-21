@@ -7,7 +7,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 75,
+    marginTop: 45,
   },
   recipesLoadingContainer: {
     height: 250,
@@ -22,9 +22,23 @@ export default StyleSheet.create({
   headerText: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between', // Ensures buttons are spaced properly
     marginVertical: 20,
-    paddingLeft: 28,
+    paddingHorizontal: 20, // Add some padding to the container
+  },
+  buttonLarge: {
+    flex: 2, // Takes 2/3 of the space
+    padding: 15,
+    borderRadius: 10,
+    marginRight: 10, // Adds spacing between buttons
+    alignItems: 'center',
+  },
+  buttonSmall: {
+    flex: 1, // Takes 1/3 of the space
+    padding: 15,
+    borderRadius: 10,
+    marginLeft: 10, // Adds spacing between buttons
+    alignItems: 'center',
   },
   selectedItemStyle: {
     backgroundColor: '#1b4965',
@@ -43,8 +57,8 @@ export default StyleSheet.create({
     paddingHorizontal: 25,
     paddingVertical: 10,
     backgroundColor: '#f8f9fa',
-    flexDirection: 'row', // Added to align items in a row
-    alignItems: 'center', // Center items vertically
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   itemTextContainer: {
     flex: 1,
@@ -62,8 +76,6 @@ export default StyleSheet.create({
   image: {
     width: cardWidth,
     height: 200,
-    // resizeMode: 'cover',
-    // marginRight: 50,
   },
   titleText: {
     textAlign: 'center',
@@ -116,7 +128,7 @@ export default StyleSheet.create({
   button: {
     padding: 10,
     borderRadius: 5,
-    marginHorizontal: 8,
+    marginLeft: 15,
   },
   saveText: {
     fontFamily: 'Avenir-Book',

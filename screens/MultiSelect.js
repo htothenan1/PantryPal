@@ -13,23 +13,14 @@ import {useNavigation} from '@react-navigation/core';
 import {API_URL} from '@env';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
-import chefLogo from '../assets/chefs_hat.png';
 import foodbankicon from '../assets/foodbankicon.png';
-import {
-  IconToolsKitchen2,
-  IconFridge,
-  IconHourglassEmpty,
-  IconCalendarClock,
-  IconShoppingCart,
-  IconChefHat,
-} from '@tabler/icons-react-native';
 import styles from './styles/multiSelect';
 
 const MultiSelectScreen = ({route}) => {
   const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [expandedItems, setExpandedItems] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState('fruits');
+  const [currentCategory, setCurrentCategory] = useState('vegetables');
   const [consumedItems, setConsumedItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [omitMeats, setOmitMeats] = useState(false);
@@ -39,7 +30,7 @@ const MultiSelectScreen = ({route}) => {
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
-  const flatListRef = useRef(null); // Reference for FlatList
+  const flatListRef = useRef(null);
 
   const capitalizeWords = str => {
     if (!str) {
@@ -205,12 +196,12 @@ const MultiSelectScreen = ({route}) => {
     });
 
     let availableCategories = [
-      'fruits',
       'vegetables',
-      'meats',
+      'fruits',
       'dairy',
-      'grains',
+      'meats',
       'seafoods',
+      'grains',
       'legumes',
       'nuts and seeds',
       'canned goods',

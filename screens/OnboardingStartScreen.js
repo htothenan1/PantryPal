@@ -25,10 +25,7 @@ const OnboardingStartScreen = ({route, navigation}) => {
           The purpose of this app is to help you reduce your food waste by
           following a simple 3-step cycle:
         </Text>
-        {/* <Text style={styles.introText}>Current Features:</Text> */}
         <View style={styles.overviewContainer}>
-          {/* <Text style={styles.overviewTitle}>Topics covered:</Text> */}
-
           <Text style={styles.bulletText}>• Log Your Foods</Text>
           <Text style={styles.bulletText}>• Set SMART Kitchen Goals</Text>
           <Text style={styles.bulletText}>• Learn Continuously</Text>

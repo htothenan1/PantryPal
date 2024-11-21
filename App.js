@@ -18,7 +18,6 @@ import ModuleStartScreen from './screens/ModuleStartScreen';
 import ModuleScreen from './screens/ModuleScreen';
 import OnboardingStartScreen from './screens/OnboardingStartScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
-import Pantry from './screens/Pantry';
 import YourRecipes from './screens/YourRecipes';
 import SortingGame from './screens/SortingGame';
 import ImportedRecipeDetails from './screens/ImportedRecipeDetails';
@@ -60,20 +59,17 @@ function DashStackScreen() {
       <DashStack.Screen
         options={{
           headerShown: true,
+          headerTitle: '',
         }}
         name="MultiSelect"
+        headerTitle=""
         component={MultiSelectScreen}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Item Details"
         component={ItemDetails}
       />
-      {/* <DashStack.Screen
-        options={{headerShown: true}}
-        name="Recipe Details"
-        component={RecipeDetails}
-      /> */}
       <DashStack.Screen
         options={{headerShown: false}}
         name="OnboardingStack"
@@ -136,7 +132,7 @@ function LearnStackScreen() {
         }}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="ModuleStack"
         component={ModuleStackScreen}
       />
@@ -154,27 +150,22 @@ function AccountStackScreen() {
         component={Account}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Recipe Details"
         component={RecipeDetails}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
-        name="Pantry Items"
-        component={Pantry}
-      />
-      <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Your Recipes"
         component={YourRecipes}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Import Recipes"
         component={ImportRecipes}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Compost Game"
         component={SortingGame}
       />
@@ -193,6 +184,11 @@ function AccountStackScreen() {
         name="Food Bank Details"
         component={FoodBankDetails}
       />
+      <DashStack.Screen
+        options={{headerShown: false}}
+        name="OnboardingStack"
+        component={OnboardingStackScreen}
+      />
     </DashStack.Navigator>
   );
 }
@@ -208,7 +204,7 @@ function RecipesDashStackScreen() {
         component={RecipesDash}
       />
       <DashStack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, headerTitle: ''}}
         name="Recipe Details"
         component={RecipeDetails}
       />
@@ -218,17 +214,24 @@ function RecipesDashStackScreen() {
 
 function MyTabsScreen() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          paddingBottom: 10, // Padding below the tab bar
+          paddingTop: 5, // Optional: Padding above the tab bar
+          height: 70, // Adjust height to ensure padding doesn't shrink the icons
+        },
+        tabBarLabelStyle: {
+          paddingBottom: 10, // Padding below the text
+          fontSize: 14, // Adjust the font size if needed
+        },
+      }}>
       <Tab.Screen
         name="Home"
         component={DashStackScreen}
         options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: 'black',
-          },
           tabBarLabel: 'Kitchen',
-
           tabBarIcon: () => dashIcon(),
         }}
       />
@@ -236,7 +239,6 @@ function MyTabsScreen() {
         name="Recipes Home"
         component={RecipesDashStackScreen}
         options={{
-          headerShown: false,
           tabBarLabel: 'Recipes',
           tabBarIcon: () => recipesIcon(),
         }}
@@ -245,7 +247,6 @@ function MyTabsScreen() {
         name="LearnScreen"
         component={LearnStackScreen}
         options={{
-          headerShown: false,
           tabBarLabel: 'Learn',
           tabBarIcon: () => learnIcon(),
         }}
@@ -253,7 +254,6 @@ function MyTabsScreen() {
       <Tab.Screen
         name="User Account"
         options={{
-          headerShown: false,
           tabBarLabel: 'Account',
           tabBarIcon: () => accountIcon(),
         }}

@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {API_URL} from '@env';
-import chefsHat from '../assets/chefs_hat.png';
 import foodbankicon from '../assets/foodbankicon.png';
 import styles from './styles/register';
 import {auth} from '../firebase';
@@ -28,7 +27,6 @@ const Register = () => {
 
   const handleSignUp = async () => {
     try {
-      // Create the user in Firebase
       const userCreds = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -39,7 +37,6 @@ const Register = () => {
 
       console.log('Registered successfully with:', userEmail);
 
-      // Save the new user to the backend
       const registerResponse = await fetch(`${API_URL}/users`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -56,7 +53,6 @@ const Register = () => {
 
       console.log('User registered in backend.');
 
-      // Fetch user data from the backend
       const fetchResponse = await fetch(`${API_URL}/users/data?uid=${userId}`);
       if (!fetchResponse.ok) {
         throw new Error(`Failed to fetch user data: ${fetchResponse.status}`);
@@ -64,8 +60,6 @@ const Register = () => {
 
       const userData = await fetchResponse.json();
       console.log('Fetched user data:', userData);
-
-      // Navigate to the next screen and pass user data (optional)
       navigation.replace('My Tabs', {userData});
     } catch (error) {
       console.error('Error during sign-up:', error);
@@ -113,16 +107,6 @@ const Register = () => {
           Log in here!
         </Text>
       </Text>
-      {/* <Text style={styles.registerText}>
-        Need emergency food?{' '}
-        <Text
-          onPress={() => navigation.navigate('Food Bank Search')}
-          style={styles.registerHyperlink}
-          accessibilityLabel="Food Bank Search"
-          accessibilityRole="link">
-          Find a food bank here!
-        </Text>
-      </Text> */}
     </KeyboardAvoidingView>
   );
 };

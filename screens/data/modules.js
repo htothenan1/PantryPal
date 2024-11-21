@@ -31,7 +31,6 @@ import resourcesArt from '../../assets/resources.png';
 import swipeLeft from '../../assets/swipeLeft.png';
 import swipeRight from '../../assets/swipeRight.png';
 import learnMore from '../../assets/learnMore.png';
-import foodBankIcon from '../../assets/foodbankicon.png';
 import getRecipes from '../../assets/getRecipes.png';
 import feedlinkCycle from '../../assets/feedlinkCycle.png';
 

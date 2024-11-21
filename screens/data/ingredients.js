@@ -9,26 +9,20 @@ import babyspinach from '../../assets/babyspinach.png';
 import bacon from '../../assets/bacon.png';
 import bagel from '../../assets/bagel.png';
 import bananas from '../../assets/bananas.png';
-import basil from '../../assets/basil.png';
 import beets from '../../assets/beets.png';
 import bellpepper from '../../assets/bellpepper.png';
 import blackberries from '../../assets/blackberries.png';
 import blueberries from '../../assets/blueberries.png';
-import bokchoy from '../../assets/bokchoy.png';
 import broccoli from '../../assets/broccoli.png';
-import rabe from '../../assets/rabe.png';
-import broccolini from '../../assets/broccolini.png';
 import brusselssprouts from '../../assets/brusselssprouts.png';
 import butter from '../../assets/butter.png';
 import cabbage from '../../assets/cabbage.png';
 import carrots from '../../assets/carrots.png';
 import cauliflower from '../../assets/cauliflower.png';
 import celery from '../../assets/celery.png';
-import chard from '../../assets/chard.png';
 import cheese from '../../assets/cheese.png';
 import cherries from '../../assets/cherries.png';
 import chicken from '../../assets/chicken.png';
-import chervil from '../../assets/chervil.png';
 import chives from '../../assets/chives.png';
 import cilantro from '../../assets/cilantro.png';
 import collardgreens from '../../assets/collardgreens.png';
@@ -37,7 +31,6 @@ import cranberries from '../../assets/cranberries.png';
 import cucumbers from '../../assets/cucumbers.png';
 import eggplant from '../../assets/eggplant.png';
 import eggs from '../../assets/eggs.png';
-import endive from '../../assets/endive.png';
 import garlic from '../../assets/garlic.png';
 import ginger from '../../assets/ginger.png';
 import grapefruit from '../../assets/grapefruit.png';
@@ -80,12 +73,10 @@ import spinach from '../../assets/spinach.png';
 import squash from '../../assets/squash.png';
 import strawberries from '../../assets/strawberries.png';
 import thyme from '../../assets/thyme.png';
-import tofu from '../../assets/tofu.png';
 import tomatoes from '../../assets/tomatoes.png';
 import turnips from '../../assets/turnips.png';
 import turkey from '../../assets/turkey.png';
 import watermelon from '../../assets/watermelon.png';
-import yams from '../../assets/yams.png';
 import yogurt from '../../assets/yogurt.png';
 import zucchini from '../../assets/zucchini.png';
 import ciabatta from '../../assets/ciabatta_bread.png';
@@ -124,25 +115,7 @@ import beefshortribs from '../../assets/beefshortribs.png';
 import brisket from '../../assets/brisket.png';
 import filetmignon from '../../assets/filetmignon.png';
 import tangerines from '../../assets/tangerines.png';
-import tamarind from '../../assets/tamarind.png';
-import quinces from '../../assets/quinces.png';
-import passionfruits from '../../assets/passionfruits.png';
-import papayas from '../../assets/papayas.png';
-import mandarins from '../../assets/mandarins.png';
-import lychees from '../../assets/lychees.png';
-import kumquats from '../../assets/kumquats.png';
-import jackfruits from '../../assets/jackfruits.png';
-import honeydew from '../../assets/honeydew.png';
-import guavas from '../../assets/guavas.png';
-import gooseberries from '../../assets/gooseberries.png';
-import figs from '../../assets/figs.png';
-import durian from '../../assets/durian.png';
-import dragonfruits from '../../assets/dragonfruits.png';
-import dates from '../../assets/dates.png';
-import coconuts from '../../assets/coconuts.png';
-import canteloupes from '../../assets/cantaloupes.png';
 import persimmons from '../../assets/persimmons.png';
-import pomegranates from '../../assets/pomegranates.png';
 import clementines from '../../assets/clementines.png';
 import cornflour from '../../assets/cornflour.png';
 import cornmeal from '../../assets/cornmeal.png';
@@ -668,18 +641,6 @@ export const ingredients = [
       'zucchini',
     ],
   },
-  // {
-  //   item_id: '309513fd-397c-427a-9e90-ae0b7cc2c96b',
-  //   name: 'bok choy',
-  //   img: bokchoy,
-  //   exp_int: 6,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     "It's important to keep bok choy dry before storing it to prevent rot. Wash it only when you're ready to use it. Place bok choy in a produce bag or a loose plastic bag. Do not seal the bag entirely; allow some air circulation.",
-  //   whyEat:
-  //     'Bok choy is rich in vitamins A, C, and K, as well as calcium and antioxidants, supporting bone health, immune function, and reducing inflammation. It also provides fiber, promoting healthy digestion.',
-  //   compatibles: ['ginger', 'rice', 'sesame oil', 'sesame seeds', 'soy sauce'],
-  // },
   {
     item_id: '6b5b4719-0167-4b8f-a9f6-9317433c8cc7',
     name: 'broccoli',
@@ -740,53 +701,6 @@ export const ingredients = [
       'wine',
     ],
   },
-  // {
-  //   item_id: 'e1c21b4d-743b-4850-8c1a-20dd89018b84',
-  //   name: 'broccolini',
-  //   img: broccolini,
-  //   exp_int: 7,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Store broccolini in the refrigerator in a plastic bag to keep it fresh.',
-  //   whyEat:
-  //     'Broccolini is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may help reduce inflammation and support heart health.',
-  //   compatibles: [
-  //     'almonds',
-  //     'basil',
-  //     'cheese',
-  //     'garlic',
-  //     'lemons',
-  //     'olive oil',
-  //     'parsley',
-  //     'pasta',
-  //     'red pepper flakes',
-  //     'salads',
-  //     'sesame oil',
-  //     'soups',
-  //     'tomatoes',
-  //   ],
-  // },
-  // {
-  //   item_id: '21d4b9a0-88e2-4b20-84c7-38a4e24d7367',
-  //   name: 'broccoli rabe',
-  //   img: rabe,
-  //   exp_int: 7,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Keep broccoli rabe refrigerated in a plastic bag to maintain freshness.',
-  //   whyEat:
-  //     'Broccoli rabe is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting immune health, bone health, and digestion. It also contains compounds that may reduce inflammation and promote heart health.',
-  //   compatibles: [
-  //     'cheese',
-  //     'parmesan cheese',
-  //     'chiles',
-  //     'garlic',
-  //     'olive oil',
-  //     'oregano',
-  //     'pasta',
-  //     'sausage',
-  //   ],
-  // },
   {
     item_id: 'b3dc2001-39f2-4f40-bd3f-f75af6b8b263',
     name: 'brussels sprouts',
@@ -1291,52 +1205,6 @@ export const ingredients = [
       'vinegar',
     ],
   },
-  // {
-  //   item_id: 'e0c238a7-5dab-4c34-bc09-07ff4abf1ecf',
-  //   name: 'chard',
-  //   img: chard,
-  //   exp_int: 6,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Store chard in a plastic bag in the refrigerator. Use within a week for best freshness.',
-  //   whyEat:
-  //     'Chard is rich in vitamins A, C, and K, as well as magnesium and fiber, supporting eye health, immune function, and bone health. It also contains antioxidants and compounds that may reduce inflammation and support heart health.',
-  //   compatibles: [
-  //     'butter',
-  //     'unsalted butter',
-  //     'garlic',
-  //     'oil',
-  //     'peanut oil',
-  //     'onions',
-  //     'salt',
-  //     'vinegar',
-  //   ],
-  // },
-  // {
-  //   item_id: 'b55654d9-8e75-4dcb-9d8d-83232c2ed5ac',
-  //   name: 'chervil',
-  //   img: chervil,
-  //   exp_int: 5,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Store fresh chervil in the refrigerator. Place it in a plastic bag to maintain freshness.',
-  //   whyEat:
-  //     'Chervil is rich in vitamins A and C, supporting eye health and immune function. It also contains antioxidants and has mild anti-inflammatory properties.',
-  //   compatibles: [
-  //     'asparagus',
-  //     'carrots',
-  //     'chives',
-  //     'eggs',
-  //     'fish',
-  //     'parsley',
-  //     'peas',
-  //     'salad greens',
-  //     'shellfish',
-  //     'tarragon',
-  //     'tomatoes',
-  //     'tomato sauce',
-  //   ],
-  // },
   {
     item_id: 'e4c8c039-434c-4371-bf7c-1fe9372ec1d1',
     name: 'chives',
@@ -1692,46 +1560,6 @@ export const ingredients = [
       'zucchini',
     ],
   },
-  // {
-  //   item_id: 'a73e599a-8ee4-4189-9a61-67c31cf50362',
-  //   name: 'endive',
-  //   img: endive,
-  //   exp_int: 7,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Keep endive in the refrigerator crisper drawer in a plastic bag. Store it away from fruits like apples and bananas, as they can cause it to turn brown.',
-  //   whyEat:
-  //     'Endive is rich in vitamins A, C, and K, as well as fiber and antioxidants, supporting eye health, immune function, bone health, and digestion. It also contains compounds that may promote liver health and reduce inflammation.',
-  //   compatibles: [
-  //     'apples',
-  //     'butter',
-  //     'unsalted butter',
-  //     'cheese',
-  //     'blue cheese',
-  //     'goat cheese',
-  //     'gorgonzola cheese',
-  //     'parmesan cheese',
-  //     'chives',
-  //     'garlic',
-  //     'lemons',
-  //     'lemon juice',
-  //     'mayonnaise',
-  //     'mustard',
-  //     'dijon mustard',
-  //     'oil',
-  //     'olive oil',
-  //     'parsley',
-  //     'pepper',
-  //     'black pepper',
-  //     'white pepper',
-  //     'salt',
-  //     'shallots',
-  //     'sugar',
-  //     'tarragon',
-  //     'vinegar',
-  //     'walnuts',
-  //   ],
-  // },
   {
     item_id: 'cba633d0-fc26-438c-9ab4-8d2ab73adcaa',
     name: 'garlic',
@@ -2042,7 +1870,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  //ADD JERUSALEM ARTICHOKES
   {
     item_id: '46608605-5bcb-407b-9b87-9eeeb6e37077',
     name: 'kale',
@@ -2089,7 +1916,6 @@ export const ingredients = [
       'vinegar',
     ],
   },
-  //ADD KOHLRABI
   {
     item_id: '19cafbd9-29f2-4148-be5e-2ffb753b9d05',
     name: 'leeks',
@@ -2224,58 +2050,6 @@ export const ingredients = [
       "Keep them in the original packaging or transfer them to a breathable container, like a paper bag. Avoid washing mushrooms until you're ready to use them.",
     whyEat:
       'Mushrooms are rich in vitamins B and D, selenium, and antioxidants, supporting energy metabolism, immune function, and overall health. They also contain compounds that may help reduce inflammation and boost brain health.',
-    // subItems: [
-    //   {
-    //     name: 'white button mushrooms',
-    //     item_id: 'c784f36d-83d8-45c6-b907-2d2b6dfb5df8',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'cremini mushrooms',
-    //     item_id: '859fe965-7bc3-4777-81d7-2eb6926c8b29',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'portobello mushrooms',
-    //     item_id: 'c9f826fc-4be1-4b64-916c-6e190b2a9a21',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'shiitake mushrooms',
-    //     item_id: '9098ab6a-9809-4b8e-aef5-6f6e99cf3a01',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'oyster mushrooms',
-    //     item_id: '83f94168-053c-491a-923f-0209c1c8e657',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'chanterelle mushrooms',
-    //     item_id: '1449ab96-104d-4581-93bb-1b5c249f62b8',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'morel mushrooms',
-    //     item_id: 'e94c7637-2a80-4b3f-91b2-42f1527e51f3',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'porcini mushrooms',
-    //     item_id: 'ab36d490-64f7-45f2-a6e9-44723b52a06e',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'maitake mushrooms',
-    //     item_id: '57f307d2-39a9-47ce-8f9c-9cf5ee760b94',
-    //     img: mushrooms,
-    //   },
-    //   {
-    //     name: 'enoki mushrooms',
-    //     item_id: 'f97397d3-76a4-4c49-86dd-c6f35e9ccab3',
-    //     img: mushrooms,
-    //   },
-    // ],
     compatibles: [
       'almonds',
       'asparagus',
@@ -2327,7 +2101,6 @@ export const ingredients = [
       'mustard',
       'dijon mustard',
       'nutmeg',
-      'oil: canola, grapeseed, peanut, vegetable',
       'canola oil',
       'grapeseed oil',
       'peanut oil',
@@ -2374,7 +2147,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  //ADD MUSTARD GREENS
   {
     item_id: '52a17d1f-e9e3-44a8-b953-58a52cc1b87e',
     name: 'okra',
@@ -2490,58 +2262,6 @@ export const ingredients = [
       'Cool, dimly lit, and dry. Keep onions away from potatoes, as they release moisture and gases that can cause onions to spoil more quickly. Avoid storing onions in plastic bags.',
     whyEat:
       'Onions are rich in vitamins C and B6, fiber, and antioxidants, supporting immune health, digestion, and reducing inflammation. They also contain compounds that may help regulate blood sugar levels and promote heart health.',
-    // subItems: [
-    //   {
-    //     name: 'yellow onions',
-    //     item_id: 'd8d12be6-2e44-4cb2-b193-18533c829f70',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'red onions',
-    //     item_id: 'da3d4be4-3f92-4f09-85e2-4ac4ee6b3b5c',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'white onions',
-    //     item_id: 'be6255d2-7521-4820-bf95-1e85aee42dd0',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'sweet onions',
-    //     item_id: '64a79c60-782a-4c9e-85b5-2263036f05b8',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'green onions',
-    //     item_id: 'd2848a2d-534c-43b9-a0a3-07f5c1a4b6e9',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'shallots',
-    //     item_id: 'b81628a7-c9b6-42a0-a2a9-25aae171a44b',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'scallions',
-    //     item_id: 'f0e1128c-8ebf-4e41-9b87-537682e88d1f',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'leeks',
-    //     item_id: '9475e1af-8c84-4f3c-aa16-3e74a93eaace',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'vidalia onions',
-    //     item_id: 'c3b6b9a6-6db1-490a-9fbf-5c16138e2b2f',
-    //     img: onions,
-    //   },
-    //   {
-    //     name: 'cipollini onions',
-    //     item_id: 'b8d17bbf-6de7-4e96-940a-6b8e37ef2de7',
-    //     img: onions,
-    //   },
-    // ],
     compatibles: [
       'anchovies',
       'apples',
@@ -2962,8 +2682,6 @@ export const ingredients = [
       'vinegar',
     ],
   },
-  //ADD RHUBARB
-  //ADD RUTABAGAS
   {
     item_id: '156fa978-72fe-4be3-86d2-a6bb6b466ade',
     name: 'salad greens',
@@ -3105,8 +2823,6 @@ export const ingredients = [
       'wine',
     ],
   },
-  //ADD SNAP PEAS
-  //ADD SNOW PEAS
   {
     item_id: 'a3f7d226-2d12-4fc9-8aa5-f82e6159cfda',
     name: 'spinach',
@@ -3356,21 +3072,6 @@ export const ingredients = [
       'wild rice',
     ],
   },
-  //ADD SWEET POTATOES
-  //ADD SWISS CHARD
-  // {
-  //   item_id: '8429ffc7-1139-4b7c-8812-ed36faad61e5',
-  //   name: 'tofu',
-  //   img: tofu,
-  //   exp_int: 7,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     "After opened, keep submerged in water in an airtight container. Change water daily.  If you have extra tofu that you won't use within a week, you can freeze it. Simply drain, cut into cubes, and freeze in airtight container.",
-  //   whyEat:
-  //     'Tofu is a good source of high-quality plant-based protein, iron, and calcium, supporting muscle health, bone strength, and overall nutrition. It also contains isoflavones, which may promote heart health and reduce inflammation.',
-  //   compatibles: ['sesame oil', 'sesame seeds'],
-  // },
-  //ADD TOMATILLOS
   {
     item_id: '10043109-0a9b-415e-a8e4-e53571267f30',
     name: 'tomatoes',
@@ -3535,52 +3236,6 @@ export const ingredients = [
       'vinegar',
     ],
   },
-  //ADD WATERCRESS
-  // {
-  //   item_id: 'fb80f8db-5f71-4d71-b366-4b8888934a9b',
-  //   name: 'yams',
-  //   img: yams,
-  //   exp_int: 10,
-  //   category: 'vegetables',
-  //   storage_tip:
-  //     'Store yams in a cool, dark place, preferably in a pantry or cellar, away from direct sunlight.',
-  //   whyEat:
-  //     'Yams are rich in vitamins C and B6, fiber, and potassium, supporting immune health, energy metabolism, and heart health. They also provide antioxidants and complex carbohydrates, promoting sustained energy and overall well-being.',
-  //   compatibles: [
-  //     'allspice',
-  //     'apples',
-  //     'apple juice',
-  //     'bay leaf',
-  //     'bourbon',
-  //     'butter',
-  //     'chile peppers',
-  //     'cilantro',
-  //     'cinnamon',
-  //     'cream',
-  //     'garlic',
-  //     'ginger',
-  //     'honey',
-  //     'limes',
-  //     'lime juice',
-  //     'maple syrup',
-  //     'molasses',
-  //     'nutmeg',
-  //     'oil',
-  //     'olive oil',
-  //     'onions',
-  //     'oranges',
-  //     'parsley',
-  //     'pecans',
-  //     'pepper',
-  //     'black pepper',
-  //     'white pepper',
-  //     'rum',
-  //     'salt',
-  //     'sugar',
-  //     'thyme',
-  //     'walnuts',
-  //   ],
-  // },
   {
     item_id: '28a6f075-2afb-484a-8611-bcf6dbc8af84',
     name: 'zucchini',
@@ -3592,7 +3247,7 @@ export const ingredients = [
     whyEat:
       'Zucchini is rich in vitamins A, C, and B6, as well as fiber and antioxidants, supporting eye health, immune function, and digestion. It is also low in calories and provides hydration, promoting overall well-being.',
     compatibles: [
-      'bell peppers: green, red, yellow',
+      'bell peppers',
       'bread crumbs',
       'butter',
       'cheese: cheddar, dry feta, goat, gruyère, mozzarella, parmesan, pecorino, queso fresco, ricotta',
@@ -3655,7 +3310,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // FRUITIES
   {
     item_id: '987d40b6-711e-4ef9-bc0c-7949eef3ef54',
     name: 'apples',
@@ -4042,20 +3696,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: '7g5378b7-f7g4-47g2-b76g-072ge30793eb',
-  //   name: 'cantaloupes',
-  //   img: canteloupes,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole, uncut cantaloupes at room temperature to allow them to ripen fully. Once ripe or cut, refrigerate the cantaloupe in an airtight container or wrapped in plastic wrap to keep it fresh and prevent it from absorbing other odors.',
-  //   whyEat:
-  //     'Cantaloupes are rich in vitamins A and C, which are essential for healthy skin, vision, and immune function. They are also low in calories and high in water content, making them a hydrating and nutritious snack that supports overall hydration and digestion.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: '2f7a58a7-fd20-499e-97b5-03bbb8115d0c',
     name: 'cherries',
@@ -4174,20 +3814,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: '325332b3-f323-4232-b262-0a2ge30c93eb',
-  //   name: 'coconuts',
-  //   img: coconuts,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole coconuts in a cool, dry place where they can last for up to four months. Once opened, refrigerate the coconut meat in an airtight container for up to a week, and store coconut water in a sealed container for up to a few days.',
-  //   whyEat:
-  //     'Coconuts are rich in medium-chain triglycerides (MCTs), which are fats that may provide a quick source of energy and support brain health. They are also high in dietary fiber, which aids digestion and promotes a healthy gut.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'd55e2e92-84d3-4d5c-8292-53a8e4260036',
     name: 'cranberries',
@@ -4239,76 +3865,6 @@ export const ingredients = [
       'walnuts',
     ],
   },
-  // {
-  //   item_id: '325i32bi-f3i4-4ig2-bi62-0a2ie50c9ieb',
-  //   name: 'dates',
-  //   img: dates,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store dates in an airtight container at room temperature for up to several months, keeping them in a cool, dry place to maintain their freshness. For longer storage, refrigerate dates in an airtight container, where they can last for up to a year, or freeze them for even longer preservation.',
-  //   whyEat:
-  //     'Dates are an excellent source of natural sugars, providing a quick energy boost, as well as essential nutrients like potassium, magnesium, and vitamin B6. They are also high in dietary fiber, which aids in digestion and helps maintain healthy blood sugar levels.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '3g533gbg-f3g4-43g2-b2g2-0a2ge50g93eg',
-  //   name: 'dragon fruits',
-  //   img: dragonfruits,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole dragonfruits at room temperature if you plan to eat them within a few days, keeping them in a cool, dry place away from direct sunlight. For longer storage, refrigerate whole dragonfruits in a plastic bag or airtight container for up to two weeks.',
-  //   whyEat:
-  //     'Dragonfruits are rich in antioxidants, including vitamin C, which help protect cells from damage and support a healthy immune system. They are also a good source of dietary fiber, which promotes digestive health and helps regulate blood sugar levels.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '325t32t3-f3t4-43t2-bt62-0a2get0c93eb',
-  //   name: 'durians',
-  //   img: durian,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole durians in a cool, dry place for a few days, but for longer storage, refrigerate them to maintain their freshness. Once opened, store durian flesh in an airtight container in the refrigerator for up to five days, or freeze it for longer preservation.',
-  //   whyEat:
-  //     'Durians are a good source of healthy fats and dietary fiber, which aid in digestion and help maintain heart health. They also contain vitamins such as vitamin C, potassium, and B vitamins, which contribute to overall well-being and energy metabolism.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '32p332p3-f3p4-43g2-b262-0a2ge50c93eb',
-  //   name: 'figs',
-  //   img: figs,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store fresh figs in the refrigerator in a single layer on a plate or in a shallow container, loosely covered with plastic wrap, to prevent them from getting mushy and to maintain their freshness for up to a week.',
-  //   whyEat:
-  //     'Figs are rich in dietary fiber, which promotes healthy digestion and can help manage blood sugar levels. They are also a good source of essential minerals such as potassium, calcium, and magnesium, which support bone health and cardiovascular function.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '325332b3-f334-4og2-b2o2-0a2ge50o93eb',
-  //   name: 'gooseberries',
-  //   img: gooseberries,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store gooseberries in the refrigerator, unwashed, in a covered container or plastic bag to maintain their freshness for up to two weeks. For longer storage, gooseberries can be frozen.',
-  //   whyEat:
-  //     'Gooseberries are rich in vitamin C, which supports a healthy immune system and skin health. They also contain antioxidants and dietary fiber, which aid in digestion and help protect cells from oxidative damage.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: '35baa83d-7aa8-4371-bcde-c08ce2c908e0',
     name: 'grapefruit',
@@ -4332,7 +3888,7 @@ export const ingredients = [
       'chicken',
       'coconut',
       'crab',
-      'ginger, fresh',
+      'ginger',
       'hazelnuts',
       'honey',
       'lemons',
@@ -4410,48 +3966,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: '325u32bu-f3u4-43g2-b262-0a2ge50c93eb',
-  //   name: 'guavas',
-  //   img: guavas,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store unripe guavas at room temperature to allow them to ripen; once ripe, transfer them to the refrigerator to keep them fresh for up to a week. For longer storage, guavas can be frozen; wash, peel, and cut them into pieces, then place them in an airtight container or freezer bag.',
-  //   whyEat:
-  //     'Guavas are high in vitamin C, which boosts the immune system and promotes skin health. They are also a good source of dietary fiber, which aids in digestion and helps maintain healthy blood sugar levels.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '125u12b1-f314-4312-b212-0a21e50c13eb',
-  //   name: 'honeydew melons',
-  //   img: honeydew,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole honeydew melons at room temperature until ripe; once ripe, refrigerate them to keep fresh for up to a week. Once cut, store the pieces in an airtight container in the refrigerator for up to three days.',
-  //   whyEat:
-  //     'Honeydew melons are rich in vitamin C and potassium, which support immune function and help maintain healthy blood pressure. They are also low in calories and high in water content, making them a hydrating and nutritious snack.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: '225u35b2-f3u2-4322-b222-0a2ge50c93eb',
-  //   name: 'jackfruit',
-  //   img: jackfruits,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole jackfruits at room temperature until they ripen; once ripe, refrigerate them to keep fresh for up to a week. For cut jackfruit, store the pieces in an airtight container in the refrigerator for up to five days.',
-  //   whyEat:
-  //     'Jackfruits are a good source of vitamin C, potassium, and dietary fiber, which support immune function, heart health, and digestion. They also contain antioxidants that help protect cells from damage.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: '26172199-6704-47be-a1dc-795e07ffee6f',
     name: 'kiwis',
@@ -4485,20 +3999,6 @@ export const ingredients = [
       'sugar',
     ],
   },
-  // {
-  //   item_id: 'h25uh2bh-f3h4-43h2-b2h2-0a2gh50c9heb',
-  //   name: 'kumquats',
-  //   img: kumquats,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store kumquats in the refrigerator in a plastic bag or airtight container to keep them fresh for up to two weeks. For short-term storage, they can be kept at room temperature for a few days.',
-  //   whyEat:
-  //     'Kumquats are rich in vitamin C and fiber, which boost the immune system and promote healthy digestion. They also contain antioxidants that help protect the body from oxidative stress.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'af4cb2f5-5a82-4489-a430-64a38fdfb980',
     name: 'lemons',
@@ -4672,34 +4172,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: 'k25u3kbk-f3k4-43k2-b2k2-0a2gk50c9keb',
-  //   name: 'lychees',
-  //   img: lychees,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store lychees in the refrigerator in a plastic bag or airtight container to maintain their freshness for up to two weeks. If you need to store them longer, lychees can be frozen with their skins on.',
-  //   whyEat:
-  //     'Lychees are high in vitamin C, which supports immune function and skin health, and they contain antioxidants that help protect cells from damage. They are also a good source of dietary fiber, which aids digestion and promotes gut health.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: 'b25ubkbk-f3b4-4bk2-b2b2-0a2gb50c9keb',
-  //   name: 'mandarins',
-  //   img: mandarins,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store mandarins in the refrigerator to keep them fresh for up to two weeks. They can also be stored at room temperature for a few days if you plan to consume them quickly.',
-  //   whyEat:
-  //     'Mandarins are an excellent source of vitamin C, which boosts the immune system, and they contain dietary fiber that supports digestive health.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'b2203df3-b71f-4721-a081-635c1a9900f4',
     name: 'mangos',
@@ -4879,34 +4351,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: 'bi5ubkik-f3i4-4bk2-b2b2-0a2gi50c9keb',
-  //   name: 'papayas',
-  //   img: papayas,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store unripe papayas at room temperature until they ripen; once ripe, refrigerate them to keep fresh for up to a week. Cut papayas should be stored in an airtight container in the refrigerator and consumed within a few days.',
-  //   whyEat:
-  //     'Papayas are rich in vitamins A and C, which support immune function and skin health, and they contain digestive enzymes that aid in digestion.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: 'n25unkbn-fnb4-4nk2-b2n2-0a2gn50c9keb',
-  //   name: 'passionfruit',
-  //   img: passionfruits,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store passionfruit at room temperature until they become wrinkled and fragrant, indicating ripeness; once ripe, refrigerate them to keep fresh for up to a week.',
-  //   whyEat:
-  //     'Passionfruit is high in vitamin C and dietary fiber, which support immune function and digestion, and it contains antioxidants that help protect against cell damage.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'f9920a7f-a282-40c4-9230-627ffc24dd2a',
     name: 'peaches',
@@ -4944,7 +4388,7 @@ export const ingredients = [
       'ginger',
       'hazelnuts',
       'honey',
-      'ice cream, esp. vanilla',
+      'ice cream',
       'lavender',
       'lemons',
       'limes',
@@ -4978,21 +4422,17 @@ export const ingredients = [
       'soups, esp. cold',
       'sour cream',
       'star anise',
-      'strawberries (e.g., fruit, puree)',
-      'sugar: brown, confectioners’, white',
+      'strawberries',
+      'sugar',
       'tarragon',
       'tea',
       'thyme',
       'vanilla',
-      'vinegar: balsamic, champagne, cider, red wine, rice, white',
-      'vin santo',
-      'violets, esp. candied',
+      'balsamic vinegar',
       'walnuts',
       'watercress',
       'whiskey',
-      'wine: dry or fruity red or white or sweet (e.g., asti, burgundy, merlot, sweet muscat, riesling, rosé, zinfandel)',
       'yogurt',
-      'zabaglione',
     ],
   },
   {
@@ -5279,34 +4719,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: 'vetunete-fnv4-4ne2-b2e2-0a2ge50c9keb',
-  //   name: 'pomegranates',
-  //   img: pomegranates,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole pomegranates in the refrigerator to keep them fresh for up to two months. Once the seeds (arils) are removed, store them in an airtight container in the refrigerator for up to a week.',
-  //   whyEat:
-  //     'Pomegranates are rich in antioxidants, particularly punicalagins and anthocyanins, which help reduce inflammation and protect cells from damage, and they are a good source of vitamins C and K.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
-  // {
-  //   item_id: 've2un2te-f2v4-4n22-b232-0adge50d9keb',
-  //   name: 'quinces',
-  //   img: quinces,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store quinces at room temperature until they ripen, then refrigerate them to keep fresh for up to a week. Cooked quince can be stored in an airtight container in the refrigerator for several days.',
-  //   whyEat:
-  //     'Quinces are high in dietary fiber, which aids digestion and helps maintain healthy blood sugar levels, and they contain vitamin C and antioxidants that support immune function.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'b3ea65c66-af72-43da-b62b-6f0e8f3f19cee5b25d9',
     name: 'raspberries',
@@ -5437,20 +4849,6 @@ export const ingredients = [
       'yogurt',
     ],
   },
-  // {
-  //   item_id: 'ge2ug2tg-f2h4-4nh2-b2h2-0adge50d9keb',
-  //   name: 'tamarind',
-  //   img: tamarind,
-  //   exp_int: 6,
-  //   category: 'fruits',
-  //   storage_tip:
-  //     'Store whole tamarind pods in a cool, dry place at room temperature for several months. Once the pulp is removed, it can be stored in an airtight container in the refrigerator for a few weeks or frozen for longer preservation.',
-  //   whyEat:
-  //     'Tamarinds are a good source of vitamins B and C, which support energy metabolism and immune function, and they contain polyphenols that have antioxidant and anti-inflammatory properties.',
-  //   compatibles: [
-  //     // ADD COMPATIBLES
-  //   ],
-  // },
   {
     item_id: 'ye2ugytg-f2y4-4ny2-b2y2-0adgy50d9yeb',
     name: 'tangerines',
@@ -6913,28 +6311,6 @@ export const ingredients = [
       'wine',
     ],
   },
-  // subItems: [
-  //   {
-  //     name: 'bacon',
-  //     item_id: '6c4b6b42-774c7-44a3-b4e3-a47b24bb4d1e',
-  //     img: pork,
-  //   },
-  //   {
-  //     name: 'pork ribs',
-  //     item_id: 'cb1ccbca-62cb-4ac0-89c7-276a5dc0dcee',
-  //     img: pork,
-  //   },
-  //   {
-  //     name: 'ham',
-  //     item_id: 'eba3b3a3-cd3d-4e31-9133-e393bf3c0065',
-  //     img: pork,
-  //   },
-  //   {
-  //     name: 'other pork',
-  //     item_id: 'addd7800-0d7b-4bd1-a3de-67abdb5c5d77',
-  //     img: pork,
-  //   },
-  // ],
   {
     item_id: '0cc63b41-c2ab-4a61-962c-efa3e10e6d4d',
     name: 'pork',
@@ -7021,53 +6397,6 @@ export const ingredients = [
       'Ham is a good source of protein, providing essential amino acids that are vital for muscle repair and overall body maintenance. However, ham is also high in sodium and saturated fats, which, when consumed in excess, can contribute to high blood pressure and an increased risk of heart disease.',
     compatibles: ['eggs', 'lettuce', 'onions', 'tomatoes', 'vinegar'],
   },
-  // subItems: [
-  //   {
-  //     name: 'turkey breast',
-  //     item_id: '552c84df-d546-46fb-8bd1-5dd7a7352abf',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'turkey thigh',
-  //     item_id: '8f1f88a7-f1a7-43a1-a62f-1346094c693b',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'turkey wing',
-  //     item_id: '7e771c2c-3bbb-40e0-adb4-ba174d80ddd9',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'turkey drumstick',
-  //     item_id: 'c8e36be6-0cdc-4c01-8baa-71658aa76f9c',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'whole turkey',
-  //     item_id: 'd24f83d4-f510-4d11-b272-06fa75f4a893',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'turkey tenderloin',
-  //     item_id: '3c4b856c-e62d-4e7f-8ed0-c20cda651972',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'ground turkey',
-  //     item_id: 'a12d9250-2f68-43e3-bf58-1739b6239b16',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'rotisserie turkey',
-  //     item_id: 'fe9cdd94-d9f4-4918-a7d7-9a22465aa326',
-  //     img: turkey,
-  //   },
-  //   {
-  //     name: 'turkey sausage',
-  //     item_id: '51d63e39-48ec-4da3-921d-df615f14fd8c',
-  //     img: turkey,
-  //   },
-  // ],
   {
     item_id: '1nf4fn1a-cn1n-40n4-92na-295nf01bna7n',
     name: 'turkey',
@@ -7357,17 +6686,6 @@ export const ingredients = [
     whyEat:
       'Cornmeal is a good source of carbohydrates and provides fiber, which aids in digestion. It also contains small amounts of iron and B vitamins, which help with energy metabolism.',
   },
-  // {
-  //   item_id: '22ev5e5e-30v9-4148-94v6-529dfeva4b77',
-  //   name: 'cornstarch',
-  //   img: brioche,
-  //   exp_int: 30,
-  //   category: 'grains',
-  //   storage_tip:
-  //     'Cornstarch should be kept in an airtight container in a cool, dry place to avoid clumping, where it can last indefinitely if stored properly.',
-  //   whyEat:
-  //     'Cornstarch is mostly carbohydrates and used as a thickening agent, but it lacks significant nutrients. However, it is gluten-free, making it a suitable option for people with gluten intolerance.',
-  // },
   {
     item_id: 'q2evq45q-30v9-4148-94v6-529dfeva4b77',
     name: 'couscous',
@@ -7500,28 +6818,6 @@ export const ingredients = [
     whyEat:
       'Rolled oats are high in fiber and antioxidants, promoting heart health and stabilizing blood sugar. They are also a good source of vitamins and minerals like manganese, phosphorus, and iron.',
   },
-  // {
-  //   item_id: 'v2ev5v5v-30v9-4v48-94v6-529dfeva4b77',
-  //   name: 'steel cut oats',
-  //   img: brioche,
-  //   exp_int: 30,
-  //   category: 'grains',
-  //   storage_tip:
-  //     'Keep steel cut oats in an airtight container in a cool, dry pantry. They can last for up to 12 months when stored properly.',
-  //   whyEat:
-  //     'Steel cut oats are rich in fiber, which supports heart health and improves digestion. They also provide complex carbohydrates for sustained energy and essential minerals like iron and magnesium.',
-  // },
-  // {
-  //   item_id: 'b2evb4bb-30b9-41b8-9bv6-529dfeva4b77',
-  //   name: 'cappellini',
-  //   img: brioche,
-  //   exp_int: 30,
-  //   category: 'grains',
-  //   storage_tip:
-  //     'Store uncooked cappellini in an airtight container in a cool, dry pantry. Cooked cappellini can be refrigerated and used within 2-3 days.',
-  //   whyEat:
-  //     'Cappellini is a thin pasta that cooks quickly and provides a source of carbohydrates. It is low in fat and best paired with light sauces or fresh ingredients for a balanced meal.',
-  // },
   {
     item_id: 'x2evx45x-30v9-4148-94v6-529dfeva4b77',
     name: 'farfalle',
@@ -7903,9 +7199,7 @@ export const ingredients = [
       'Store kefir in the refrigerator at or below 40°F (4°C) and consume it within 2-3 weeks after opening. Avoid leaving it at room temperature for extended periods, as this may affect its probiotic content and taste.',
     whyEat:
       'Kefir is packed with probiotics, which help improve digestion and support a healthy immune system. It’s also a great source of protein, calcium, and B vitamins, which contribute to muscle health, bone strength, and energy metabolism.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'aa2e841a-2e45-4379-b100-3dc63e52993d',
@@ -7917,9 +7211,7 @@ export const ingredients = [
       'As soon as you bring milk home from the store, place it in the refrigerator. Store milk in its original container to maintain its freshness. The packaging is designed to protect milk from light and air exposure.',
     whyEat:
       'Milk is a rich source of high-quality protein, calcium, and vitamins D and B12, supporting bone health, muscle growth, and overall nutrition. It also provides essential nutrients that promote heart health and immune function.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 
   {
@@ -7932,9 +7224,7 @@ export const ingredients = [
       'Refrigerate almond milk after opening and use within 7-10 days. Unopened shelf-stable almond milk can be stored in the pantry, but once opened, it must be refrigerated and consumed promptly.',
     whyEat:
       'Almond milk is low in calories and naturally free of cholesterol, making it heart-healthy. It’s also rich in vitamin E, an antioxidant that supports skin health and protects cells from oxidative stress.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '2a7eea4a-ca6a-4d17-ae98-63cb420cefed',
@@ -7946,9 +7236,7 @@ export const ingredients = [
       'Coconut milk in cartons should be refrigerated after opening and consumed within 7-10 days. Canned coconut milk, once opened, should be transferred to an airtight container, refrigerated, and used within 4-5 days.',
     whyEat:
       'Coconut milk is rich in medium-chain triglycerides (MCTs), which may support metabolism and provide quick energy. It’s also a good source of manganese, essential for bone health and enzyme function.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '147e1e41-c816-4117-ae98-63cb420cefed',
@@ -7960,9 +7248,7 @@ export const ingredients = [
       'Refrigerate oat milk after opening and consume it within 7-10 days. Unopened cartons of oat milk can be stored in a cool, dry place until the expiration date.',
     whyEat:
       'Oat milk is rich in beta-glucans, a type of soluble fiber that can help lower cholesterol levels and improve heart health. It’s often fortified with calcium and vitamin D to support strong bones.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '747e7e47-c876-4d77-a798-637b420cefed',
@@ -7974,9 +7260,7 @@ export const ingredients = [
       'After opening, soy milk should be refrigerated and consumed within 7-10 days. Unopened shelf-stable soy milk can be kept in the pantry until its expiration date.',
     whyEat:
       'Soy milk is high in protein and contains all nine essential amino acids, making it a complete protein source. It is also often fortified with calcium and vitamin D, making it a great dairy alternative for bone health.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '2h7ehe4h-c8h6-4dh7-ah98-6hcb42hcefed',
@@ -7988,9 +7272,7 @@ export const ingredients = [
       'Refrigerate lactose-free milk and consume within 7-10 days after opening. Keep it in the coldest part of the fridge to maximize freshness.',
     whyEat:
       'Lactose-free milk contains the same nutrients as regular milk, such as calcium and protein, but is easier to digest for those with lactose intolerance. It provides vitamin D and phosphorus, both essential for bone health.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '247eee49-c866-4d17-ae98-63cb420cefed',
@@ -8002,9 +7284,7 @@ export const ingredients = [
       "Store towards back of fridge. Ensure the container's lid is tightly sealed after each use. This helps prevent moisture and contaminants from entering the yogurt container.",
     whyEat:
       'Yogurt is a good source of high-quality protein, calcium, and probiotics, supporting muscle health, bone strength, and digestion. It also provides vitamins B12 and D, promoting immune function and overall well-being.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'n47ene4n-c8n6-4d17-ae98-63cb420cefed',
@@ -8016,9 +7296,7 @@ export const ingredients = [
       'Store sour cream in the refrigerator and use it within 7-14 days after opening. Keep it tightly sealed to avoid moisture and bacteria exposure, and never leave it out at room temperature for more than 2 hours.',
     whyEat:
       'Sour cream is a good source of calcium and vitamin A, supporting bone health and vision. However, it is high in fat, so it’s best consumed in moderation as part of a balanced diet.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '247eee49-c864-4da7-aa98-6acb420cefed',
@@ -8030,9 +7308,7 @@ export const ingredients = [
       'Refrigerate whipped cream and use it within 1-2 weeks of opening. If making fresh whipped cream, store it in an airtight container and use it within 24 hours for best quality.',
     whyEat:
       'Whipped cream is a rich source of calories and fat, providing energy but should be enjoyed in moderation. It also contains small amounts of fat-soluble vitamins like A and D, which support skin health and immune function.',
-    compatibles: [
-      // ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   // FISHIES
   {
@@ -8046,17 +7322,6 @@ export const ingredients = [
       'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
     compatibles: ['fennel', 'lemons', 'lemon juice'],
   },
-  // {
-  //   item_id: '22c6a2d4-d2a2-4f2d-a82a-9e126e3b42b2',
-  //   name: 'mahi-mahi',
-  //   img: mahimahi,
-  //   exp_int: 2,
-  //   category: 'seafoods',
-  //   storage_tip: 'Keep fish refrigerated and use within the recommended time.',
-  //   whyEat:
-  //     'Fish is an excellent source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin D and selenium, supporting heart health, brain function, and overall well-being. Regular consumption of fish can help reduce inflammation and improve cholesterol levels.',
-  //   compatibles: ['fennel', 'lemons', 'lemon juice'],
-  // },
   {
     item_id: 'w2c6awd4-dfwe-4fwd-a8wa-9e1w6e3bwebw',
     name: 'salmon',
@@ -8199,33 +7464,6 @@ export const ingredients = [
       "Live lobsters should be cooked the day they're purchased and stored in a breathable container, like a cardboard box, in the refrigerator until preparation. Cooked lobster should be refrigerated in airtight containers and consumed within 2 days.",
     whyEat:
       'Lobster is a good source of high-quality protein, omega-3 fatty acids, and essential vitamins and minerals like vitamin B12, zinc, and selenium, supporting muscle health, brain function, and immune health. It is also low in fat and promotes heart health when consumed in moderation.',
-    // subItems: [
-    //   {
-    //     name: 'whole lobster',
-    //     item_id: '39e3e0f3-9a95-4b91-8b96-50f6a1c860ec',
-    //     img: lobster,
-    //   },
-    //   {
-    //     name: 'lobster tail',
-    //     item_id: 'f87758ec-1d70-4df1-8c4e-f6b4a6a152f9',
-    //     img: lobster,
-    //   },
-    //   {
-    //     name: 'lobster claw',
-    //     item_id: '7e7e972e-2736-46d1-99b2-6a078ebf9a11',
-    //     img: lobster,
-    //   },
-    //   {
-    //     name: 'lobster meat',
-    //     item_id: '165f889e-3a87-4ab5-a125-b16272f8bea9',
-    //     img: lobster,
-    //   },
-    //   {
-    //     name: 'lobster bisque',
-    //     item_id: '7381a810-9602-4d63-9b79-0ff7233a7ed6',
-    //     img: lobster,
-    //   },
-    // ],
     compatibles: [
       'avocados',
       'basil',
@@ -8342,42 +7580,6 @@ export const ingredients = [
     ],
   },
 
-  //Herbs
-
-  // {
-  //   item_id: 'q48fq738-3ecd-4q3d-af42-274c83qdec50',
-  //   name: 'cilantro',
-  //   img: cilantro,
-  //   exp_int: 7,
-  //   category: 'spices and herbs',
-  //   storage_tip:
-  //     'Dampen a paper towel (not soaking wet) and wrap it around the base of the cilantro stems. Otherwise, you can treat cilantro the same way you would flowers, always keeping the roots submerged in water.',
-  //   whyEat:
-  //     'Cilantro is rich in vitamins A, C, and K, supporting immune health, eye health, and bone health. It also contains antioxidants and compounds that may aid digestion and detoxification.',
-  //   compatibles: [
-  //     'avocados',
-  //     'chicken',
-  //     'chile peppers',
-  //     'coconut',
-  //     'coconut milk',
-  //     'cumin',
-  //     'curries',
-  //     'fish',
-  //     'garlic',
-  //     'ginger',
-  //     'lemons',
-  //     'lemon juice',
-  //     'lemongrass',
-  //     'limes',
-  //     'lime juice',
-  //     'mint',
-  //     'rice',
-  //     'salad greens',
-  //     'tomatoes',
-  //     'yogurt',
-  //   ],
-  // },
-
   //Legumes
 
   {
@@ -8390,9 +7592,7 @@ export const ingredients = [
       'Store leftover cooked or opened beans in an airtight container in the fridge, consuming within 3-4 days. For long-term storage, freeze cooked beans in portion-sized containers for up to 3 months.',
     whyEat:
       'Beans are an excellent source of plant-based protein and fiber, which promote digestive health and help regulate blood sugar. They are also rich in essential minerals like iron, magnesium, and potassium, supporting heart health and energy production.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'qo8fq7o8-3eod-4qod-afo2-274c8oqdec50',
@@ -8404,9 +7604,7 @@ export const ingredients = [
       'Store unused black beans in an airtight container in the refrigerator, using within 3-4 days. Freeze cooked beans in portions for up to 3 months if you need to extend their shelf life.',
     whyEat:
       'Black beans are high in protein and fiber, which help maintain steady energy levels and support gut health. They are also rich in anthocyanins, antioxidants that may improve cardiovascular health and reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'q4bfq7bn-3bnb-4qbd-abn2-27bc83ndecn0',
@@ -8418,9 +7616,7 @@ export const ingredients = [
       'Store leftover cooked or opened cannellini beans in an airtight container in the fridge, consuming within 3-4 days. For long-term storage, freeze cooked beans in portion-sized containers for up to 3 months.',
     whyEat:
       'Cannellini beans are packed with fiber and protein, which aid in satiety and digestive health. They are also a good source of folate, which supports red blood cell production and is vital for pregnant women.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'qmlfq7ml-3emd-4qld-afm2-274l8mqdec50',
@@ -8432,9 +7628,7 @@ export const ingredients = [
       'Refrigerate leftover chickpeas in a sealed container and consume them within 3 days, or freeze them for up to 3 months. Unopened canned chickpeas can be stored in a cool, dry pantry for up to two years.',
     whyEat:
       'Chickpeas are an excellent source of protein and dietary fiber, which promote satiety and support digestion. They are also rich in manganese and copper, which are essential for bone health and energy production.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'qz8fq7z8-3ezd-4qzd-afz2-274z83qdzc50',
@@ -8446,9 +7640,7 @@ export const ingredients = [
       'Store leftover or cooked kidney beans in an airtight container in the refrigerator and consume them within 3-4 days. For long-term storage, kidney beans can be frozen for up to 3 months.',
     whyEat:
       'Kidney beans are rich in protein and fiber, supporting muscle repair and digestive health. They also contain iron, which is crucial for oxygen transport in the body, and magnesium for heart and muscle function.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'q48kq73k-3ekd-4qkd-ak42-27kc83qdec50',
@@ -8460,9 +7652,7 @@ export const ingredients = [
       'Transfer cooked lentils to an airtight container and refrigerate for up to 5 days, or freeze for up to 3 months. Dried lentils can be stored in a cool, dark pantry for up to a year.',
     whyEat:
       'Lentils are high in protein, iron, and folate, making them a great option for supporting muscle growth and red blood cell production. They are also rich in fiber, which helps stabilize blood sugar levels and supports heart health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'qt8fq7t8-3etd-4qtd-aft2-274c83qdec50',
@@ -8474,9 +7664,7 @@ export const ingredients = [
       'Store cooked pinto beans in the refrigerator for up to 4 days in an airtight container, or freeze them for longer storage. Unopened cans can be kept in a pantry for up to 2 years.',
     whyEat:
       'Pinto beans are a good source of fiber and protein, which help regulate blood sugar and promote satiety. They are also rich in antioxidants, including kaempferol, which may reduce inflammation and lower the risk of chronic diseases.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'q38fq338-3e3d-433d-af32-274c33qdec50',
@@ -8488,9 +7676,7 @@ export const ingredients = [
       'Refrigerate leftover red beans in an airtight container for up to 4 days, or freeze them for up to 3 months. Unopened canned red beans can be stored in a cool, dry pantry for up to 2 years.',
     whyEat:
       'Red beans are high in dietary fiber, supporting heart health and improving digestion. They are also rich in antioxidants, including flavonoids, which can help protect against cellular damage and reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j48fj73j-3ejd-4qjd-aj42-274c83qdec50',
@@ -8502,9 +7688,7 @@ export const ingredients = [
       'Store peanuts in an airtight container in a cool, dark place, or refrigerate them to extend freshness for up to 9 months. For long-term storage, peanuts can be frozen for up to a year.',
     whyEat:
       'Peanuts are a rich source of healthy fats, protein, and fiber, which promote heart health and provide sustained energy. They are also packed with resveratrol, an antioxidant known to support brain health and reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 
   // NUTS and SEEDS
@@ -8519,9 +7703,7 @@ export const ingredients = [
       'Store almonds in an airtight container in a cool, dry place for up to 6 months, or refrigerate for up to 1 year.',
     whyEat:
       'Almonds are a rich source of healthy fats, fiber, and protein. They are also packed with vitamin E, an antioxidant that promotes skin health and protects against oxidative stress.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'y48fy73y-3eyd-4qyd-ajy2-274c83qdec50',
@@ -8533,9 +7715,7 @@ export const ingredients = [
       'Store cashews in a sealed container in a cool, dry pantry for up to 6 months, or refrigerate for up to 1 year.',
     whyEat:
       'Cashews are a good source of healthy fats and magnesium, supporting heart health and muscle function. They also provide copper, which is important for energy production and skin health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'jp8fjp3j-3epd-4qpd-ap42-274c83qdec50',
@@ -8547,9 +7727,7 @@ export const ingredients = [
       'Store chia seeds in a sealed container in a cool, dry pantry for up to 2 years.',
     whyEat:
       'Chia seeds are an excellent source of omega-3 fatty acids, which support brain and heart health. They are also rich in fiber, which helps with digestion and stabilizes blood sugar levels.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j4jfj7jj-3jjd-4qjd-jj4j-274c83qdec50',
@@ -8561,9 +7739,7 @@ export const ingredients = [
       'Store flax seeds in an airtight container in a cool, dry place. Ground flax seeds should be refrigerated to maintain freshness and prevent rancidity.',
     whyEat:
       'Flax seeds are rich in omega-3 fatty acids and fiber, supporting heart health and digestion. They also contain lignans, plant compounds with antioxidant properties.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'jt8fht3j-hejd-4hjd-aj42-274c83qdec50',
@@ -8575,9 +7751,7 @@ export const ingredients = [
       'Store macadamia nuts in a cool, dry place for up to 3 months, or refrigerate for up to 6 months to extend shelf life.',
     whyEat:
       'Macadamia nuts are high in healthy monounsaturated fats, which support heart health. They are also a good source of manganese, which aids in bone health and metabolism.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'k48fk73j-kejd-4kjd-aj42-274c83qdec50',
@@ -8589,9 +7763,7 @@ export const ingredients = [
       'Store pine nuts in an airtight container in the refrigerator or freezer to prevent them from going rancid due to their high oil content.',
     whyEat:
       'Pine nuts are rich in healthy fats, protein, and magnesium, supporting heart and muscle health. They are also a good source of antioxidants, which help reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'jy8fjy3j-3yjd-4yjd-aj42-274c83qdec50',
@@ -8603,9 +7775,7 @@ export const ingredients = [
       'Store pumpkin seeds in a sealed container in a cool, dry place for up to 6 months, or refrigerate for up to 1 year.',
     whyEat:
       'Pumpkin seeds are high in magnesium, which supports muscle function, and zinc, which promotes immune health. They are also a great source of protein and healthy fats.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'jr8fjr3j-3rjd-4qjd-aj42-274c83qdec50',
@@ -8617,9 +7787,7 @@ export const ingredients = [
       'Store sesame seeds in an airtight container in a cool, dry place, or refrigerate for longer storage to prevent rancidity.',
     whyEat:
       'Sesame seeds are rich in healthy fats, protein, and calcium, supporting bone health. They also contain antioxidants like sesamin, which may help reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j58fj73j-3e5d-4qjd-aj42-274c53qde550',
@@ -8631,9 +7799,7 @@ export const ingredients = [
       'Store sunflower seeds in a sealed container in a cool, dry place. For longer storage, refrigerate them to prevent the oils from going rancid.',
     whyEat:
       'Sunflower seeds are a good source of vitamin E, an antioxidant that supports skin and immune health. They are also rich in healthy fats, fiber, and protein.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j78tj7tj-3tjd-4qjd-aj72-274c83qdec50',
@@ -8645,9 +7811,7 @@ export const ingredients = [
       'Store walnuts in an airtight container in the refrigerator or freezer to prevent them from going rancid. Use them within 6-12 months for best quality.',
     whyEat:
       'Walnuts are rich in omega-3 fatty acids, which support heart health and brain function. They also contain antioxidants that can help reduce inflammation and promote overall health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 
   // Spices and Herbs
@@ -8662,9 +7826,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Allspice contains eugenol, an antioxidant with anti-inflammatory properties that may support heart health. It also helps with digestion and may alleviate symptoms of bloating or gas.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j78tj7tj-3tjd-4qjd-aj72-224c23qd2c50',
@@ -8676,9 +7838,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Dried basil retains its antioxidant properties, including flavonoids, which support immune health and help combat free radicals. It is also a source of vitamin A, important for eye health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j58tj7tj-3tjd-4qjd-aj72-274c83qdec50',
@@ -8768,9 +7928,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Bay leaves contain compounds like cineole, which have anti-inflammatory and digestive benefits. They may also help regulate blood sugar levels and improve insulin function.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j88tj7t8-3tj8-4qjd-aj72-274c83qdec50',
@@ -8782,9 +7940,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Cinnamon is rich in antioxidants, particularly polyphenols, which may help reduce inflammation and lower blood sugar levels. It is also known to support heart health by lowering cholesterol.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j70tk70j-30jd-4qjd-kj72-274c83qdec50',
@@ -8796,9 +7952,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Cumin is a good source of iron, essential for oxygen transport in the body. It also contains antioxidants that may boost digestion and improve gut health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j08tj7t0-3tjd-4qjd-aj72-274c03qdec50',
@@ -8810,9 +7964,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Garlic powder retains many of the health benefits of fresh garlic, including its allicin content, which may help reduce blood pressure and improve cholesterol levels. It also has antimicrobial properties.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j08tj7t0-3tjd-4djd-aj72-274s03qdsc50',
@@ -8824,9 +7976,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Paprika is rich in vitamin A and antioxidants like beta-carotene, which support immune function and eye health. It also contains capsaicin, which may help reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j78bj7bj-3bjd-4qjd-aj72-274c83qdec50',
@@ -8838,9 +7988,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Black pepper is high in piperine, which can improve digestion and may have antioxidant effects. It also stimulates the secretion of digestive enzymes, enhancing nutrient absorption.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j12t1721-32jd-4q2d-aj72-274c83qdec50',
@@ -8852,9 +8000,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Mixed pepper provides a range of antioxidants from different peppercorn varieties, supporting heart health and digestion. It also offers anti-inflammatory benefits from the piperine content.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'bf8db6de-004d-4e88-9622-206ce1f06d25',
@@ -8953,9 +8099,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Kosher salt is less processed than table salt, often containing no additives. It provides the same essential sodium needed for nerve function but without the iodine commonly added to table salt.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'j7ytjytj-3tjf-4fjf-aj72-274c83qdec50',
@@ -8967,9 +8111,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Table salt is fortified with iodine, which is essential for thyroid function and hormone regulation. However, it is important to monitor sodium intake to avoid raising blood pressure.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'de48f5a3-c7cf-4ab4-8947-b8c0eade8b30',
@@ -9018,9 +8160,7 @@ export const ingredients = [
       'Store dried spices in airtight containers in a cool, dry, and dark place, away from heat and moisture. Ideally, use within 6 months to 1 year for optimal flavor and potency, although they remain safe to consume beyond that timeframe.',
     whyEat:
       'Turmeric contains curcumin, a powerful anti-inflammatory and antioxidant compound that may reduce the risk of chronic diseases. It also supports brain health and may improve memory.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 
   //CANNED GOODS
@@ -9035,9 +8175,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Anchovies are rich in omega-3 fatty acids, which support heart health and reduce inflammation. They are also a good source of protein and calcium, important for bone health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '178ta7ta-3ajd-4ajd-aa72-274c81qdec50',
@@ -9049,9 +8187,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Apple sauce is a good source of fiber, particularly pectin, which supports digestive health. It also provides vitamin C, which aids in immune function and skin health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '578t57ta-35jd-45jd-aa72-274c83qdec50',
@@ -9063,9 +8199,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Artichoke hearts are high in fiber, which helps promote digestion. They are also rich in antioxidants like quercetin, supporting heart health and reducing inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '878t87t8-3a8d-4ajd-aa72-274c83qdec50',
@@ -9077,9 +8211,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Baked beans are rich in protein and fiber, which support digestion and satiety. They are often prepared with added sugars, so it is best to enjoy them in moderation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a79ta9ta-39jd-4a9d-aa72-274c83qdec50',
@@ -9091,9 +8223,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Black beans are rich in fiber and protein, supporting gut health and blood sugar regulation. They also contain antioxidants like anthocyanins, which may protect against heart disease.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78pa7tp-3apd-4apd-aap2-27pc83qdec50',
@@ -9105,9 +8235,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Chickpeas are high in protein and fiber, helping with digestion and muscle repair. They also provide essential nutrients like manganese and folate, important for bone health and cell regeneration.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7nta7na-3njd-4ajd-aa72-274c83qdec50',
@@ -9119,9 +8247,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Kidney beans are rich in fiber, helping to lower cholesterol and regulate blood sugar. They are also a good source of iron, supporting red blood cell production and energy levels.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7ltalta-3ljd-4ljd-aa72-274c83qdec50',
@@ -9133,9 +8259,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Pinto beans are a good source of fiber and protein, which support digestion and muscle maintenance. They also contain antioxidants that help reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78ja7tj-3akk-4ajd-aa72-274c83qdec50',
@@ -9147,9 +8271,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Refried beans are high in fiber and protein, which aid in digestion and provide lasting energy. Be mindful of sodium levels, as they can be high in some varieties.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7htahta-3hjd-4hjd-ah72-2h4c83qdec50',
@@ -9161,9 +8283,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Beef broth is a source of protein and essential minerals like iron and zinc, supporting immune function and red blood cell production. It is also rich in gelatin, which may support joint health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78ty7ty-3yjd-yajd-aa72-274c83qdec50',
@@ -9175,9 +8295,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Chicken broth contains collagen and protein, which may support joint health and muscle repair. It’s also a good source of electrolytes, which help maintain fluid balance in the body.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'g78og7oa-3aod-4ojd-ao72-274c83qdec50',
@@ -9189,9 +8307,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Vegetable broth is low in calories but rich in vitamins and minerals like potassium, supporting heart health. It is a great hydrating option for those on plant-based diets.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7htahth-3ahd-4ajd-aa72-274c83qdec50',
@@ -9203,9 +8319,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned carrots are rich in beta-carotene, an antioxidant that supports vision and skin health. They also provide vitamin A, essential for immune function.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78ua7ua-uajd-uajd-aa72-274c83qdec50',
@@ -9217,9 +8331,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned cherries are a good source of antioxidants like anthocyanins, which help reduce inflammation. They are also rich in vitamin C, supporting immune health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'aq8tq7tq-3aqd-4ajd-aa72-274c83qdec50',
@@ -9231,9 +8343,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned chicken is a convenient source of lean protein, supporting muscle repair and maintenance. It also provides B vitamins, which help with energy metabolism.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7ctactc-3ajd-4ajd-ac7c-27cc83qdec50',
@@ -9245,9 +8355,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Chicken soup provides protein and electrolytes like sodium, supporting hydration and muscle function. The broth base is also soothing and may help ease cold symptoms.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7itaiti-3aid-4ijd-aai2-274c83qdec50',
@@ -9259,9 +8367,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned chili is rich in protein and fiber, supporting satiety and digestion. Depending on the ingredients, it can also provide essential nutrients like iron and potassium.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'ag8tg7tg-3agd-4gjd-ag72-274c83qdec50',
@@ -9273,9 +8379,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Clam chowder is a source of omega-3 fatty acids and protein, promoting heart health and muscle repair. It’s also high in vitamins and minerals like vitamin B12 and iron.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'ah8hahta-dajd-4djd-ad72-274c83qdec50',
@@ -9287,9 +8391,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Corned beef is high in protein and iron, which support muscle growth and red blood cell production. It is also high in sodium, so it should be consumed in moderation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78haeta-eajd-4aed-aae2-274c83qdec50',
@@ -9301,9 +8403,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Cream corn provides fiber, supporting digestion, and small amounts of vitamins like B6 and folate, important for brain function. It also contains natural sugars for a quick energy boost.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a76ta76a-3a6d-46jd-a672-276c83qdec50',
@@ -9315,9 +8415,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Creamed spinach is rich in iron and vitamin K, supporting blood health and bone strength. However, it can be high in fat and sodium, so it is best enjoyed in moderation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a18ta1ta-3a1d-4a1d-a172-274c83qdec50',
@@ -9329,9 +8427,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Evaporated milk is a concentrated source of calcium and vitamin D, important for bone health. It also provides protein, supporting muscle maintenance.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '2782a72a-3a2d-42jd-a272-274c23qdec50',
@@ -9343,9 +8439,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned fruit cocktail provides vitamins like vitamin C, supporting immune function and skin health. Opt for fruit packed in water or juice to reduce added sugar intake.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a08ta0ta-30jd-4a0d-aa72-274c83qdec50',
@@ -9357,9 +8451,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned green beans are a good source of fiber, which supports digestion. They also contain vitamins A and C, which are important for immune function and skin health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7vtavtv-3avd-4avd-aav2-274cv3qdec50',
@@ -9371,9 +8463,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Lentil soup is rich in protein and fiber, which help maintain steady energy levels and support digestion. It is also a good source of iron and folate, essential for blood health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7qtb7qa-3qjd-4ajd-aa72-274c83qdec50',
@@ -9385,9 +8475,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Minestrone soup is high in fiber and nutrients like vitamins A and C, supporting heart health and immunity. It is also low in calories, making it a nutrient-dense meal option.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7btabta-3abd-4abd-aab2-274c83qdec50',
@@ -9399,9 +8487,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned olives are rich in healthy monounsaturated fats, which support heart health. They also contain antioxidants like polyphenols, which may reduce inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7ata7aa-3aad-4zjd-aa72-274c83qdec50',
@@ -9413,9 +8499,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned peas are a good source of fiber and plant-based protein, promoting digestive health and muscle repair. They also provide vitamin K, which supports bone health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: '678ta6ta-3a6d-46jd-aa72-274c83qdec50',
@@ -9427,9 +8511,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Peanut butter is high in healthy fats and protein, providing lasting energy. It’s also rich in vitamins like vitamin E and B6, which support skin health and immune function.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78t97t9-3aj9-4a9d-aa92-274c83qdec50',
@@ -9441,9 +8523,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Pickles are low in calories and provide probiotics, which support gut health. However, they can be high in sodium, so they should be consumed in moderation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'b78tabta-3abd-4abd-aa72-274c83qdec50',
@@ -9455,9 +8535,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned ravioli provides a convenient source of carbohydrates and protein, fueling the body with energy. However, it can be high in sodium and fat, so it is best enjoyed occasionally.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'ai8taita-iajd-4ijd-aai2-274ci3qdec50',
@@ -9469,9 +8547,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned salmon is an excellent source of omega-3 fatty acids, which support heart and brain health. It’s also rich in protein and calcium (if canned with bones), promoting muscle and bone health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'ag8tagta-3agd-4ajd-aa72-27gc83qdec50',
@@ -9483,9 +8559,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned sardines are high in omega-3 fatty acids, which help reduce inflammation and support heart health. They are also a great source of calcium and vitamin D, essential for bone strength.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a78ya7ty-3ajy-4ajy-aa7y-274cy3qdec50',
@@ -9497,9 +8571,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Diced tomatoes are high in antioxidants like lycopene, which may help protect against cancer and heart disease. They are also a good source of vitamin C and potassium.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'at8tatta-3tjd-4atd-at72-274c83qdec50',
@@ -9511,9 +8583,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Tomato paste is concentrated in lycopene, an antioxidant that supports heart health. It also contains vitamins A and C, which promote immune function and skin health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'aghtagha-3ahd-4ahd-ah72-274c83qdec50',
@@ -9525,9 +8595,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Tomato sauce is rich in antioxidants, including lycopene, which supports heart health. It also provides vitamin C and fiber, which promote digestive and immune health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'a7ata7aa-3tjd-4tjd-ath2-27tc83qdec50',
@@ -9539,9 +8607,7 @@ export const ingredients = [
       'Unopened canned goods can be stored in a cool, dry pantry for up to 1-2 years. Once opened, transfer the contents to an airtight container and refrigerate them, consuming within 3-4 days.',
     whyEat:
       'Canned tuna is high in protein and omega-3 fatty acids, supporting heart and brain health. It is also a good source of vitamin D, important for bone health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 
   // OILS
@@ -9555,9 +8621,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Avocado oil is rich in monounsaturated fats, which support heart health by reducing bad cholesterol (LDL) levels. It also contains vitamin E, an antioxidant that promotes skin health and reduces inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v7aha7ha-3hjd-4djd-atd2-27ec8eqdece0',
@@ -9569,9 +8633,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Canola oil is low in saturated fats and contains omega-3 and omega-6 fatty acids, which help support heart health and reduce inflammation. It is also a good source of vitamin K, essential for bone health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v73va73a-3dj3-4djd-atd2-27ec8eqdece0',
@@ -9583,9 +8645,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Coconut oil is high in medium-chain triglycerides (MCTs), which may support metabolism and provide quick energy. It also has antimicrobial properties and can promote skin and hair health when used topically.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v5ava5va-3d5d-4d5d-atd2-27ec8eqdece0',
@@ -9597,9 +8657,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Corn oil is rich in polyunsaturated fats, particularly omega-6 fatty acids, which support brain function and skin health. It also contains plant sterols, which may help lower cholesterol levels.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v7aya7ya-3yjd-4djd-atd2-27ec8eqdece0',
@@ -9611,9 +8669,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Olive oil, especially extra virgin, is packed with monounsaturated fats and antioxidants like oleocanthal, which reduce inflammation and support heart health. It is also rich in vitamin E, benefiting skin and immune function.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v7ava7va-3djd-46jd-a6d2-27ec8eqdece0',
@@ -9625,9 +8681,7 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Peanut oil is high in monounsaturated fats, which help reduce bad cholesterol (LDL) and promote heart health. It’s also a good source of vitamin E, supporting immune and skin health.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
   {
     item_id: 'v7avg7va-3dgd-4dgd-atd2-27ec8eqdece0',
@@ -9639,8 +8693,6 @@ export const ingredients = [
       'Store oils in a cool, dark place away from direct sunlight and heat, tightly sealed to prevent oxidation and rancidity. Most oils can be stored at room temperature, but some oils like extra virgin olive oil or coconut oil may benefit from refrigeration to extend shelf life.',
     whyEat:
       'Vegetable oil is typically a blend of oils and is rich in polyunsaturated fats, which support heart health. However, it can be higher in omega-6 fatty acids, which should be balanced with omega-3s to avoid excessive inflammation.',
-    compatibles: [
-      //ADD COMPATIBLES
-    ],
+    compatibles: [],
   },
 ];

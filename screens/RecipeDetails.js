@@ -3,8 +3,6 @@ import {Text, Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import {API_URL} from '@env';
 import {auth} from '../firebase';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-import RenderHtml from 'react-native-render-html';
-import {useWindowDimensions} from 'react-native';
 import {UserContext} from '../contexts/UserContext';
 import pluralize from 'pluralize';
 import styles from './styles/recipeDetails';
@@ -13,9 +11,7 @@ const RecipeDetails = ({route}) => {
   const {recipe, selectedIngredients} = route.params;
   const [isFavorited, setIsFavorited] = useState(false);
   const {setFavoriteRecipes} = useContext(UserContext);
-
   const userEmail = auth.currentUser?.email;
-  const {width} = useWindowDimensions();
 
   useEffect(() => {
     console.log(recipe);
@@ -111,13 +107,6 @@ const RecipeDetails = ({route}) => {
     recipe.analyzedInstructions[0].steps &&
     recipe.analyzedInstructions[0].steps.length > 0;
 
-  const tagsStyles = {
-    a: {
-      color: 'blue',
-      textDecorationLine: 'none',
-    },
-  };
-
   const removeDuplicateIngredients = ingredients => {
     const seen = new Set();
     return ingredients.filter(ingredient => {
@@ -191,20 +180,6 @@ const RecipeDetails = ({route}) => {
             No instructions available.
           </Text>
         )}
-
-        <View style={styles.ingredientsContainer}>
-          <Text style={styles.ingredientsTitleText}>Summary</Text>
-          <RenderHtml
-            baseStyle={{
-              fontSize: 15,
-              lineHeight: 20,
-              fontFamily: 'Avenir-Book',
-            }}
-            contentWidth={width}
-            source={{html: recipe.summary}}
-            tagsStyles={tagsStyles}
-          />
-        </View>
       </View>
     </ScrollView>
   );

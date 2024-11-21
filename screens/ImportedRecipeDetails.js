@@ -14,8 +14,6 @@ const ImportedRecipeDetails = ({route}) => {
       <View style={styles.textContainer}>
         <View style={{paddingHorizontal: 2}}>
           <Text style={styles.titleText}>{recipe.name}</Text>
-          {/* <Text style={styles.servingsText}>{recipe.yield} servings</Text>
-          <Text style={styles.servingsText}>{recipe.totalTime}</Text> */}
         </View>
 
         <View style={styles.ingredientsContainer}>

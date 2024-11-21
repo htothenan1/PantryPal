@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   ScrollView,
-  Modal,
   Image,
-  Switch,
   Alert,
 } from 'react-native';
 import {auth} from '../firebase';
@@ -19,58 +17,25 @@ import {useNavigation} from '@react-navigation/core';
 import {useFocusEffect} from '@react-navigation/native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {onboardingModule} from './data/modules';
-import {icons} from './data/icons';
-import chefLogo from '../assets/chefs_hat.png';
 import foodbankicon from '../assets/foodbankicon.png';
-import {ingredients} from './data/ingredients'; // Import ingredients data
-import {PieChart} from 'react-native-chart-kit';
-import {Dimensions} from 'react-native';
+import {ingredients} from './data/ingredients';
 import styles from './styles/account';
 
-const screenWidth = Dimensions.get('window').width;
-const ITEMS_PER_PAGE = 5; // Define items per page
-
 const Account = () => {
-  const {userData, setUserData, fetchUserData} = useContext(UserContext);
+  const {userData, fetchUserData} = useContext(UserContext);
   const [wastedItems, setWastedItems] = useState([]);
-  const [consumedItems, setConsumedItems] = useState([]);
-  const [isIconPickerVisible, setIconPickerVisible] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState(null);
-  const [omitMeats, setOmitMeats] = useState(false);
-  const [omitSeafoods, setOmitSeafoods] = useState(false);
-  const [omitDairy, setOmitDairy] = useState(false);
-  const [showConsumedItems, setShowConsumedItems] = useState(false);
   const [showWastedItems, setShowWastedItems] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0); // Track current page
-  const totalPages = Math.ceil(wastedItems.length / ITEMS_PER_PAGE); // Calculate total pages
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(wastedItems.length / 5);
 
   const getPageItems = () => {
-    const startIdx = currentPage * ITEMS_PER_PAGE;
-    const endIdx = startIdx + ITEMS_PER_PAGE;
+    const startIdx = currentPage * 5;
+    const endIdx = startIdx + 5;
     return wastedItems.slice(startIdx, endIdx);
   };
 
   const userEmail = auth.currentUser?.email;
   const navigation = useNavigation();
-
-  useEffect(() => {
-    if (userData?.iconName) {
-      const foundIcon = icons.find(
-        icon => icon.name === userData.iconName,
-      )?.img;
-      if (foundIcon) {
-        setSelectedIcon(foundIcon);
-      } else {
-        console.log('Icon not found:', userData.iconName);
-      }
-    }
-
-    if (userData) {
-      setOmitMeats(userData.omitMeats);
-      setOmitSeafoods(userData.omitSeafoods);
-      setOmitDairy(userData.omitDairy);
-    }
-  }, [userData]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -89,33 +54,8 @@ const Account = () => {
       }
       const res = await response.json();
       setWastedItems(res.wastedItems);
-      setConsumedItems(res.consumedItems);
     } catch (error) {
       console.error('Error fetching items data:', error.message);
-    }
-  };
-
-  const updateIconName = async selectedIconName => {
-    try {
-      const response = await fetch(`${API_URL}/users/icon`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          iconName: selectedIconName,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-    } catch (error) {
-      console.error('Error updating icon name:', error);
     }
   };
 
@@ -124,43 +64,6 @@ const Account = () => {
       screen: 'OnboardingStartScreen',
       params: {module: module[0]},
     });
-  };
-
-  const deleteAllConsumedItems = async () => {
-    Alert.alert(
-      'Confirm Deletion',
-      'Are you sure you want to delete all consumed items? This action cannot be undone.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              const response = await fetch(`${API_URL}/consumedItems`, {
-                method: 'DELETE',
-              });
-
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-
-              Alert.alert('Success', 'All consumed items have been deleted.');
-              setConsumedItems([]); // Clear the local state
-            } catch (error) {
-              console.error('Error deleting consumed items:', error.message);
-              Alert.alert(
-                'Error',
-                'Failed to delete consumed items. Please try again.',
-              );
-            }
-          },
-        },
-      ],
-    );
   };
 
   const handleDeleteAccount = () => {
@@ -177,17 +80,15 @@ const Account = () => {
           style: 'destructive',
           onPress: async () => {
             try {
-              const authUser = auth.currentUser; // Firebase authenticated user
+              const authUser = auth.currentUser;
               if (!authUser) {
                 throw new Error('No authenticated user found.');
               }
 
-              const userId = authUser.uid; // Firebase UID
+              const userId = authUser.uid;
 
-              // Delete user from Firebase
               await authUser.delete();
 
-              // Delete user from MongoDB
               const response = await fetch(`${API_URL}/users/${userId}`, {
                 method: 'DELETE',
               });
@@ -200,10 +101,8 @@ const Account = () => {
                 'User successfully deleted from Firebase and MongoDB',
               );
 
-              // Log out the user
               await signOut(auth);
 
-              // Navigate to login screen
               navigation.replace('Login');
             } catch (error) {
               if (error.code === 'auth/requires-recent-login') {
@@ -225,36 +124,6 @@ const Account = () => {
     );
   };
 
-  const updatePreferences = async (meats, seafoods, dairy) => {
-    try {
-      const response = await fetch(`${API_URL}/users/preferences`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          omitMeats: meats,
-          omitSeafoods: seafoods,
-          omitDairy: dairy,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-    } catch (error) {
-      console.error('Error updating preferences:', error);
-    }
-  };
-
-  const navToPantry = () => {
-    navigation.navigate('Pantry Items');
-  };
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -264,38 +133,6 @@ const Account = () => {
         console.log(error);
       });
   };
-
-  const prepareChartData = (consumedItems, wastedItems) => {
-    const consumedFrequency = consumedItems.reduce(
-      (total, item) => total + item.frequency,
-      0,
-    );
-    const wastedFrequency = wastedItems.reduce(
-      (total, item) => total + item.frequency,
-      0,
-    );
-
-    return [
-      {
-        name: 'Consumed',
-        count: consumedFrequency,
-        color: '#228B22',
-        legendFontColor: '#228B22',
-        legendFontSize: 15,
-      },
-      {
-        name: 'Wasted',
-        count: wastedFrequency,
-        color: '#B22222',
-        legendFontColor: '#B22222',
-        legendFontSize: 15,
-      },
-    ];
-  };
-
-  const chartData = prepareChartData(consumedItems, wastedItems);
-
-  const availableIcons = icons.filter(icon => icon.level <= userData?.level);
 
   const getIconForItem = itemName => {
     const ingredient = ingredients.find(
@@ -309,26 +146,7 @@ const Account = () => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.accountInfoWrapper}>
           <View>
-            {selectedIcon ? (
-              <>
-                <Image source={foodbankicon} style={styles.accountImage} />
-                {/* <TouchableOpacity
-                  style={styles.chooseFlavrButton}
-                  onPress={() => setIconPickerVisible(true)}>
-                  <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
-                </TouchableOpacity> */}
-              </>
-            ) : (
-              <>
-                <Image source={foodbankicon} style={styles.accountImage} />
-
-                {/* <TouchableOpacity
-                  style={styles.chooseFlavrButton}
-                  onPress={() => setIconPickerVisible(true)}>
-                  <Text style={styles.chooseFlavrButtonText}>Choose Flavr</Text>
-                </TouchableOpacity> */}
-              </>
-            )}
+            <Image source={foodbankicon} style={styles.accountImage} />
           </View>
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>{userData?.firstName}</Text>
@@ -337,45 +155,6 @@ const Account = () => {
         </View>
 
         <View style={styles.preferencesContainer}>
-          <Text style={styles.preferencesTitle}>Kitchen Dashboard</Text>
-          {/* <View style={styles.togglesContainer}>
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Meats:</Text>
-              <Switch
-                value={omitMeats}
-                onValueChange={value => {
-                  setOmitMeats(value);
-                  updatePreferences(value, omitSeafoods, omitDairy);
-                }}
-                trackColor={{false: '#767577', true: '#1b4965'}}
-              />
-            </View>
-
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Seafoods:</Text>
-              <Switch
-                value={omitSeafoods}
-                onValueChange={value => {
-                  setOmitSeafoods(value);
-                  updatePreferences(omitMeats, value, omitDairy);
-                }}
-                trackColor={{false: '#767577', true: '#1b4965'}}
-              />
-            </View>
-
-            <View style={styles.toggleContainer}>
-              <Text style={styles.toggleLabel}>Remove Dairy:</Text>
-              <Switch
-                value={omitDairy}
-                onValueChange={value => {
-                  setOmitDairy(value);
-                  updatePreferences(omitMeats, omitSeafoods, value);
-                }}
-                trackColor={{false: '#767577', true: '#1b4965'}}
-              />
-            </View>
-          </View> */}
-
           <TouchableOpacity
             style={styles.favoriteRecipesButton}
             onPress={() => navigation.navigate('Your Recipes')}>
@@ -396,11 +175,6 @@ const Account = () => {
             onPress={() => navToOnboardingStack(onboardingModule)}>
             <Text style={styles.compostGameText}>How to use FeedLink</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={styles.compostGameButton}
-            onPress={() => navigation.navigate('Food Bank Search')}>
-            <Text style={styles.compostGameText}>Find a Food Pantry</Text>
-          </TouchableOpacity> */}
         </View>
 
         <View style={styles.itemsList}>
@@ -463,13 +237,6 @@ const Account = () => {
           style={styles.deleteAccountButton}
           onPress={handleDeleteAccount}>
           <Text style={styles.deleteAccountButtonText}>Delete Account</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.deleteAccountButton}
-          onPress={deleteAllConsumedItems}>
-          <Text style={styles.deleteAccountButtonText}>
-            Delete All Consumed Items
-          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

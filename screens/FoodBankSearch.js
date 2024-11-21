@@ -1,13 +1,7 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import foodBanks from './data/dummy_data.json'; // Import the JSON file
+import {View, TextInput, FlatList, Text, TouchableOpacity} from 'react-native';
+import foodBanks from './data/dummy_data.json';
+import styles from './styles/foodBankSearch';
 
 const FoodBankSearch = ({navigation}) => {
   const [zipCode, setZipCode] = useState('');
@@ -16,7 +10,7 @@ const FoodBankSearch = ({navigation}) => {
   const handleSearch = input => {
     setZipCode(input);
     if (input.length === 0) {
-      setFilteredBanks(foodBanks); // Show all if input is empty
+      setFilteredBanks(foodBanks);
     } else {
       const filtered = foodBanks.filter(bank =>
         bank.served_zip_codes.includes(parseInt(input)),
@@ -52,28 +46,5 @@ const FoodBankSearch = ({navigation}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-  },
-  item: {
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  itemText: {
-    fontSize: 18,
-  },
-});
 
 export default FoodBankSearch;

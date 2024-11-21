@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 80,
+    marginTop: 50,
   },
   screenWrapper: {
     marginBottom: 80,

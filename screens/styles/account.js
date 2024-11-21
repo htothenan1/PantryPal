@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingHorizontal: 30,
-    marginTop: 50,
+    marginTop: 45,
   },
   loadingContainer: {marginTop: 250},
   contentContainer: {

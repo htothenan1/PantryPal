@@ -11,7 +11,6 @@ import {
 import {useNavigation} from '@react-navigation/core';
 import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../firebase';
-import chefsHat from '../assets/chefs_hat.png';
 import foodbankicon from '../assets/foodbankicon.png';
 import styles from './styles/login';
 
@@ -113,22 +112,6 @@ const Login = () => {
           Sign up here!
         </Text>
       </Text>
-      {/* <Text style={styles.registerText}>
-        Need food?{' '}
-        <Text
-          onPress={() => navigation.navigate('Food Bank Search')}
-          style={styles.registerHyperlink}
-          accessibilityLabel="Food Bank Search"
-          accessibilityRole="link">
-          Find a food pantry here!
-        </Text>
-      </Text> */}
-
-      {/* <TouchableOpacity
-        style={styles.compostGameButton}
-        onPress={() => navigation.navigate('Food Bank Search')}>
-        <Text style={styles.compostGameText}>Find a Food Bank</Text>
-      </TouchableOpacity> */}
     </KeyboardAvoidingView>
   );
 };

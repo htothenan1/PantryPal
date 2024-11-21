@@ -30,9 +30,15 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#333',
     fontFamily: 'Avenir-Book',
+    lineHeight: 23,
+    paddingBottom: 3,
   },
   selectedTabText: {
     color: '#333',
+    fontSize: 16,
+    fontFamily: 'Avenir-Book',
+    lineHeight: 23,
+    paddingBottom: 3,
   },
   item: {
     padding: 15,

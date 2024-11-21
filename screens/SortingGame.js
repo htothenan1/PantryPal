@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   Dimensions,
   Animated,
   PanResponder,
@@ -10,12 +9,12 @@ import {
 } from 'react-native';
 import {IconLeaf, IconLeafOff} from '@tabler/icons-react-native';
 import {items} from './data/emojis';
-import {auth} from '../firebase'; // Update this path based on your actual file structure
-import {API_URL} from '@env'; // Ensure you have this set up in your environment
+import {auth} from '../firebase';
+import {API_URL} from '@env';
+import styles from './styles/sortingGame';
 
 const {width, height} = Dimensions.get('window');
 const midpoint = height / 3;
-const lineHeight = midpoint / 3;
 
 const bins = [
   {type: 'compost', label: 'Compost', color: 'green'},
@@ -60,15 +59,33 @@ const SortingGame = () => {
   }, [userEmail]);
 
   const getItemSpeed = score => {
-    if (score >= 50) return 900;
-    if (score >= 45) return 1200;
-    if (score >= 40) return 1300;
-    if (score >= 35) return 1400;
-    if (score >= 30) return 1500;
-    if (score >= 25) return 1600;
-    if (score >= 20) return 2000;
-    if (score >= 15) return 2200;
-    if (score >= 10) return 2400;
+    if (score >= 50) {
+      return 900;
+    }
+    if (score >= 45) {
+      return 1200;
+    }
+    if (score >= 40) {
+      return 1300;
+    }
+    if (score >= 35) {
+      return 1400;
+    }
+    if (score >= 30) {
+      return 1500;
+    }
+    if (score >= 25) {
+      return 1600;
+    }
+    if (score >= 20) {
+      return 2000;
+    }
+    if (score >= 15) {
+      return 2200;
+    }
+    if (score >= 10) {
+      return 2400;
+    }
     return 2500;
   };
 
@@ -79,7 +96,7 @@ const SortingGame = () => {
         const newItem = {
           ...randomItem,
           id: Math.random().toString(),
-          x: new Animated.Value(width / 2 - 35), // Center horizontally
+          x: new Animated.Value(width / 2 - 35),
           y: new Animated.Value(0),
         };
         setFallingItems(prevItems => [...prevItems, newItem]);
@@ -165,7 +182,9 @@ const SortingGame = () => {
     });
 
   const handleBinPress = binType => {
-    if (fallingItems.length === 0) return;
+    if (fallingItems.length === 0) {
+      return;
+    }
 
     const lastItem = fallingItems[fallingItems.length - 1];
 
@@ -313,85 +332,5 @@ const SortingGame = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f0f0',
-  },
-  pointsContainer: {
-    position: 'absolute',
-    top: 50,
-    width: '100%',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  pointsText: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-  },
-  maxScoreText: {
-    fontFamily: 'Avenir-Book',
-    fontSize: 18,
-  },
-  binsContainer: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  middleSection: {
-    flex: 1,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  binSection: {
-    width: width / 3.5,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  binLabel: {
-    fontSize: 16,
-    color: '#fff',
-    marginTop: 8,
-  },
-  emptySpace: {
-    width: width / 2.5,
-    height: 100,
-  },
-  item: {
-    position: 'absolute',
-    width: 70,
-    height: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emoji: {
-    fontSize: 50,
-  },
-  midpointLine: {
-    position: 'absolute',
-    top: lineHeight,
-    width: '100%',
-    height: 1,
-    borderColor: 'black',
-  },
-  restartButton: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#1b4965',
-    borderRadius: 10,
-  },
-  restartButtonText: {
-    color: '#fff',
-    fontFamily: 'Avenir-Book',
-    fontSize: 16,
-  },
-});
 
 export default SortingGame;

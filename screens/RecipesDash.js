@@ -17,8 +17,6 @@ import {IconToolsKitchen2} from '@tabler/icons-react-native';
 import {auth} from '../firebase';
 import {ingredients} from './data/ingredients';
 import chefLogo from '../assets/chefs_hat.png';
-import foodbankicon from '../assets/foodbankicon.png';
-
 import styles from './styles/recipesDash';
 
 const viewConfigRef = {viewAreaCoveragePercentThreshold: 95};
@@ -37,7 +35,7 @@ const RecipesDash = () => {
   const navigation = useNavigation();
   const userEmail = auth.currentUser?.email;
 
-  const handleLongPress = itemName => {
+  const handlePress = itemName => {
     setSelectedItems(prevSelectedItems => {
       if (prevSelectedItems.includes(itemName)) {
         return prevSelectedItems.filter(name => name !== itemName);
@@ -68,8 +66,6 @@ const RecipesDash = () => {
 
   const renderItem = ({item}) => {
     const isSelected = selectedItems.includes(item.name);
-
-    // Find the corresponding ingredient to get the image
     const ingredient = ingredients.find(
       ing =>
         ing.name &&
@@ -81,7 +77,7 @@ const RecipesDash = () => {
 
     return (
       <TouchableOpacity
-        onPress={() => handleLongPress(item.name)}
+        onPress={() => handlePress(item.name)}
         style={[styles.item, isSelected && styles.selectedItemStyle]}>
         <Image source={itemImage} style={styles.itemImage} />
         <View style={styles.itemTextContainer}>
@@ -89,10 +85,6 @@ const RecipesDash = () => {
             style={[styles.itemText, isSelected && styles.selectedItemText]}>
             {capitalizeWords(item.name)}
           </Text>
-          {/* <Text
-            style={[styles.itemExpInt, isSelected && styles.selectedItemText]}>
-            Default Exp: {item.exp_int ? `${item.exp_int} days` : 'N/A'}
-          </Text> */}
         </View>
       </TouchableOpacity>
     );
@@ -109,7 +101,6 @@ const RecipesDash = () => {
 
     if (currentItems && currentItems.length > 0) {
       const queryString = currentItems.map(item => item.name).join(',+');
-      // const randomInt = Math.floor(Math.random() * 10) + 1;
       try {
         const response = await fetch(
           `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${SPOON_KEY}&ingredients=${queryString}&number=25`,
@@ -118,7 +109,6 @@ const RecipesDash = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const resItems = await response.json();
-        // console.log(resItems);
         setFetchedRecipes(resItems);
         setIsRecipesLoading(false);
       } catch (error) {
@@ -210,12 +200,11 @@ const RecipesDash = () => {
         )}
       </View>
       <View style={styles.headerText}>
-        <Text style={styles.titleText}>Your Items ({items.length})</Text>
         <Pressable
           disabled={selectedItems.length === 0}
           onPress={handleRefreshRecipes}
           style={({pressed}) => [
-            styles.button,
+            styles.buttonLarge,
             {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#228B22'},
             selectedItems.length === 0 && styles.disabledButton,
           ]}>
@@ -231,7 +220,7 @@ const RecipesDash = () => {
           disabled={selectedItems.length === 0}
           onPress={() => setSelectedItems([])}
           style={({pressed}) => [
-            styles.button,
+            styles.buttonSmall,
             {backgroundColor: pressed ? 'rgba(0, 0, 255, 0.5)' : '#B22222'},
             selectedItems.length === 0 && styles.disabledButton,
           ]}>

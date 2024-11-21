@@ -949,69 +949,6 @@ app.delete('/items/deleteAll/:userEmail', async (req, res) => {
   }
 });
 
-// Delete one item by id
-// app.delete('/items/:id', async (req, res) => {
-//   try {
-//     const deletionMethod = req.query.method;
-//     const deletedItem = await Item.findById(req.params.id);
-//     if (!deletedItem) {
-//       return res.status(404).send('Item not found');
-//     }
-
-//     if (deletionMethod === 'consume' || deletionMethod === 'waste') {
-//       const ItemModel =
-//         deletionMethod === 'consume' ? ConsumedItem : WastedItem;
-//       const existingItem = await ItemModel.findOne({
-//         name: deletedItem.name,
-//         user: deletedItem.user,
-//       });
-
-//       if (existingItem) {
-//         existingItem.frequency += 1;
-//         await existingItem.save();
-//       } else {
-//         await ItemModel.create({
-//           name: deletedItem.name,
-//           user: deletedItem.user,
-//           frequency: 1,
-//         });
-//       }
-//     }
-
-//     await Item.findByIdAndDelete(req.params.id);
-
-//     const user = await User.findOne({email: deletedItem.user});
-//     if (user) {
-//       user.itemsDeleted.total += 1;
-//       let xpGain = 0; // Initialize XP gain variable
-
-//       if (deletionMethod === 'undo') {
-//         user.itemsDeleted.byUndo += 1;
-//       }
-//       if (deletionMethod === 'consume') {
-//         user.itemsDeleted.byConsume += 1;
-//         xpGain += 2; // Gain 2 XP for consume method
-//       }
-//       if (deletionMethod === 'waste') {
-//         user.itemsDeleted.byWaste += 1;
-//         xpGain += 1; // Gain 1 XP for waste method
-//       }
-
-//       user.xp += xpGain;
-//       // Check for level change and update the user accordingly
-//       const {levelChanged, newLevel, xp} = updateUserLevelAndCheckChange(user);
-//       await user.save();
-
-//       // If the request expects a JSON response
-//       res.json({message: 'Item deleted', levelChanged, newLevel, xp});
-//     } else {
-//       res.status(404).send('User not found');
-//     }
-//   } catch (error) {
-//     res.status(400).send('Bad request: ' + error.message);
-//   }
-// });
-
 app.delete('/items/:id', async (req, res) => {
   try {
     const {method} = req.query;

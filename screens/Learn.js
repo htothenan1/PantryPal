@@ -59,22 +59,6 @@ const Learn = () => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.titleText}>Kitchen Prep</Text>
-      <View style={styles.dashContainer}>
-        <FlatList
-          data={kitchenPrepModules}
-          renderItem={renderModuleItems}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={true}
-          pagingEnabled
-          ref={ref => {
-            flatListRef.current = ref;
-          }}
-          viewabilityConfig={viewConfigRef}
-          onViewableItemsChanged={onViewRef.current}
-        />
-      </View>
       <Text style={styles.titleText}>Food Knowledge</Text>
       <View style={styles.dashContainer}>
         <FlatList
@@ -95,6 +79,22 @@ const Learn = () => {
       <View style={styles.dashContainer}>
         <FlatList
           data={kitchenSkillsModules}
+          renderItem={renderModuleItems}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={true}
+          pagingEnabled
+          ref={ref => {
+            flatListRef.current = ref;
+          }}
+          viewabilityConfig={viewConfigRef}
+          onViewableItemsChanged={onViewRef.current}
+        />
+      </View>
+      <Text style={styles.titleText}>Kitchen Prep</Text>
+      <View style={styles.dashContainer}>
+        <FlatList
+          data={kitchenPrepModules}
           renderItem={renderModuleItems}
           keyExtractor={(item, index) => index.toString()}
           horizontal
